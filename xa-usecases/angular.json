@@ -26,13 +26,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -94,13 +89,8 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss"],
             "scripts": []
           }
         }
@@ -133,9 +123,7 @@
               "projects/xa-portal-dev/src/favicon.ico",
               "projects/xa-portal-dev/src/assets"
             ],
-            "styles": [
-              "projects/xa-portal-dev/src/styles.scss"
-            ],
+            "styles": ["projects/xa-portal-dev/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -201,9 +189,114 @@
               "projects/xa-portal-dev/src/favicon.ico",
               "projects/xa-portal-dev/src/assets"
             ],
-            "styles": [
-              "projects/xa-portal-dev/src/styles.scss"
+            "styles": ["projects/xa-portal-dev/src/styles.scss"],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "@create-sr/request-form": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@create-sr/request-form",
+      "sourceRoot": "projects/@create-sr/request-form/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@create-sr/request-form",
+            "index": "projects/@create-sr/request-form/src/index.html",
+            "main": "projects/@create-sr/request-form/src/main.ts",
+            "polyfills": "projects/@create-sr/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@create-sr/request-form/tsconfig.app.json",
+            "assets": [
+              "projects/@create-sr/request-form/src/favicon.ico",
+              "projects/@create-sr/request-form/src/assets"
             ],
+            "styles": ["projects/@create-sr/request-form/src/styles.css"],
+            "scripts": [],
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "2mb",
+                "maximumError": "3mb"
+              },
+              {
+                "type": "anyComponentStyle",
+                "maximumWarning": "2kb",
+                "maximumError": "4kb"
+              }
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/@create-sr/request-form/src/environments/environment.ts",
+                  "with": "projects/@create-sr/request-form/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            },
+            "prod-local-libs": {
+              "tsConfig": "projects/@create-sr/request-form/tsconfig.app.local-libs.json",
+              "fileReplacements": [
+                {
+                  "replace": "projects/@create-sr/request-form/src/environments/environment.ts",
+                  "with": "projects/@create-sr/request-form/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@create-sr/request-form:build:production"
+            },
+            "development": {
+              "browserTarget": "@create-sr/request-form:build:development"
+            },
+            "local-libs": {
+              "browserTarget": "@create-sr/request-form:build:prod-local-libs"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "@create-sr/request-form:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/@create-sr/request-form/src/test.ts",
+            "polyfills": "projects/@create-sr/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@create-sr/request-form/tsconfig.spec.json",
+            "karmaConfig": "projects/@create-sr/request-form/karma.conf.js",
+            "assets": [
+              "projects/@create-sr/request-form/src/favicon.ico",
+              "projects/@create-sr/request-form/src/assets"
+            ],
+            "styles": ["projects/@create-sr/request-form/src/styles.css"],
             "scripts": []
           }
         }

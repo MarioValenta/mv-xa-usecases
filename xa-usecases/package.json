@@ -1,6 +1,6 @@
 {
   "name": "xa-usecases",
-  "version": "0.0.0",
+  "version": "12.2.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,7 +9,11 @@
     "prod": "ng serve --port 8081 --aot -o -c production",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+
+    "test:@create-sr/request-form": "ng test --project @create-sr/request-form",
+    "build:prod:@create-sr/request-form": "ng build --project @create-sr/request-form --configuration production --single-bundle",
+    "build:prod:local-libs:@create-sr/request-form": "ng build --project @create-sr/request-form --configuration prod-local-libs --single-bundle"
   },
   "private": true,
   "dependencies": {

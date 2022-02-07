@@ -1,0 +1,94 @@
+<form [formGroup]="form" class="ui container form" style="padding:20px 10px">
+
+  <h2 class="ui dividing header">
+    <i class="edit outline icon"></i>
+    <div class="content">
+      <span> General </span>
+      <div class="sub header">Specify general information.</div>
+    </div>
+  </h2>
+
+  <div class="field" [class.required]="isFormElementRequired('Title')">
+    <label>Title</label>
+    <input type="text" formControlName="Title" [placeholder]="this.Context.ConfigPayload.Placeholders.Title" />
+    <show-errors [control]="this.form.get('Title')"></show-errors>
+  </div>
+
+  <div class="five wide field" [class.required]="isFormElementRequired('Customer')">
+    <label>Customer</label>
+    <xa-select [search]="true" [options]="Customers$ | async" [loading]="!(Customers$ | async)"
+      formControlName="CustomerSM9Name" [placeholder]="this.Context.ConfigPayload.Placeholders.Customer" viewValue="label" optionValue="sm9name"
+      (change)="customerSelected()" #customerDropDown></xa-select>
+    <show-errors [control]="this.form.get('Customer')"></show-errors>
+  </div>
+
+  <h2 class="ui dividing header">
+    <i class="users icon"></i>
+    <div class="content">
+      <span> Group </span>
+      <div class="sub header">Please select the Assignment-Group required for the request. </div>
+    </div>
+  </h2>
+
+  <div class="five wide field" [class.required]="isFormElementRequired('AssignmentGroup')">
+    <label>Assignment-Group </label>
+    <xa-select [search]="true" formControlName="AssignmentGroup" [placeholder]="this.Context.ConfigPayload.Placeholders.AssignmentGroup"
+      [options]="this.AssignmentGroups$ | async" [loading]="!(this.AssignmentGroups$ | async)">
+    </xa-select>
+    <show-errors [control]="this.form.get('AssignmentGroup')"></show-errors>
+  </div>
+  <span>If a required Assignmentgroup is not available, please contact: DL_AT_Delivery-Support_Systems@t-systems.com</span>
+
+  <h2 class="ui dividing header">
+    <i class="tasks icon"></i>
+    <div class="content">
+      <span> Request </span>
+      <div class="sub header">Description of this Service Request</div>
+    </div>
+  </h2>
+
+  <div class="field" [class.required]="isFormElementRequired('ServiceRequestDescriptionTextArea')">
+    <label>Service Request Description</label>
+    Please provide a thorough request description.
+    <textarea [rows]="this.Context.ConfigPayload.textarea.rows" formControlName="ServiceRequestDescriptionTextArea"
+      [maxlength]="this.Context.ConfigPayload.textarea.textLength"
+      [placeholder]="this.Context.ConfigPayload.Placeholders.ServiceRequestDescriptionTextArea"></textarea>
+    <show-errors [control]="this.form.get('ServiceRequestDescriptionTextArea')"></show-errors>
+  </div>
+
+  <div *ngIf="this.Context.ConfigPayload.textarea.textLength" class="ui right aligned grid">
+    <div class="sixteen wide column">
+      <span>{{this.Context.ConfigPayload.textarea.textLength - this.form.get('ServiceRequestDescriptionTextArea').value.length}}/{{this.Context.ConfigPayload.textarea.textLength}}
+        characters left</span>
+    </div>
+  </div>
+
+  <h2 class="ui dividing header">
+    <i class="file outline icon"></i>
+    <div class="content">
+      <span> Attachments </span>
+      <div class="sub header">
+        Select the attachments that you want to add to the service request.
+      </div>
+    </div>
+  </h2>
+
+  <attachmentupload [maxNumberofFiles]="3" [maxFileSizeInMB]="5" (filesChanged)="updateAttachments($event)">
+  </attachmentupload>
+
+</form>
+
+<pre *if-dev>
+  <div class="ui two column divided grid">
+    <div class="row">
+      <div class="column">
+        <p>   {{ form.getRawValue() | json }}</p>
+      </div>
+      <div class="column">
+        <p>  {{ form.value | json }}</p>
+      </div>
+    </div>
+    </div>
+</pre>
+
+<xa-notify></xa-notify>
