@@ -14,7 +14,9 @@
     "build:prod:@create-sr/request-form": "ng build --project @create-sr/request-form --configuration production --single-bundle",
     "build:prod:local-libs:@create-sr/request-form": "ng build --project @create-sr/request-form --configuration prod-local-libs --single-bundle",
     "test:@ranf/request-form": "ng test --project @ranf/request-form",
-    "build:prod:@ranf/request-form": "ng build --project @ranf/request-form --configuration production --single-bundle"
+    "build:prod:@ranf/request-form": "ng build --project @ranf/request-form --configuration production --single-bundle",
+    "test:@ranf/ut-check": "ng test --project @ranf/ut-check",
+    "build:prod:@ranf/ut-check": "ng build --project @ranf/ut-check --configuration production --single-bundle"
   },
   "private": true,
   "dependencies": {
