@@ -1,0 +1,202 @@
+<form [formGroup]="form" class="ui container form" style="padding:20px 10px">
+
+  <h2 class="ui dividing header">
+    <i class="edit outline icon"></i>
+    <div class="content">
+      <span> {{ SECTION_LABEL_GENERAL }} </span>
+      <div class="sub header">General information of the form. This data are readonly, no edit possible!</div>
+    </div>
+  </h2>
+
+  <div class="two fields">
+    <!-- Requestor -->
+    <div class="field" [class.required]="isFormElementRequired(FORM_KEY_REQUESTOR)">
+      <label>{{ FORM_LABEL_REQUESTOR }}</label>
+      <input type="text" [formControlName]="FORM_KEY_REQUESTOR" [value]="this.getRequestorName()" readonly="true">
+      <show-errors [control]="this.form.get(FORM_KEY_REQUESTOR)"></show-errors>
+    </div>
+    <!-- Customer Contact -->
+    <div class="field" [class.required]="isFormElementRequired(FORM_KEY_CUSTOMER_CONTACT)">
+      <label>{{ FORM_LABEL_CUSTOMER_CONTACT }}</label>
+      <input type="text" [formControlName]="FORM_KEY_CUSTOMER_CONTACT" readonly="true">
+      <show-errors [control]="this.form.get(FORM_KEY_CUSTOMER_CONTACT)"></show-errors>
+    </div>
+  </div>
+
+  <div class="four fields">
+    <div class="seven wide field" [class.required]="isFormElementRequired(FORM_KEY_CUSTOMER)">
+      <label>{{ FORM_LABEL_CUSTOMER }}</label>
+      <input type="text" [formControlName]="FORM_KEY_CUSTOMER" readonly="true">
+      <show-errors [control]="this.form.get(FORM_KEY_CUSTOMER)"></show-errors>
+    </div>
+
+    <!-- Address -->
+    <div class="three wide field" [class.required]="isFormElementRequired(FORM_KEY_ADDRESS)">
+      <label>{{ FORM_LABEL_ADDRESS }}</label>
+      <input type="text" [formControlName]="FORM_KEY_ADDRESS" readonly="true">
+      <show-errors [control]="this.form.get(FORM_KEY_ADDRESS)"></show-errors>
+    </div>
+    <!-- Accounts receivable number -->
+    <div class="three wide field" [class.required]="isFormElementRequired(FORM_KEY_ACCOUNTS_NUMBER)">
+      <label>{{ FORM_LABEL_ACCOUNTS_NUMBER }}</label>
+      <input type="text" [formControlName]="FORM_KEY_ACCOUNTS_NUMBER" readonly="true">
+      <show-errors [control]="this.form.get(FORM_KEY_ACCOUNTS_NUMBER)"></show-errors>
+    </div>
+    <!-- UID Number -->
+    <div class="three wide field" [class.required]="isFormElementRequired(FORM_KEY_UID_NUMBER)">
+      <label>{{ FORM_LABEL_UID_NUMBER }}</label>
+      <input type="text" [formControlName]="FORM_KEY_UID_NUMBER" readonly="true">
+      <show-errors [control]="this.form.get(FORM_KEY_UID_NUMBER)"></show-errors>
+    </div>
+  </div>
+
+
+  <div class="three fields">
+    <!-- Time period -->
+    <div class="four wide field" [class.required]="isFormElementRequired(FORM_KEY_PERIOD_START)">
+      <label>{{ FORM_LABEL_PERIOD_START }}</label>
+      <input type="text" [value]="this.parseISOString(this.Context.Payload['PeriodStart'])" readonly="true">
+      <show-errors [control]="this.form.get(FORM_KEY_PERIOD_START)"></show-errors>
+    </div>
+
+    <div class="four wide field" [class.required]="isFormElementRequired(FORM_KEY_PERIOD_END)">
+      <label>{{ FORM_LABEL_PERIOD_END }}</label>
+      <input type="text" [value]="this.parseISOString(this.Context.Payload['PeriodEnd'])" readonly="true">
+      <show-errors [control]="this.form.get(FORM_KEY_PERIOD_END)"></show-errors>
+    </div>
+
+     <!-- Contract duration -->
+     <div class="four wide field" [class.required]="isFormElementRequired(FORM_KEY_CONTRACT_DURATION)">
+      <label>{{ FORM_LABEL_CONTRACT_DURATION }}</label>
+      <input type="text" [formControlName]="FORM_KEY_CONTRACT_DURATION" readonly="true">
+      <show-errors [control]="this.form.get(FORM_KEY_CONTRACT_DURATION)"></show-errors>
+    </div>
+  </div>
+
+  <div class="two fields">
+    <!-- Time for payment -->
+    <div class="field" [class.required]="isFormElementRequired(FORM_KEY_TIME_PAYMENT)">
+      <label>{{ FORM_LABEL_TIME_PAYMENT }}</label>
+      <input type="text" [formControlName]="FORM_KEY_TIME_PAYMENT" readonly="true">
+      <show-errors [control]="this.form.get(FORM_KEY_TIME_PAYMENT)"></show-errors>
+    </div>
+
+    <!-- Different billing address -->
+    <div class="field" [class.required]="isFormElementRequired(FORM_KEY_DIFFERENT_BILLING_ADDRESS)">
+      <label>{{ FORM_LABEL_DIFFERENT_BILLING_ADDRESS }}</label>
+      <input type="text" [formControlName]="FORM_KEY_DIFFERENT_BILLING_ADDRESS" readonly="true">
+      <show-errors [control]="this.form.get(FORM_KEY_DIFFERENT_BILLING_ADDRESS)"></show-errors>
+    </div>
+  </div>
+
+  <div class="three fields">
+    <!-- Credit memo for Invoice number -->
+    <div class="field" [class.required]="isFormElementRequired(FORM_KEY_CREDIT_MEMO)">
+      <label>{{ FORM_LABEL_CREDIT_MEMO }}</label>
+      <input type="text" [formControlName]="FORM_KEY_CREDIT_MEMO" readonly="true">
+      <show-errors [control]="this.form.get(FORM_KEY_CREDIT_MEMO)"></show-errors>
+    </div>
+    <!-- Contract Number -->
+    <div class="field" [class.required]="isFormElementRequired(FORM_KEY_CONTRACT_NUMBER)">
+      <label>{{ FORM_LABEL_CONTRACT_NUMBER }}</label>
+      <input type="number" [formControlName]="FORM_KEY_CONTRACT_NUMBER" readonly="true">
+      <show-errors [control]="this.form.get(FORM_KEY_CONTRACT_NUMBER)"></show-errors>
+    </div>
+    <div class="field" [class.required]="isFormElementRequired(FORM_KEY_ORDER_NUMBER_OF_CUSTOMER)">
+      <label>{{ FORM_LABEL_ORDER_NUMBER_OF_CUSTOMER }}</label>
+      <input type="text" [formControlName]="FORM_KEY_ORDER_NUMBER_OF_CUSTOMER" readonly="true">
+      <show-errors [control]="this.form.get(FORM_KEY_ORDER_NUMBER_OF_CUSTOMER)"></show-errors>
+    </div>
+
+  </div>
+
+
+  <div class="two fields">
+    <!-- Type of the settlement -->
+    <div class="field" [class.required]="isFormElementRequired(FORM_KEY_BILLING_CYCLE)">
+      <label>{{ FORM_LABEL_BILLING_CYCLE }}</label>
+      <input type="text" [formControlName]="FORM_KEY_BILLING_CYCLE" readonly="true">
+      <show-errors [control]="this.form.get(FORM_KEY_BILLING_CYCLE)"></show-errors>
+    </div>
+
+    <!-- Type of the settlement -->
+    <div class="field" [class.required]="isFormElementRequired(FORM_KEY_SETTLEMENT)">
+      <label>{{ FORM_LABEL_SETTLEMENT }}</label>
+      <input type="text" [formControlName]="FORM_KEY_SETTLEMENT" readonly="true">
+      <show-errors [control]="this.form.get(FORM_KEY_SETTLEMENT)"></show-errors>
+    </div>
+  </div>
+
+  <!-- Order number of the customer -->
+  <div class="two fields">
+    <div class="eight wide field">
+
+    </div>
+
+  </div>
+
+  <!-- Header text -->
+  <div class="field" [class.required]="isFormElementRequired(FORM_KEY_HEADER_TEXT)">
+    <label>{{ FORM_LABEL_HEADER_TEXT }}</label>
+    <textarea [formControlName]="FORM_KEY_HEADER_TEXT" rows="3" style="resize: none;" readonly="true">
+        </textarea>
+    <show-errors [control]="this.form.get(FORM_KEY_HEADER_TEXT)"></show-errors>
+  </div>
+
+  <!-- Table section -->
+  <h2 class="ui dividing header">
+    <i class="file outline icon"></i>
+    <div class="content">
+      <span> {{ SECTION_LABEL_EXCEL_DATA }} </span>
+      <div class="sub header">
+        Data from the "Rechnungsanforderungs" Excel file.
+      </div>
+    </div>
+  </h2>
+
+  <div class="ui segment">
+    <label class="ui ribbon label">Hint: grid usage</label>
+    <ul>
+      <li>You can select multiple rows while pressing <b>SHIFT</b> or <b>CTRL</b>.</li>
+      <li>Right click inside the grid opens the context menu.</li>
+    </ul>
+  </div>
+  <ag-grid-angular style="width: 100%; height: 500px;" class="ag-theme-balham" [columnDefs]="columnDefs"
+    [rowData]="rowData" [gridOptions]="gridOptions" [overlayLoadingTemplate]="overlayLoadingTemplate"
+    [overlayNoRowsTemplate]="overlayNoRowsTemplate" [getRowStyle]="getRowStyle"
+    [getContextMenuItems]="getContextMenuItems" [enableRangeSelection]="true" rowSelection="multiple"
+    [statusBar]="statusBar" [frameworkComponents]="frameworkComponents" [animateRows]="true"
+    (gridReady)="onGridReady($event)" (cellKeyDown)="onCellKeyDown($event)">
+  </ag-grid-angular>
+  <br><br>
+
+  <h2 class="ui dividing header">
+    <i class="file outline icon"></i>
+    <div class="content">
+      <span> {{ SECTION_LABEL_ATTACHMENTS }} </span>
+      <div class="sub header">
+        List of the attached files.
+      </div>
+    </div>
+  </h2>
+
+  <attachmentlist [attachments]="this.Context.Payload.Attachments" [businessKey]="this.Context.Payload['__RequestId']"
+    [maxNumberofFiles]="this.Context.ConfigPayload.attachmentsConfigFrontend.maxNumberOfFiles || 3"
+    [maxFileSizeInMB]="this.Context.ConfigPayload.attachmentsConfigFrontend.maxFileSizeInMB || 5">
+  </attachmentlist>
+
+  <div class="field">
+    <label>{{ FORM_LABEL_COMMENTS }}</label>
+    <textarea [formControlName]="FORM_KEY_COMMENTS" readonly="true"></textarea>
+  </div>
+
+  <!-- Export button TODO: need to discuss the place of it -->
+  <button class="ui left secondary button" (click)="this.onExport()">Export the form to Excel
+    file</button>
+</form>
+
+<pre *if-dev>
+  <p>{{this.form.value | json}}</p>
+</pre>
+
+<xa-notify></xa-notify>

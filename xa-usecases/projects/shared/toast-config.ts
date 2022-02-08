@@ -1,5 +1,5 @@
 import {XANotifyStyle} from '@xa/ui';
- 
+
 /**
  * XANotify default configuration object
  */
@@ -13,7 +13,7 @@ export const XAToastDefaults = {
   toast: {
     type: 'simple',
     showProgressBar: true,
-    timeout: 2000,
+    timeout: 4000,
     closeOnClick: true,
     pauseOnHover: true,
     bodyMaxLength: 150,
