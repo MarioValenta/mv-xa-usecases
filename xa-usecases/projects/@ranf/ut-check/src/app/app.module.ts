@@ -10,8 +10,6 @@ import 'ag-grid-enterprise';
 
 import { AppComponent } from './app.component';
 import { AttachmentListComponent } from './attachmentlist-component/AttachmentList.component';
-import { Ng2FlatpickrComponent } from './ng2-flatpickr/ng2-flatpickr.component';
-import { Ng2FlatpickrDirective } from './ng2-flatpickr/ng2-flatpickr.directive';
 import { XAServices } from '@xa/lib-ui-common';
 import { ValidationService } from '@xa/validation';
 import { BtnCellRenderer } from './attachmentlist-component/button-cell-renderer.component';
@@ -20,6 +18,8 @@ import { GridStatusBarSharedModule } from 'projects/shared/grid-status-bar/grid-
 import { GridStatusBarComponent } from 'projects/shared/grid-status-bar/grid-status-bar-component.component';
 import { environment } from '../environments/environment';
 import { XAToastDefaults } from 'projects/shared/toast-config';
+import { Ng2FlatpickrComponent } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.component';
+import { Ng2FlatpickrDirective } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.directive';
 
 
 @NgModule({

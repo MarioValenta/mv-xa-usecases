@@ -11,14 +11,14 @@ import { XAGridHelperModule, AllCellRenderers, AllCellEditors } from '@xa/grid';
 import 'ag-grid-enterprise';
 import { AttachmentUploadComponent } from './attachmentupload-component/AttachmentUpload.component';
 import { ValidationService } from '@xa/validation';
-import { Ng2FlatpickrComponent } from './ng2-flatpickr/ng2-flatpickr.component';
-import { Ng2FlatpickrDirective } from './ng2-flatpickr/ng2-flatpickr.directive';
 //TODO import { SharedModule } from 'DevEnvironment/src/app/shared/shared.module';
 import { environment } from '../environments/environment';
 import { ExcelTableUploadComponent } from './excel-table-component/excel.table.component';
 import { GridStatusBarSharedModule } from 'projects/shared/grid-status-bar/grid-status-bar.shared.module';
 import { GridStatusBarComponent } from 'projects/shared/grid-status-bar/grid-status-bar-component.component';
 import { XAToastDefaults } from 'projects/shared/toast-config';
+import { Ng2FlatpickrComponent } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.component';
+import { Ng2FlatpickrDirective } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.directive';
 
 @NgModule({
   declarations: [

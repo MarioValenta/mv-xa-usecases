@@ -5,12 +5,12 @@ import { DataService } from './data.service';
 import { Subject, Observable, of, EMPTY } from 'rxjs';
 import { mergeMap, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { RANFData } from './models/ranf-data.model';
-import { FlatpickrOptions } from './ng2-flatpickr/flatpickr-options.interface';
 import { ValidationService } from '@xa/validation';
 import { XANotifyService } from '@xa/ui';
 import { environment } from '../environments/environment';
 import { DebitorCustomerDto } from './dto/DebitorCustomer';
 import { CustomerInformationDto } from './dto/CustomerInformation';
+import { FlatpickrOptions } from 'projects/shared/ng2-flatpickr/flatpickr-options.interface';
 
 @Component({
     selector: 'app-root',

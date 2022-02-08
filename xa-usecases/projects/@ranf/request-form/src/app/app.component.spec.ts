@@ -9,14 +9,14 @@ import { XAModalService, XAUIModule } from '@xa/ui';
 import { ValidationService } from '@xa/validation';
 import { AgGridModule } from 'ag-grid-angular';
 import { assert } from 'console';
-import { SharedModule } from 'DevEnvironment/src/app/shared/shared.module';
+// TODO import { SharedModule } from 'DevEnvironment/src/app/shared/shared.module';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AttachmentUploadComponent } from './attachmentupload-component/AttachmentUpload.component';
 import { ExcelTableUploadComponent } from './excel-table-component/excel.table.component';
-import { Ng2FlatpickrComponent } from './ng2-flatpickr/ng2-flatpickr.component';
-import { Ng2FlatpickrDirective } from './ng2-flatpickr/ng2-flatpickr.directive';
-import { XAToastDefaults } from './toast-config';
+import { XAToastDefaults } from 'projects/shared/toast-config';
+import { Ng2FlatpickrComponent } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.component';
+import { Ng2FlatpickrDirective } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.directive';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -38,7 +38,7 @@ describe('AppComponent', () => {
         ]),
         ReactiveFormsModule,
         BrowserAnimationsModule,
-        environment.production ? [] : SharedModule
+        //environment.production ? [] : SharedModule
       ],
       providers: [
         {
