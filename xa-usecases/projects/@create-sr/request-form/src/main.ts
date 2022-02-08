@@ -5,7 +5,8 @@ import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
 import {LicenseManager} from 'ag-grid-enterprise';
-LicenseManager.setLicenseKey('CompanyName=T-Systems Austria GesmbH,LicensedGroup=ServiceAutomationPlattform,LicenseType=MultipleApplications,LicensedConcurrentDeveloperCount=7,LicensedProductionInstancesCount=0,AssetReference=AG-013088,ExpiryDate=21_January_2022_[v2]_MTY0MjcyMzIwMDAwMA==6485b3b3b50740c96e6c4fa0aa65b73d');
+import { AG_GRID_LICENSE } from '@xa/grid';
+LicenseManager.setLicenseKey(AG_GRID_LICENSE);
 
 if (environment.production) {
   enableProdMode();
