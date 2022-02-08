@@ -10,7 +10,6 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-
     "test:@create-sr/request-form": "ng test --project @create-sr/request-form",
     "build:prod:@create-sr/request-form": "ng build --project @create-sr/request-form --configuration production --single-bundle",
     "build:prod:local-libs:@create-sr/request-form": "ng build --project @create-sr/request-form --configuration prod-local-libs --single-bundle"
@@ -28,7 +27,7 @@
     "@angular/router": "~12.2.0",
     "@xa/editor": "^12.1.1",
     "@xa/file-editor": "^12.1.1",
-    "@xa/grid": "^12.1.1",
+    "@xa/grid": "^12.1.2",
     "@xa/lib-ui-common": "^12.1.2",
     "@xa/search": "^12.1.1",
     "@xa/show-errors": "^12.1.1",
