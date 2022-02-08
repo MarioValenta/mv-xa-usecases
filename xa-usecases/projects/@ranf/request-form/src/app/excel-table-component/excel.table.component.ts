@@ -564,7 +564,7 @@ export class ExcelTableUploadComponent implements OnInit, OnDestroy {
   onAddDataManually() {
     this.logger('DEBUG', 'onAddDataManually');
 
-    const addedRow = this.gridApi.updateRowData({
+    const addedRow = this.gridApi.applyTransaction({
       add: [
         {
           position: '',
@@ -599,7 +599,7 @@ export class ExcelTableUploadComponent implements OnInit, OnDestroy {
 
     if (this.selectedRows.length > 0) {
 
-      this.gridApi.updateRowData({
+      this.gridApi.applyTransaction({
         remove: this.selectedRows
       });
 
@@ -628,7 +628,7 @@ export class ExcelTableUploadComponent implements OnInit, OnDestroy {
       itemsToUpdate.push(selectedRows);
     });
 
-    this.gridApi.updateRowData({
+    this.gridApi.applyTransaction({
       update: itemsToUpdate
     });
 
@@ -646,7 +646,7 @@ export class ExcelTableUploadComponent implements OnInit, OnDestroy {
       itemsToUpdate.push(selectedRows);
     });
 
-    this.gridApi.updateRowData({
+    this.gridApi.applyTransaction({
       update: itemsToUpdate
     });
 
