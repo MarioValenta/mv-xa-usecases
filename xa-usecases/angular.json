@@ -265,7 +265,7 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-build-plus:dev-server",
           "configurations": {
             "production": {
               "browserTarget": "@create-sr/request-form:build:production"
@@ -286,7 +286,7 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "ngx-build-plus:karma",
           "options": {
             "main": "projects/@create-sr/request-form/src/test.ts",
             "polyfills": "projects/@create-sr/request-form/src/polyfills.ts",
@@ -297,6 +297,104 @@
               "projects/@create-sr/request-form/src/assets"
             ],
             "styles": ["projects/@create-sr/request-form/src/styles.css"],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "@ranf/request-form": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@ranf/request-form",
+      "sourceRoot": "projects/@ranf/request-form/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@ranf/request-form",
+            "index": "projects/@ranf/request-form/src/index.html",
+            "main": "projects/@ranf/request-form/src/main.ts",
+            "polyfills": "projects/@ranf/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@ranf/request-form/tsconfig.app.json",
+            "assets": [
+              "projects/@ranf/request-form/src/favicon.ico",
+              "projects/@ranf/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@ranf/request-form/src/styles.css"
+            ],
+            "scripts": [],
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "2mb",
+                "maximumError": "3mb"
+              },
+              {
+                "type": "anyComponentStyle",
+                "maximumWarning": "2kb",
+                "maximumError": "4kb"
+              }
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/@ranf/request-form/src/environments/environment.ts",
+                  "with": "projects/@ranf/request-form/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@ranf/request-form:build:production"
+            },
+            "development": {
+              "browserTarget": "@ranf/request-form:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "@ranf/request-form:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@ranf/request-form/src/test.ts",
+            "polyfills": "projects/@ranf/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@ranf/request-form/tsconfig.spec.json",
+            "karmaConfig": "projects/@ranf/request-form/karma.conf.js",
+            "assets": [
+              "projects/@ranf/request-form/src/favicon.ico",
+              "projects/@ranf/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@ranf/request-form/src/styles.css"
+            ],
             "scripts": []
           }
         }

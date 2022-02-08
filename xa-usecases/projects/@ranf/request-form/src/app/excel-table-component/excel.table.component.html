@@ -1,0 +1,83 @@
+<div>
+  <div class="ui segment">
+    <label class="ui ribbon label">Import precondition</label>
+    <ul>
+      <li>Number values will be rounded to precision 6.</li>
+      <li><i>totalAmount</i> will be calculated by the gird.</li>
+      <li>Be aware that during the Excel import all values <b>EXCEPT</b> the <i>totalAmount</i> values are imported.
+      </li>
+    </ul>
+  </div>
+  <div class="ui segment">
+    <label class="ui ribbon label">Hint: grid usage</label>
+    <ul>
+      <li>You can select multiple rows while pressing <b>SHIFT</b> or <b>CTRL</b>.</li>
+      <li>Right click inside the grid opens the context menu.</li>
+    </ul>
+  </div>
+  <br>
+  <br>
+  <div data-tooltip="automatically highlights rows when values are changed inside the grid" data-position="top right">
+    <div style="font-weight: bolder; text-align: right;">
+      <xa-switch style="font-weight: bolder;" [checked]="this.automaticHighlightToogle"
+        (change)="this.onToogleChanged($event)" label="automatically highlight rows">
+      </xa-switch>
+    </div>
+  </div>
+
+  <div style="margin-top: 10px;">
+    <div class="ui large basic icon top attached buttons">
+      <button type="button" class="ui labeled icon button"
+        *ngIf="(this.rowData && this.rowData.length>0) || manualUserInput" (click)="clearTable()"
+        style="color: black;"><i class="trash alternate outline red icon"></i>Clear List</button>
+      <button type="button" class="ui labeled icon button" (click)="excelFileInput.click()"
+        style="color: black;"><i class="blue upload icon"></i>Import Excel file</button>
+        <!-- background: #ff7c7c80;
+        background: #9cdfff87;  -->
+
+      <input type="file" name="excelFile" hidden="true"
+        [accept]="this.Context.ConfigPayload.importAllowedFileTypes || '.xlsx,.xls'" #excelFileInput
+        (change)="onImportExcelFile($event.target.files)">
+      <!-- this button serves as workaround => after importing files, the event or some other strange problem causes the form is not updating after import
+                                                    => Workaround fix: Clicking on another HTML element in the form triggers after importing a file triggers the grid and form to be updated with the new data rows -->
+      <button type="button" class="ui right floated primary button" style="display: none;" #importedButton></button>
+    </div>
+    <ag-grid-angular style="width: 100%; height: 500px;" class="ag-theme-balham" [columnDefs]="columnDefs"
+      [rowData]="rowData" [gridOptions]="gridOptions" [overlayLoadingTemplate]="overlayLoadingTemplate"
+      [overlayNoRowsTemplate]="overlayNoRowsTemplate" [getRowStyle]="getRowStyle"
+      [getContextMenuItems]="getContextMenuItems" [stopEditingWhenGridLosesFocus]="true" [statusBar]="statusBar"
+      [animateRows]="true" [frameworkComponents]="frameworkComponents" (gridReady)="onGridReady($event)"
+      (cellValueChanged)="this.onCellValueChanged($event)" (selectionChanged)="onSelectionChanged($event)"
+      (cellKeyDown)="onCellKeyDown($event)">
+    </ag-grid-angular>
+  </div>
+
+  <div *ngIf="this.rowsCount>0" style="margin: 10px;">
+    <div class="ui left floated buttons">
+      <button type="button" class="ui positive labeled icon button" (click)="onAddDataManually()"><i
+          class="plus icon"></i>Add new row</button>
+      <div class="or" *ngIf="this.rowsCount>0"></div>
+      <button type="button" class="ui inverted red labeled icon button"
+        *ngIf="(this.rowData && this.rowData.length>0) || manualUserInput" [disabled]="selectedRowNodes.length === 0"
+        (click)="onRemoveRow()"><i class="trash alternate icon"></i>Remove selected row(s)</button>
+    </div>
+    <div class="ui right floated buttons">
+      <button type="button" class="ui yellow labeled icon button"
+        *ngIf="(this.rowData && this.rowData.length>0) || manualUserInput" [disabled]="selectedRowNodes.length === 0"
+        (click)="onHighlightRow()"><i class="highlighter icon"></i>Highlight selected row(s)</button>
+      <div class="or"></div>
+      <button type="button" class="ui inverted red labeled icon button"
+        *ngIf="(this.rowData && this.rowData.length>0) || manualUserInput" [disabled]="selectedRowNodes.length === 0"
+        (click)="onRemoveRowHighlight()"><i class="eraser icon"></i>Remove selected highlighted row(s)</button>
+    </div>
+  </div>
+  <div *ngIf="this.rowsCount===0" style="margin: 10px;">
+    <div class="ui left floated buttons">
+      <button type="button" class="ui positive labeled icon button" (click)="onAddDataManually()"><i
+          class="plus icon"></i>Add new row</button>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<br>

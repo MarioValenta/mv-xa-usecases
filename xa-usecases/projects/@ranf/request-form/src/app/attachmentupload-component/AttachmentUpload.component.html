@@ -1,0 +1,41 @@
+<p>
+  Maximum Size per File: <b>{{this.maxFileSizeInMB}} MB</b>, Maximum Number of Files: <b>{{this.maxNumberofFiles}}</b> <br />
+  (You can remove Attachments by "right-clicking" and selecting "Remove".)
+</p>
+
+<ag-grid-angular
+  style="width: 100%; height: 300px;"
+  class="ag-theme-balham"
+  (gridReady)="onGridReady($event)"
+  [columnDefs]="columnDefs"
+  [rowData]="rowData"
+  [overlayLoadingTemplate]="overlayLoadingTemplate"
+  [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+  [rowSelection]="rowSelection"
+  [getContextMenuItems]="getContextMenuItems"
+>
+</ag-grid-angular>
+
+<div class="ui grid">
+  <div class="left floated six wide column">
+    <span *ngIf="this.rowData.length>0"><b># selected files: {{this.rowData.length}}/{{this.maxNumberofFiles}}</b></span>
+  </div>
+  <div class="right floated six wide column">
+    <input
+      type="file"
+      multiple
+      style="display: none"
+      [accept]="this.allowedFileTypes"
+      #uploader
+      (change)="AddFiles($event.target.files)"
+    />
+    <button type="button"
+      class="ui right floated primary button"
+      (click)="uploader.click()"
+      style="margin: 10px;"
+      [disabled]="this.rowData.length >= this.maxNumberofFiles"
+      data-tooltip="add attachments to this request" data-position="top right">
+    <i class="upload icon"></i>
+    </button>
+  </div>
+</div>

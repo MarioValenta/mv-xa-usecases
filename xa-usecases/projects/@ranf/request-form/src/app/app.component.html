@@ -1,0 +1,393 @@
+<form [formGroup]="form" class="ui container form" style="padding: 20px 10px">
+  <h2 class="ui dividing header">
+    <i class="edit outline icon"></i>
+    <div class="content">
+      <span> General </span>
+      <div class="sub header">Specify general information.</div>
+    </div>
+  </h2>
+
+  <div class="two fields">
+    <!-- Customer Contact -->
+    <div
+      class="seven wide field"
+      [class.required]="isFormElementRequired(FORM_KEY_CUSTOMER_CONTACT)"
+    >
+      <label>Customer Contact</label>
+      <input
+        type="text"
+        [formControlName]="FORM_KEY_CUSTOMER_CONTACT"
+        [placeholder]="
+          this.Context.ConfigPayload.placeholders[FORM_KEY_CUSTOMER_CONTACT]
+        "
+      />
+      <show-errors
+        [control]="this.form.get(FORM_KEY_CUSTOMER_CONTACT)"
+      ></show-errors>
+    </div>
+  </div>
+
+  <div class="four fields">
+    <div
+      class="seven wide field"
+      [class.required]="isFormElementRequired(FORM_KEY_CUSTOMER)"
+    >
+      <label>Customer</label>
+      <xa-select
+        [formControlName]="FORM_KEY_CUSTOMER"
+        [placeholder]="
+          this.Context.ConfigPayload.placeholders[FORM_KEY_CUSTOMER]
+        "
+        [options]="Customers$ | async"
+        [search]="true"
+        [clearable]="true"
+        [loading]="!(Customers$ | async)"
+        viewValue="DEBITORNAME"
+        optionValue="DEBITORNAME"
+      >
+      </xa-select>
+      <show-errors [control]="this.form.get(FORM_KEY_CUSTOMER)"></show-errors>
+    </div>
+
+    <div
+      class="three wide field"
+      [class.required]="isFormElementRequired(FORM_KEY_ADDRESS)"
+    >
+      <label>Address</label>
+      <input
+        [formControlName]="FORM_KEY_ADDRESS"
+        type="text"
+        class="readonly"
+        readonly="true"
+        [placeholder]="
+          this.Context.ConfigPayload.placeholders[FORM_KEY_ADDRESS]
+        "
+        [options]="Addresses$ | async"
+        [loading]="!(Addresses$ | async)"
+      />
+      <show-errors [control]="this.form.get(FORM_KEY_ADDRESS)"></show-errors>
+    </div>
+
+    <div
+      class="three wide field"
+      [class.required]="isFormElementRequired(FORM_KEY_ACCOUNTS_NUMBER)"
+    >
+      <label>Accounts receivable Nr.</label>
+      <input
+        type="text"
+        class="readonly"
+        [formControlName]="FORM_KEY_ACCOUNTS_NUMBER"
+        readonly="true"
+        [placeholder]="
+          this.Context.ConfigPayload.placeholders[FORM_KEY_ACCOUNTS_NUMBER]
+        "
+        [options]="AccountsNumbers$ | async"
+      />
+      <show-errors
+        [control]="this.form.get(FORM_KEY_ACCOUNTS_NUMBER)"
+      ></show-errors>
+    </div>
+
+    <!-- UID Number -->
+    <div
+      class="three wide field"
+      [class.required]="isFormElementRequired(FORM_KEY_UID_NUMBER)"
+    >
+      <label>UID. Nr.</label>
+      <input
+        type="text"
+        class="readonly"
+        [formControlName]="FORM_KEY_UID_NUMBER"
+        readonly="true"
+        [placeholder]="
+          this.Context.ConfigPayload.placeholders[FORM_KEY_UID_NUMBER]
+        "
+        [options]="UIDNumber$ | async"
+      />
+      <show-errors [control]="this.form.get(FORM_KEY_UID_NUMBER)"></show-errors>
+    </div>
+  </div>
+
+  <div class="three fields">
+    <!-- Time period -->
+    <div
+      class="four wide field"
+      [class.required]="isFormElementRequired(FORM_KEY_PERIOD_START)"
+    >
+      <label>From</label>
+      <ng2-flatpickr
+        #startPicker
+        [formControlName]="FORM_KEY_PERIOD_START"
+        [config]="startOptions"
+        [placeholder]="
+          this.Context.ConfigPayload.placeholders[FORM_KEY_PERIOD_START]
+        "
+      >
+      </ng2-flatpickr>
+      <show-errors
+        [control]="this.form.get(FORM_KEY_PERIOD_START)"
+      ></show-errors>
+    </div>
+
+    <div
+      class="four wide field"
+      [class.required]="isFormElementRequired(FORM_KEY_PERIOD_END)"
+    >
+      <label>To</label>
+      <ng2-flatpickr
+        #endPicker
+        [formControlName]="FORM_KEY_PERIOD_END"
+        [config]="endOptions"
+        [placeholder]="
+          this.Context.ConfigPayload.placeholders[FORM_KEY_PERIOD_END]
+        "
+      >
+      </ng2-flatpickr>
+      <show-errors [control]="this.form.get(FORM_KEY_PERIOD_END)"></show-errors>
+    </div>
+
+    <!-- Contract duration -->
+    <div
+      class="four wide field"
+      [class.required]="isFormElementRequired(FORM_KEY_CONTRACT_DURATION)"
+    >
+      <label>Contract duration in months</label>
+      <input
+        type="text"
+        [formControlName]="FORM_KEY_CONTRACT_DURATION"
+        [placeholder]="
+          this.Context.ConfigPayload.placeholders[FORM_KEY_CONTRACT_DURATION]
+        "
+      />
+      <show-errors
+        [control]="this.form.get(FORM_KEY_CONTRACT_DURATION)"
+      ></show-errors>
+    </div>
+  </div>
+
+  <div class="two fields">
+    <!-- Time for payment -->
+    <div
+      class="field"
+      [class.required]="isFormElementRequired(FORM_KEY_TIME_PAYMENT)"
+    >
+      <label>Time for payment</label>
+      <xa-select
+        [formControlName]="FORM_KEY_TIME_PAYMENT"
+        [placeholder]="
+          this.Context.ConfigPayload.placeholders[FORM_KEY_TIME_PAYMENT]
+        "
+        [options]="TimePayment$ | async"
+        [search]="true"
+        [clearable]="true"
+        [loading]="!(TimePayment$ | async)"
+        [config]="this.dropDownConfig"
+      >
+      </xa-select>
+      <show-errors
+        [control]="this.form.get(FORM_KEY_TIME_PAYMENT)"
+      ></show-errors>
+    </div>
+
+    <!-- Different billing address -->
+    <div
+      class="field"
+      [class.required]="
+        isFormElementRequired(FORM_KEY_DIFFERENT_BILLING_ADDRESS)
+      "
+    >
+      <label>Different Billing Address</label>
+      <input
+        type="text"
+        [formControlName]="FORM_KEY_DIFFERENT_BILLING_ADDRESS"
+        [placeholder]="
+          this.Context.ConfigPayload.placeholders[
+            FORM_KEY_DIFFERENT_BILLING_ADDRESS
+          ]
+        "
+      />
+      <show-errors
+        [control]="this.form.get(FORM_KEY_DIFFERENT_BILLING_ADDRESS)"
+      ></show-errors>
+    </div>
+  </div>
+
+  <div class="three fields">
+    <!-- Credit memo for Invoice number -->
+    <div
+      class="field"
+      [class.required]="isFormElementRequired(FORM_KEY_CREDIT_MEMO)"
+    >
+      <label>Credit memo for invoice number</label>
+      <input
+        type="text"
+        [formControlName]="FORM_KEY_CREDIT_MEMO"
+        [placeholder]="
+          this.Context.ConfigPayload.placeholders[FORM_KEY_CREDIT_MEMO]
+        "
+      />
+      <show-errors
+        [control]="this.form.get(FORM_KEY_CREDIT_MEMO)"
+      ></show-errors>
+    </div>
+
+    <div
+      class="field"
+      [class.required]="isFormElementRequired(FORM_KEY_CONTRACT_NUMBER)"
+    >
+      <label>Contract number</label>
+      <input
+        type="number"
+        [formControlName]="FORM_KEY_CONTRACT_NUMBER"
+        [placeholder]="
+          this.Context.ConfigPayload.placeholders[FORM_KEY_CONTRACT_NUMBER]
+        "
+      />
+      <show-errors
+        [control]="this.form.get(FORM_KEY_CONTRACT_NUMBER)"
+      ></show-errors>
+    </div>
+
+    <div
+      class="field"
+      [class.required]="
+        isFormElementRequired(FORM_KEY_ORDER_NUMBER_OF_CUSTOMER)
+      "
+    >
+      <label>Order number of the customer</label>
+      <input
+        type="text"
+        [formControlName]="FORM_KEY_ORDER_NUMBER_OF_CUSTOMER"
+        [placeholder]="
+          this.Context.ConfigPayload.placeholders[
+            FORM_KEY_ORDER_NUMBER_OF_CUSTOMER
+          ]
+        "
+      />
+      <show-errors
+        [control]="this.form.get(FORM_KEY_ORDER_NUMBER_OF_CUSTOMER)"
+      ></show-errors>
+    </div>
+  </div>
+
+  <!-- Billing Cycle and Order number of the customer -->
+  <div class="two fields">
+    <div
+      class="field"
+      [class.required]="isFormElementRequired(FORM_KEY_BILLING_CYCLE)"
+    >
+      <label>Billing Cycle</label>
+      <xa-select
+        [formControlName]="FORM_KEY_BILLING_CYCLE"
+        [placeholder]="
+          this.Context.ConfigPayload.placeholders[FORM_KEY_BILLING_CYCLE]
+        "
+        [options]="BillingCycle$ | async"
+        [search]="true"
+        [clearable]="true"
+        [loading]="!(BillingCycle$ | async)"
+      >
+      </xa-select>
+      <show-errors
+        [control]="this.form.get(FORM_KEY_BILLING_CYCLE)"
+      ></show-errors>
+    </div>
+
+    <!-- Type of the settlement -->
+    <div
+      class="field"
+      [class.required]="isFormElementRequired(FORM_KEY_SETTLEMENT)"
+    >
+      <label>Type of settlement</label>
+      <xa-select
+        [formControlName]="FORM_KEY_SETTLEMENT"
+        [placeholder]="
+          this.Context.ConfigPayload.placeholders[FORM_KEY_SETTLEMENT]
+        "
+        [options]="Settlement$ | async"
+        [search]="true"
+        [clearable]="true"
+        [loading]="!(Settlement$ | async)"
+      >
+      </xa-select>
+      <show-errors [control]="this.form.get(FORM_KEY_SETTLEMENT)"></show-errors>
+    </div>
+  </div>
+
+  <!-- Header text -->
+  <div
+    class="field"
+    [class.required]="isFormElementRequired(FORM_KEY_HEADER_TEXT)"
+  >
+    <label>Header text</label>
+    <textarea
+      [formControlName]="FORM_KEY_HEADER_TEXT"
+      rows="3"
+      style="resize: none"
+      [placeholder]="
+        this.Context.ConfigPayload.placeholders[FORM_KEY_HEADER_TEXT]
+      "
+    >
+    </textarea>
+    <show-errors [control]="this.form.get(FORM_KEY_HEADER_TEXT)"></show-errors>
+  </div>
+
+  <!-- Table section -->
+  <h2 class="ui dividing header">
+    <i class="file outline icon"></i>
+    <div class="content">
+      <span> Excel Import </span>
+      <div class="sub header">
+        Import the "Rechnungsanforderungs" Excel file.
+      </div>
+    </div>
+  </h2>
+
+  <excel-table
+    [Context]="this.Context"
+    [environment]="this.getEnvironment()"
+    [clonedData]="this.Context.Payload['Table']"
+    (sum)="this.updateSum($event)"
+    (rawSum)="this.updateRawSum($event)"
+    (gridChanged)="this.updateTable($event)"
+  ></excel-table>
+
+  <h2 class="ui dividing header">
+    <i class="file outline icon"></i>
+    <div class="content">
+      <span> Attachments </span>
+      <div class="sub header">
+        Select the attachments that you want to add to the change.
+      </div>
+    </div>
+  </h2>
+
+  <attachmentupload
+    [maxNumberofFiles]="
+      this.Context.ConfigPayload.attachmentsConfigFrontend.maxNumberOfFiles || 3
+    "
+    [maxFileSizeInMB]="
+      this.Context.ConfigPayload.attachmentsConfigFrontend.maxFileSizeInMB || 5
+    "
+    [allowedFileTypes]="
+      this.Context.ConfigPayload.attachmentsConfigFrontend.allowedFileTypes ||
+      this.defaultAllowedFileTypes
+    "
+    (filesChanged)="updateAttachments($event)"
+  >
+  </attachmentupload>
+
+  <div class="field">
+    <label>Comments</label>
+    <textarea
+      [formControlName]="FORM_KEY_COMMENTS"
+      [placeholder]="this.Context.ConfigPayload.placeholders[FORM_KEY_COMMENTS]"
+    ></textarea>
+  </div>
+</form>
+
+<pre *if-dev>
+    <p>{{this.form.value | json}}</p>
+</pre>
+
+<xa-notify></xa-notify>
