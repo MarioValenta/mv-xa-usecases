@@ -15,8 +15,7 @@ import { AppComponent } from './app.component';
 import { AttachmentUploadComponent } from './attachmentupload-component/AttachmentUpload.component';
 import { ExcelTableUploadComponent } from './excel-table-component/excel.table.component';
 import { XAToastDefaults } from 'projects/shared/toast-config';
-import { Ng2FlatpickrComponent } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.component';
-import { Ng2FlatpickrDirective } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.directive';
+import { Ng2FlatpickrModule } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -24,9 +23,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         ExcelTableUploadComponent,
-        AttachmentUploadComponent,
-        Ng2FlatpickrComponent,
-        Ng2FlatpickrDirective
+        AttachmentUploadComponent
       ],
       imports: [
         BrowserModule,
@@ -38,7 +35,8 @@ describe('AppComponent', () => {
         ]),
         ReactiveFormsModule,
         BrowserAnimationsModule,
-        //environment.production ? [] : SharedModule
+        //environment.production ? [] : SharedModule,
+        Ng2FlatpickrModule
       ],
       providers: [
         {

@@ -11,22 +11,19 @@ import { XAGridHelperModule, AllCellRenderers, AllCellEditors } from '@xa/grid';
 import 'ag-grid-enterprise';
 import { AttachmentUploadComponent } from './attachmentupload-component/AttachmentUpload.component';
 import { ValidationService } from '@xa/validation';
-//TODO import { SharedModule } from 'DevEnvironment/src/app/shared/shared.module';
+import { SharedModule } from 'projects/xa-portal-dev/src/app/shared/shared.module';
 import { environment } from '../environments/environment';
 import { ExcelTableUploadComponent } from './excel-table-component/excel.table.component';
 import { GridStatusBarSharedModule } from 'projects/shared/grid-status-bar/grid-status-bar.shared.module';
 import { GridStatusBarComponent } from 'projects/shared/grid-status-bar/grid-status-bar-component.component';
 import { XAToastDefaults } from 'projects/shared/toast-config';
-import { Ng2FlatpickrComponent } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.component';
-import { Ng2FlatpickrDirective } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.directive';
+import { Ng2FlatpickrModule } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     AttachmentUploadComponent,
-    ExcelTableUploadComponent,
-    Ng2FlatpickrComponent,
-    Ng2FlatpickrDirective
+    ExcelTableUploadComponent
   ],
   imports: [
     BrowserModule,
@@ -39,13 +36,12 @@ import { Ng2FlatpickrDirective } from 'projects/shared/ng2-flatpickr/ng2-flatpic
     ]),
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    //TODO environment.production ? [] : SharedModule
+    environment.production ? [] : SharedModule,
+    Ng2FlatpickrModule
   ],
   exports: [
     AppComponent,
-    ExcelTableUploadComponent,
-    Ng2FlatpickrComponent,
-    Ng2FlatpickrDirective,
+    ExcelTableUploadComponent
   ],
   providers: [
     {

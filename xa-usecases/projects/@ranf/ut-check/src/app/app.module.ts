@@ -14,20 +14,17 @@ import { XAServices } from '@xa/lib-ui-common';
 import { ValidationService } from '@xa/validation';
 import { BtnCellRenderer } from './attachmentlist-component/button-cell-renderer.component';
 import { GridStatusBarSharedModule } from 'projects/shared/grid-status-bar/grid-status-bar.shared.module';
-// TODO import { SharedModule } from 'DevEnvironment/src/app/shared/shared.module';
+import { SharedModule } from 'projects/xa-portal-dev/src/app/shared/shared.module';
 import { GridStatusBarComponent } from 'projects/shared/grid-status-bar/grid-status-bar-component.component';
 import { environment } from '../environments/environment';
 import { XAToastDefaults } from 'projects/shared/toast-config';
-import { Ng2FlatpickrComponent } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.component';
-import { Ng2FlatpickrDirective } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.directive';
+import { Ng2FlatpickrModule } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AttachmentListComponent,
-    Ng2FlatpickrComponent,
-    Ng2FlatpickrDirective,
     BtnCellRenderer
   ],
   imports: [
@@ -42,7 +39,8 @@ import { Ng2FlatpickrDirective } from 'projects/shared/ng2-flatpickr/ng2-flatpic
     ]),
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    // TODO environment.production ? [] : SharedModule
+    environment.production ? [] : SharedModule,
+    Ng2FlatpickrModule
   ],
   providers: [
     {
