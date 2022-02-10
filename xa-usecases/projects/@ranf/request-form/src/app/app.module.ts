@@ -67,7 +67,7 @@ import { Ng2FlatpickrModule } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.
   ]
 })
 
-export class AppModule {
+export class RanfRequestFormAppModule {
 
   constructor(private injector: Injector) {
 

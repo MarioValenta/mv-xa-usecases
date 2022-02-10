@@ -12,11 +12,12 @@ import { AppInitializeService } from './app-initialize.service';
 import { SharedModule } from './shared/shared.module';
 import { ErrorModalComponent } from './requests/ce-request/error-modal/error-modal-component';
 import { UserTaskZoneComponent } from './user-tasks/user-task-zone.component';
-//import { AppModule as RanfRequestFormAppModule } from 'projects/@ranf/request-form/src/app/app.module';
-import { AppModule as RanfUTValidateAppModule } from 'projects/@ranf/ut-check/src/app/app.module';
 import 'ag-grid-enterprise';
 import { AgGridModule } from 'ag-grid-angular';
 import { AllCellEditors, AllCellRenderers } from '@xa/grid';
+
+import { RanfRequestFormAppModule } from 'projects/@ranf/request-form/src/app/app.module';
+import { RanfUtCheckAppModule } from 'projects/@ranf/ut-check/src/app/app.module';
 
 const appInitializerFn = (appConfig: AppConfigService) => {
   return () => {
@@ -38,12 +39,12 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     XAUIModule.forRoot(),
     BrowserAnimationsModule,
     SharedModule.forRoot(),
-    //RanfRequestFormAppModule,
-    RanfUTValidateAppModule,
     AgGridModule.withComponents([
       ...AllCellEditors,
       ...AllCellRenderers
     ]),
+    RanfRequestFormAppModule,
+    RanfUtCheckAppModule
   ],
 
   providers: [
