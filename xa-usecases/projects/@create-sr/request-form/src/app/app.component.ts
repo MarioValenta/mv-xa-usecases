@@ -8,7 +8,7 @@ import { CustomerDto } from './dtos/CustomerDTO';
 import { DataService } from './data.service';
 
 @Component({
-  selector: 'app-root',
+  selector: 'create-sr-request-form',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

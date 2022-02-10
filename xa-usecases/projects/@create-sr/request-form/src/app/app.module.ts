@@ -51,7 +51,7 @@ import 'ag-grid-enterprise';
   exports: [AppComponent]
 })
 
-export class AppModule {
+export class CreateSRRequestFormAppModule {
 
   constructor(private injector: Injector) {
 
