@@ -13,7 +13,7 @@ import { CustomerInformationDto } from './dto/CustomerInformation';
 import { FlatpickrOptions } from 'projects/shared/ng2-flatpickr/flatpickr-options.interface';
 
 @Component({
-    selector: 'app-root',
+    selector: 'ranf-request-form',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

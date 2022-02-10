@@ -14,7 +14,7 @@ import * as currency from 'currency.js';
 import { GridStatusBarComponent } from 'projects/shared/grid-status-bar/grid-status-bar-component.component';
 
 @Component({
-  selector: 'app-root',
+  selector: 'ranf-ut-check',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
