@@ -1,0 +1,89 @@
+{
+  "variablesToBeStoredInCamunda": [
+    "ranfapprove",
+    "Table",
+    "Address",
+    "CustomerContact",
+    "Comments",
+    "Customer",
+    "PeriodEnd",
+    "UIDNumber",
+    "CreditMemo",
+    "HeaderText",
+    "Settlement",
+    "PeriodStart",
+    "TimePayment",
+    "CMDBCustomer",
+    "AccountsNumber",
+    "ContractNumber",
+    "SumTotalAmount",
+    "DiffBillAddress",
+    "ContractDuration",
+    "OrderNumberOfCustomer",
+    "BillingCycle",
+    "Aborted",
+    "ApprovalComment"
+  ],
+
+  "attachmentsConfig": [
+    {
+      "varName": "Attachments",
+      "name": "name",
+      "data": "data"
+    }
+  ],
+
+  "attachmentsConfigFrontend": {
+    "maxNumberOfFiles": 3,
+    "maxFileSizeInMB": 5,
+    "allowedFileTypes": [
+      ".txt",
+      ".msg",
+      ".xls",
+      ".xlsx",
+      ".ppt",
+      ".pptx",
+      ".doc",
+      ".docx",
+      ".pdf",
+      ".png",
+      ".jpg",
+      ".jpeg"
+    ]
+  },
+
+  "variablesNotToBeCloned": ["Attachments"],
+  "dropdownDefaultValues": {
+    "unit": ["Pau", "Std", "Stk", "GB"],
+    "position": [
+      "Dienstleistung",
+      "DL",
+      "Handelsware",
+      "HW",
+      "Lizenz",
+      "Wartung",
+      "Split"
+    ],
+    "currency": ["EUR", "USD", "GBP", "SGD"]
+  },
+  "placeholders": {
+    "Customer": "select the customer",
+    "CustomerContact": "enter Name...",
+    "AccountsNumber": "loading accounts Nr. ...",
+    "Address": "loading address...",
+    "UIDNumber": "loading UID Nr. ...",
+    "PeriodStart": "select start of period...",
+    "PeriodEnd": "select end of period...",
+    "TimePayment": "e.g. 30 days netto",
+    "DiffBillAddress": "enter different billing address here if it's necessary...",
+    "Settlement": "select the settlement...",
+    "CreditMemo": "enter the  credit memo...",
+    "ContractDuration": "enter the contract duration...",
+    "ContractNumber": "enter contract number...",
+    "OrderNumberOfCustomer": "enter the order number of customer...",
+    "BillingCycle": "select the billing cycle ...",
+    "HeaderText": "enter the header text...",
+    "Comments": "enter some comments..."
+  },
+  "importAllowedFileTypes": ".xlsx,.xls"
+}
