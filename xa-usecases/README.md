@@ -2,9 +2,47 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.16.
 
+## Development Environment
+
+The main development environment project (for developing and debugging the UseCase assets) is located in `projects/xa-portal-dev/`, all developed UseCase assets will be imported and loaded here. To load an asset of one UseCase, just import the AppModule inside the app.module.ts of the xa-portal-dev project and also add the custom elemnt via the custom selector e.g. `<create-sr-request-form>`.
+
+## creating new UseCase forms/assets/projects
+
+* Type `ng g app @<USECASE-NAME>/<FORM-NAME>` e.g. `ng g app @create-sr/request-form` to create a new application project inside the `/projects` folder. This will create a new forms app of the specified UseCase.
+
+* After that, execute the following command: `ng add ngx-build-plus --project @<USECASE-NAME>/<FORM-NAME>` e.g. `ng add ngx-build-plus --project @create-sr/request-form` to update the builder inside the angular.json config file.
+
+* Next, add new scripts to the package.json for this newly created app. The most important script is the `"build:prod:@<USECASE-NAME>/<FORM-NAME>: ng build --project @<USECASE-NAME>/<FORM-NAME> --configuration production --single-bundle"` e.g. `"build:prod:@create-sr/request-form": "ng build --project @create-sr/request-form --configuration production --single-bundle"`. Executing these script will create one single bundled javscript file.
+
+* Also create scripts for running the tests for this newly created project.
+
+* If you add an old UseCase project to this project, updating the tsconfig.app.json and tsconfig.spec.json is required.
+
+- The **tsconfig.app.json** file of the old UseCase should extends from
+  `"extends": "../../../tsconfig-legacy.json"`
+- and the **tsconfig.spec.json** should extends from
+  `"extends": "../../../tsconfig-legacy.json"`
+
+* Next, in most cases the budget values inside the `angular.json` config have to be changed. Move the budget config from the `architect.build.configurations` to `architect.build.options` and update the budget like this configuration:
+
+```json
+"budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "2mb",
+                "maximumError": "4mb"
+              },
+              {
+                "type": "anyComponentStyle",
+                "maximumWarning": "2kb",
+                "maximumError": "4kb"
+              }
+            ]
+```
+
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm run debug` or `ng serve --port 4200 --aot -o` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
