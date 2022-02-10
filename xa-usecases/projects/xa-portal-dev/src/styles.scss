@@ -1,1 +1,343 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~nouislider/dist/nouislider.min.css";
+@import "~flatpickr/dist/flatpickr.min.css";
+@import "flatpickr/dist/plugins/monthSelect/style.css";
+@import "notifyTheme/material";
+@import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+@import '~@xa/ui/styles/tsa.scss';
+@import '~@xa/grid/src/styles.scss';
+
+
+/* BEGIN Fomantic-UI CSS EXCEPTIONS */
+
+.ui.form
+    [class$="fields"]
+    .grouped.fields
+    .field:not(:only-child)
+    .ui.checkbox {
+    margin-top: 0em !important;
+}
+
+.ui.form [class$="fields"] .inline.fields .field:not(:only-child) .ui.checkbox {
+    margin-top: 0em !important;
+}
+
+.ui.form [class$="fields"] .fields .field:not(:only-child) .ui.checkbox {
+    margin-top: 0em !important;
+}
+
+.ui.form [class$="fields"] .field:not(:only-child) .ui.checkbox {
+    margin-top: 0em !important;
+}
+
+/*  END Fomantic-UI CSS EXCEPTIONS */
+
+body {
+    background-color: #f5f5f5 !important;
+    font-family: "Lato", "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+:focus {
+    outline: none;
+}
+
+.padding-top-30 {
+    padding-top: 30px !important;
+}
+
+.padding-bottom-30 {
+    padding-bottom: 30px !important;
+}
+
+.center-text {
+    text-align: center !important;
+}
+
+.noUi-marker-horizontal.noUi-marker-large {
+    height: 10px;
+}
+
+.noUi-pips-horizontal {
+    padding-top: 3px;
+}
+
+.ui.loader:before {
+    border-color: transparent;
+}
+
+.ui.loader:after {
+    border-color: #e2007452 transparent #e2007452;
+}
+// .ui.inverted.dimmer .ui.loader {
+//  color: #e20074;
+// }
+.ui.loader:after {
+    border-width: 0.2rem;
+}
+
+.noUi-connect {
+    background: #e20074;
+}
+
+.noUi-horizontal {
+    height: 10px;
+}
+
+.noUi-horizontal .noUi-handle {
+    height: 20px;
+    width: 24px;
+}
+
+html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
+    right: -12px;
+}
+
+.noUi-handle:before,
+.noUi-handle:after {
+    display: none;
+}
+
+.dimmed.dimmable > .ui.animating.dimmer,
+.dimmed.dimmable > .ui.visible.dimmer,
+.ui.active.dimmer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ui.modal,
+.ui.active.modal {
+    margin: 50px auto !important;
+    top: auto !important;
+    left: auto !important;
+    transform-origin: center !important;
+    transition: all ease 0.5s;
+}
+
+.ui.vertical.menu .item > .label {
+    background-color: #e20074 !important;
+}
+
+.ui.vertical.menu .item:before {
+    width: 0px;
+}
+
+.ui.vertical.menu .active.item {
+    background: none;
+}
+
+.ui.menu .active.item:hover,
+.ui.vertical.menu .active.item:hover {
+    background: none;
+}
+
+.ui.menu a.item:hover {
+    background: none;
+    font-weight: bold;
+}
+
+.ui.menu a.item:hover {
+    background: none;
+}
+
+.ui.fixed {
+    left: 16rem !important;
+    right: 0px;
+    width: auto;
+}
+
+.ui.fixed.bottom {
+    left: 16rem !important;
+    right: 0px;
+    width: auto;
+    top: auto;
+    bottom: 0px;
+}
+
+.ui.small.buttons .button,
+.ui.small.buttons .or,
+.ui.small.button {
+    font-size: 0.92857143rem !important;
+}
+
+.flex-container {
+    display: flex;
+    -ms-flex-pack: justify;
+    height: 100%;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.flex-grow {
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+}
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.bpmnMenu {
+    margin: 0px !important;
+    border-radius: 0px !important;
+}
+
+textarea.inputarea {
+    border: none !important;
+    padding: 0 !important;
+    width: 0px !important;
+}
+
+.ngx-contextmenu .dropdown-menu {
+    //border: solid 1px chartreuse;
+    background-color: white;
+    padding: 5px 0px;
+    list-style-type: none;
+}
+
+.ngx-contextmenu li {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 36px;
+    flex: 0 0 36px;
+    padding: 5px 10px;
+}
+
+.ngx-contextmenu li:first-child {
+    border-top: none;
+}
+
+.ngx-contextmenu a {
+    text-decoration: none;
+    color: #565656;
+    //font-size: small;
+}
+
+.ngx-contextmenu li:hover {
+    color: #e20074;
+    background-color: whitesmoke;
+}
+
+.xatag {
+    padding: 0.2833em 0.333em !important;
+    margin: 0px 0.5px !important;
+    font-size: smaller;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+td.nowrap {
+    white-space: nowrap;
+}
+
+.ui.tab.active {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.nomargin {
+    margin: 0px !important;
+}
+
+*:focus {
+    outline: none !important;
+}
+
+.httpMethods {
+    font-weight: normal !important;
+    font-size: x-small !important;
+    color: rgb(255, 255, 255) !important;
+    padding: 0.2833em 0.333em !important;
+    margin: 0px 0.5px !important;
+    font-weight: bold;
+}
+
+.status {
+    font-weight: normal !important;
+    font-size: x-small !important;
+    color: rgb(255, 255, 255) !important;
+    padding: 0.2833em 0.333em !important;
+    margin: 0px 0.5px !important;
+    font-weight: bold;
+}
+
+.feedbackbutton {
+    // background-color: #e20074!important;
+    color: #e20074 !important;
+}
+
+.ui.tertiary.feedbackbutton.button:hover {
+    box-shadow: inset 0 -0.2em 0 #e20074;
+    color: #e20074;
+}
+
+.ui.tertiary.orange.button:hover {
+    box-shadow: inset 0 -0.2em 0 #f2711c;
+    color: #f2711c;
+}
+
+.ui.tertiary.red.button:hover {
+    box-shadow: inset 0 -0.2em 0 #db2828;
+    color: #db2828;
+}
+
+.xa-notify-leftBottom,
+.xa-notify-rightBottom,
+.xa-notify-centerBottom {
+    bottom: 65px;
+}
+
+.ui.popup {
+    border-radius: 0.16rem !important;
+}
+
+.button.tertiary {
+    border-radius: 0px !important;
+}
+
+.monaco-tab-container {
+    padding: 8px;
+}
+
+.padding-top-30 {
+    padding-top: 30px !important;
+}
+
+.selectable-text {
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+    user-select: text !important;
+}
+
+.grid-wrapper-layout {
+    padding: 8px 5px 5px 5px;
+    height: 100%;
+}
+
+.grid-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    width: 100%;
+    height: 100%;
+}

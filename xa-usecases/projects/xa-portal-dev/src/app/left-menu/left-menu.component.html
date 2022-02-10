@@ -1,0 +1,60 @@
+<div class="ui left visible vertical menu leftmenu flex-container">
+  <div class="item" routerLink="/">
+    <img src="./assets/images/headerlogo.png" class="headerlogo">
+  </div>
+  <div class="headertitle">XA-Portal</div>
+  <div class="item currentUser">
+    <div class="name" (xaOnInit)="initPopUp($event)" data-variation="basic">
+      Developer
+    </div>
+    <!-- <div class="ui flowing popup currentUserPopup" style="padding:20px;">
+      <div>
+
+        <div class="bold">
+         User <span class="small">User</span>
+        </div>
+        <div class="small">
+          EMAIL
+        </div>
+        <div class="ui small fluid button">Log me out</div>
+
+        <div class="bold" style="margin-top:20px;white-space: nowrap">You are a member of following Roles</div>
+        <div *ngFor="let role of (currentUser$ | async)?.roles">{{role}}</div>
+      </div>
+
+    </div> -->
+    <div class="email" style="font-size: 0.8rem; padding-top: 3px;">
+      <!-- {{(currentUser$ | async)?.email}} -->
+    </div>
+  </div>
+
+
+  <div class="flex-container top" style="overflow:auto; direction: rtl; border-top: 1px rgba(34, 36, 38, .1) solid;">
+    <div style="direction: ltr">
+      <!-- <a class="item">
+        <i class="sign in alternate icon"></i>Login
+      </a> -->
+      <div  class="top">
+        <div class="header item padding-top-30">Menu</div>
+        <div class="item padding-top-30">TODO: provide links for each Asset/project</div>
+
+
+      </div>
+    </div>
+
+  </div>
+  <div  class="bottom-aligned connection-status" style="bottom:0px">
+
+    <a class="item" xaStopClickPropagation>
+
+      <i class="red power off icon"></i>
+
+      NOT CONNECTED
+    </a>
+  </div>
+
+
+  <div class="bottom-aligned">
+
+  </div>
+</div>

@@ -1,0 +1,5 @@
+<div *ngIf="behavior.Show$ | async" style="margin-left:5px;">
+    <div [ngClass]="behavior.Color$ | async" [class]="(behavior.CustomClass$ | async) || 'small ui button'" [class.loading]="(behavior.Loading$ | async)" [class.disabled]="!(behavior.Enabled$ | async)" (click)="behavior.Click()">
+        <i *ngIf="behavior.Icon$ | async as Icon" [ngClass]="Icon" class="icon"></i>{{behavior.Text$ | async}}
+    </div>
+</div>

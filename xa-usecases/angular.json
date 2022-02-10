@@ -134,9 +134,20 @@
               "projects/xa-portal-dev/src/assets"
             ],
             "styles": [
-              "projects/xa-portal-dev/src/styles.scss"
+              "projects/xa-portal-dev/src/styles.scss",
+              "projects/xa-portal-dev/fonts/opensans.css",
+              "projects/xa-portal-dev/fonts/fonts.css",
+              "projects/xa-portal-dev/semantic/dist/semantic.css",
+              "node_modules/overlayscrollbars/css/OverlayScrollbars.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/overlayscrollbars/js/OverlayScrollbars.min.js",
+              "projects/xa-portal-dev/semantic/dist/semantic.min.js",
+              {
+                "input": "node_modules/document-register-element/build/document-register-element.js"
+              }
+            ]
           },
           "configurations": {
             "production": {
@@ -517,5 +528,5 @@
       }
     }
   },
-  "defaultProject": "xa-usecases"
+  "defaultProject": "xa-portal-dev"
 }

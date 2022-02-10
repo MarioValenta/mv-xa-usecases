@@ -1,0 +1,43 @@
+<div style="display: flex; flex-direction: column; height: 100%">
+  <div class="ui top attached compact secondary segment">
+    <h2 class="ui header">
+      <div class="content">
+        <span *ngIf="context.Data.errorCount > 1">{{context.Data.errorCount}} Errors</span>
+        <span *ngIf="context.Data.errorCount == 1">{{context.Data.errorCount}} Error</span>
+      </div>
+
+    </h2>
+  </div>
+  <div class="ui attached compact segment" style="flex-grow: 1; display: flex; flex-direction: column;">
+
+    <div *ngIf="context.Data.errorCount == 1">
+      <p>The request contains {{context.Data.errorCount}} error and cannot be submitted.</p>
+      <p>Please correct the following error and submit the request again.</p>
+      <p>If the error cannot be solved, please send us feedback via the bottom right button of this request!</p>
+    </div>
+    <div *ngIf="context.Data.errorCount > 1">
+      <p>The request contains {{context.Data.errorCount}} errors and cannot be submitted.</p>
+      <p>Please correct the following errors and submit the request again.</p>
+      <p>If some errors cannot be solved, please send us feedback via the bottom right button of this request!</p>
+    </div>
+    <br>
+
+    <table style="display: flex; flex-direction: column; height: 300px; overflow-y: auto;">
+      <tr>
+        <th>fieldname</th>
+        <th>error message</th>
+        <th>show the field</th>
+      </tr>
+      <tr *ngFor="let item of context.Data.errors; let i = index">
+        <td> <b>{{ item.Data.FieldName }}</b></td>
+        <td>{{item.Message}}</td>
+        <td><button class="ui inverted blue button" (click)="setFocus(item.Data.FieldName)">show</button></td>
+      </tr>
+    </table>
+    
+  </div>
+
+  <div class="ui bottom attached compact secondary segment">
+    <button class="ui mini green button" (click)="Cancel()">OK</button>
+  </div>
+</div>

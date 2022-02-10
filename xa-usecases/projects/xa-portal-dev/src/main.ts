@@ -1,12 +1,16 @@
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-import { AppModule } from './app/app.module';
+import { AppModuleHtmlForms } from './app/app.module';
 import { environment } from './environments/environment';
+
+import {LicenseManager} from 'ag-grid-enterprise';
+import { AG_GRID_LICENSE } from '@xa/grid';
+LicenseManager.setLicenseKey(AG_GRID_LICENSE);
 
 if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
+platformBrowserDynamic().bootstrapModule(AppModuleHtmlForms)
   .catch(err => console.error(err));
