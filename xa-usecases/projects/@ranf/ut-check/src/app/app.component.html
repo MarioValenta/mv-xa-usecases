@@ -12,7 +12,7 @@
     <!-- Requestor -->
     <div class="field" [class.required]="isFormElementRequired(FORM_KEY_REQUESTOR)">
       <label>{{ FORM_LABEL_REQUESTOR }}</label>
-      <input type="text" [formControlName]="FORM_KEY_REQUESTOR" [value]="this.getRequestorName()" readonly="true">
+      <input type="text" [value]="this.getRequestorName()" readonly="true">
       <show-errors [control]="this.form.get(FORM_KEY_REQUESTOR)"></show-errors>
     </div>
     <!-- Customer Contact -->
