@@ -4,10 +4,12 @@ import { Subject } from 'rxjs';
 import { RequestContext } from './requests/ce-request/ce-request.component';
 import { filter, takeUntil } from 'rxjs/operators';
 import { AppInitializeService } from './app-initialize.service';
+import { TaskContext } from './user-tasks/user-task-zone.component';
+
+// TODO: Needs to be adjusted for every UseCase form
 import * as Payload from '../../../@ranf/ut-check/mocks/PayloadUT.json';
 import * as ConfigPayload from '../../../@ranf/ut-check/mocks/ConfigPayload.json';
 import * as Validation from '../../../@ranf/ut-check/mocks/Validation.json';
-import { TaskContext } from './user-tasks/user-task-zone.component';
 
 @Component({
   selector: 'app-html-forms',

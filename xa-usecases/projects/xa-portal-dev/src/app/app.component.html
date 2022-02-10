@@ -47,8 +47,8 @@
       </div>
 
       <div class="content-main">
-        <!-- <app-root [Context]="requestContext"></app-root> -->
-        <app-root [Context]="taskContext"></app-root>
+        <ranf-request-form [Context]="requestContext"></ranf-request-form>
+        <ranf-ut-check [Context]="taskContext"></ranf-ut-check>
       </div>
 
       <div *ngIf="ui.Footer.Show$ | async" class="content-footer">
