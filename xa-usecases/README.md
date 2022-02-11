@@ -10,8 +10,45 @@ The main development environment project (for developing and debugging the UseCa
 
 * Type `ng g app @<USECASE-NAME>/<FORM-NAME>` e.g. `ng g app @create-sr/request-form` to create a new application project inside the `/projects` folder. This will create a new forms app of the specified UseCase.
 
+* Would you like to add Angular routing? (y/N) => N
+* Which stylesheet format would you like to use? (Use arrow keys) => CSS or SCSS
+
 * After that, execute the following command: `ng add ngx-build-plus --project @<USECASE-NAME>/<FORM-NAME>` e.g. `ng add ngx-build-plus --project @create-sr/request-form` to update the builder inside the angular.json config file.
 
+* If the Asset uses *ag-grid*, then the license needs to be added to the `main.ts` file of the project, just add the following lines:
+
+```typescript
+import {LicenseManager} from 'ag-grid-enterprise';
+import { AG_GRID_LICENSE } from '@xa/grid';
+LicenseManager.setLicenseKey(AG_GRID_LICENSE);
+```
+* Also import the ag-grid module with optional components into the AppModule and import the enterprise version:
+
+```typescript
+import 'ag-grid-enterprise';
+.....
+ imports: [
+   .....
+ AgGridModule.withComponents([
+      ...AllCellEditors,
+      ...AllCellRenderers,
+      GridStatusBarSharedModule
+    ]),
+ ]
+ .....
+```
+
+* Next, add the constructor and the method `ngDoBootstrap()` into the AppModule class and give the custom element an name:
+```typescript
+ constructor(private injector: Injector) {
+
+  }
+
+  ngDoBootstrap() {
+    const ce = createCustomElement(AppComponent, { injector: this.injector });
+    customElements.define('<USECASENAME-ASSETNAME>', ce);
+  }
+```
 * Next, add new scripts to the package.json for this newly created app. The most important script is the `"build:prod:@<USECASE-NAME>/<FORM-NAME>: ng build --project @<USECASE-NAME>/<FORM-NAME> --configuration production --single-bundle"` e.g. `"build:prod:@create-sr/request-form": "ng build --project @create-sr/request-form --configuration production --single-bundle"`. Executing these script will create one single bundled javscript file.
 
 * Also create scripts for running the tests for this newly created project.
