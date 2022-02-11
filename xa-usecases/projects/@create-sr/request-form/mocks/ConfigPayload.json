@@ -1,0 +1,14 @@
+{
+  "variablesToBeStoredInCamunda": [],
+  "variablesNotToBeCloned": [
+  ],
+  "Placeholders": {
+       "Customer": "select the customer ...",
+       "Title": "specify title ...",
+       "ServiceRequestDescriptionTextArea": "describe the request here ...",
+       "AssignmentGroup": "select Assignment-Group"
+  },
+  "textarea": {
+       "rows": 10
+  }
+}

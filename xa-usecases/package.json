@@ -16,7 +16,9 @@
     "test:@ranf/request-form": "ng test --project @ranf/request-form",
     "build:prod:@ranf/request-form": "ng build --project @ranf/request-form --configuration production --single-bundle",
     "test:@ranf/ut-check": "ng test --project @ranf/ut-check",
-    "build:prod:@ranf/ut-check": "ng build --project @ranf/ut-check --configuration production --single-bundle"
+    "build:prod:@ranf/ut-check": "ng build --project @ranf/ut-check --configuration production --single-bundle",
+    "test:@billing/request-form": "ng test --project @billing/request-form",
+    "build:prod:@billing/request-form": "ng build --project @billing/request-form --configuration production --single-bundle --keep-styles"
   },
   "private": true,
   "dependencies": {

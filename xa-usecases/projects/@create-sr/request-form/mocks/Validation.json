@@ -1,0 +1,26 @@
+{
+  "requestForm": [
+      {
+          "varName": "Customer",
+          "required": true,
+          "type": "list",
+          "possibleValuesUrl": "api/validation/createsr/customer"
+      },
+      {
+          "varName": "Title",
+          "required": true,
+          "type": "text"
+      },
+      {
+          "varName": "AssignmentGroup",
+          "required": true,
+          "type": "list",
+          "possibleValuesUrl": "api/validation/createsr/appsupportedby"
+      },
+      {
+          "varName": "ServiceRequestDescriptionTextArea",
+          "required": true,
+          "type": "text"
+      }
+  ]
+}
