@@ -35,7 +35,9 @@
               "projects/xa-portal-dev/fonts/opensans.css",
               "projects/xa-portal-dev/fonts/fonts.css",
               "projects/xa-portal-dev/semantic/dist/semantic.css",
-              "node_modules/overlayscrollbars/css/OverlayScrollbars.min.css"
+              "node_modules/overlayscrollbars/css/OverlayScrollbars.min.css",
+              "node_modules/lightpick/css/lightpick.css",
+              "node_modules/flatpickr/dist/flatpickr.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
