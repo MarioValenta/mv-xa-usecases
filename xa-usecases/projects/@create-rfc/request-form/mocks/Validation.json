@@ -1,0 +1,212 @@
+{
+  "requestForm": [
+    {
+      "varName": "Customer",
+      "type": "text",
+      "required": true
+    },
+    {
+      "varName": "RequestedFrom",
+      "type": "text",
+      "required": true,
+      "format": {
+        "regexPattern": "^(internal|customer)$",
+        "errorMessage": "Requested From must be 'internal' or 'customer'"
+      }
+    },
+    {
+      "varName": "Title",
+      "type": "text",
+      "required": true,
+      "minLength": 5,
+      "maxLength": 200
+    },
+    {
+      "varName": "CIs",
+      "type": "array",
+      "required": false,
+      "fields": [
+        {
+          "varName": "ID",
+          "type": "text",
+          "required": true
+        },
+        {
+          "varName": "Name",
+          "type": "text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "varName": "ChangeDescriptionTextArea",
+      "type": "text",
+      "required": true
+    },
+    {
+      "varName": "ChangeValidationTextArea",
+      "type": "text",
+      "required": true
+    },
+    {
+      "varName": "ChangeBackoutTextArea",
+      "type": "text",
+      "required": true
+    },
+    {
+      "varName": "ChangeImpactTextArea",
+      "type": "text",
+      "required": true
+    },
+    {
+      "varName": "Rating",
+      "type": "text",
+      "required": true,
+      "format": {
+        "regexPattern": "^(NONE|LOW|MEDIUM|HIGH|CRITICAL)$",
+        "errorMessage": "Rating must be a valid value"
+      }
+    },
+    {
+      "varName": "RiskOfOmissionTextArea",
+      "type": "text",
+      "required": true
+    },
+    {
+      "varName": "RiskOfImplementationTextArea",
+      "type": "text",
+      "required": true
+    },
+    {
+      "varName": "CauseOfChangeTextArea",
+      "type": "text",
+      "required": true
+    },
+    {
+      "varName": "TargetOfChangeTextArea",
+      "type": "text",
+      "required": true
+    },
+    {
+      "varName": "ConfirmationCheckBox",
+      "type": "boolean",
+      "required": true,
+      "requiredTrue": true
+    },
+    {
+      "varName": "LatestStart",
+      "type": "date",
+      "required": true,
+      "minDateReference": "UtcNow",
+      "minDateOffset": "0:1:0:00.000"
+    },
+    {
+      "varName": "LatestEnd",
+      "type": "date",
+      "required": true,
+      "minDateReference": "LatestStart",
+      "minDateOffset": "0:1:0:00.000"
+    },
+    {
+      "varName": "MaintenanceRequiredCheckBox",
+      "type": "boolean",
+      "required": false,
+      "requiredTrue": false,
+      "dependencies": {
+        "true": [
+          {
+            "varName": "MaintenanceWindowStart",
+            "required": true,
+            "type": "date",
+            "minDateReference": "LatestStart",
+            "maxDateReference": "MaintenanceWindowEnd"
+          },
+          {
+            "varName": "MaintenanceWindowEnd",
+            "required": true,
+            "type": "date",
+            "minDateReference": "MaintenanceWindowStart",
+            "maxDateReference": "LatestEnd"
+          }
+        ]
+      }
+    },
+    {
+      "varName": "KnowAboutRequiredTeamsRadio",
+      "type": "list",
+      "required": true,
+      "dependencies": {
+        "true": [
+          {
+            "varName": "AssignmentGroups",
+            "required": true,
+            "type": "array",
+            "fields": [
+              {
+                "varName": "AssignmentGroup",
+                "type": "text",
+                "required": true
+              }
+            ]
+          }
+        ],
+        "detailed": [
+          {
+            "varName": "AssignmentGroups",
+            "required": true,
+            "type": "array",
+            "fields": [
+              {
+                "varName": "AssignmentGroup",
+                "type": "text",
+                "required": true
+              },
+              {
+                "varName": "TitleTask",
+                "type": "text",
+                "required": true
+              },
+              {
+                "varName": "StartTask",
+                "type": "date",
+                "required": true,
+                "minDateReference": "LatestStart",
+                "maxDateReference": "EndTask"
+              },
+              {
+                "varName": "EndTask",
+                "type": "date",
+                "required": true,
+                "minDateReference": "StartTask",
+                "maxDateReference": "LatestEnd"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "varName": "BehalfOfAccountResponsibleCheckBox",
+      "type": "boolean",
+      "required": true,
+      "dependencies": {
+        "true": [
+          {
+            "varName": "AccountResponsible",
+            "type": "text",
+            "required": true
+          }
+        ]
+      }
+    },
+    {
+      "varName": "MailAddressesShareInformation",
+      "type": "text",
+      "required": false,
+      "format": {
+        "regexPattern": "^(([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)(\\s*;\\s*|\\s*$))*$",
+        "errorMessage": "Please provide correctly formatted email addresses (semicolon [;] separated). "
+      }
+    }
+  ]
+}

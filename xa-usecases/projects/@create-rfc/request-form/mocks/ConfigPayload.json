@@ -1,0 +1,52 @@
+{
+  "linkForDeliveryTeams": "https://share.t-systems.ch/alpine/de-esc/Lists/Delivery%20relevant%20teams/AllItems.aspx",
+  "textareaCD": {
+    "rows": 10,
+    "placeholder": "Describe the request here..."
+  },
+  "variablesToBeStoredInCamunda": [
+    "MaintenanceRequiredCheckBox",
+    "MailAddressesShareInformation",
+    "requestorComments"
+  ],
+  "variablesToBeReplacedInRequestStore": ["Attachments"],
+  "variablesNotToBeCloned": [
+    "LatestStart",
+    "LatestEnd",
+    "MaintenanceWindowStart",
+    "MaintenanceWindowEnd",
+    "AssignmentGroups[StartTask,EndTask]"
+  ],
+  "gridColumnsRequestForm": [
+    {
+      "field": "ID",
+      "headerName": "ID",
+      "resizable": true
+    },
+    {
+      "field": "Name",
+      "headerName": "Name",
+      "resizable": true
+    },
+    {
+      "headerName": "Country",
+      "field": "CustomerScope"
+    }
+  ],
+  "searchModal": {
+    "allowedStatusHost": [
+      "ACTIVE",
+      "BASE_INSTALLED",
+      "READY_FOR_SERVICE",
+      "EXPERIMENTAL",
+      "INFOALERTING"
+    ],
+    "allowedStatusService": [
+      "ACTIVE",
+      "BASE_INSTALLED",
+      "READY_FOR_SERVICE",
+      "EXPERIMENTAL",
+      "INFOALERTING"
+    ]
+  }
+}

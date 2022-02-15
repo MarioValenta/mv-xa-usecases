@@ -18,7 +18,9 @@
     "test:@ranf/ut-check": "ng test --project @ranf/ut-check",
     "build:prod:@ranf/ut-check": "ng build --project @ranf/ut-check --configuration production --single-bundle",
     "test:@billing/request-form": "ng test --project @billing/request-form",
-    "build:prod:@billing/request-form": "ng build --project @billing/request-form --configuration production --single-bundle"
+    "build:prod:@billing/request-form": "ng build --project @billing/request-form --configuration production --single-bundle",
+    "test:@create-rfc/request-form": "ng test --project @create-rfc/request-form",
+    "build:prod:@create-rfc/request-form": "ng build --project @create-rfc/request-form --configuration production --single-bundle"
   },
   "private": true,
   "dependencies": {

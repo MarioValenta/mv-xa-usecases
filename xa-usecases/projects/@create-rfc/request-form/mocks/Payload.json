@@ -1,0 +1,61 @@
+{
+
+  "CIs": [
+    {
+      "ID": "H12460162",
+      "Name": "cmdbkpitest"
+    }
+  ],
+  "Title": "Test Title",
+  "Rating": "HIGH",
+  "Customer": "ACME | ACME Corp",
+  "ChangeImpact": "OTHER",
+  "CauseOfChange": "Project request",
+  "ChangeBackout": "Delete/deactivate config file/rule",
+  "NewCICheckBox": false,
+  "RequestedFrom": "internal",
+  "RiskOfOmission": "Unnecessary operational costs",
+  "TargetOfChange": "Problem/incident solved",
+  "CustomerSM9Name": "ACME/ACME",
+  "AssignmentGroups": [
+    {
+      "TitleTask": "Task 4",
+      "AssignmentGroup": "GDE.PEA.AT.ALL.X-AUTOMATION"
+    },
+    {
+      "TitleTask": "Task 1",
+      "AssignmentGroup": "GDE.PEA.AT.ALL.X-AUTOMATION"
+    },
+    {
+      "TitleTask": "Task 2",
+      "AssignmentGroup": "GDE.PEA.AT.ALL.X-AUTOMATION"
+    },
+    {
+      "TitleTask": "Task 3",
+      "AssignmentGroup": "GDE.PEA.AT.ALL.X-AUTOMATION"
+    }
+  ],
+  "ChangeValidation": "OTHER",
+  "AccountResponsible": "Lukas Acme",
+  "ChangeImpactTextArea": "TEST ChangeImpactTextArea",
+  "ConfirmationCheckBox": true,
+  "MaintenanceWindowEnd": "",
+  "RiskOfImplementation": "Required service not available after change because of wrong/incomplete values/parameters",
+  "CauseOfChangeTextArea": "TEST CauseOfChangeTextArea",
+  "ChangeBackoutTextArea": "TEST ChangeBackoutTextArea",
+  "LowPeakPeriodCheckBox": true,
+  "NoServiceTimeCheckBox": false,
+  "MaintenanceWindowStart": "",
+  "RiskOfOmissionTextArea": "TEST RiskOfOmissionTextArea",
+  "TargetOfChangeTextArea": "TEST TargetOfChangeTextArea",
+  "ChangeValidationTextArea": "TEST ChangeValidationTextArea",
+  "ChangeDescriptionTextArea": "TEST Description",
+  "AccountResponsibleCheckBox": false,
+  "RegularMaintenanceCheckBox": true,
+  "KnowAboutRequiredTeamsRadio": "detailed",
+  "MaintenanceRequiredCheckBox": false,
+  "ImplementerTeamsKnowCheckBox": true,
+  "RiskOfImplementationTextArea": "TEST RiskOfImplementationTextArea",
+  "MailAddressesShareInformation": "Matthias.Grill@t-systems.com",
+  "BehalfOfAccountResponsibleCheckBox": false
+}

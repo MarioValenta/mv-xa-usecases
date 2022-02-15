@@ -111,7 +111,9 @@
               "projects/xa-portal-dev/src/favicon.ico",
               "projects/xa-portal-dev/src/assets"
             ],
-            "styles": ["projects/xa-portal-dev/src/styles.scss"],
+            "styles": [
+              "projects/xa-portal-dev/src/styles.scss"
+            ],
             "scripts": []
           }
         }
@@ -140,7 +142,9 @@
               "projects/@create-sr/request-form/src/favicon.ico",
               "projects/@create-sr/request-form/src/assets"
             ],
-            "styles": ["projects/@create-sr/request-form/src/styles.css"],
+            "styles": [
+              "projects/@create-sr/request-form/src/styles.css"
+            ],
             "scripts": [],
             "budgets": [
               {
@@ -218,7 +222,9 @@
               "projects/@create-sr/request-form/src/favicon.ico",
               "projects/@create-sr/request-form/src/assets"
             ],
-            "styles": ["projects/@create-sr/request-form/src/styles.css"],
+            "styles": [
+              "projects/@create-sr/request-form/src/styles.css"
+            ],
             "scripts": []
           }
         }
@@ -247,7 +253,9 @@
               "projects/@ranf/request-form/src/favicon.ico",
               "projects/@ranf/request-form/src/assets"
             ],
-            "styles": ["projects/@ranf/request-form/src/styles.css"],
+            "styles": [
+              "projects/@ranf/request-form/src/styles.css"
+            ],
             "scripts": [],
             "budgets": [
               {
@@ -312,7 +320,9 @@
               "projects/@ranf/request-form/src/favicon.ico",
               "projects/@ranf/request-form/src/assets"
             ],
-            "styles": ["projects/@ranf/request-form/src/styles.css"],
+            "styles": [
+              "projects/@ranf/request-form/src/styles.css"
+            ],
             "scripts": []
           }
         }
@@ -341,7 +351,9 @@
               "projects/@ranf/ut-check/src/favicon.ico",
               "projects/@ranf/ut-check/src/assets"
             ],
-            "styles": ["projects/@ranf/ut-check/src/styles.css"],
+            "styles": [
+              "projects/@ranf/ut-check/src/styles.css"
+            ],
             "scripts": [],
             "budgets": [
               {
@@ -406,7 +418,9 @@
               "projects/@ranf/ut-check/src/favicon.ico",
               "projects/@ranf/ut-check/src/assets"
             ],
-            "styles": ["projects/@ranf/ut-check/src/styles.css"],
+            "styles": [
+              "projects/@ranf/ut-check/src/styles.css"
+            ],
             "scripts": []
           }
         }
@@ -503,7 +517,107 @@
               "projects/@billing/request-form/src/favicon.ico",
               "projects/@billing/request-form/src/assets"
             ],
-            "styles": ["projects/@billing/request-form/src/styles.css"],
+            "styles": [
+              "projects/@billing/request-form/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "@create-rfc/request-form": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@create-rfc/request-form",
+      "sourceRoot": "projects/@create-rfc/request-form/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@create-rfc/request-form",
+            "index": "projects/@create-rfc/request-form/src/index.html",
+            "main": "projects/@create-rfc/request-form/src/main.ts",
+            "polyfills": "projects/@create-rfc/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@create-rfc/request-form/tsconfig.app.json",
+            "assets": [
+              "projects/@create-rfc/request-form/src/favicon.ico",
+              "projects/@create-rfc/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@create-rfc/request-form/src/styles.css"
+            ],
+            "scripts": [],
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "2mb",
+                "maximumError": "3mb"
+              },
+              {
+                "type": "anyComponentStyle",
+                "maximumWarning": "2kb",
+                "maximumError": "4kb"
+              }
+            ],
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/@create-rfc/request-form/src/environments/environment.ts",
+                  "with": "projects/@create-rfc/request-form/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@create-rfc/request-form:build:production"
+            },
+            "development": {
+              "browserTarget": "@create-rfc/request-form:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "@create-rfc/request-form:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@create-rfc/request-form/src/test.ts",
+            "polyfills": "projects/@create-rfc/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@create-rfc/request-form/tsconfig.spec.json",
+            "karmaConfig": "projects/@create-rfc/request-form/karma.conf.js",
+            "assets": [
+              "projects/@create-rfc/request-form/src/favicon.ico",
+              "projects/@create-rfc/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@create-rfc/request-form/src/styles.css"
+            ],
             "scripts": []
           }
         }

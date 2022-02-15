@@ -1,0 +1,7 @@
+.labelRequired {
+    color:#e20074;
+  }
+
+  textarea:disabled {
+    background: rgb(235,235,228);
+}

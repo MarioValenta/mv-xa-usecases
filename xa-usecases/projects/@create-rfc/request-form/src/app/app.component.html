@@ -1,0 +1,830 @@
+<form [formGroup]="form" class="ui container form" style="padding: 20px 10px">
+  <h2 class="ui dividing header">
+    <i class="edit outline icon"></i>
+    <div class="content">
+      <span> General </span>
+      <div class="sub header">Specify general information.</div>
+    </div>
+  </h2>
+
+  <div class="fields">
+    <div
+      class="five wide field"
+      [class.required]="this.getValidationService | required: 'Customer'"
+    >
+      <label>Customer:</label>
+      <xa-select
+        [search]="true"
+        [options]="Customers$ | async"
+        [loading]="!(Customers$ | async)"
+        formControlName="CustomerSM9Name"
+        placeholder="Select Customer"
+        viewValue="label"
+        optionValue="sm9name"
+        (change)="CustomerSelected()"
+        #customerDropDown
+        [clearable]="true"
+      ></xa-select>
+      <show-errors [control]="this.form.get('Customer')"></show-errors>
+    </div>
+    <div
+      class="four wide field"
+      [class.required]="this.getValidationService | required: 'RequestedFrom'"
+    >
+      <label>Requested From</label>
+      <xa-select
+        [options]="RequestedFrom"
+        formControlName="RequestedFrom"
+        [clearable]="true"
+      ></xa-select>
+      <show-errors [control]="this.form.get('RequestedFrom')"></show-errors>
+    </div>
+  </div>
+
+  <div
+    class="field"
+    [class.required]="this.getValidationService | required: 'Title'"
+  >
+    <label>Title:</label>
+    <input type="text" formControlName="Title" placeholder="Specify Title" />
+    <show-errors [control]="this.form.get('Title')"></show-errors>
+  </div>
+
+  <h2 class="ui dividing header">
+    <i class="tasks icon"></i>
+    <div class="content">
+      <span> Description </span>
+      <div class="sub header">Specify required change information.</div>
+    </div>
+  </h2>
+  <span>Select affected CIs.</span>
+  <ci-table
+    *ngIf="loaded"
+    [Context]="this.Context"
+    [inputData]="this.Context.Payload.CIs"
+    [columnDefs]="this.Context.ConfigPayload.gridColumnsRequestForm"
+    uniqueKeyForDuplicates="ID"
+    tableDescription='(You can remove CIs by "right-clicking" and selecting "remove".)'
+    (gridChanged)="updateCIForm($event)"
+  ></ci-table>
+  <show-errors [control]="this.form.get('CIs')"></show-errors>
+
+  <div class="field" style="padding-top: 10px">
+    <xa-checkbox formControlName="NewCICheckBox"
+      >This change creates at least one new CI.</xa-checkbox
+    >
+    <show-errors [control]="this.form.get('NewCICheckBox')"></show-errors>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <div
+    class="field"
+    [class.required]="
+      this.getValidationService | required: 'ChangeDescriptionTextArea'
+    "
+  >
+    <label>Change Description:</label>
+    Provide a detailed description of the change (including runbook if
+    applicable).
+
+    <textarea
+      [rows]="this.Context.ConfigPayload.textareaCD.rows"
+      formControlName="ChangeDescriptionTextArea"
+      [maxlength]="this.Context.ConfigPayload.textareaCD.textLength"
+      [placeholder]="this.Context.ConfigPayload.textareaCD.placeholder"
+    ></textarea>
+    <show-errors
+      [control]="this.form.get('ChangeDescriptionTextArea')"
+    ></show-errors>
+  </div>
+
+  <div
+    *ngIf="this.Context.ConfigPayload.textareaCD.textLength"
+    class="ui right aligned grid"
+  >
+    <div class="sixteen wide column">
+      <span
+        >{{
+          this.Context.ConfigPayload.textareaCD.textLength -
+            this.form.get("ChangeDescriptionTextArea").value.length
+        }}/{{ this.Context.ConfigPayload.textareaCD.textLength }} characters
+        left</span
+      >
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+
+  <div
+    class="field"
+    [class.required]="
+      this.getValidationService | required: 'ChangeValidationTextArea'
+    "
+  >
+    <label>Change Validation:</label>
+    How will the change result be validated? Please choose a value from the drop
+    down menu. If no value fits please choose "OTHER" and describe (further)
+    details below.
+    <xa-select
+      [options]="rfcService.Validation"
+      formControlName="ChangeValidation"
+      placeholder="Select Validation (also in case a Backout was initiated)"
+      viewValue="label"
+      optionValue="content"
+    >
+    </xa-select>
+    <show-errors [control]="this.form.get('ChangeValidation')"></show-errors>
+  </div>
+  <textarea
+    rows="4"
+    formControlName="ChangeValidationTextArea"
+    [placeholder]="
+      this.form.get('ChangeValidation').value
+        ? 'describe (further) details here ...'
+        : ''
+    "
+  ></textarea>
+  <show-errors
+    [control]="this.form.get('ChangeValidationTextArea')"
+  ></show-errors>
+
+  <div class="ui divider"></div>
+
+  <div
+    class="field"
+    [class.required]="
+      this.getValidationService | required: 'ChangeBackoutTextArea'
+    "
+  >
+    <label>Backout Method:</label>
+    What is the backout if the change can’t be implemented as expected? Please
+    choose a value from the drop down menu. If no value fits please choose
+    "OTHER" and describe (further) details below.
+    <xa-select
+      [options]="rfcService.Backout"
+      formControlName="ChangeBackout"
+      placeholder="Select Backout"
+      viewValue="label"
+      optionValue="content"
+    ></xa-select>
+  </div>
+  <textarea
+    rows="4"
+    formControlName="ChangeBackoutTextArea"
+    [placeholder]="
+      this.form.get('ChangeBackout').value
+        ? 'describe (further) details here ...'
+        : ''
+    "
+  ></textarea>
+  <show-errors [control]="this.form.get('ChangeBackoutTextArea')"></show-errors>
+
+  <div class="ui divider"></div>
+
+  <div
+    class="field"
+    [class.required]="
+      this.getValidationService | required: 'ChangeImpactTextArea'
+    "
+  >
+    <label>Impact Description:</label>
+    Please choose a value from the drop down menu. If no value fits please
+    choose "OTHER" and describe (further) details below.
+    <xa-select
+      [options]="rfcService.Impact"
+      formControlName="ChangeImpact"
+      placeholder="Select Impact"
+      viewValue="label"
+      optionValue="content"
+    ></xa-select>
+    <show-errors [control]="this.form.get('ChangeImpact')"></show-errors>
+  </div>
+  <div class="fields">
+    <div class="three wide field" style="padding-top: 10px">
+      <xa-checkbox formControlName="LowPeakPeriodCheckBox"
+        >Low Peak Period</xa-checkbox
+      >
+    </div>
+    <div class="three wide field" style="padding-top: 10px">
+      <xa-checkbox formControlName="NoServiceTimeCheckBox"
+        >No Service Time</xa-checkbox
+      >
+    </div>
+    <div class="ten wide field" style="padding-top: 10px">
+      <xa-checkbox formControlName="RegularMaintenanceCheckBox"
+        >Regular Maintenance
+      </xa-checkbox>
+    </div>
+    <div
+      class="field"
+      [class.required]="this.getValidationService | required: 'Rating'"
+    >
+      <div class="ui labeled input">
+        <div class="ui label">
+          Rating:
+          <span
+            *ngIf="this.getValidationService | required: 'Rating'"
+            class="labelRequired"
+            >*</span
+          >
+        </div>
+        <xa-select
+          style="width: 12em"
+          [options]="rfcService.Rating"
+          formControlName="Rating"
+          placeholder="-"
+        >
+        </xa-select>
+      </div>
+      <show-errors [control]="this.form.get('Rating')"></show-errors>
+    </div>
+  </div>
+
+  <textarea
+    rows="4"
+    formControlName="ChangeImpactTextArea"
+    [placeholder]="
+      this.form.get('ChangeImpact').value
+        ? 'describe (further) details here ...'
+        : ''
+    "
+  ></textarea>
+  <show-errors [control]="this.form.get('ChangeImpactTextArea')"></show-errors>
+
+  <div class="ui divider"></div>
+
+  <div
+    class="field"
+    [class.required]="
+      this.getValidationService | required: 'RiskOfOmissionTextArea'
+    "
+  >
+    <label>Risk of Omission:</label>
+    What happens if the change will not be implemented? Please choose a value
+    from the drop down menu. If no value fits please choose "OTHER" and describe
+    (further) details below.
+    <xa-select
+      [options]="rfcService.RiskOfOmission"
+      formControlName="RiskOfOmission"
+      placeholder="Select Risk of Omission."
+      viewValue="label"
+      optionValue="content"
+    ></xa-select>
+  </div>
+  <textarea
+    rows="4"
+    formControlName="RiskOfOmissionTextArea"
+    [placeholder]="
+      this.form.get('RiskOfOmission').value
+        ? 'describe (further) details here ...'
+        : ''
+    "
+  ></textarea>
+  <show-errors
+    [control]="this.form.get('RiskOfOmissionTextArea')"
+  ></show-errors>
+
+  <div class="ui divider"></div>
+
+  <div
+    class="field"
+    [class.required]="
+      this.getValidationService | required: 'RiskOfImplementationTextArea'
+    "
+  >
+    <label>Risk of Implementation:</label>
+    Description of possible negative impacts during the implementation if
+    already identified. Please choose a value from the drop down menu. If no
+    value fits please choose "OTHER" and describe (further) details below.
+    <xa-select
+      [options]="rfcService.RiskOfImplementation"
+      formControlName="RiskOfImplementation"
+      placeholder="Select Risk of Implementation."
+      viewValue="label"
+      optionValue="content"
+    ></xa-select>
+  </div>
+  <textarea
+    rows="4"
+    formControlName="RiskOfImplementationTextArea"
+    [placeholder]="
+      this.form.get('RiskOfImplementation').value
+        ? 'describe (further) details here ...'
+        : ''
+    "
+  ></textarea>
+  <show-errors
+    [control]="this.form.get('RiskOfImplementationTextArea')"
+  ></show-errors>
+
+  <div class="ui divider"></div>
+
+  <div
+    class="field"
+    [class.required]="
+      this.getValidationService | required: 'CauseOfChangeTextArea'
+    "
+  >
+    <label>Cause of Change:</label>
+    Why is this change needed? Please choose a value from the drop down menu. If
+    no value fits please choose "OTHER" and describe (further) details below.
+    <xa-select
+      [options]="rfcService.CauseOfChange"
+      formControlName="CauseOfChange"
+      placeholder="Select Cause of Change."
+      viewValue="label"
+      optionValue="content"
+    ></xa-select>
+  </div>
+  <textarea
+    rows="4"
+    formControlName="CauseOfChangeTextArea"
+    [placeholder]="
+      this.form.get('CauseOfChange').value
+        ? 'describe (further) details here ...'
+        : ''
+    "
+  ></textarea>
+  <show-errors [control]="this.form.get('CauseOfChangeTextArea')"></show-errors>
+
+  <div class="ui divider"></div>
+
+  <div
+    class="field"
+    [class.required]="
+      this.getValidationService | required: 'TargetOfChangeTextArea'
+    "
+  >
+    <label>Target of Change:</label>
+    Which results are expected? Please choose a value from the drop down menu.
+    If no value fits please choose "OTHER" and describe (further) details below.
+    <xa-select
+      [options]="rfcService.TargetOfChange"
+      formControlName="TargetOfChange"
+      placeholder="Select Target of Change."
+      viewValue="label"
+      optionValue="content"
+    ></xa-select>
+  </div>
+  <textarea
+    rows="4"
+    formControlName="TargetOfChangeTextArea"
+    [placeholder]="
+      this.form.get('TargetOfChange').value
+        ? 'describe (further) details here ...'
+        : ''
+    "
+  ></textarea>
+  <show-errors
+    [control]="this.form.get('TargetOfChangeTextArea')"
+  ></show-errors>
+
+  <h2 class="ui dividing header">
+    <i class="calendar alternate outline icon"></i>
+    <div class="content">
+      <span> Timeline </span>
+      <div class="sub header">Specify the time properties of the change.</div>
+    </div>
+  </h2>
+
+  <p>
+    <b>Attention:</b> Please consider the following lead times (valid for all
+    requestors, regardless of who the requestor is):<br />
+    <br />
+    2 business days for simple changes within the office hours without an
+    announcement.<br />
+    4 business days for simple changes outside the office hours without an
+    announcement.<br />
+    4 business days for complex changes within the office hours without an
+    announcement.<br />
+    8 business days for complex changes outside the office hours without an
+    announcement.<br />
+    <br />
+    If it should be implemented with shorter lead time, the requestor has to
+    arrange that with the implementer team BEFORE the RfC was raised.
+    <br /><br />
+    Criteria for a “simple” change: Less than 3 teams involved and less than 5
+    CIs (Hosts) affected.<br />
+    Criteria for a “complex” change: 3 teams involved or more and/or 5 CIs
+    (Hosts) affected or more.<br />
+    <br />
+    Please be informed that RfCs with Planned Start on Friday, on weekend or on
+    Monday until 12:00, have to be raised latest on Wednesday end of business,
+    regardless of the complexity.
+  </p>
+
+  <div class="fields">
+    <div
+      class="four wide field"
+      [class.required]="this.getValidationService | required: 'LatestStart'"
+    >
+      <label>Start:</label>
+      <ng2-flatpickr
+        #startPicker
+        formControlName="LatestStart"
+        [config]="startOptions"
+        placeholder="Select Date..."
+      >
+      </ng2-flatpickr>
+      <show-errors [control]="this.form.get('LatestStart')"></show-errors>
+    </div>
+
+    <div
+      class="four wide field"
+      [class.required]="this.getValidationService | required: 'LatestEnd'"
+    >
+      <label>End:</label>
+      <ng2-flatpickr
+        #endPicker
+        formControlName="LatestEnd"
+        [config]="endOptions"
+        placeholder="Select Date..."
+      >
+      </ng2-flatpickr>
+      <show-errors [control]="this.form.get('LatestEnd')"></show-errors>
+    </div>
+  </div>
+  <p>
+    Same start and end date is not allowed, please select at least one hour
+    difference!
+  </p>
+
+  <div class="field" style="margin-top: 30px">
+    <xa-checkbox formControlName="MaintenanceRequiredCheckBox"
+      >CMDB Maintenance Required (monitoring alerts will be suppressed during
+      the time of the maintenance) - <b>ONLY SUPPORTED FOR AT CIs</b>
+    </xa-checkbox>
+    <show-errors
+      [control]="this.form.get('MaintenanceRequiredCheckBox')"
+    ></show-errors>
+  </div>
+
+  <div *ngIf="form.get('MaintenanceRequiredCheckBox').value">
+    <div class="fields">
+      <div
+        class="four wide field"
+        [class.required]="
+          this.getValidationService | required: 'MaintenanceWindowStart'
+        "
+      >
+        <label>Maintenance Window Start:</label>
+        <ng2-flatpickr
+          #maintenanceWindowStartPicker
+          formControlName="MaintenanceWindowStart"
+          [config]="startMWOptions"
+          placeholder="Select Date..."
+        ></ng2-flatpickr>
+        <show-errors
+          [control]="this.form.get('MaintenanceWindowStart')"
+        ></show-errors>
+      </div>
+      <div
+        class="four wide field"
+        [class.required]="
+          this.getValidationService | required: 'MaintenanceWindowEnd'
+        "
+      >
+        <label>Maintenance Window End:</label>
+        <ng2-flatpickr
+          #maintenanceWindowEndPicker
+          formControlName="MaintenanceWindowEnd"
+          [config]="endMWOptions"
+          placeholder="Select Date..."
+        ></ng2-flatpickr>
+        <show-errors
+          [control]="this.form.get('MaintenanceWindowEnd')"
+        ></show-errors>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="ui dividing header">
+    <i class="users icon"></i>
+    <div class="content">
+      <span> Teams and Tasks </span>
+      <div class="sub header">Specify information about involved teams.</div>
+    </div>
+  </h2>
+
+  <div
+    class="inline fields"
+    [class.required]="
+      this.getValidationService | required: 'KnowAboutRequiredTeamsRadio'
+    "
+  >
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input
+          type="radio"
+          value="true"
+          formControlName="KnowAboutRequiredTeamsRadio"
+        />
+        <label>I know which teams are required for my change.</label>
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input
+          type="radio"
+          value="detailed"
+          formControlName="KnowAboutRequiredTeamsRadio"
+        />
+        <label
+          >I know which teams are required for my change and want to exactly
+          specify task and date.</label
+        >
+      </div>
+    </div>
+    <div class="field">
+      <div class="ui radio checkbox">
+        <input
+          type="radio"
+          value="false"
+          formControlName="KnowAboutRequiredTeamsRadio"
+        />
+        <label>I do NOT know which teams are required for my change.</label>
+      </div>
+    </div>
+  </div>
+  <show-errors
+    [control]="this.form.get('KnowAboutRequiredTeamsRadio')"
+  ></show-errors>
+
+  <table
+    *ngIf="
+      form.get('KnowAboutRequiredTeamsRadio').value == 'true' ||
+      form.get('KnowAboutRequiredTeamsRadio').value == 'detailed'
+    "
+    class="ui table compact"
+  >
+    <thead>
+      <tr>
+        <th>
+          Assignment Groups - First Assignment Group will be used as Contact for
+          a potential Maintenance Window.
+        </th>
+        <th class="td_actions right aligned">
+          <i class="large add icon" (click)="addAssignmentGroup()"> </i>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        formArrayName="AssignmentGroups"
+        *ngFor="
+          let AssignmentGroup of form.get('AssignmentGroups')['controls'];
+          let i = index
+        "
+      >
+        <td [formGroupName]="i">
+          <xa-select
+            [search]="true"
+            formControlName="AssignmentGroup"
+            placeholder="Select Assignment-Group."
+            [options]="rfcService.AssignmentGroups$ | async"
+            [loading]="!(rfcService.AssignmentGroups$ | async)"
+            [clearable]="true"
+          >
+          </xa-select>
+          <show-errors
+            [control]="AssignmentGroup.controls.AssignmentGroup"
+          ></show-errors>
+
+          <div
+            class="three fields"
+            [class.required]="
+              this.getValidationService | required: 'AssignmentGroup':true
+            "
+            *ngIf="form.get('KnowAboutRequiredTeamsRadio').value == 'detailed'"
+          >
+            <div
+              class="field"
+              [class.required]="
+                this.getValidationService | required: 'TitleTask':true
+              "
+            >
+              <label>Title:</label>
+              <input
+                type="text"
+                formControlName="TitleTask"
+                placeholder="name the task for this group"
+              />
+              <show-errors
+                [control]="AssignmentGroup.controls.TitleTask"
+              ></show-errors>
+            </div>
+            <div
+              class="field"
+              [class.required]="
+                this.getValidationService | required: 'StartTask':true
+              "
+            >
+              <label>Start:</label>
+              <ng2-flatpickr
+                #startTaskPicker
+                formControlName="StartTask"
+                [config]="startGroupOptions"
+                placeholder="Select start date..."
+              ></ng2-flatpickr>
+              <show-errors
+                [control]="AssignmentGroup.controls.StartTask"
+              ></show-errors>
+            </div>
+            <div
+              class="field"
+              [class.required]="
+                this.getValidationService | required: 'EndTask':true
+              "
+            >
+              <label>End:</label>
+              <ng2-flatpickr
+                #endTaskPicker
+                formControlName="EndTask"
+                [config]="endGroupOptions"
+                placeholder="Select end date..."
+              ></ng2-flatpickr>
+              <show-errors
+                [control]="AssignmentGroup.controls.EndTask"
+              ></show-errors>
+            </div>
+          </div>
+        </td>
+
+        <td class="right aligned">
+          <i
+            class="trash alternate outline icon"
+            *ngIf="i != 0"
+            (click)="removeAssignmentGroup(i)"
+          ></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="field">
+    <xa-checkbox formControlName="ChangeCoordinationCheck"
+      >Change coordination team should check if the described activities and/or
+      the timeline is sufficient before the change request will officially be
+      forwared to the implementer teams.</xa-checkbox
+    >
+    <show-errors
+      [control]="this.form.get('ChangeCoordinationCheck')"
+    ></show-errors>
+  </div>
+
+  <div class="field">
+    <xa-checkbox formControlName="ImplementerTeamsKnowCheckBox"
+      >All implementer teams confirmed or are at least informed about the
+      described activites and the timeline.</xa-checkbox
+    >
+    <show-errors
+      [control]="this.form.get('ImplementerTeamsKnowCheckBox')"
+    ></show-errors>
+  </div>
+
+  <div class="ui grid">
+    <div class="right floated three wide column">
+      <a
+        [href]="this.linkForDeliveryTeams"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <u> Link to Delivery-Teams </u>
+      </a>
+    </div>
+  </div>
+
+  <h2 class="ui dividing header">
+    <i class="chalkboard teacher icon"></i>
+    <div class="content">
+      <span> Pre-Approval </span>
+      <div class="sub header">
+        Specify whether the change can be pre-approved.
+      </div>
+    </div>
+  </h2>
+
+  <div class="inline fields">
+    <div class="field">
+      <xa-checkbox type="radio" formControlName="AccountResponsibleCheckBox">
+        I am member of the customer’s account team or responsible for the cost
+        center of the affected CI(s) and there is no further account/cost center
+        approval necessary in SM9 during the change lifecycle.
+      </xa-checkbox>
+    </div>
+    <div class="field">
+      <xa-checkbox
+        type="radio"
+        formControlName="BehalfOfAccountResponsibleCheckBox"
+      >
+        I am requesting on behalf of the account team or on behalf of the
+        responsible cost center person of the affected CI(s) and there is no
+        further account/cost center approval necessary in SM9 during the change
+        lifecycle.</xa-checkbox
+      >
+    </div>
+  </div>
+
+  <div
+    class="field"
+    [class.required]="
+      this.getValidationService | required: 'AccountResponsible'
+    "
+    *ngIf="form.get('BehalfOfAccountResponsibleCheckBox').value == true"
+  >
+    <label>Account/Cost Center Responsible:</label>
+    <input
+      type="text"
+      formControlName="AccountResponsible"
+      placeholder="Marvin Acme"
+    />
+    <show-errors [control]="this.form.get('AccountResponsible')"></show-errors>
+  </div>
+
+  <h2 class="ui dividing header">
+    <i class="file outline icon"></i>
+    <div class="content">
+      <span> Attachments </span>
+      <div class="sub header">
+        Select the attachments that you want to add to the change.
+      </div>
+    </div>
+  </h2>
+
+  <attachmentupload
+    [maxNumberofFiles]="3"
+    [maxFileSizeInMB]="5"
+    (filesChanged)="updateAttachments($event)"
+  >
+  </attachmentupload>
+
+  <h2 class="ui dividing header">
+    <i class="share alternate icon"></i>
+    <div class="content">
+      <span> Information Sharing </span>
+      <div class="sub header">
+        Specify e-mail addresses below that you want to inform about the
+        creation of the change (separated by ; ).
+      </div>
+    </div>
+  </h2>
+
+  <div
+    class="field"
+    [class.required]="
+      this.getValidationService | required: 'MailAddressesShareInformation'
+    "
+  >
+    <label>E-Mail Addresses:</label>
+    <input
+      type="text"
+      formControlName="MailAddressesShareInformation"
+      placeholder="mr.acme@t-systems.com;max.mustermann@t-systems.com"
+    />
+    <show-errors
+      [control]="this.form.get('MailAddressesShareInformation')"
+    ></show-errors>
+  </div>
+
+  <h2 class="ui dividing header">
+    <i class="check icon"></i>
+    <div class="content">
+      <span> Confirmation </span>
+      <div class="sub header">Confirm the terms of the CreateRfC process.</div>
+    </div>
+  </h2>
+
+  <div
+    class="field"
+    [class.required]="
+      this.getValidationService | required: 'ConfirmationCheckBox'
+    "
+  >
+    <label>CreateRfC Terms</label>
+    <xa-checkbox formControlName="ConfirmationCheckBox"
+      >I’ve created this RfC under consideration of lead times, complexity and
+      other involved parties (implementer teams, approver, change
+      coordination/management) to guarantee a proper progress without delays or
+      misunderstandings.
+    </xa-checkbox>
+    <show-errors
+      [control]="this.form.get('ConfirmationCheckBox')"
+    ></show-errors>
+  </div>
+</form>
+
+<pre *if-dev>
+  <div class="ui two column divided grid">
+    <div class="row">
+      <div class="column">
+        <p>   {{ form.getRawValue() | json }}</p>
+      </div>
+      <div class="column">
+        <p>  {{ form.value | json }}</p>
+      </div>
+    </div>
+    </div>
+</pre>
+
+<xa-notify></xa-notify>
