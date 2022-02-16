@@ -9,17 +9,18 @@ import { XAUIModule, XAModalService } from '@xa/ui';
 import { AgGridModule } from 'ag-grid-angular';
 import { SearchModule } from '@xa/search';
 import { XAGridHelperModule } from '@xa/grid';
-import { Ng2FlatpickrComponent } from './ng2-flatpickr/ng2-flatpickr.component';
-import { Ng2FlatpickrDirective } from './ng2-flatpickr/ng2-flatpickr.directive';
 import 'ag-grid-enterprise';
 import { XAToastDefaults } from '../toast-config';
 import { ValidationService } from '@xa/validation';
 import { ShowErrorsModule } from '@xa/show-errors';
 import { environment } from '../environments/environment';
 import { SharedModule } from 'projects/xa-portal-dev/src/app/shared/shared.module';
-import { PipeModule } from 'projects/shared/pure-pipes/pipe.module';
-import { AttachmentUploadComponent } from 'projects/shared/attachmentupload-component/AttachmentUpload.component';
-import { CiTableComponent } from 'projects/@create-rfc/ci-table/ci-table.component';
+import { AttachmentUploadComponent } from 'projects/@create-rfc/shared/attachmentupload-component/AttachmentUpload.component';
+import { CiTableComponent } from 'projects/@create-rfc/shared/ci-table/ci-table.component';
+import { RequestForChangeSearchAppsModalComponent } from 'projects/@create-rfc/shared/modals/search-apps-dialog/request-for-change-search-apps.component';
+import { RequestForChangeSearchCisModalComponent } from 'projects/@create-rfc/shared/modals/search-cis-dialog/request-for-change-search-cis.component';
+import { PipeModule } from 'projects/@create-rfc/shared/pure-pipes/pipe.module';
+import { Ng2FlatpickrModule } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.module';
 
 
 @NgModule({
@@ -28,8 +29,6 @@ import { CiTableComponent } from 'projects/@create-rfc/ci-table/ci-table.compone
     RequestForChangeSearchAppsModalComponent,
     CiTableComponent,
     RequestForChangeSearchCisModalComponent,
-    Ng2FlatpickrComponent,
-    Ng2FlatpickrDirective,
     AttachmentUploadComponent
   ],
   imports: [
@@ -42,7 +41,8 @@ import { CiTableComponent } from 'projects/@create-rfc/ci-table/ci-table.compone
     SearchModule,
     ShowErrorsModule,
     environment.production ? [] : SharedModule,
-    PipeModule
+    PipeModule,
+    Ng2FlatpickrModule
   ],
   providers: [
     {
@@ -57,9 +57,7 @@ import { CiTableComponent } from 'projects/@create-rfc/ci-table/ci-table.compone
     ValidationService
   ],
   exports: [
-    AppComponent,
-    Ng2FlatpickrComponent,
-    Ng2FlatpickrDirective
+    AppComponent
   ],
   entryComponents: [
     AppComponent,

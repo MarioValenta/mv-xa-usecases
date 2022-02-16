@@ -3,14 +3,13 @@ import { FormGroup, FormBuilder, Validators, FormArray, AbstractControl, FormCon
 import { ICERequest, ICERequestContext, FeedbackRequestPayload } from '@xa/lib-ui-common';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { Ng2FlatpickrComponent } from './ng2-flatpickr/ng2-flatpickr.component';
-import { FlatpickrOptions } from './ng2-flatpickr/flatpickr-options.interface';
 import { DataService } from './data.service';
 import { RequestForChangeService } from './request-for-change.service';
 import { ValidationService } from '@xa/validation';
 import { ValidatorConfig } from '@xa/validation/lib/Validation/ValidatorConfig';
 import { IAssignmentGroupDTO } from './dto/AssignmentGroup';
-import { RequiredPipe } from 'projects/shared/pure-pipes/required.pipe';
+import { RequiredPipe } from 'projects/@create-rfc/shared/pure-pipes/required.pipe';
+import { FlatpickrOptions, Ng2FlatpickrComponent } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.module';
 
 @Component({
   selector: 'create-rfc-request-form',
