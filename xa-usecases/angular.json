@@ -77,6 +77,15 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+            },
+            "local-libs": {
+              "tsConfig": "projects/xa-portal-dev/tsconfig.app.local-libs.json",
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           },
           "defaultConfiguration": "production"
@@ -89,6 +98,9 @@
             },
             "development": {
               "browserTarget": "xa-portal-dev:build:development"
+            },
+            "local-libs": {
+              "browserTarget": "xa-portal-dev:build:local-libs"
             }
           },
           "defaultConfiguration": "development"
@@ -178,7 +190,7 @@
               "namedChunks": true
             },
             "prod-local-libs": {
-              "tsConfig": "projects/@create-sr/request-form/tsconfig.app.local-libs.json",
+              "tsConfig": "projects/@create-sr/request-form/tsconfig.app.local-libs-legacy.json",
               "fileReplacements": [
                 {
                   "replace": "projects/@create-sr/request-form/src/environments/environment.ts",
@@ -563,9 +575,19 @@
                 "maximumWarning": "2kb",
                 "maximumError": "4kb"
               }
-            ],
+            ]
           },
           "configurations": {
+            "prod-local-libs": {
+              "tsConfig": "projects/@create-rfc/request-form/tsconfig.app.local-libs-legacy.json",
+              "fileReplacements": [
+                {
+                  "replace": "projects/@create-sr/request-form/src/environments/environment.ts",
+                  "with": "projects/@create-sr/request-form/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
             "production": {
               "fileReplacements": [
                 {
