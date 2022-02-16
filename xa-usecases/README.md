@@ -8,14 +8,16 @@ The main development environment project (for developing and debugging the UseCa
 
 ## creating new UseCase forms/assets/projects
 
+### update angular.json
 * Type `ng g app @<USECASE-NAME>/<FORM-NAME>` e.g. `ng g app @create-sr/request-form` to create a new application project inside the `/projects` folder. This will create a new forms app of the specified UseCase.
 
 * Would you like to add Angular routing? (y/N) => N
 * Which stylesheet format would you like to use? (Use arrow keys) => CSS or SCSS
 
-* After that, execute the following command: `ng add ngx-build-plus --project @<USECASE-NAME>/<FORM-NAME>` e.g. `ng add ngx-build-plus --project @create-sr/request-form` to update the builder inside the angular.json config file.
+* After that, execute the following command: `ng add ngx-build-plus --project @<USECASE-NAME>/<FORM-NAME>` e.g. `ng add ngx-build-plus --project @create-sr/request-form` to update the builder inside the `angular.json` config file.
 
-* If the Asset uses *ag-grid*, then the license needs to be added to the `main.ts` file of the project, just add the following lines:
+### ag-grid
+* If the asset/project uses *ag-grid*, then the license needs to be added to the `main.ts` file of the project, just add the following lines:
 
 ```typescript
 import {LicenseManager} from 'ag-grid-enterprise';
@@ -49,17 +51,21 @@ import 'ag-grid-enterprise';
     customElements.define('<USECASENAME-ASSETNAME>', ce);
   }
 ```
-* Next, add new scripts to the package.json for this newly created app. The most important script is the `"build:prod:@<USECASE-NAME>/<FORM-NAME>: ng build --project @<USECASE-NAME>/<FORM-NAME> --configuration production --single-bundle"` e.g. `"build:prod:@create-sr/request-form": "ng build --project @create-sr/request-form --configuration production --single-bundle"`. Executing these script will create one single bundled javscript file.
+
+### package.json
+* Next, add new scripts to the **package.json** for this newly created app. The most important script is the `"build:prod:@<USECASE-NAME>/<FORM-NAME>: ng build --project @<USECASE-NAME>/<FORM-NAME> --configuration production --single-bundle"` e.g. `"build:prod:@create-sr/request-form": "ng build --project @create-sr/request-form --configuration production --single-bundle"`. Executing these script will create one single bundled javscript file.
 
 * Also create scripts for running the tests for this newly created project.
 
-* If you add an old UseCase project to this project, updating the tsconfig.app.json and tsconfig.spec.json is required.
+### ts-config
+* If you add an old UseCase project to this project, updating the **tsconfig.app.json** and **tsconfig.spec.json** is required.
 
 - The **tsconfig.app.json** file of the old UseCase should extends from
   `"extends": "../../../tsconfig-legacy.json"`
 - and the **tsconfig.spec.json** should extends from
   `"extends": "../../../tsconfig-legacy.json"`
 
+### update budget
 * Next, in most cases the budget values inside the `angular.json` config have to be changed. Move the budget config from the `architect.build.configurations` to `architect.build.options` and update the budget like this configuration:
 
 ```json
@@ -76,6 +82,40 @@ import 'ag-grid-enterprise';
               }
             ]
 ```
+
+
+
+## importing old UseCase projects (RequestForms or UserTasks from exisitng UseCase project)
+
+If you want to add an old UseCase project into this MonoRepo, follow this steps (has to be done for every project/form):
+
+1. Follow the steps from the section: [#update angular.json](#update-angularjson), create a new project for every project in the old UseCase project.
+
+2. Remove the created `projects/@<USECASE-NAME>/<FORM-NAME>/src` folder and copy the src folder of the old UseCase and paste it into  `projects/@<USECASE-NAME>/<FORM-NAME>`.
+
+3. Follow the steps from the section: [#ts config](#ts-config)
+
+4. Search for imports like `'DevEnvironment/src/app/.....` and try to replace it with `projects/xa-portal-dev/src/app/.....` IF the old UseCase projects contained the DevEnvironment.
+
+5. Copy the `mocks` folder from the old project into the `projects/@<USECASE-NAME>/<FORM-NAME>/` path.
+
+6. Change the app selector of the newly created project `projects/@<USECASE-NAME>/<FORM-NAME>/src/app/app.component.ts` to something like `<USECASE-NAME>-<FORM-NAME>` e.g. from `app-root` to `create-sr-request-form`.
+
+7. Update the selectors of the **index.html** file `projects/@<USECASE-NAME>/<FORM-NAME>/src/app/index.html`.
+
+8. Update the AppModule name to something like `<USECASE-NAME><FORM-NAME>AppModule/` e.g. from `AppModule` to `CreateSRRequestFormAppModule`.
+
+9. Update also the import of the new AppModule name e.g. `<USECASE-NAME><FORM-NAME>AppModule` inside the `main.ts`, but if you Refactor the renaming with your IDE, it should already be renamed.
+
+10. Import the new `<USECASE-NAME><FORM-NAME>AppModule` into `projects/xa-portal-dev/src/app/app.module.ts` and add it to the imports[] array.
+
+11. Add the `<USECASE-NAME>-<FORM-NAME>` selector to the **app.component.html** `projects/xa-portal-dev/src/app/app.component.html`.
+
+12. Update the imports of the mocks path in the **app.component.ts** `projects/xa-portal-dev/src/app/app.component.ts`.
+
+13. Follow the steps from the section: [#package-json](#packagejson)
+
+14. Follow the steps from the section: [#update budget](#update-budget)
 
 ## Development server
 

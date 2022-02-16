@@ -23,6 +23,9 @@
           "@xa/ui": [
               "../../../Libraries/xa-libraries/dist/xa/ui"
           ],
+          "@xa/ui/*": [
+            "../../../Libraries/xa-libraries/dist/xa/ui/*"
+          ],
           "@xa/editor": [
               "../../../Libraries/xa-libraries/dist/xa/editor"
           ],
@@ -64,6 +67,12 @@
           ],
           "@xa/lib-ui-portal-common/*": [
               "../../../Libraries/xa-libraries/dist/xa/lib-ui-portal-common/*",
+          ],
+          "@xa/ui-attachments-upload": [
+            "../../../Libraries/xa-libraries/dist/xa/ui-attachments-upload"
+          ],
+          "@xa/ui-attachments-upload/*": [
+            "../../../Libraries/xa-libraries/dist/xa/ui-attachments-upload/*"
           ]
       }
   }
