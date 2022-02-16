@@ -1,70 +1,79 @@
 {
   "extends": "./tsconfig-legacy.json",
   "compilerOptions": {
-      "paths": {
-          "@angular/*": [
-              "./node_modules/@angular/*"
-          ],
-          "ag-grid-angular": [
-              "./node_modules/ag-grid-angular"
-          ],
-          "ag-grid-community": [
-              "./node_modules/ag-grid-community"
-          ],
-          "ag-grid-enterprise": [
-              "./node_modules/ag-grid-enterprise"
-          ],
-          "@xa/grid": [
-              "../../../Libraries/xa-libraries/dist/xa/grid"
-          ],
-          "@xa/grid/*": [
-              "../../../Libraries/xa-libraries/dist/xa/grid/*"
-          ],
-          "@xa/ui": [
-              "../../../Libraries/xa-libraries/dist/xa/ui"
-          ],
-          "@xa/editor": [
-              "../../../Libraries/xa-libraries/dist/xa/editor"
-          ],
-          "@xa/file-editor": [
-              "../../../Libraries/xa-libraries/dist/xa/file-editor"
-          ],
-          "@xa/search": [
-              "../../../Libraries/xa-libraries/dist/xa/search"
-          ],
-          "@xa/search/*": [
-              "../../../Libraries/xa-libraries/dist/xa/search/*"
-          ],
-          "@xa/validation": [
-              "../../../Libraries/xa-libraries/dist/xa/validation"
-          ],
-          "@xa/validation/*": [
-              "../../../Libraries/xa-libraries/dist/xa/validation/*"
-          ],
-          "@xa/show-errors": [
-              "../../../Libraries/xa-libraries/dist/xa/show-errors"
-          ],
-          "@xa/show-errors/*": [
-              "../../../Libraries/xa-libraries/dist/xa/show-errors/*"
-          ],
-          "@xa/lib-ui-bpmn": [
-              "../../../Libraries/xa-libraries/dist/xa/lib-ui-bpmn",
-          ],
-          "@xa/lib-ui-bpmn/*": [
-              "../../../Libraries/xa-libraries/dist/xa/lib-ui-bpmn/*",
-          ],
-          "@xa/lib-ui-common": [
-              "../../../Libraries/xa-libraries/dist/xa/lib-ui-common",
-          ],
-          "@xa/lib-ui-common/*": [
-              "../../../Libraries/xa-libraries/dist/xa/lib-ui-common/*",
-          ],
-          "@xa/lib-ui-portal-common": [
-              "../../../Libraries/xa-libraries/dist/xa/lib-ui-portal-common",
-          ],
-          "@xa/lib-ui-portal-common/*": [
-              "../../../Libraries/xa-libraries/dist/xa/lib-ui-portal-common/*",
-          ]
-      }
+    "paths": {
+      "@angular/*": [
+        "./node_modules/@angular/*"
+      ],
+      "ag-grid-angular": [
+        "./node_modules/ag-grid-angular"
+      ],
+      "ag-grid-community": [
+        "./node_modules/ag-grid-community"
+      ],
+      "ag-grid-enterprise": [
+        "./node_modules/ag-grid-enterprise"
+      ],
+      "@xa/grid": [
+        "../../../Libraries/xa-libraries/dist/xa/grid"
+      ],
+      "@xa/grid/*": [
+        "../../../Libraries/xa-libraries/dist/xa/grid/*"
+      ],
+      "@xa/ui": [
+        "../../../Libraries/xa-libraries/dist/xa/ui"
+      ],
+      "@xa/ui/*": [
+        "../../../Libraries/xa-libraries/dist/xa/ui/*"
+      ],
+      "@xa/editor": [
+        "../../../Libraries/xa-libraries/dist/xa/editor"
+      ],
+      "@xa/file-editor": [
+        "../../../Libraries/xa-libraries/dist/xa/file-editor"
+      ],
+      "@xa/search": [
+        "../../../Libraries/xa-libraries/dist/xa/search"
+      ],
+      "@xa/search/*": [
+        "../../../Libraries/xa-libraries/dist/xa/search/*"
+      ],
+      "@xa/validation": [
+        "../../../Libraries/xa-libraries/dist/xa/validation"
+      ],
+      "@xa/validation/*": [
+        "../../../Libraries/xa-libraries/dist/xa/validation/*"
+      ],
+      "@xa/show-errors": [
+        "../../../Libraries/xa-libraries/dist/xa/show-errors"
+      ],
+      "@xa/show-errors/*": [
+        "../../../Libraries/xa-libraries/dist/xa/show-errors/*"
+      ],
+      "@xa/lib-ui-bpmn": [
+        "../../../Libraries/xa-libraries/dist/xa/lib-ui-bpmn",
+      ],
+      "@xa/lib-ui-bpmn/*": [
+        "../../../Libraries/xa-libraries/dist/xa/lib-ui-bpmn/*",
+      ],
+      "@xa/lib-ui-common": [
+        "../../../Libraries/xa-libraries/dist/xa/lib-ui-common",
+      ],
+      "@xa/lib-ui-common/*": [
+        "../../../Libraries/xa-libraries/dist/xa/lib-ui-common/*",
+      ],
+      "@xa/lib-ui-portal-common": [
+        "../../../Libraries/xa-libraries/dist/xa/lib-ui-portal-common",
+      ],
+      "@xa/lib-ui-portal-common/*": [
+        "../../../Libraries/xa-libraries/dist/xa/lib-ui-portal-common/*",
+      ],
+      "@xa/ui-attachments-upload": [
+        "../../../Libraries/xa-libraries/dist/xa/ui-attachments-upload"
+      ],
+      "@xa/ui-attachments-upload/*": [
+        "../../../Libraries/xa-libraries/dist/xa/ui-attachments-upload/*"
+      ]
+    }
   }
 }
