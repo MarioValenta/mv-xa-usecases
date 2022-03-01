@@ -582,8 +582,8 @@
               "tsConfig": "projects/@create-rfc/request-form/tsconfig.app.local-libs-legacy.json",
               "fileReplacements": [
                 {
-                  "replace": "projects/@create-sr/request-form/src/environments/environment.ts",
-                  "with": "projects/@create-sr/request-form/src/environments/environment.prod.ts"
+                  "replace": "projects/@create-rfc/request-form/src/environments/environment.ts",
+                  "with": "projects/@create-rfc/request-form/src/environments/environment.prod.ts"
                 }
               ],
               "outputHashing": "all"

@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { XAModalPageContext } from '@xa/ui';
 import { SearchField } from '@xa/search';
 import { XAServices, ICERequestContext } from '@xa/lib-ui-common';
-import { environment } from 'projects/@create-rfc/request-form/src/environments/environment';
 
 @Component({
   selector: 'request-for-change-search-apps',
@@ -12,8 +11,7 @@ import { environment } from 'projects/@create-rfc/request-form/src/environments/
 export class RequestForChangeSearchAppsModalComponent implements OnInit {
 
   constructor(private context: XAModalPageContext<any>, public xaservices: XAServices) {
-    if (!environment.production) {
-      console.debug('ENV: NON PROD');
+    if (this.xaservices === undefined || this.xaservices === null) {
       this.xaservices = ((window as any).xa as XAServices);
     }
   }

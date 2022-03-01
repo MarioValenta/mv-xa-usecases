@@ -2,12 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { XAModalPageContext } from '@xa/ui';
 import { SearchField } from '@xa/search';
 import { XAServices } from '@xa/lib-ui-common';
-import { environment } from 'projects/@create-rfc/request-form/src/environments/environment';
 
 @Component({
   selector: 'app-request-for-change-search-cis',
-  templateUrl: './request-for-change-search-cis.component.html',
-
+  templateUrl: './request-for-change-search-cis.component.html'
 })
 export class RequestForChangeSearchCisModalComponent implements OnInit {
 
@@ -17,8 +15,7 @@ export class RequestForChangeSearchCisModalComponent implements OnInit {
   rowSelection: any;
 
   constructor(private context: XAModalPageContext<any>, public xaservices: XAServices) {
-    if (!environment.production) {
-      console.debug('ENV: NON PROD');
+    if (this.xaservices === undefined || this.xaservices === null) {
       this.xaservices = ((window as any).xa as XAServices);
     }
   }
