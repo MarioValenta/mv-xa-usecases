@@ -7,6 +7,7 @@
 @import "~ag-grid-community/dist/styles/ag-theme-balham.css";
 @import '~@xa/ui/styles/tsa.scss';
 @import '~@xa/grid/src/styles.scss';
+@import "~@circlon/angular-tree-component/css/angular-tree-component.css";
 
 
 /* BEGIN Fomantic-UI CSS EXCEPTIONS */
@@ -34,7 +35,7 @@
 /*  END Fomantic-UI CSS EXCEPTIONS */
 
 body {
-    background-color: #f5f5f5 !important;
+    background-color: #f0f0f0 !important;
     font-family: "Lato", "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
