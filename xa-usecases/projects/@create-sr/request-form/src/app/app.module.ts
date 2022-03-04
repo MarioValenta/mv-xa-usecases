@@ -13,8 +13,8 @@ import { AgGridModule } from 'ag-grid-angular';
 import { XAToastDefaults } from 'projects/shared/toast-config';
 import { XAGridHelperModule } from '@xa/grid';
 import { environment } from '../environments/environment';
-//TODO import { SharedModule } from 'DevEnvironment/src/app/shared/shared.module';
 import 'ag-grid-enterprise';
+import { SharedModule } from 'projects/xa-portal-dev/src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,7 @@ import 'ag-grid-enterprise';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ShowErrorsModule,
-    //TODO environment.production ? [] : SharedModule,
+    environment.production ? [] : SharedModule,
   ],
   providers: [
     {
