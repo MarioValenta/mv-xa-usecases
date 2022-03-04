@@ -20,6 +20,7 @@ import { RanfRequestFormAppModule } from 'projects/@ranf/request-form/src/app/ap
 import { RanfUtCheckAppModule } from 'projects/@ranf/ut-check/src/app/app.module';
 import { CreateSRRequestFormAppModule } from 'projects/@create-sr/request-form/src/app/app.module';
 import { BillingRequestFormAppModule } from 'projects/@billing/request-form/src/app/app.module';
+import { CreateRfcRequestFormAppModule } from 'projects/@create-rfc/request-form/src/app/app.module';
 
 const appInitializerFn = (appConfig: AppConfigService) => {
   return () => {
@@ -48,7 +49,8 @@ const appInitializerFn = (appConfig: AppConfigService) => {
     RanfRequestFormAppModule,
     RanfUtCheckAppModule,
     CreateSRRequestFormAppModule,
-    BillingRequestFormAppModule
+    BillingRequestFormAppModule,
+    CreateRfcRequestFormAppModule
   ],
 
   providers: [
