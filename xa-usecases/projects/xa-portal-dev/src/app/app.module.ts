@@ -1,26 +1,22 @@
 import { NgModule, APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XAUIModule } from '@xa/ui';
+import { AllCellEditors, AllCellRenderers } from '@xa/grid';
+import { AgGridModule } from 'ag-grid-angular';
+import 'ag-grid-enterprise';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppHtmlFormsComponent } from './app.component';
 import { LeftMenuComponent } from './left-menu/left-menu.component';
 import { UIButtonComponent } from './content-ui';
-import { XAUIModule } from '@xa/ui';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CERequestComponent } from './requests/ce-request/ce-request.component';
 import { AppConfigService } from './app-config.service';
 import { AppInitializeService } from './app-initialize.service';
 import { SharedModule } from './shared/shared.module';
 import { ErrorModalComponent } from './requests/ce-request/error-modal/error-modal-component';
 import { UserTaskZoneComponent } from './user-tasks/user-task-zone.component';
-import 'ag-grid-enterprise';
-import { AgGridModule } from 'ag-grid-angular';
-import { AllCellEditors, AllCellRenderers } from '@xa/grid';
+import { FormsImportModule } from './forms-import.module';
 
-import { RanfRequestFormAppModule } from 'projects/@ranf/request-form/src/app/app.module';
-import { RanfUtCheckAppModule } from 'projects/@ranf/ut-check/src/app/app.module';
-import { CreateSRRequestFormAppModule } from 'projects/@create-sr/request-form/src/app/app.module';
-import { BillingRequestFormAppModule } from 'projects/@billing/request-form/src/app/app.module';
-import { PhoneForwardingRequestFormAppModule } from 'projects/@phoneforwarding/request-form/src/app/app.module';
 
 const appInitializerFn = (appConfig: AppConfigService) => {
   return () => {
@@ -46,11 +42,7 @@ const appInitializerFn = (appConfig: AppConfigService) => {
       ...AllCellEditors,
       ...AllCellRenderers
     ]),
-    RanfRequestFormAppModule,
-    RanfUtCheckAppModule,
-    CreateSRRequestFormAppModule,
-    BillingRequestFormAppModule,
-    PhoneForwardingRequestFormAppModule
+    FormsImportModule
   ],
 
   providers: [
