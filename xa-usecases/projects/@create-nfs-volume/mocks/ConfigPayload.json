@@ -1,0 +1,39 @@
+{
+  "variablesToBeStoredInCamunda": [],
+  "variablesNotToBeCloned": [],
+
+  "searchcomponentColumns": [
+    {
+      "Name": "HOSTID",
+      "Label": "HostID",
+      "Placeholder": "search by HostID"
+    },
+    {
+      "Name": "HOSTNAME",
+      "Label": "Hostname",
+      "UseFormatValue": true,
+      "Placeholder": "search by Hostname"
+    },
+    {
+      "Name": "HKTR",
+      "Label": "WBS",
+      "HideInput": true,
+      "Placeholder": "search by WBS"
+    },
+    {
+      "Name": "HSTATUS",
+      "Label": "Status",
+      "Placeholder": "search by Status"
+    },
+    {
+      "Name": "HCUST",
+      "Label": "Customer",
+      "Placeholder": "search by Customer"
+    },
+    {
+      "Name": "HENVIRONMENT",
+      "Label": "Environment",
+      "Placeholder": "search by Environment"
+    }
+  ]
+}

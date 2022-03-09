@@ -1,0 +1,96 @@
+{
+  "requestForm": [
+      {
+          "varName": "VolumeName",
+          "required": true,
+          "type": "text",
+          "format": {
+              "regexPattern": "^[a-zA-Z]{1}([0-9_a-zA-Z]{0,254})$",
+              "errorMessage": "No special Characters and only max 255 characters."
+          }
+      },
+      {
+          "varName": "VolumeSize",
+          "required": true,
+          "type": "number",
+          "min": 50,
+          "max": 1000
+      },
+      {
+          "varName": "Protocol",
+          "required": true,
+          "type": "text"
+      },
+      {
+          "varName": "LocalSnapshotPolicy",
+          "required": true,
+          "type": "text"
+      },
+      {
+          "varName": "SnapvaultBackup",
+          "required": true,
+          "type": "text",
+          "dependencies": {
+              "yes": [
+                  {
+                      "varName": "RetentionTime",
+                      "required": true,
+                      "type": "text"
+                  }
+              ]
+          }
+      },
+      {
+          "varName": "Mode",
+          "required": true,
+          "type": "text",
+          "dependencies": {
+              "advanced": [
+                  {
+                      "varName": "ExportPolicy",
+                      "required": true,
+                      "type": "text",
+                      "format": {
+                          "regexPattern": "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$",
+                          "errorMessage": "DNS-Server in wrong format! IPv4-format needed!"
+                      }
+                  },
+                  {
+                      "varName": "PercentSnapshotSpace",
+                      "required": true,
+                      "type": "text",
+                      "format": {
+                          "regexPattern": "^[1-9][0-9]?$|^100$",
+                          "errorMessage": "Please enter a number between 0 and 100"
+                      }
+                  },
+                  {
+                      "varName": "StorageClass",
+                      "required": true,
+                      "type": "text"
+                  },
+                  {
+                      "varName": "StorageEnvironment",
+                      "required": true,
+                      "type": "text"
+                  },
+                  {
+                      "varName": "StorageCluster",
+                      "required": true,
+                      "type": "text"
+                  },
+                  {
+                      "varName": "SVM",
+                      "required": true,
+                      "type": "text"
+                  }
+              ]
+          }
+      },
+      {
+          "varName": "ConfirmationCheckBox",
+          "required": true,
+          "type": "text"
+      }
+  ]
+}

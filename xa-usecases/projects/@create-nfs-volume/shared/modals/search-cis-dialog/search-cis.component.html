@@ -1,0 +1,13 @@
+<search-component
+  [ngStyle]="myStyle"
+  selectionMode="multiple"
+  [fields]="SearchFields"
+  (selectionChanged)="onSearchChanged($event)"
+  hintText="Select exisitng VM by clicking on the desired row inside the below grid after search."
+  [search]="searchFunction"
+></search-component>
+<div class="field">
+  <!-- <div class="actions" style="padding-top: 10px">
+    <button *ngIf="this.rowSelection" class="ui green button" (click)="AddCIs()">add selected</button>
+  </div> -->
+</div>

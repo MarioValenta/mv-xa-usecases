@@ -7,9 +7,9 @@ import { AppInitializeService } from './app-initialize.service';
 import { TaskContext } from './user-tasks/user-task-zone.component';
 
 // TODO: Needs to be adjusted for every UseCase form
-import * as Payload from '../../../../mocks/Payload.json';
-import * as ConfigPayload from '../../../../mocks/ConfigPayload.json';
-import * as Validation from '../../../../mocks/Validation.json';
+import * as Payload from '../../../@create-nfs-volume/mocks/Payload.json';
+import * as ConfigPayload from '../../../@create-nfs-volume/mocks/ConfigPayload.json';
+import * as Validation from '../../../@create-nfs-volume/mocks/Validation.json';
 
 @Component({
   selector: 'app-html-forms',

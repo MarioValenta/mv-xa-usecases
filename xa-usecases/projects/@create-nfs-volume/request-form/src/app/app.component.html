@@ -1,0 +1,396 @@
+<form [formGroup]="form" class="ui container form" style="padding: 20px 10px">
+  <div class="field">
+    <div class="ui icon message">
+      <i class="info icon"></i>
+      <div class="content">
+        <h3>Information</h3>
+        <p>Currently only DSI-L systems with NFS volumes.</p>
+        <h3>Modes</h3>
+        <ul>
+          <li>Basic-Mode: Add Volume to existing VM</li>
+          <li>
+            Advanced-Mode: Order volume by choosing <b>Storage Cluster</b> and
+            <b>SVM</b>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align: right">
+    <label *ngIf="this.form.get(FORM_KEY_MODE).value === 'basic'"
+      ><b>Basic Mode </b></label
+    >
+    <label *ngIf="!(this.form.get(FORM_KEY_MODE).value === 'basic')"
+      >Basic Mode
+    </label>
+    <div class="ui toggle checkbox">
+      <input type="checkbox" [formControlName]="this.FORM_KEY_TOGGLE" />
+      <label *ngIf="this.form.get(FORM_KEY_MODE).value === 'advanced'"
+        ><b>Advanced Mode</b></label
+      >
+      <label *ngIf="!(this.form.get(FORM_KEY_MODE).value === 'advanced')"
+        >Advanced Mode</label
+      >
+    </div>
+  </div>
+
+  <h2 class="ui dividing header">
+    <div class="content">
+      <i class="server icon"></i>
+      <span *ngIf="this.form.get(FORM_KEY_MODE).value === 'basic'">
+        select VM
+      </span>
+      <span *ngIf="this.form.get(FORM_KEY_MODE).value === 'advanced'">
+        select Storage SVM
+      </span>
+      <div
+        *ngIf="this.form.get(FORM_KEY_MODE).value === 'basic'"
+        class="sub header"
+      >
+        Search existing VM by HostID or Hostname.
+      </div>
+      <div
+        *ngIf="this.form.get(FORM_KEY_MODE).value === 'advanced'"
+        class="sub header"
+      >
+        Select existing SVM.
+      </div>
+    </div>
+  </h2>
+
+  <div class="field">
+    <div class="ui cards">
+      <div
+        *ngIf="this.form.get(FORM_KEY_MODE).value === 'basic'"
+        class="card"
+        style="width: 100%"
+      >
+        <div class="content">
+          <div class="meta">Basic Mode</div>
+          <div class="description">
+            <div class="field">
+              <search-cis
+                [context]="this.Context"
+                (selectedRow)="setSelectedVM($event)"
+              ></search-cis>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        *ngIf="this.form.get(FORM_KEY_MODE).value === 'advanced'"
+        class="card"
+        style="width: 60%"
+      >
+        <div class="content">
+          <div class="meta">Advanced Search Mode</div>
+          <div class="description">
+            <div
+              class="field"
+              [class.required]="
+                isFormElementRequired(FORM_KEY_STORAGEENVIRONMENT)
+              "
+            >
+              <label>{{ FORM_LABEL_STORAGEENVIRONMENT }}</label>
+              <xa-select
+                [formControlName]="FORM_KEY_STORAGEENVIRONMENT"
+                [placeholder]="
+                  'select ' + FORM_LABEL_STORAGEENVIRONMENT + ' first'
+                "
+                [options]="Environment$ | async"
+                [search]="true"
+                [clearable]="true"
+                [loading]="!(Environment$ | async)"
+              >
+              </xa-select>
+            </div>
+
+            <div
+              class="field"
+              [class.required]="isFormElementRequired(FORM_KEY_STORAGECLUSTER)"
+            >
+              <label>{{ FORM_LABEL_STORAGECLUSTER }}</label>
+              <xa-select
+                [formControlName]="FORM_KEY_STORAGECLUSTER"
+                [placeholder]="
+                  'select ' + FORM_LABEL_STORAGECLUSTER + ' second'
+                "
+                [options]="StorageCluster$ | async"
+                [search]="true"
+                [clearable]="true"
+                [loading]="!(StorageCluster$ | async)"
+              >
+              </xa-select>
+            </div>
+
+            <div
+              class="field"
+              [class.required]="isFormElementRequired(FORM_KEY_SVM)"
+            >
+              <label>{{ FORM_LABEL_SVM }}</label>
+              <xa-select
+                [formControlName]="FORM_KEY_SVM"
+                [placeholder]="'select ' + FORM_LABEL_SVM + ' third'"
+                [options]="SVMs$ | async"
+                [search]="true"
+                [clearable]="true"
+                [loading]="!(SVMs$ | async)"
+              >
+              </xa-select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="selectedVM$.value">
+    <div style="padding-top: 20px">
+      <infotable [info]="selectedVM$.getValue()"></infotable>
+    </div>
+  </div>
+
+  <div
+    *ngIf="!selectedVM$.value && this.form.get(FORM_KEY_MODE).value === 'basic'"
+  >
+    <div style="padding-top: 20px">
+      <infotable
+        [info]="{
+          selectedSVM: 'Please select existing VM from the above grid first!'
+        }"
+      ></infotable>
+    </div>
+  </div>
+
+  <h2 class="ui dividing header" style="margin-top: 50px">
+    <div class="content">
+      <i class="edit outline icon"></i>
+      <span> Volumes </span>
+    </div>
+  </h2>
+
+  <div class="field"></div>
+  <div
+    class="seven wide field"
+    [class.required]="isFormElementRequired(FORM_KEY_VOLUMENAME)"
+  >
+    <label>{{ FORM_LABEL_VOLUMENAME }}</label>
+    <div class="ui left labeled input">
+      <div
+        *ngIf="this.form.get(FORM_KEY_CUST_SHORT).value"
+        class="ui basic label"
+      >
+        {{ this.form.get(FORM_KEY_CUST_SHORT).value }}
+      </div>
+      <div
+        *ngIf="
+          (this.form.get(FORM_KEY_SELECTED_VM).value ||
+            this.form.get(FORM_KEY_SVM).value) &&
+          !this.form.get(FORM_KEY_CUST_SHORT).value
+        "
+        class="ui basic label"
+      >
+        <span>loading customer prefix ...</span>
+      </div>
+      <input
+        type="text"
+        [formControlName]="FORM_KEY_VOLUMENAME"
+        [placeholder]="'enter ' + FORM_LABEL_VOLUMENAME"
+      />
+    </div>
+    <show-errors [control]="this.form.get(FORM_KEY_VOLUMENAME)"></show-errors>
+  </div>
+
+  <div class="two fields">
+    <div
+      class="field"
+      [class.required]="isFormElementRequired(FORM_KEY_SNAPVAULTBACKUP)"
+    >
+      <label>{{ FORM_LABEL_SNAPVAULTBACKUP }}</label>
+      <div class="field">
+        <div class="ui radio checkbox">
+          <input
+            type="radio"
+            [formControlName]="FORM_KEY_SNAPVAULTBACKUP"
+            value="yes"
+          />
+          <label>yes</label>
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui radio checkbox">
+          <input
+            type="radio"
+            [formControlName]="FORM_KEY_SNAPVAULTBACKUP"
+            value="no"
+          />
+          <label>no</label>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="field"
+      *ngIf="this.form.get(FORM_KEY_SNAPVAULTBACKUP).value === 'yes'"
+      [class.required]="isFormElementRequired(FORM_KEY_RETENTIONTIME)"
+    >
+      <label>{{ FORM_LABEL_RETENTIONTIME }}</label>
+      <xa-select
+        [formControlName]="FORM_KEY_RETENTIONTIME"
+        [placeholder]="'select ' + FORM_LABEL_RETENTIONTIME"
+        [options]="RetentionTime$ | async"
+        [search]="true"
+        [clearable]="true"
+        [loading]="!(RetentionTime$ | async)"
+      >
+      </xa-select>
+    </div>
+  </div>
+
+  <div class="three fields">
+    <div
+      class="field"
+      [class.required]="isFormElementRequired(FORM_KEY_PROTOCOL)"
+    >
+      <label>{{ FORM_LABEL_PROTOCOL }}</label>
+      <xa-select
+        [formControlName]="FORM_KEY_PROTOCOL"
+        [placeholder]="'select ' + FORM_LABEL_PROTOCOL"
+        [options]="Protocol$ | async"
+        [search]="true"
+        [clearable]="true"
+        [loading]="!(Protocol$ | async)"
+      >
+      </xa-select>
+    </div>
+
+    <div
+      class="field"
+      [class.required]="isFormElementRequired(FORM_KEY_LOCALSNAPSHOTPOLICY)"
+    >
+      <label>{{ FORM_LABEL_LOCALSNAPSHOTPOLICY }}</label>
+      <xa-select
+        [formControlName]="FORM_KEY_LOCALSNAPSHOTPOLICY"
+        [placeholder]="'select ' + FORM_LABEL_LOCALSNAPSHOTPOLICY"
+        [options]="LocalSnapshotPolicy$ | async"
+        [search]="true"
+        [clearable]="true"
+        [loading]="!(LocalSnapshotPolicy$ | async)"
+      >
+      </xa-select>
+    </div>
+
+    <div
+      *ngIf="this.form.get(FORM_KEY_MODE).value === 'advanced'"
+      class="field"
+      [class.required]="isFormElementRequired(FORM_KEY_STORAGECLASS)"
+    >
+      <label>{{ FORM_LABEL_STORAGECLASS }}</label>
+      <xa-select
+        [formControlName]="FORM_KEY_STORAGECLASS"
+        [placeholder]="'select ' + FORM_LABEL_STORAGECLASS"
+        [options]="StorageClass$ | async"
+        [search]="true"
+        [clearable]="true"
+        [loading]="!(StorageClass$ | async)"
+      >
+      </xa-select>
+    </div>
+  </div>
+
+  <div class="fields" style="margin-top: 50px">
+    <div class="three wide field center-text">
+      <div class="ui statistic">
+        <div class="value">
+          {{ form.get("VolumeSize")?.value }}
+        </div>
+        <div class="label">GB</div>
+      </div>
+    </div>
+    <div
+      class="ten wide field"
+      [class.required]="isFormElementRequired(FORM_KEY_VOLUMESIZE)"
+    >
+      <nouislider
+        #volumeSize
+        [formControlName]="FORM_KEY_VOLUMESIZE"
+        [config]="defaultVolumeSizeSliderOptions"
+      >
+      </nouislider>
+    </div>
+  </div>
+
+  <!-- // TODO add up and down buttons beside the slider
+  // TODO grid disappears after some minimum resolution -->
+
+  <div *ngIf="this.form.get(FORM_KEY_MODE).value === 'advanced'">
+    <h2 class="ui dividing header" style="margin-top: 50px">
+      <div class="content">
+        <i class="settings icon"></i>
+        <span> advanced settings </span>
+      </div>
+    </h2>
+
+    <div
+      class="six wide field"
+      [class.required]="isFormElementRequired(FORM_KEY_EXPORTPOLICY)"
+    >
+      <label>{{ FORM_LABEL_EXPORTPOLICY }}</label>
+      <input
+        type="text"
+        [formControlName]="FORM_KEY_EXPORTPOLICY"
+        [placeholder]="'enter ' + FORM_LABEL_EXPORTPOLICY"
+      />
+      <show-errors
+        [control]="this.form.get(FORM_KEY_EXPORTPOLICY)"
+      ></show-errors>
+    </div>
+
+    <div
+      class="six wide field"
+      [class.required]="isFormElementRequired(FORM_KEY_PERCENTSNAPSHOTSPACE)"
+    >
+      <label>{{ FORM_LABEL_PERCENTSNAPSHOTSPACE }}</label>
+      <xa-select
+        [formControlName]="FORM_KEY_PERCENTSNAPSHOTSPACE"
+        [placeholder]="'select ' + FORM_LABEL_PERCENTSNAPSHOTSPACE"
+        [options]="PercentSnapshotSpace$ | async"
+        [search]="true"
+        [clearable]="true"
+        [loading]="!(PercentSnapshotSpace$ | async)"
+      >
+      </xa-select>
+      <show-errors
+        [control]="this.form.get(FORM_KEY_PERCENTSNAPSHOTSPACE)"
+      ></show-errors>
+    </div>
+  </div>
+
+  <h2 class="ui dividing header" style="margin-top: 50px">
+    <i class="share alternate icon"></i>
+    <div class="content">
+      <span> Information Sharing </span>
+      <div class="sub header">
+        Specify e-mail addresses below that you want to inform about the
+        creation of the change <b>(separated by ; )</b>.
+      </div>
+    </div>
+  </h2>
+
+  <div class="field" [class.required]="isFormElementRequired(FORM_KEY_MAILS)">
+    <label>{{ FORM_LABEL_MAILS }}</label>
+    <input
+      type="text"
+      [formControlName]="FORM_KEY_MAILS"
+      placeholder="mr.acme@t-systems.com;max.mustermann@t-systems.com"
+    />
+    <show-errors [control]="this.form.get(FORM_KEY_MAILS)"></show-errors>
+  </div>
+
+  <pre *if-dev class="field">
+        <p>{{this.form.value | json}}</p>
+    </pre>
+</form>
+<xa-notify></xa-notify>
