@@ -1,0 +1,19 @@
+<form [formGroup]="form" class="ui container form" style="padding:20px 10px">
+
+  <h2 class="ui dividing header">
+    <i class="edit outline icon"></i>
+    <div class="content">
+      <span>{{this.Context.ConfigPayload.header}} </span>
+      <div class="sub header">{{this.Context.ConfigPayload.subheader}}</div>
+    </div>
+  </h2>
+
+  <div class="five wide required field">
+    <label>User</label>
+    <xa-select [search]="true" [options]="endpointData | async" [loading]="!(endpointData | async)"
+      formControlName="forwardTo" placeholder="Select User" viewValue="Key" optionValue="Value" #userDropDown>
+    </xa-select>
+  </div>
+</form>
+
+<pre *if-dev>{{form.value | json}}</pre>

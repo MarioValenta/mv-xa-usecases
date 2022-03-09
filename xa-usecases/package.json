@@ -22,7 +22,8 @@
     "build:prod:@billing/request-form": "ng build --project @billing/request-form --configuration production --single-bundle",
     "test:@create-rfc/request-form": "ng test --project @create-rfc/request-form",
     "build:prod:@create-rfc/request-form": "ng build --project @create-rfc/request-form --configuration production --single-bundle",
-    "build:prod:local-libs:@create-rfc/request-form": "ng build --project @create-rfc/request-form --configuration prod-local-libs --single-bundle"
+    "build:prod:local-libs:@create-rfc/request-form": "ng build --project @create-rfc/request-form --configuration prod-local-libs --single-bundle",
+    "build:prod:@phoneforwarding/request-form": "ng build --project @phoneforwarding/request-form --configuration production --single-bundle"
   },
   "private": true,
   "dependencies": {
