@@ -2,14 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Injector, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { AppComponent } from './app.component';
-import { XAServices } from '@xa/lib-ui-common';
+import { XAServices, UiAttachmentsUploadModule } from '@xa/lib-ui-common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { XAUIModule, XAModalService } from '@xa/ui';
 import { AgGridModule } from 'ag-grid-angular';
 import { XAGridHelperModule, AllCellRenderers, AllCellEditors } from '@xa/grid';
 import 'ag-grid-enterprise';
-import { AttachmentUploadComponent } from './attachmentupload-component/AttachmentUpload.component';
 import { ValidationService } from '@xa/validation';
 import { SharedModule } from 'projects/xa-portal-dev/src/app/shared/shared.module';
 import { environment } from '../environments/environment';
@@ -22,7 +21,6 @@ import { Ng2FlatpickrModule } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.
 @NgModule({
   declarations: [
     AppComponent,
-    AttachmentUploadComponent,
     ExcelTableUploadComponent
   ],
   imports: [
@@ -37,7 +35,8 @@ import { Ng2FlatpickrModule } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.
     ReactiveFormsModule,
     BrowserAnimationsModule,
     environment.production ? [] : SharedModule,
-    Ng2FlatpickrModule
+    Ng2FlatpickrModule,
+    UiAttachmentsUploadModule
   ],
   exports: [
     AppComponent,
@@ -57,7 +56,6 @@ import { Ng2FlatpickrModule } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.
   ],
   entryComponents: [
     AppComponent,
-    AttachmentUploadComponent,
     GridStatusBarComponent
   ],
   bootstrap: [],

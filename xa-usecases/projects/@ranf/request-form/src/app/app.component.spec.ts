@@ -11,7 +11,6 @@ import { AgGridModule } from 'ag-grid-angular';
 import { assert } from 'console';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
-import { AttachmentUploadComponent } from './attachmentupload-component/AttachmentUpload.component';
 import { ExcelTableUploadComponent } from './excel-table-component/excel.table.component';
 import { XAToastDefaults } from 'projects/shared/toast-config';
 import { Ng2FlatpickrModule } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.module';
@@ -22,8 +21,7 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        ExcelTableUploadComponent,
-        AttachmentUploadComponent
+        ExcelTableUploadComponent
       ],
       imports: [
         BrowserModule,

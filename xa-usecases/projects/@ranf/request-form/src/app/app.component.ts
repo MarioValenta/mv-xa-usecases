@@ -46,8 +46,6 @@ export class AppComponent implements ICERequest, OnInit, OnDestroy, AfterViewIni
     readonly FORM_KEY_COMMENTS = 'Comments';
     readonly FORM_KEY_ATTACHMENTS = 'Attachments';
 
-    defaultAllowedFileTypes = ['.txt', '.msg', '.xls', '.xlsx', '.ppt', '.pptx', '.doc', '.docx', '.pdf', '.png', '.jpg', '.jpeg'];
-
     form: FormGroup;
     destroy$ = new Subject();
     Customers$: Observable<any[]>; // {DEBITORNAME: string, DEBITORID: number | string}]
