@@ -24,7 +24,6 @@ export class AppComponent implements ICERequest, OnInit, OnDestroy {
   AssignmentGroups$: Observable<Array<string>> = null;
   Customers$: Observable<Array<CustomerDto>> = null;
   customers: Array<CustomerDto> = [];
-  attachments: File[] = [];
 
 
   constructor(
@@ -71,32 +70,6 @@ export class AppComponent implements ICERequest, OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.destroy$.next();
-  }
-
-  updateAttachments(files: File[]) {
-    const attachmentsBase64: Array<object> = [];
-    files.forEach(async (attachment) => {
-      await this.readUploadedFileAsURL(attachment).then(data => {
-        attachmentsBase64.push({ Name: attachment.name, Data: data.split(',')[1] });
-      });
-    });
-    this.form.get('Attachments').setValue(attachmentsBase64);
-  }
-
-  readUploadedFileAsURL(inputFile) {
-    const temporaryFileReader = new FileReader();
-
-    return new Promise<string>((resolve, reject) => {
-      temporaryFileReader.onerror = () => {
-        temporaryFileReader.abort();
-        reject(new DOMException('Problem parsing input file.'));
-      };
-
-      temporaryFileReader.onload = () => {
-        resolve(temporaryFileReader.result.toString());
-      };
-      temporaryFileReader.readAsDataURL(inputFile);
-    });
   }
 
   customerSelected() {

@@ -7,9 +7,9 @@ import { AppInitializeService } from './app-initialize.service';
 import { TaskContext } from './user-tasks/user-task-zone.component';
 
 // TODO: Needs to be adjusted for every UseCase form
-import * as Payload from '../../../@create-rfc/mocks/Payload.json';
-import * as ConfigPayload from '../../../@create-rfc/mocks/ConfigPayload.json';
-import * as Validation from '../../../@create-rfc/mocks/Validation.json';
+import * as Payload from '../../../@create-sr/mocks/Payload.json';
+import * as ConfigPayload from '../../../@create-sr/mocks/ConfigPayload.json';
+import * as Validation from '../../../@create-sr/mocks/Validation.json';
 
 @Component({
   selector: 'app-html-forms',
