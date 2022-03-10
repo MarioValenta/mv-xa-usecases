@@ -8,7 +8,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { XAUIModule, XAModalService } from '@xa/ui';
 import { ValidationService } from '@xa/validation';
 import { ShowErrorsModule } from '@xa/show-errors';
-import { AttachmentUploadComponent } from './attachmentupload-component/AttachmentUpload.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { XAToastDefaults } from 'projects/shared/toast-config';
 import { XAGridHelperModule } from '@xa/grid';
@@ -18,8 +17,7 @@ import { SharedModule } from 'projects/xa-portal-dev/src/app/shared/shared.modul
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AttachmentUploadComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -46,8 +44,7 @@ import { SharedModule } from 'projects/xa-portal-dev/src/app/shared/shared.modul
     ValidationService
   ],
   entryComponents: [
-    AppComponent,
-    AttachmentUploadComponent
+    AppComponent
   ],
   exports: [AppComponent]
 })
