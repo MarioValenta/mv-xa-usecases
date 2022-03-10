@@ -643,31 +643,7 @@ export class AppComponent implements ICERequest, OnInit, OnDestroy {
   }
 
 
-  readUploadedFileAsURL(inputFile) {
-    const temporaryFileReader = new FileReader();
 
-    return new Promise<string>((resolve, reject) => {
-      temporaryFileReader.onerror = () => {
-        temporaryFileReader.abort();
-        reject(new DOMException('Problem parsing input file.'));
-      };
-
-      temporaryFileReader.onload = () => {
-        resolve(temporaryFileReader.result.toString());
-      };
-      temporaryFileReader.readAsDataURL(inputFile);
-    });
-  }
-
-  updateAttachments(files: File[]) {
-    const attachmentsBase64: Array<object> = [];
-    files.forEach(async (attachment) => {
-      await this.readUploadedFileAsURL(attachment).then(data => {
-        attachmentsBase64.push({ Name: attachment.name, Data: data.split(',')[1] });
-      });
-    });
-    this.form.get('Attachments').setValue(attachmentsBase64);
-  }
 
   public GetFormControl(name: string): AbstractControl {
     const control = this.form.get(name);
