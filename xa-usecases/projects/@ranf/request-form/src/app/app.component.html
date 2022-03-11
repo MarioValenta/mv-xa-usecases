@@ -357,7 +357,7 @@
     <div class="content">
       <span> Attachments </span>
       <div class="sub header">
-        Select the attachments that you want to add to the change.
+        Select and add attachments that you want to add to this request.
       </div>
     </div>
   </h2>
@@ -366,11 +366,10 @@
   style="width: 100%; height: 250px"
   [maxNumberofFiles]="this.Context.ConfigPayload.attachmentsConfigFrontend.maxNumberOfFiles || 3"
   [maxFileSizeInMB]="this.Context.ConfigPayload.attachmentsConfigFrontend.maxFileSizeInMB || 5"
-  formFieldName="Attachments"
->
+  formFieldName="Attachments">
 </ui-attachments-upload>
 
-
+<h2 class="ui dividing header"></h2>
   <div class="field">
     <label>Comments</label>
     <textarea
