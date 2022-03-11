@@ -672,12 +672,12 @@
       "totalAmount": "0,450000"
     }
   ],
-  "Address": "AT-1080 Wien, Pfeilgasse 3a",
+  "Address": "AT-1014 WIEN, Ballhausplatz 2",
   "CustomerContact": "Benedikt Kaiser",
-  "Customer": "Akademikerhilfe Studentenheime",
-  "DebitorId": "CC01508719",
+  "Customer": "Bundeskanzleramt",
+  "DebitorId": "CC01114865",
   "PeriodEnd": "2021-05-30T22:00:00.000Z",
-  "UIDNumber": "ATU38108506",
+  "UIDNumber": "ATU38159201",
   "Comments": "This is a test request!",
   "CreditMemo": "34534",
   "HeaderText": "Das ist ein Header",
