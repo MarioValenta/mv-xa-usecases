@@ -67,12 +67,6 @@
       ],
       "@xa/lib-ui-portal-common/*": [
         "../../../Libraries/xa-libraries/dist/xa/lib-ui-portal-common/*",
-      ],
-      "@xa/ui-attachments-upload": [
-        "../../../Libraries/xa-libraries/dist/xa/ui-attachments-upload"
-      ],
-      "@xa/ui-attachments-upload/*": [
-        "../../../Libraries/xa-libraries/dist/xa/ui-attachments-upload/*"
       ]
     }
   }
