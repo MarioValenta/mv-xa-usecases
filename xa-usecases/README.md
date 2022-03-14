@@ -91,7 +91,7 @@ If you want to add an old UseCase project into this MonoRepo, follow this steps 
 
 1. Follow the steps from the section: [#update angular.json](#update-angularjson), create a new project for every project in the old UseCase project.
 
-2. Remove the created `projects/@<USECASE-NAME>/<FORM-NAME>/src/app` folder and copy the src/app folder of the old UseCase and paste it into  `projects/@<USECASE-NAME>/<FORM-NAME>`.
+2. Remove the created `projects/@<USECASE-NAME>/<FORM-NAME>/src/app` folder and copy the src/app folder of the old UseCase and paste it into  `projects/@<USECASE-NAME>/<FORM-NAME>/src`.
 
 3. Follow the steps from the section: [#ts config](#ts-config)
 
