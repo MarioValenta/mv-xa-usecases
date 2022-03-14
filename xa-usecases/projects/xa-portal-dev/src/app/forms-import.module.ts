@@ -7,6 +7,7 @@ import { CreateSRRequestFormAppModule } from 'projects/@create-sr/request-form/s
 import { PhoneForwardingRequestFormAppModule } from 'projects/@phoneforwarding/request-form/src/app/app.module';
 import { RanfRequestFormAppModule } from 'projects/@ranf/request-form/src/app/app.module';
 import { RanfUtCheckAppModule } from 'projects/@ranf/ut-check/src/app/app.module';
+import { StorageExtensionRequestFormAppModule } from 'projects/@storage-extension/request-form/src/app/app.module';
 
 
 
@@ -18,7 +19,8 @@ import { RanfUtCheckAppModule } from 'projects/@ranf/ut-check/src/app/app.module
     CreateRfcRequestFormAppModule,
     BillingRequestFormAppModule,
     PhoneForwardingRequestFormAppModule,
-    CreateNFSVolumeRequestFormAppModule
+    CreateNFSVolumeRequestFormAppModule,
+    StorageExtensionRequestFormAppModule
   ]
 })
 export class FormsImportModule { }

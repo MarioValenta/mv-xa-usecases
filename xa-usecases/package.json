@@ -20,6 +20,7 @@
     "build:prod:@phoneforwarding/request-form": "ng build --project @phoneforwarding/request-form --configuration production --single-bundle",
     "build:prod:@ranf/request-form": "ng build --project @ranf/request-form --configuration production --single-bundle",
     "build:prod:@ranf/ut-check": "ng build --project @ranf/ut-check --configuration production --single-bundle",
+    "build:prod:storage-extension/request-form": "ng build --project storage-extension/request-form --configuration production --single-bundle",
     "test:@billing/request-form": "ng test --project @billing/request-form",
     "test:@create-rfc/request-form": "ng test --project @create-rfc/request-form",
     "test:@create-sr/request-form": "ng test --project @create-sr/request-form",

@@ -1,0 +1,49 @@
+<form [formGroup]="form" class="ui container form" style="padding:20px 10px">
+
+  <search-component style="height: 500px" selectionMods="single" (selectionChanged)='onSearchChanged($event)' [filter]="filter" [fields]="SearchFields" [search]="searchFunction"></search-component>
+
+  <div style="padding-top: 20px">
+      <infotable [info]="info"></infotable>
+  </div>
+
+  <h2 class="ui dividing header padding-top-30">
+      <i class="hdd icon"></i>Extension Details
+  </h2>
+
+  <div class="field">
+      <label> Choose the Filesystem that you want to extend (if a Filesytem is not shown, it cannot be extended using
+          this Workflow): </label>
+  </div>
+
+  <div *ngIf="form.get('needSANextension').value != true" class="field">
+      <storage-table [HostId]="HostId" (gridChanged)='onGridChanged($event)'></storage-table>
+  </div>
+
+  <div class="fields">
+      <div class="six wide field" style="margin-top: 10px">
+          <xa-checkbox #needSANextension formControlName="needSANextension" (click)="onSANcheckBoxClicked()">
+              Extension of folder-mounted Hitachi SAN LUN required: </xa-checkbox>
+      </div>
+      <div class="ten wide field">
+          <input type="text" formControlName="SANLUNpath" placeholder="e.g., E:\storage">
+      </div>
+      <show-errors [control]="form.controls.SANLUNpath"></show-errors>
+  </div>
+
+  <div style="margin-bottom: 5px;"> Please specify the extension of <b> {{Mountpoint}}:</b></div>
+
+  <div class="two fields">
+      <div class="required field">
+          <label>Extension BY (Gigabyte) useable space:</label>
+          <input type="text" formControlName="ExtensionBy" placeholder="e.g. 20" (input)="recalculateExtension()">
+          <show-errors [control]="form.controls.ExtensionBy"></show-errors>
+      </div>
+
+      <div class="field" *ngIf="form.get('needSANextension').value != true">
+          <label>Extension TO (Gigabyte): (only for reference)</label>
+          <input type="text" formControlName="ExtensionTo" readonly="readonly">
+      </div>
+  </div>
+
+</form>
+<pre *if-dev>{{form.value | json }}</pre>

@@ -840,6 +840,104 @@
           }
         }
       }
+    },
+    "@storage-extension/request-form": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@storage-extension/request-form",
+      "sourceRoot": "projects/@storage-extension/request-form/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/@storage-extension/request-form",
+            "index": "projects/@storage-extension/request-form/src/index.html",
+            "main": "projects/@storage-extension/request-form/src/main.ts",
+            "polyfills": "projects/@storage-extension/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@storage-extension/request-form/tsconfig.app.json",
+            "assets": [
+              "projects/@storage-extension/request-form/src/favicon.ico",
+              "projects/@storage-extension/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@storage-extension/request-form/src/styles.css"
+            ],
+            "scripts": [],
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "2mb",
+                "maximumError": "4mb"
+              },
+              {
+                "type": "anyComponentStyle",
+                "maximumWarning": "2kb",
+                "maximumError": "4kb"
+              }
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/@storage-extension/request-form/src/environments/environment.ts",
+                  "with": "projects/@storage-extension/request-form/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@storage-extension/request-form:build:production"
+            },
+            "development": {
+              "browserTarget": "@storage-extension/request-form:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "@storage-extension/request-form:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/@storage-extension/request-form/src/test.ts",
+            "polyfills": "projects/@storage-extension/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@storage-extension/request-form/tsconfig.spec.json",
+            "karmaConfig": "projects/@storage-extension/request-form/karma.conf.js",
+            "assets": [
+              "projects/@storage-extension/request-form/src/favicon.ico",
+              "projects/@storage-extension/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@storage-extension/request-form/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
     }
   },
   "defaultProject": "xa-portal-dev"
