@@ -1,0 +1,15 @@
+{
+  "variablesToBeStoredInCamunda": [],
+  "variablesNotToBeCloned": [],
+  "placeholders": {},
+
+  "columns": [
+    {"field": "HostID", "headerName":   "HostID", "searchField": "HOSTID"},
+    {"field": "Hostname", "headerName": "Hostname", "searchField": "HOSTNAME", "wildcardsearch": true}
+],
+"equalsCriteria": "HostID",
+"maxDataRows": 20,
+"allowedStatus" : ["ACTIVE", "BASE_INSTALLED", "READY_FOR_SERVICE", "EXPERIMENTAL","INFOALERTING", "LABORATORY"],
+"searchcomponent" : {"top":"50px", "width": "75%", "myStyle": {"height": "400px"}},
+"hintText": "(You can remove CIs by \"right-clicking\" and selecting \"remove\".)"
+}

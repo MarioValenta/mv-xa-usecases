@@ -1,0 +1,87 @@
+<form [formGroup]="form" class="ui container form" style="padding: 20px 10px">
+  <h2 class="ui dividing header">
+    <i class="edit outline icon"></i>
+    <div class="content">
+      <span> General Data</span>
+      <div class="sub header">Specify general information.</div>
+    </div>
+  </h2>
+
+  <div [@simpleFadeAnimation]="'in'" *ngIf="showMessageBox" class="ui floating info message">
+    <i class="close icon" (click)="this.closeMessageBox()"></i>
+    <div class="header">
+      new Identifier pattern
+    </div>
+    <ul class="list">
+      <li>Identifier will be <b>auto-generated</b> with the following pattern:</li>
+      <p><b><i>&lt;customer-shortname&gt; | Autopatch | YY-MM-DD HHMM</i></b></p>
+
+      <li>You can optionally append a suffix to this automatically generated identifier, it will look like:</li>
+        <p> <b><i>&lt;customer-shortname&gt; | Autopatch | YY-MM-DD HHMM | &lt;optional Identifier suffix&gt;</i></b></p>
+    </ul>
+  </div>
+
+  <div class="ten wide field">
+    <label>optional Identifier suffix </label>
+    <input
+      type="text"
+      formControlName="OptionalIdentifier"
+      placeholder="specify optional Identifier suffix"
+    />
+    <show-errors [control]="this.form.get('OptionalIdentifier')"></show-errors>
+  </div>
+
+  <div class="fields">
+    <div class="required seven wide field">
+      <label>Patch Startdate</label>
+      <ng2-flatpickr
+        #startPicker
+        formControlName="Startdate"
+        [config]="startOptions"
+        placeholder="Select Date..."
+        (change)="dateSelected($event)"
+      >
+      </ng2-flatpickr>
+      <show-errors [control]="this.form.get('Startdate')"></show-errors>
+    </div>
+  </div>
+
+  <h2 class="ui dividing header">
+    <i class="tasks icon"></i>
+    <div class="content">
+      <span> Host Systems </span>
+      <div class="sub header">
+        Please select the Hosts that should be patched.
+      </div>
+    </div>
+  </h2>
+
+  <div class="required seven wide field">
+    <label>Customer:</label>
+    <xa-select
+      [search]="true"
+      [clearable]="true"
+      [options]="Customers$ | async"
+      [loading]="!(Customers$ | async)"
+      formControlName="Customer"
+      placeholder="Select Customer"
+      viewValue="sm9name"
+      optionValue="sm9name"
+      (change)="customerSelected($event)"
+    ></xa-select>
+    <show-errors [control]="this.form.get('Customer')"></show-errors>
+  </div>
+
+  <div class="required field">
+    <label> Select affected CIs </label>
+    <ci-table
+      *ngIf="loaded"
+      [Context]="this.Context"
+      (gridChanged)="updateCIForm($event)"
+    ></ci-table>
+  </div>
+</form>
+
+<pre *if-dev class="field">
+  <p>{{this.form.value | json}}</p>
+</pre>

@@ -1,0 +1,42 @@
+<p>
+  {{this.Context.ConfigPayload.hintText}}
+</p>
+
+<ag-grid-angular style="width: 100%; height: 350px;" class="ag-theme-balham" (gridReady)="onGridReady($event)"
+  [columnDefs]="columnDefs" [rowData]="rowData" [rowSelection]="rowSelection"
+  [getContextMenuItems]="getContextMenuItems">
+</ag-grid-angular>
+
+<div class="ui equal width grid">
+ 
+  <div class="column" style="margin: 10px;">
+    <button *ngIf="rowData.length" class="ui left negative button" (click)="clearCIs()">
+      Clear List
+    </button>
+  </div>
+ 
+  <div class="column" style="margin: 10px;">
+    <span *ngIf="this.rowData.length>0"><b># Data rows:</b>
+      {{this.rowData.length}}/{{this.Context.ConfigPayload.maxDataRows}}</span><br>
+    <span *ngIf="this.imported" class="centered grid"><b>loaded file:</b> {{this.fileInfo}}</span>
+  </div>
+ 
+  <div class="column" style="margin: 10px;">
+  
+    <button class="ui right floated primary button"
+      attr.data-tooltip="import max. {{this.Context.ConfigPayload.maxDataRows}} entries" data-position="top right"
+      [disabled]="imported" (click)="fileInput.click()">
+      Import .CSV File
+    </button>
+    <input type="file" hidden name='fileInput' #fileInput (change)="onFileSelect($event)" accept=".csv" />
+  
+    <button class="ui right floated primary button" (click)="OpenHostSearchComponentModal()">
+      Add Host-CI(s)
+    </button>
+
+    <span *if-dev>{{this.file | json }}</span>
+  </div>
+</div>
+<span id="eIcon" class="ag-menu-option-icon"></span>
+
+<xa-notify></xa-notify>
