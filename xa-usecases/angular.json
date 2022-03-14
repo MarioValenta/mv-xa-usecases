@@ -967,17 +967,17 @@
             ],
             "scripts": [],
             "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "4mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
-                }
-              ]
+              {
+                "type": "initial",
+                "maximumWarning": "2mb",
+                "maximumError": "4mb"
+              },
+              {
+                "type": "anyComponentStyle",
+                "maximumWarning": "2kb",
+                "maximumError": "4kb"
+              }
+            ]
           },
           "configurations": {
             "production-ch": {
@@ -1051,6 +1051,104 @@
             ],
             "styles": [
               "projects/@patchautomation/request-form/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "@patchautomation-remove/request-form": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@patchautomation-remove/request-form",
+      "sourceRoot": "projects/@patchautomation-remove/request-form/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@patchautomation-remove/request-form",
+            "index": "projects/@patchautomation-remove/request-form/src/index.html",
+            "main": "projects/@patchautomation-remove/request-form/src/main.ts",
+            "polyfills": "projects/@patchautomation-remove/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@patchautomation-remove/request-form/tsconfig.app.json",
+            "assets": [
+              "projects/@patchautomation-remove/request-form/src/favicon.ico",
+              "projects/@patchautomation-remove/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@patchautomation-remove/request-form/src/styles.css"
+            ],
+            "scripts": [],
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "2mb",
+                "maximumError": "3mb"
+              },
+              {
+                "type": "anyComponentStyle",
+                "maximumWarning": "2kb",
+                "maximumError": "4kb"
+              }
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/@patchautomation-remove/request-form/src/environments/environment.ts",
+                  "with": "projects/@patchautomation-remove/request-form/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@patchautomation-remove/request-form:build:production"
+            },
+            "development": {
+              "browserTarget": "@patchautomation-remove/request-form:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "@patchautomation-remove/request-form:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@patchautomation-remove/request-form/src/test.ts",
+            "polyfills": "projects/@patchautomation-remove/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@patchautomation-remove/request-form/tsconfig.spec.json",
+            "karmaConfig": "projects/@patchautomation-remove/request-form/karma.conf.js",
+            "assets": [
+              "projects/@patchautomation-remove/request-form/src/favicon.ico",
+              "projects/@patchautomation-remove/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@patchautomation-remove/request-form/src/styles.css"
             ],
             "scripts": []
           }

@@ -1,0 +1,36 @@
+<p>
+  {{this.Context.ConfigPayload.hintText}}
+</p>
+
+<ag-grid-angular style="width: 100%; height: 350px;" class="ag-theme-balham" (gridReady)="onGridReady($event)"
+  [columnDefs]="columnDefs" [rowData]="rowData" [rowSelection]="rowSelection"
+  [getContextMenuItems]="getContextMenuItems">
+</ag-grid-angular>
+
+<div class="ui equal width grid">
+
+  <div class="column" style="margin: 10px;">
+    <button *ngIf="rowData.length" class="ui left negative button" (click)="clearCIs()">
+      Clear List
+    </button>
+  </div>
+
+  <div class="column" style="margin: 10px;">
+    <span *ngIf="this.rowData.length>0"><b># Data rows:</b>
+      {{this.rowData.length}}/{{this.Context.ConfigPayload.maxDataRows}}</span><br>
+  </div>
+
+  <div class="eight wide column" style="margin: 10px;">
+   
+    <button *ngIf="!this.ProcessId" class="ui right floated primary button tooltip"
+      data-tooltip="to search hosts by process, enter process ID first" data-position="top left" [disabled]="true">
+      Find by Process ID
+    </button>
+
+    <button *ngIf="this.ProcessId" class="ui right floated primary button" (click)="OpenHostSearchComponentModalById()">
+      Find by Process ID
+    </button>
+
+  </div>
+</div>
+<span id="eIcon" class="ag-menu-option-icon"></span>

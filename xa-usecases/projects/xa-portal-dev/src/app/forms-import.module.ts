@@ -4,6 +4,7 @@ import { BillingRequestFormAppModule } from 'projects/@billing/request-form/src/
 import { CreateNFSVolumeRequestFormAppModule } from 'projects/@create-nfs-volume/request-form/src/app/app.module';
 import { CreateRfcRequestFormAppModule } from 'projects/@create-rfc/request-form/src/app/app.module';
 import { CreateSRRequestFormAppModule } from 'projects/@create-sr/request-form/src/app/app.module';
+import { PatchautomationRemoveRequestFormAppModule } from 'projects/@patchautomation-remove/request-form/src/app/app.module';
 import { PatchautomationRequestFormAppModule } from 'projects/@patchautomation/request-form/src/app/app.module';
 import { PhoneForwardingRequestFormAppModule } from 'projects/@phoneforwarding/request-form/src/app/app.module';
 import { RanfRequestFormAppModule } from 'projects/@ranf/request-form/src/app/app.module';
@@ -22,7 +23,8 @@ import { StorageExtensionRequestFormAppModule } from 'projects/@storage-extensio
     PhoneForwardingRequestFormAppModule,
     CreateNFSVolumeRequestFormAppModule,
     StorageExtensionRequestFormAppModule,
-    PatchautomationRequestFormAppModule
+    PatchautomationRequestFormAppModule,
+    PatchautomationRemoveRequestFormAppModule
   ]
 })
 export class FormsImportModule { }

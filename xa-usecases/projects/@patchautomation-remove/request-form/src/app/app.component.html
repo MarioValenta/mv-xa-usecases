@@ -1,0 +1,34 @@
+<form [formGroup]="form" class="ui container form" style="padding:20px 10px">
+
+  <h2 class="ui dividing header">
+    <i class="edit outline icon"></i>
+    <div class="content">
+      <span> General Data</span>
+      <div class="sub header">Specify general information.</div>
+    </div>
+  </h2>
+
+  <div class="required field eight wide">
+    <label>Identifier (just for reference)</label>
+    <input type="text" formControlName="Identifier" placeholder="specify title" />
+  </div>
+
+  <div class="required field eight wide">
+    <label>Process ID (ID of the running process)</label>
+    <input type="text" formControlName="processId" placeholder="specify process id" />
+  </div>
+
+  <h2 class="ui dividing header">
+    <i class="tasks icon"></i>
+    <div class="content">
+      <span> Host Systems </span>
+      <div class="sub header"> Please select the CIs that should be removed from one specific patch process. </div>
+    </div>
+  </h2>
+
+  <div class="required field">
+    <label> Select affected hosts </label>
+    <ci-table *ngIf="loaded" [Context]="Context" [ProcessId]="form.get('processId').value" (gridChanged)="updateCIForm($event)"></ci-table>
+  </div>
+</form>
+<pre *if-dev>{{form.value | json }}</pre>

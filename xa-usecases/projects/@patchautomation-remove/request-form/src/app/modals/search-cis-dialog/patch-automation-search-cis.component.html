@@ -1,0 +1,21 @@
+<div class="ui message">
+    <i class="close icon" (click)="Cancel()"></i>
+    <h3 class="ui dividing header">
+        Add Host-CI(s)
+    </h3>
+
+    <search-component *ngIf="this.context.Data.processId" [ngStyle]="myStyle" selectionMode="multiple" [fields]='SearchFields'
+    (selectionChanged)='onSearchChanged($event)' [filter]="filterSearchFields" [search]="searchFunctionById" 
+    [activateSearchButton]="this.context.Data.processId"
+    [loadData]="true"
+    [hintText]="context.Data.parentContext.ConfigPayload.hintTextSearch"
+    buttonText="refresh"
+    ></search-component>
+    
+    <div class="field">
+        <div class="actions" style="padding-top: 10px">
+            <button class="ui green button" (click)="AddCIs()">Add selected CI(s)</button>
+            <button class="ui red button" (click)="Cancel()">Cancel</button>
+        </div>
+    </div>
+</div>
