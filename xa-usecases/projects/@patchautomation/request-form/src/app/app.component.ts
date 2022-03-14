@@ -3,12 +3,12 @@ import { ICERequest, ICERequestContext, FeedbackRequestPayload } from '@xa/lib-u
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Subject, Observable } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
-import { FlatpickrOptions } from './ng2-flatpickr/flatpickr-options.interface';
 import { ValidationService } from '@xa/validation';
 import { DataService } from './data.service';
 import { CustomerDTO } from './customer-dto';
 import { CiTableComponent } from './ci-table/ci-table.component';
 import {trigger, style, animate, transition, state} from '@angular/animations';
+import { FlatpickrOptions } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.module';
 
 
 @Component({

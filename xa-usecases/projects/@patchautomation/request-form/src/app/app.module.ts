@@ -11,22 +11,20 @@ import { SearchModule } from '@xa/search';
 import { XAGridHelperModule } from '@xa/grid';
 import { CiTableComponent } from './ci-table/ci-table.component';
 import { PatchAutomationSearchCisModalComponent } from './modals/search-cis-dialog/patch-automation-search-cis.component';
-import { Ng2FlatpickrComponent } from './ng2-flatpickr/ng2-flatpickr.component';
-import { Ng2FlatpickrDirective } from './ng2-flatpickr/ng2-flatpickr.directive';
 import 'ag-grid-enterprise';
 import { ValidationService } from '@xa/validation';
 import { environment } from '../environments/environment';
 import { SharedModule as DEVSharedModule } from 'projects/xa-portal-dev/src/app/shared/shared.module';
 import { ShowErrorsModule } from '@xa/show-errors';
 import { XAToastDefaults } from 'projects/shared/toast-config';
+import { Ng2FlatpickrModule } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     CiTableComponent,
-    PatchAutomationSearchCisModalComponent,
-    Ng2FlatpickrComponent,
-    Ng2FlatpickrDirective
+    PatchAutomationSearchCisModalComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +35,7 @@ import { XAToastDefaults } from 'projects/shared/toast-config';
     BrowserAnimationsModule,
     SearchModule,
     ShowErrorsModule,
+    Ng2FlatpickrModule,
     environment.production ? [] : DEVSharedModule,
   ],
   providers: [
@@ -54,8 +53,6 @@ import { XAToastDefaults } from 'projects/shared/toast-config';
   ],
   exports: [
     AppComponent,
-    Ng2FlatpickrComponent,
-    Ng2FlatpickrDirective,
   ],
   entryComponents: [
     AppComponent,
