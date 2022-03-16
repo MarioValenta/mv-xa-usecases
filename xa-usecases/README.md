@@ -107,7 +107,7 @@ If you want to add an old UseCase project into this MonoRepo, follow this steps 
 
 9. Update also the import of the new AppModule name e.g. `<USECASE-NAME><FORM-NAME>AppModule` inside the `main.ts`, but if you Refactor the renaming with your IDE, it should already be renamed.
 
-10. Import the new `<USECASE-NAME><FORM-NAME>AppModule` into `projects/xa-portal-dev/src/app/app.module.ts` and add it to the imports[] array.
+10. Import the new `<USECASE-NAME><FORM-NAME>AppModule` into `projects/xa-portal-dev/src/app/forms-import.module.ts` and add it to the imports[] array.
 
 11. Add the `<USECASE-NAME>-<FORM-NAME>` selector to the **app.component.html** `projects/xa-portal-dev/src/app/app.component.html`.
 
