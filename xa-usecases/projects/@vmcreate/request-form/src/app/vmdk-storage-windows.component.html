@@ -1,0 +1,73 @@
+<table class="ui table compact">
+    <thead>
+        <tr class="head">
+            <th class="one wide center-text">Name</th>
+            <th class="two wide center-text">Label</th>
+            <th class="one wide center-text">Size</th>
+            <th class="fourteen wide"></th>
+            <th class="td_actions ">
+                <i class="large icons right floated action" (click)="AddStorage()">
+                    <i class="hdd icon"></i>
+                    <i class="corner add icon"></i>
+                </i>
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        <tr *ngFor="let vmdk of value" class="row">
+            <td class="center-text">
+
+                <div *ngIf="!vmdk.Mandatory" class="ui left scrolling dropdown" suiDropdown>
+                    <div class="text">
+                        <div class="ui mini statistic">
+                            <div class="value">
+                                {{vmdk.Name}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu" suiDropdownMenu>
+                        <div class="item" *ngFor="let letter of GetFreeLetters()" (click)="vmdk.Name = letter">{{letter}}</div>
+                    </div>
+                </div>
+
+                <div class="ui mini statistic" *ngIf="vmdk.Mandatory">
+                    <div class="value">
+                        {{vmdk.Name}}
+                    </div>
+                </div>
+            </td>
+
+            <td class="center">
+                <div class="ui input" *ngIf="vmdk.Mandatory">
+                    <input type="text" [(ngModel)]="vmdk.Label" placeholder="N/A" [disabled]="true">
+                </div>
+              <div class="ui input" *ngIf="!vmdk.Mandatory">
+                    <input type="text" [(ngModel)]="vmdk.Label" placeholder="Label">
+                </div> 
+            </td>
+            <td class="center-text">
+                <div class="ui mini statistic">
+                    <div class="value">
+                        {{vmdk.Size}}
+                    </div>
+                    <div class="label">
+                        GB
+                    </div>
+                </div>
+            </td>
+            <td>
+                <nouislider *ngIf="vmdk.Name == 'C'" [config]="coptions" [(ngModel)]="vmdk.Size"></nouislider>
+             
+                <nouislider *ngIf="vmdk.Name != 'C'" [config]="options" [(ngModel)]="vmdk.Size"></nouislider>
+            </td>
+            <td>
+                <i class="trash alternate outline icon" *ngIf="!vmdk.Mandatory" (click)="RemoveStorage(vmdk)"></i>
+            </td>
+
+        </tr>
+
+
+    </tbody>
+</table>

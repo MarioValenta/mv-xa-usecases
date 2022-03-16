@@ -1,0 +1,48 @@
+<table class="ui table compact">
+    <thead>
+        <tr class="head">
+            <th class="four wide center-text">Path</th>
+            <th class="one wide center-text">Size</th>
+            <th class="eleven wide"></th>
+            <th class="td_actions ">
+                <i class="large icons right floated action" (click)="AddStorage()">
+                    <i class="hdd icon"></i>
+                    <i class="corner add icon"></i>
+                </i>
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        <tr *ngFor="let vmdk of value" class="row">
+            <td>
+                <div class="ui input" *ngIf="!vmdk.Mandatory">
+                    <input type="text" [(ngModel)]="vmdk.Name" placeholder="path">
+                </div>
+
+                <div *ngIf="vmdk.Mandatory">
+                    {{vmdk.Name}}
+                </div>
+
+            </td>
+            <td class="center-text">
+                <div class="ui mini statistic">
+                    <div class="value">
+                        {{vmdk.Size}}
+                    </div>
+                    <div class="label">
+                        GB
+                    </div>
+                </div>
+            </td>
+            <td>
+                <nouislider [config]="options" [(ngModel)]="vmdk.Size"></nouislider>
+            </td>
+            <td>
+                <i class="trash alternate outline icon" *ngIf="!vmdk.Mandatory" (click)="RemoveStorage(vmdk)"></i>
+            </td>
+
+        </tr>
+    </tbody>
+</table>

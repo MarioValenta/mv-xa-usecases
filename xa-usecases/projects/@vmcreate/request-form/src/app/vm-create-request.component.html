@@ -1,0 +1,440 @@
+<form [formGroup]="form" class="ui container form" style="padding:20px 10px" *ngIf="data">
+
+  <div class="ui icon negative message">
+    <i class="info icon"></i>
+    <div class="content">
+      <div class="header">
+        Information
+      </div>
+      <p>Request type „VMCreate“ (Release 1) is replaced by the much more automated request type “VMCreate R2” – to
+        speed
+        up your request and save us as a company a lot of effort, please use VMCreate R2 whenever possible.
+        If you are unsure which one to use, feel free to contact fmb_at_serviceautomationteam@t-systems.com
+      </p>
+    </div>
+  </div>
+
+  <h2 class="ui dividing header padding-top-30">
+    <i class="clipboard outline icon"></i>Basic Settings
+  </h2>
+
+  <div class="required field">
+    <label>Project Name</label>
+    <input type="text" formControlName="Projectname" placeholder="What's the Name of the Project">
+    <show-errors [control]="form.controls.Projectname"></show-errors>
+  </div>
+
+  <div class="required field">
+    <label>Customer</label>
+    <xa-select [search]="true" formControlName="Customer" placeholder="Select Customer" [options]="Customers$ | async"
+      [loading]="!(Customers$ | async)" viewValue="label" optionValue="CUSTOMERNICKNAME">
+    </xa-select>
+  </div>
+
+  <div class="two fields">
+    <div class="required field">
+      <label>WBS for Installation</label>
+      <input type="text" formControlName="WbsInstall" placeholder="I.00301070.02.01">
+      <show-errors [control]="form.controls.WbsInstall"></show-errors>
+    </div>
+
+    <div class="required field">
+      <label>WBS for Operation</label>
+      <input type="text" formControlName="WbsOperations" placeholder="I.00301070.02.01">
+      <show-errors [control]="form.controls.WbsOperations"></show-errors>
+    </div>
+  </div>
+
+
+  <div class="two fields">
+
+    <div class="required field">
+      <label>OS Supported-By:</label>
+      <xa-select [search]="true" formControlName="SupportedBy" placeholder="Supported-By"
+        [options]="OSSupportebBy$ | async" [loading]="!(OSSupportebBy$ | async)" viewValue="label"
+        optionValue="GROUPNAME"> </xa-select>
+    </div>
+
+    <div class="field">
+      <label>Application Supported-By:</label>
+      <xa-select [search]="true" formControlName="AppSupportedBy" placeholder="Supported-By"
+        [options]="AppSupportedBy$ | async" [loading]="!(AppSupportedBy$ | async)" viewValue="label"
+        optionValue="GROUPNAME" [clearable]="true">
+      </xa-select>
+    </div>
+
+  </div>
+
+  <div class="fields">
+    <div class="two wide field" style="margin-top: 10px">
+      <xa-checkbox #useSLA formControlName="UseSLA">Use SLA</xa-checkbox>
+    </div>
+
+    <div class="fourteen wide field">
+      <xa-select [search]="true" formControlName="SLAName" [placeholder]="AvailableSlas$ | async"
+        [options]="SLAs$ | async" viewValue="cmdbDescription" optionValue="cmdbKey">
+      </xa-select>
+    </div>
+  </div>
+
+  <div class="three fields">
+
+    <div class="required field">
+      <label>Environment</label>
+      <xa-select [search]="true" formControlName="Environment" placeholder="Environment"
+        [options]="Environments$ | async" [loading]="!(Environments$ | async)">
+      </xa-select>
+    </div>
+
+    <div class="required field">
+      <label>Criticality</label>
+      <xa-select [search]="true" formControlName="Criticality" placeholder="Criticality"
+        [options]="Criticalities$ | async" [loading]="!(Criticalities$ | async)">
+      </xa-select>
+    </div>
+
+    <div class="required field">
+      <label>ServiceTime</label>
+      <xa-select [search]="true" formControlName="ServiceTime" placeholder="ServiceTime"
+        [options]="ServiceTime$ | async" [loading]="!(ServiceTime$ | async)">
+      </xa-select>
+    </div>
+  </div>
+
+
+
+  <h2 class="ui dividing header padding-top-30">
+    <i class="desktop icon"></i>Platform Specification
+  </h2>
+
+  <div formGroupName="PlatformOptions">
+
+    <div class="ui grid">
+      <div class="stretched row">
+        <div class="nine wide column">
+
+          <div class="required field">
+            <label>Infrastructure</label>
+            <xa-select #Infrastructure [search]="true" formControlName="Infrastructure" placeholder="Infrastructure"
+              [options]="Infrastructures$ | async" [loading]="!(Infrastructures$ | async)">
+            </xa-select>
+          </div>
+
+          <div class="required field">
+            <label>Cluster/Location</label>
+            <xa-select [search]="true" formControlName="Location" placeholder="Location" [options]="Locations$ | async"
+              [loading]="!(Locations$ | async)" optionValue="label" viewValue="label">
+            </xa-select>
+          </div>
+
+        </div>
+
+        <div class="seven wide column" *ngIf="DataStores$ | async; let ds;">
+
+          <div class="required field" *ngIf="ds?.template != 'Details'">
+            <label>Datastore Type</label>
+            <xa-select [search]="true" formControlName="Datastore" placeholder="Datastore" [options]="ds?.items"
+              [loading]="!ds">
+            </xa-select>
+          </div>
+
+          <div class="required field" *ngIf="ds?.template == 'Details'">
+            <label>Specify Details/Datastore:</label>
+            <textarea rows="5" placeholder="Specific Information" formControlName="DedicatedLocal"
+              style="resize: none!important;"></textarea>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="field" style="margin-top:10px">
+    <label>Affinity Rules (If applicable and you know what you do)</label>
+    <textarea rows="4" placeholder="e.g., VM 'A' must not run on same host as VM 'B'" formControlName="AffinityRules"
+      style="resize: none!important;"></textarea>
+  </div>
+
+  <h2 class="ui dividing header padding-top-30">
+    <i class="icon" [ngClass]="OSIcon$ | async"></i>Operating System
+  </h2>
+
+  <div class="fields ">
+    <div class="four wide required field" [style.display]="payloadHasOS ? 'none' : 'block'" style="display: none">
+      <label>Operating System</label>
+
+      <xa-select #OS formControlName="OS" placeholder="Operating System" [options]="['Linux', 'Windows']">
+      </xa-select>
+
+    </div>
+
+    <div class="wide required field" [class.sixteen]="payloadHasOS" [class.twelve]="!payloadHasOS">
+      <label>Version</label>
+      <xa-select [search]="true" formControlName="OSVersion" placeholder="OS Version" [options]="OSVersions$ | async"
+        [loading]="!(OSVersions$ | async)" viewValue="cmdbDescription" optionValue="cmdbKey">
+      </xa-select>
+    </div>
+
+  </div>
+
+  <div class="fields" *ngIf="ShowLicenseOptions$ | async">
+    <div class="four wide required field">
+      <label>License Type</label>
+      <xa-select #LicenseType formControlName="LicenseType" placeholder="LicenseType" [options]="['SPLA', 'KMS']">
+      </xa-select>
+    </div>
+    <div class="twelve wide required field">
+      <label *ngIf="(LicenseType.selectedChange | async) === 'SPLA'">License Key</label>
+      <label *ngIf="(LicenseType.selectedChange | async) === 'KMS'">KMS Server IP</label>
+      <input type="text" formControlName="LicenseValue">
+    </div>
+  </div>
+
+  <div class="fields" [ngClass]="(OS.selectedChange | async) == 'Windows' ? 'three' : 'two'">
+    <div class="required field">
+      <label>Hostname</label>
+      <input type="text" formControlName="Hostname" placeholder="Hostname">
+      <show-errors [control]="form.controls.Hostname"></show-errors>
+    </div>
+
+    <div class="field">
+      <label>Domain</label>
+      <input type="text" formControlName="Domain" placeholder="Domain">
+    </div>
+
+    <div *ngIf="(OS.selectedChange | async) == 'Windows'" class="field">
+      <label>&nbsp;</label>
+      <xa-checkbox #chkbDomainjoin formControlName="Domainjoin">Join to Active Directory Domain</xa-checkbox>
+    </div>
+
+  </div>
+
+  <div class="two fields">
+    <div class="field">
+      <label>Timezone</label>
+      <xa-select #LicenseType formControlName="Timezone" placeholder="Timezone" [options]="data.TimeZones$ | async">
+      </xa-select>
+    </div>
+
+    <div class="required field">
+      <label>Patch Mode</label>
+      <xa-select #LicenseType formControlName="Patchmode" placeholder="Patch Mode" [options]="PatchModes$ | async"
+        viewValue="cmdbDescription" optionValue="cmdbKey">
+      </xa-select>
+    </div>
+  </div>
+
+  <h2 class="ui dividing header padding-top-30">
+    <span><i class="cloud icon"></i>VM Settings</span>
+    <xa-checkbox #ppu class="normal-checkbox-size" [formControl]="form.get('VMOptions.PayPerUse')" style="float:right;padding-right:10px;">
+      Pay-Per-Use</xa-checkbox>
+  </h2>
+  <div formGroupName="VMOptions">
+    <div class="fields">
+      <div class="three wide required field center-text">
+        <div class="ui statistic">
+          <div class="value">
+            {{form.get('VMOptions.VCPU')?.value}}
+          </div>
+          <div class="label">
+            vCPU(s)
+          </div>
+        </div>
+      </div>
+      <div class="thirteen wide required field">
+        <nouislider [formControl]="form.get('VMOptions.VCPU')" [config]="data.cpuRangeOptions" (update)="UpdateView()">
+        </nouislider>
+      </div>
+    </div>
+
+    <div class="fields">
+      <div class="three wide required field center-text">
+        <div class="ui statistic">
+          <div class="value">
+            {{form.get('VMOptions.VRAM')?.value}}GB
+          </div>
+          <div class="label">
+            RAM
+          </div>
+        </div>
+      </div>
+      <div class="thirteen wide required field">
+        <nouislider [formControl]="form.get('VMOptions.VRAM')" [config]="data.memoryRangeOptions"
+          (update)="UpdateView()"></nouislider>
+      </div>
+    </div>
+
+
+    <div>
+      <div class="fields">
+
+        <div class="three wide field">
+          <label>Limits Unit:</label>
+          <xa-select formControlName="LimitsUnit" placeholder="Select Unit" [options]="['Slices','TPMC','SAPS']">
+          </xa-select>
+        </div>
+
+        <div class="thirteen wide field" style="display:flex;flex-direction: row">
+          <div class="field" [class.required]="(ppu.checkedChange | async)" style="width:50%; padding-right: 0.5em;">
+            <label>
+              Lower Limit
+            </label>
+            <input type="text" (keypress)="keyPress($event)" formControlName="LowerLimitValue">
+          </div>
+          <div class="field" [class.required]="(ppuUpperLimit.checkedChange | async)"
+            style="width:50%; padding-left: 0.5em; ">
+            <label>
+              <xa-checkbox #ppuUpperLimit formControlName="UpperLimit">Upper Limit</xa-checkbox>
+            </label>
+            <input type="text" (keypress)="keyPress($event)" formControlName="UpperLimitValue">
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+
+
+    <div class="fields" *ngIf="(VMDKType$ | async); let vmdkType;" style="padding-top: 10px">
+      <div class="sixteen wide field">
+        <label>VMDK-Storage</label>
+        <xa-vmdk-windows-config *ngIf="vmdkType == 'Windows'" formControlName="VMDK"></xa-vmdk-windows-config>
+        <xa-vmdk-linux-config *ngIf="vmdkType == 'Linux'" formControlName="VMDK"></xa-vmdk-linux-config>
+      </div>
+    </div>
+
+    <h2 class="ui dividing header padding-top-30">
+      <i class="eye icon"></i>Monitoring
+    </h2>
+    <div style="font-weight: bold">
+      Monitoring will be intstalled per default.
+    </div>
+    <div>
+      If no Monitoring is required, please request its Deinstallation/Deconfiguration per Service-Request after the VM
+      Creation has been finished.
+    </div>
+
+
+    <h2 class="ui dividing header padding-top-30">
+      <i class="archive icon"></i>Backup
+    </h2>
+
+    <div class="three fields">
+
+      <div class="field">
+        <div class="grouped fields">
+          <label>Backup </label>
+          <div class="field">
+            <xa-radiobox formControlName="Backup" group="Backup" value="VMware">VMware Platform Backup Only
+            </xa-radiobox>
+          </div>
+          <div class="field"
+            *ngIf="(Infrastructure.selectedChange | async) != 'Dedicated Remote Infrastructure (DSI-R)'">
+            <xa-radiobox formControlName="Backup" group="Backup" value="TSM">TSM Backup</xa-radiobox>
+          </div>
+        </div>
+      </div>
+
+      <div class="field" *ngIf="form.get('VMOptions.Backup')?.value == 'TSM'">
+        <div class="grouped fields">
+          <label>Backup Times </label>
+
+          <div class="field">
+            <xa-radiobox formControlName="BackUpTime" group="BackUpTime" value="StandardBackUpTime">Standard (20:00 -
+              06:00)</xa-radiobox>
+          </div>
+
+          <div class="field">
+            <xa-radiobox formControlName="BackUpTime" group="BackUpTime" value="CustomBackUpTime">Custom</xa-radiobox>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="field"
+        *ngIf="form.get('VMOptions.BackUpTime')?.value == 'CustomBackUpTime' && form.get('VMOptions.Backup')?.value == 'TSM'">
+        <label>Custom Backup Time</label>
+        <div style="display:flex; flex-direction: row">
+          <div style="width: 50%">
+            <xa-select formControlName="CustomBackUpTimeHour" placeholder="Hour"
+              [options]="['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23']">
+            </xa-select>
+          </div>
+          <p style="margin-top: 10px">:</p>
+          <div style="width: 50%">
+            <xa-select formControlName="CustomBackUpTimeMinute" placeholder="Minute" [options]="['00','15','30','45']">
+            </xa-select>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+  <h2 class="ui dividing header padding-top-30">
+    <i class="sitemap icon"></i>Network Options
+  </h2>
+
+
+  <div class="fields" [ngClass]="form.get('VMOptions.Backup')?.value == 'TSM' ? 'three' : 'two'"
+    formGroupName="NetworkOptions" style="margin-bottom: 0px;">
+
+    <div class="field">
+      <label>Customer LAN</label>
+      <xa-select [search]="true" formControlName="CustomerLan" placeholder="CustomerLan"
+        [options]="CustomerLANs$ | async" viewValue="label" optionValue="ID" [loading]="!(CustomerLANs$ | async)"
+        [clearable]="true" [config]="{context: '.content-main'}">
+      </xa-select>
+      <div style="padding: 5px; text-align: right" [style.opacity]="!(IpSelectable.CustomerLan | async) ? '0.3' : '1'"
+        [style.visibility]="form.get('NetworkOptions.CustomerLan').value ? 'visible' : 'hidden'">
+        <xa-checkbox [clickable]="(IpSelectable.CustomerLan | async)" style="padding-right: 5px"
+          [formControl]="form.get('NetworkRequestOptions.CustomerLan.IPv4')">IPv4</xa-checkbox>
+        <xa-checkbox [clickable]="(IpSelectable.CustomerLan | async)"
+          [formControl]="form.get('NetworkRequestOptions.CustomerLan.IPv6')">IPv6</xa-checkbox>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Admin LAN</label>
+      <xa-select [search]="true" formControlName="AdminLan" placeholder="AdminLan" [options]="AdminLANs$ | async"
+        viewValue="label" optionValue="ID" [loading]="!(AdminLANs$ | async)" [clearable]="true"
+        [config]="{context: '.content-main'}">
+      </xa-select>
+      <div style="padding: 5px; text-align: right" [style.opacity]="!(IpSelectable.AdminLan | async) ? '0.3' : '1'"
+        [style.visibility]="form.get('NetworkOptions.AdminLan').value ? 'visible' : 'hidden'">
+        <xa-checkbox [clickable]="(IpSelectable.AdminLan | async)" style="padding-right: 5px"
+          [formControl]="form.get('NetworkRequestOptions.AdminLan.IPv4')">IPv4</xa-checkbox>
+        <xa-checkbox [clickable]="(IpSelectable.AdminLan | async)"
+          [formControl]="form.get('NetworkRequestOptions.AdminLan.IPv6')">IPv6</xa-checkbox>
+      </div>
+    </div>
+    <div class="field">
+      <label>TSM Lan</label>
+      <xa-select [search]="true" formControlName="TSMLan" placeholder="TSM Lan" [options]="TsmLANs$ | async"
+        viewValue="label" optionValue="ID" [loading]="!(TsmLANs$ | async)" [clearable]="true"
+        [config]="{context: '.content-main'}">
+      </xa-select>
+      <div style="padding: 5px; text-align: right" [style.opacity]="!(IpSelectable.TSMLan | async) ? '0.3' : '1'"
+        [style.visibility]="form.get('NetworkOptions.TSMLan').value ? 'visible' : 'hidden'">
+        <xa-checkbox [clickable]="(IpSelectable.TSMLan | async)" style="padding-right: 5px"
+          [formControl]="form.get('NetworkRequestOptions.TSMLan.IPv4')">IPv4</xa-checkbox>
+        <xa-checkbox [clickable]="(IpSelectable.TSMLan | async)"
+          [formControl]="form.get('NetworkRequestOptions.TSMLan.IPv6')">IPv6</xa-checkbox>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Customer specific IP</label>
+    <textarea rows="2" type="text" maxlength="800" formControlName="CustomerSpecIPs"
+      placeholder="Fill only if IP-Adresses are managed by Customer" style="resize: none!important;"></textarea>
+  </div>
+
+  <pre *if-dev>{{form.value | json}}</pre>
+</form>
