@@ -1,0 +1,22 @@
+<div class="ui grid" style="margin-bottom: 5px;">
+  <div class="right floated wide column">
+    <button type="button" *ngIf="this.showSearchButton" class="ui left floated primary button"
+      (click)="OpenHostSearchComponentModal()">
+      {{this.searchButtonText}}
+    </button>
+    <button type="button" *ngIf="rowData.length && this.showClearButton" class="ui right negative button" (click)="clearCIs()">
+      Clear List
+    </button>
+  </div>
+</div>
+<div [innerHTML]="this.tableDescription"></div>
+<ag-grid-angular style="width: 100%; height: 350px;" class="ag-theme-balham" (gridReady)="onGridReady($event)"
+  [columnDefs]="columnDefs" [rowData]="rowData" [rowSelection]="rowSelection"
+  [overlayLoadingTemplate]="overlayLoadingTemplate" [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+  [getContextMenuItems]="getContextMenuItems" (cellValueChanged)="onCellChanged($event)">
+</ag-grid-angular>
+
+<span *ngIf="this.rowData.length>0"><b># Data rows:</b>
+  {{this.rowData.length}}</span><br>
+
+<span id="eIcon" class="ag-menu-option-icon"></span>

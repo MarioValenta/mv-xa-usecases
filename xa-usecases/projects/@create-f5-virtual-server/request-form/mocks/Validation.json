@@ -1,0 +1,180 @@
+{
+  "requestForm": [
+    {
+      "varName": "Customer",
+      "required": true,
+      "type": "list",
+      "possibleValuesUrl": "api/validation/f5/customer"
+    },
+    {
+      "varName": "WBS",
+      "required": true,
+      "type": "text",
+      "format": {
+        "regexPattern": "^[A-Z]\\.\\d{8}\\.\\d{2}(?:\\.\\d{2})?(?:\\.\\d{2})?$",
+        "errorMessage": "Cost center in wrong format! e.g. I.12345678.00.01 or I.12345678.00.01.01"
+      }
+    },
+    {
+      "varName": "DNSName",
+      "required": true,
+      "type": "text",
+      "format": {
+        "regexPattern": "^((\\*\\.)|([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
+        "errorMessage": "Wrong format of the DNS name! e.g. domain, *.domain, *.domain.tld"
+      }
+    },
+    {
+      "varName": "Network",
+      "required": true,
+      "type": "list",
+      "possibleValuesUrl": "api/validation/f5/lan?customer=${Customer}"
+    },
+    {
+      "varName": "Environment",
+      "required": true,
+      "type": "list",
+      "possibleValuesUrl": "api/validation/f5/environments"
+    },
+    {
+      "varName": "Protocol",
+      "required": true,
+      "type": "list",
+      "possibleValues": [
+        "TCP",
+        "UDP"
+      ]
+    },
+    {
+      "varName": "ServicePort",
+      "required": true,
+      "type": "number",
+      "min": 0,
+      "max": 65535
+    },
+    {
+      "varName": "SSLTLSTermination",
+      "required": true,
+      "type": "boolean",
+      "dependencies": {
+        "true": [
+          {
+            "varName": "SelectCertificate",
+            "required": true,
+            "type": "list",
+            "dependencies": {
+              "provideCert": [
+                {
+                  "varName": "CertificateKey",
+                  "required": true,
+                  "type": "text"
+                },
+                {
+                  "varName": "Certificate",
+                  "required": true,
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "varName": "PoolMembers",
+      "required": true,
+      "type": "array",
+      "fields": [
+        {
+          "varName": "HostID",
+          "required": true,
+          "type": "text"
+        },
+        {
+          "varName": "PoolMember",
+          "required": true,
+          "type": "text"
+        },
+        {
+          "varName": "IPAddress",
+          "required": true,
+          "type": "text"
+        },
+        {
+          "varName": "ServicePort",
+          "required": true,
+          "type": "number",
+          "min": 1,
+          "max": 65535
+        }
+      ]
+    },
+    {
+      "varName": "Persistence",
+      "required": true,
+      "type": "list",
+      "possibleValues": [
+        "none",
+        "cookie insert",
+        "source IP",
+        "existing cookie"
+      ],
+      "dependencies": {
+        "existing cookie": [
+          {
+            "varName": "CookieName",
+            "required": true,
+            "type": "text"
+          }
+        ]
+      }
+    },
+    {
+      "varName": "HealthCheck",
+      "required": true,
+      "type": "list",
+      "possibleValues": [
+        "TCP",
+        "UDP",
+        "HTTP",
+        "HTTPS"
+      ],
+      "dependencies": {
+        "HTTP": [
+          {
+            "varName": "SendString",
+            "required": false,
+            "type": "text"
+          },
+          {
+            "varName": "ReceiveString",
+            "required": false,
+            "type": "text"
+          },
+          {
+            "varName": "ReceiveDisableString",
+            "required": false,
+            "type": "text"
+          }
+        ],
+        "HTTPS": [
+          {
+            "varName": "SendString",
+            "required": false,
+            "type": "text"
+          },
+          {
+            "varName": "ReceiveString",
+            "required": false,
+            "type": "text"
+          },
+          {
+            "varName": "ReceiveDisableString",
+            "required": false,
+            "type": "text"
+          }
+        ]
+      }
+    }
+  ]
+}

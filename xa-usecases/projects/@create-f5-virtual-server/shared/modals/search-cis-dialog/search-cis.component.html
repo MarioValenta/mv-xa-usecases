@@ -1,0 +1,15 @@
+<div class="ui message">
+    <i class="close icon" (click)="Cancel()"></i>
+    <h3 class="ui dividing header">
+        Add Host-CI(s)
+    </h3>
+
+    <search-component [ngStyle]="myStyle" selectionMode="multiple" [fields]='SearchFields'
+        (selectionChanged)='onSearchChanged($event)' [search]="searchFunction"></search-component>
+    <div class="field">
+        <div class="actions" style="padding-top: 10px">
+            <button class="ui green button" (click)="AddCIs()">{{this.addButtonText}}</button>
+            <button class="ui red button" (click)="Cancel()">Cancel</button>
+        </div>
+    </div>
+</div>
