@@ -83,7 +83,17 @@ import 'ag-grid-enterprise';
             ]
 ```
 
+### workaround for undefined XAServices
 
+To fix the problem with the undefined xaservices variable for the service, add into the contructor of every file, (where the XAServices is injected) the following if statement:
+
+```typescript
+  constructor(....., public xaservices: XAServices) {
+    if (this.xaservices === undefined || this.xaservices === null) {
+      this.xaservices = ((window as any).xa as XAServices);
+    }
+  }
+```
 
 ## importing old UseCase projects (RequestForms or UserTasks from exisitng UseCase project)
 
@@ -95,7 +105,7 @@ If you want to add an old UseCase project into this MonoRepo, follow this steps 
 
 3. Follow the steps from the section: [#ts config](#ts-config)
 
-4. Search for imports like `'DevEnvironment/src/app/.....` and try to replace it with `projects/xa-portal-dev/src/app/.....` IF the old UseCase projects contained the DevEnvironment.
+4. Search for imports like `DevEnvironment/src/app/.....` and try to replace it with `projects/xa-portal-dev/src/app/.....` IF the old UseCase projects contained the DevEnvironment.
 
 5. Copy the `mocks` folder from the old project into the `projects/@<USECASE-NAME>/<FORM-NAME>/` path.
 
@@ -116,6 +126,9 @@ If you want to add an old UseCase project into this MonoRepo, follow this steps 
 13. Follow the steps from the section: [#package-json](#packagejson)
 
 14. Follow the steps from the section: [#update budget](#update-budget)
+
+15. Follow the steps from the section: [#workaround for undefined XAServices](#workaround-for-undefined-xaservices)
+
 
 ## Development server
 
