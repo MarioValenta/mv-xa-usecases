@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { XAModalPageContext } from '@xa/ui';
 import { SearchField } from '@xa/search';
@@ -81,8 +82,22 @@ export class PatchAutomationSearchCisModalComponent implements OnInit {
     }
   }
 
-  onSearchChanged(event) {
+  onSearchChanged(event: any) {
     this.rowSelection = event;
+  }
+
+  onError(errorEvent: any) {
+    switch (errorEvent.status) {
+      case 404: {
+        window.alert('API endpoint could not be found! Please let us know via the feedback button!');
+        this.context.Close();
+        break;
+      } default: {
+        window.alert(errorEvent.message);
+        this.context.Close();
+        break;
+      }
+    }
   }
 
   AddCIs() {
