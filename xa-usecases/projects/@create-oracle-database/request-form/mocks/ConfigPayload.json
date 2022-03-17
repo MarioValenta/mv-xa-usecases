@@ -1,0 +1,25 @@
+{
+    "Sequence": {
+        "min": 0,
+        "max": 9,
+        "maxLenght": 1,
+        "placeholder": "enter only one digit",
+        "errorMsg": "must be one digit"
+    },
+    "Placeholders": {
+        "Customer": "Select the Customer ...",
+        "PCAVMHostname": "Select the Hostname...",
+        "SiteBlock": "",
+        "ChangeImplementationWBS": "",
+        "ServiceOperationWBS": "",
+
+        "DBName": "enter up to 4 characters (no numbers)",
+        "DBName_generated": "will be automatically generated",
+        "ListenerServiceName": "up to 30 characters (no numbers)",
+        "UIDnumber": "will be automatically generated",
+        "Oinstallgid": "will be automatically generated",
+        "Dbagid": "will be automatically generated"
+
+
+    }
+}

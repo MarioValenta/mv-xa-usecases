@@ -13,6 +13,7 @@ import { RanfRequestFormAppModule } from 'projects/@ranf/request-form/src/app/ap
 import { RanfUtCheckAppModule } from 'projects/@ranf/ut-check/src/app/app.module';
 import { StorageExtensionRequestFormAppModule } from 'projects/@storage-extension/request-form/src/app/app.module';
 import { VMCreateRequestFormAppModule } from 'projects/@vmcreate/request-form/src/app/app.module';
+import { CreateOracleDatabaseRequestFormAppModule } from 'projects/@create-oracle-database/request-form/src/app/app.module';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { VMCreateRequestFormAppModule } from 'projects/@vmcreate/request-form/sr
     PatchautomationRemoveRequestFormAppModule,
     VMCreateRequestFormAppModule,
     CreateF5VirtualServerRequestFormAppModule,
-    CreateF5VirtualServerUTValidateAppModule
+    CreateF5VirtualServerUTValidateAppModule,
+    CreateOracleDatabaseRequestFormAppModule
   ]
 })
 export class UseCasesFormsAppModule { }

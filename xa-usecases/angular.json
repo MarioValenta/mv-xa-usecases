@@ -1448,6 +1448,104 @@
           }
         }
       }
+    },
+    "@create-oracle-database/request-form": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@create-oracle-database/request-form",
+      "sourceRoot": "projects/@create-oracle-database/request-form/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@create-oracle-database/request-form",
+            "index": "projects/@create-oracle-database/request-form/src/index.html",
+            "main": "projects/@create-oracle-database/request-form/src/main.ts",
+            "polyfills": "projects/@create-oracle-database/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@create-oracle-database/request-form/tsconfig.app.json",
+            "assets": [
+              "projects/@create-oracle-database/request-form/src/favicon.ico",
+              "projects/@create-oracle-database/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@create-oracle-database/request-form/src/styles.css"
+            ],
+            "scripts": [],
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "500kb",
+                "maximumError": "1mb"
+              },
+              {
+                "type": "anyComponentStyle",
+                "maximumWarning": "2kb",
+                "maximumError": "4kb"
+              }
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/@create-oracle-database/request-form/src/environments/environment.ts",
+                  "with": "projects/@create-oracle-database/request-form/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@create-oracle-database/request-form:build:production"
+            },
+            "development": {
+              "browserTarget": "@create-oracle-database/request-form:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "@create-oracle-database/request-form:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@create-oracle-database/request-form/src/test.ts",
+            "polyfills": "projects/@create-oracle-database/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@create-oracle-database/request-form/tsconfig.spec.json",
+            "karmaConfig": "projects/@create-oracle-database/request-form/karma.conf.js",
+            "assets": [
+              "projects/@create-oracle-database/request-form/src/favicon.ico",
+              "projects/@create-oracle-database/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@create-oracle-database/request-form/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
     }
   },
   "defaultProject": "xa-portal-dev"

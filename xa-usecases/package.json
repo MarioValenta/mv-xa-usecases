@@ -27,6 +27,7 @@
     "build:prod:@patchautomation-at/request-form": "ng build --project @patchautomation/request-form --configuration production-at --single-bundle",
     "build:prod:@patchautomation-remove/request-form": "ng build --project @patchautomation-remove/request-form --configuration production --single-bundle",
     "build:prod:@vmcreate/request-form": "ng build --project @vmcreate/request-form --configuration production --single-bundle",
+    "build:prod:@create-oracle-database/request-form": "ng build --project @create-oracle-database/request-form --configuration production --single-bundle",
     "test:@billing/request-form": "ng test --project @billing/request-form",
     "test:@create-rfc/request-form": "ng test --project @create-rfc/request-form",
     "test:@create-sr/request-form": "ng test --project @create-sr/request-form",

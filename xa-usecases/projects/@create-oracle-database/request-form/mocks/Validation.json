@@ -1,0 +1,239 @@
+{
+    "requestForm": [
+        {
+            "varName": "Customer",
+            "required": true,
+            "type": "list",
+            "possibleValuesUrl": "api/validation/oracledb/customer"
+        },
+        {
+            "varName": "PCAVMHostname",
+            "required": true,
+            "type": "text"
+        },
+        {
+            "varName": "SiteBlock",
+            "required": true,
+            "type": "text"
+        },
+        {
+            "varName": "ChangeImplementationWBS",
+            "required": true,
+            "type": "text",
+            "format": {
+                "regexPattern": "^[A-Z]\\.\\d{8}\\.\\d{2}(?:\\.\\d{2})?(?:\\.\\d{2})?$",
+                "errorMessage": "Cost center in wrong format! e.g. I.12345678.00.01 or I.12345678.00.01.01"
+            }
+        },
+        {
+            "varName": "ServiceOperationWBS",
+            "required": true,
+            "type": "text",
+            "format": {
+                "regexPattern": "^[A-Z]\\.\\d{8}\\.\\d{2}(?:\\.\\d{2})?(?:\\.\\d{2})?$",
+                "errorMessage": "Cost center in wrong format! e.g. I.12345678.00.01 or I.12345678.00.01.01"
+            }
+        },
+        {
+            "varName": "ServiceSupportTime",
+            "required": true,
+            "type": "list"
+        },
+        {
+            "varName": "ServiceSupportTimeDetails",
+            "required": true,
+            "type": "list",
+            "possibleValuesUrl": "api/validation/oracledb/ServiceSupportTimeDetails?servicesupporttime=${ServiceSupportTime}"
+        },
+        {
+            "varName": "ReasonForDBOrder",
+            "required": true,
+            "type": "text",
+            "dependencies": {
+                "Migration from existing T-System database service": [
+                    {
+                        "varName": "DBServiceIP",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "varName": "CMBServices",
+                        "required": false,
+                        "type": "text"
+                    }
+                ],
+                "Migration from existing third-party database service": [
+                    {
+                        "varName": "DBServiceIP",
+                        "required": false,
+                        "type": "boolean"
+                    }
+                ]
+            }
+        },
+        {
+            "varName": "BackupDatabase",
+            "required": true,
+            "type": "text",
+            "dependencies": {
+                "yes": [
+                    {
+                        "varName": "RMANBackup",
+                        "required": true,
+                        "type": "number",
+                        "min": 4,
+                        "max": 99
+                    }
+                ]
+            }
+        },
+        
+        {
+            "varName": "Environment",
+            "required": true,
+            "type": "list",
+            "possibleValuesUrl": "api/validation/oracledb/environments?hostid=${PCAVMHostname}"
+        },
+        {
+            "required": false,
+            "type": "external",
+            "externalValidatorFields": [
+                "CMBServices",
+                "PCAVMHostname",
+                "DBVersion",
+                "BuildVersion"
+            ],
+            "externalValidatorUrl": "api/validation/oracledb/BuildVersion"
+        },
+        {
+            "required": false,
+            "type": "external",
+            "externalValidatorFields": [
+                "CMBServices",
+                "PCAVMHostname",
+                "DBVersion",
+                "DBServiceType",
+                "DBEdition"
+            ],
+            "externalValidatorUrl": "api/validation/oracledb/DBServiceType"
+        },
+        {
+            "required": false,
+            "type": "external",
+            "externalValidatorFields": [
+                "CMBServices",
+                "PCAVMHostname",
+                "DBVersion",
+                "BuildVersion"
+            ],
+            "externalValidatorUrl": "api/validation/oracledb/externalvalidatorsDBVersion"
+        },
+        {
+            "required": false,
+            "type": "external",
+            "externalValidatorFields": [
+                "CMBServices",
+                "PCAVMHostname",
+                "DBEdition",
+                "Characterset"
+            ],
+            "externalValidatorUrl": "api/validation/oracledb/externalvalidatorsCharacterset"
+        },
+        {
+            "required": false,
+            "type": "external",
+            "externalValidatorFields": [
+                "ServiceListenerIP",
+                "PCAVMHostname",
+                "ReasonForDBOrder"
+            ],
+            "externalValidatorUrl": "api/validation/oracledb/servicelistenerip"
+        },
+        {
+            "required": false,
+            "type": "external",
+            "externalValidatorFields": [
+                "CMBServices",
+                "PCAVMHostname",
+                "DBVersion",
+                "CompatibleDBVersion"
+            ],
+            "externalValidatorUrl": "api/validation/oracledb/externalvalidatorsCompatibleDBVersion"
+        },
+        {
+            "varName": "ControlManagementPack",
+            "required": true,
+            "type": "list"
+        },
+        {
+            "varName": "selectedDBOptions",
+            "required": false,
+            "type": "list"
+        },
+        {
+            "varName": "DBBlockSize",
+            "required": true,
+            "type": "list"
+        },
+        {
+            "varName": "DBName",
+            "required": true,
+            "type": "text",
+            "format": {
+                "regexPattern": "^([a-zA-Z]{0,4})$",
+                "errorMessage": "Only max 4 letters."
+            }
+        },
+        {
+            "varName": "DBNameSequence",
+            "required": true,
+            "type": "number",
+            "min": 0,
+            "max": 9
+        },
+        {
+            "varName": "DBName_generated",
+            "required": true,
+            "type": "text"
+        },
+        {
+            "varName": "ListenerServiceName",
+            "required": true,
+            "type": "text",
+            "format": {
+                "regexPattern": "^[a-zA-Z]{1}([0-9_a-zA-Z]{0,63})$",
+                "errorMessage": "Only max 64 characters."
+            }
+        },
+        {
+            "varName": "UIDnumber",
+            "required": true,
+            "type": "text"
+        },
+        {
+            "varName": "Oinstallgid",
+            "required": true,
+            "type": "text"
+        },
+        {
+            "varName": "Dbagid",
+            "required": true,
+            "type": "text"
+        },
+        {
+            "varName": "Agree",
+            "required": true,
+            "type": "boolean",
+            "requiredTrue": true
+        },
+        {
+            "required": false,
+            "type": "external",
+            "externalValidatorFields": [
+                "Dbagid",
+                "Oinstallgid"
+            ],
+            "externalValidatorUrl": "api/validation/oracledb/externalvalidatorscheckids"
+        }
+    ]
+}

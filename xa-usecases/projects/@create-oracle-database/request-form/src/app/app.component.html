@@ -1,0 +1,434 @@
+<form [formGroup]="form" class="ui container form" style="padding:20px 10px">
+
+    <h2 class="ui dividing header padding-top-30">
+        <i class="clipboard outline icon"></i>Basic Settings
+    </h2>
+
+    <div class="field" [class.required]="isFormElementRequired('ReasonForDBOrder')">
+        <label>Reason for Database Order</label>
+        <xa-select formControlName="ReasonForDBOrder"
+            [placeholder]="this.getPlaceholderFromConfigPayload('ReasonForDBOrder')"
+            [options]="ReasonForDBOrder$ | async" [loading]="!(ReasonForDBOrder$ | async)">
+        </xa-select>
+        <show-errors [control]="this.form.get('ReasonForDBOrder')"></show-errors>
+    </div>
+
+    <div class="two fields">
+        <div class="field" [class.required]="isFormElementRequired('Customer')">
+            <label>Customer</label>
+            <xa-select formControlName="Customer" [placeholder]="this.getPlaceholderFromConfigPayload('Customer')"
+                [options]="Customers$ | async" [search]="true" [loading]="!(Customers$ | async)" viewValue="label"
+                optionValue="CUSTOMERNICKNAME" (change)="CustomerSelected()" #customerDropDown>
+            </xa-select>
+            <show-errors [control]="this.form.get('Customer')"></show-errors>
+        </div>
+
+        <div class="field" [class.required]="isFormElementRequired('PCAVMHostname')">
+            <label>PCA VM Hostname</label>
+            <xa-select formControlName="PCAVMHostname"
+                [placeholder]="this.getPlaceholderFromConfigPayload('PCAVMHostname')" [options]="PCAHostnames$ | async"
+                [search]="true" [loading]="!(PCAHostnames$ | async)" optionValue="HOSTID" viewValue="HOSTNAME"
+                (change)="CustomerSelected()" #hostDropDown>
+            </xa-select>
+            <show-errors [control]="this.form.get('PCAVMHostname')"></show-errors>
+        </div>
+    </div>
+
+    <div class="field" [class.required]="isFormElementRequired('SiteBlock')">
+        <label>Site+Block</label>
+        <div class="ui disabled input">
+            <input type="text" formControlName="SiteBlock"
+                [placeholder]="this.getPlaceholderFromConfigPayload('SiteBlock')" readonly>
+            <show-errors [control]="this.form.get('SiteBlock')"></show-errors>
+        </div>
+    </div>
+    <div class="two fields">
+        <div class="field" [class.required]="isFormElementRequired('ChangeImplementationWBS')">
+            <label>Change Implementation WBS</label>
+            <xa-select formControlName="ChangeImplementationWBS"
+                [placeholder]="this.getPlaceholderFromConfigPayload('ChangeImplementationWBS')"
+                [options]="ChangeImplementationWBS$ | async" [search]="true" [clearable]="true"
+                [loading]="!(ChangeImplementationWBS$ | async)" (change)="CustomerSelected()"
+                [config]="this.dropDownConfig">
+            </xa-select>
+            <show-errors [control]="this.form.get('ChangeImplementationWBS')"></show-errors>
+        </div>
+
+        <div class="field" [class.required]="isFormElementRequired('ServiceOperationWBS')">
+            <label>Service Operation WBS</label>
+            <xa-select formControlName="ServiceOperationWBS"
+                [placeholder]="this.getPlaceholderFromConfigPayload('ServiceOperationWBS')"
+                [options]="ServiceOperationWBS$ | async" [search]="true" [clearable]="true"
+                [config]="this.dropDownConfig" [loading]="!(ServiceOperationWBS$ | async)"
+                (change)="CustomerSelected()">
+            </xa-select>
+            <show-errors [control]="this.form.get('ServiceOperationWBS')"></show-errors>
+        </div>
+    </div>
+    <div class="two fields">
+        <div class="field">
+            <div class="inline fields" [class.required]="isFormElementRequired('ServiceSupportTime')">
+                <div class="field">
+                    <label for="ServiceSupportTime">Service Support Time</label>
+                    <div class="field">
+                        <xa-radiobox formControlName="ServiceSupportTime" group="ServiceSupportTime" value="Full Time">
+                            Full
+                            Time
+                        </xa-radiobox>
+                    </div>
+                    <div class="field">
+                        <xa-radiobox formControlName="ServiceSupportTime" group="ServiceSupportTime"
+                            value="Office Time">
+                            Office
+                            Time</xa-radiobox>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="field" *ngIf="this.form.get('ServiceSupportTime').value"
+                [class.required]="isFormElementRequired('ServiceSupportTimeDetails')">
+                <label>Service Support Time Details</label>
+                <xa-select formControlName="ServiceSupportTimeDetails" [options]="ServiceSupportTimeDetails$ | async"
+                    [search]="true" [loading]="!(ServiceSupportTimeDetails$ | async)" viewValue="timeframe"
+                    optionValue="timeframe">
+                </xa-select>
+                <show-errors [control]="this.form.get('ServiceSupportTimeDetails')"></show-errors>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="field" [class.required]="isFormElementRequired('CMBServices')"
+        *ngIf="this.form.get('ReasonForDBOrder').value == 'Migration from existing T-Systems database service'">
+        <label>Old Database Service</label>
+        <xa-select formControlName="CMBServices" [placeholder]="this.getPlaceholderFromConfigPayload('CMBServices')"
+            [options]="CMBServices$ | async" [search]="true" [loading]="!(CMBServices$ | async)" viewValue="SVCNAME"
+            optionValue="SVCID" (change)="CustomerSelected()">
+        </xa-select>
+        <show-errors [control]="this.form.get('CMBServices')"></show-errors>
+    </div>
+
+    <div class="inline fields" [class.required]="isFormElementRequired('DBServiceIP')"
+        *ngIf="this.form.get('ReasonForDBOrder').value == 'Migration from existing T-Systems database service' || this.form.get('ReasonForDBOrder').value == 'Migration from existing third-party database service' ">
+        <div class="ten wide field">
+            <label>Takeover of existing Service-Listener-IP?</label>
+            <div class="field">
+                <xa-radiobox formControlName="DBServiceIP" group="DBServiceIP" value="no">no
+                </xa-radiobox>
+            </div>
+            <div class="field">
+                <xa-radiobox formControlName="DBServiceIP" group="DBServiceIP" value="yes">yes
+                </xa-radiobox>
+            </div>
+        </div>
+    </div>
+
+    <div class="field" *ngIf="this.form.get('DBServiceIP').value == 'yes'">
+        <div class="field" [class.required]="isFormElementRequired('ServiceListenerIP')">
+            <div class="field"
+                *ngIf="this.form.get('ReasonForDBOrder').value == 'Migration from existing third-party database service' && this.form.get('DBServiceIP').value == 'yes' && this.form.get('PCAVMHostname').value !== ''">
+                <div class="ui message">{{this.form.get('IPRange').value}}</div>
+            </div>
+            <label>IP & DNS Name</label>
+
+        </div>
+        <xa-select formControlName="ServiceListenerIP" [options]="ServiceListenerIP$ | async" [search]="true"
+            [loading]="!(ServiceListenerIP$ | async)" viewValue="DNSIP" [config]="this.dropDownConfig"
+            optionValue="DNSIP">
+        </xa-select>
+        <show-errors [control]="this.form.get('ServiceListenerIP')"></show-errors>
+    </div>
+
+
+
+
+    <h2 class="ui dividing header padding-top-30">
+        <i class="database icon"></i>DB Settings
+    </h2>
+
+    <div class="field" [class.required]="isFormElementRequired('Environment')">
+        <label>Environment</label>
+        <xa-select formControlName="Environment" [placeholder]="this.getPlaceholderFromConfigPayload('Environment')"
+            [options]="Environments$ | async" [search]="true" [loading]="!(Environments$ | async)" viewValue="value"
+            optionValue="value">
+        </xa-select>
+        <show-errors [control]="this.form.get('Environment')"></show-errors>
+    </div>
+
+    <div class="two fields">
+        <div class="field" [class.required]="isFormElementRequired('DBVersion')">
+            <label>DB Version</label>
+            <xa-select formControlName="DBVersion" [placeholder]="this.getPlaceholderFromConfigPayload('DBVersion')"
+                [options]="DBVersion$ | async" [search]="true" [loading]="!(DBVersion$ | async)" viewValue="value"
+                optionValue="value">
+            </xa-select>
+            <show-errors [control]="this.form.get('DBVersion')"></show-errors>
+        </div>
+        <div class="field" [class.required]="isFormElementRequired('BuildVersion')">
+            <label>Build Version</label>
+            <xa-select formControlName="BuildVersion"
+                [placeholder]="this.getPlaceholderFromConfigPayload('BuildVersion')" [options]="BuildVersion$ | async"
+                [search]="true" [loading]="!(BuildVersion$ | async)" viewValue="build" optionValue="build">
+            </xa-select>
+            <show-errors [control]="this.form.get('BuildVersion')"></show-errors>
+        </div>
+    </div>
+
+
+    <div class="two fields">
+        <div class="field" [class.required]="isFormElementRequired('DBEdition')">
+            <label>DB Edition</label>
+            <xa-select formControlName="DBEdition" [placeholder]="this.getPlaceholderFromConfigPayload('DBEdition')"
+                [options]="DBEdition$ | async" [search]="true" [loading]="!(DBEdition$ | async)" viewValue="value"
+                optionValue="value">
+            </xa-select>
+            <show-errors [control]="this.form.get('DBEdition')"></show-errors>
+        </div>
+
+
+        <div class="field" [class.required]="isFormElementRequired('DBServiceType')">
+            <label>DB Service Type</label>
+            <xa-select formControlName="DBServiceType"
+                [placeholder]="this.getPlaceholderFromConfigPayload('DBServiceType')"
+                [options]="DBServiceTypes$ | async" [search]="true" [loading]="!(DBServiceTypes$ | async)"
+                viewValue="value" optionValue="value" s>
+            </xa-select>
+            <show-errors [control]="this.form.get('DBServiceType')"></show-errors>
+        </div>
+    </div>
+
+    <div class="two fields">
+        <div class="required field" [class.required]="isFormElementRequired('CompatibleDBVersion')">
+            <label>Compatible DataBase Version</label>
+            <xa-select formControlName="CompatibleDBVersion"
+                [placeholder]="this.getPlaceholderFromConfigPayload('CompatibleDBVersion')"
+                [options]="CompatibleDBVersion$ | async" [search]="true" [loading]="!(CompatibleDBVersion$ | async)"
+                viewValue="value" optionValue="value">
+            </xa-select>
+            <show-errors [control]="this.form.get('CompatibleDBVersion')"></show-errors>
+        </div>
+
+        <div class="field" [class.required]="isFormElementRequired('Characterset')">
+            <label>Character Set</label>
+            <xa-select formControlName="Characterset"
+                [placeholder]="this.getPlaceholderFromConfigPayload('Characterset')" [options]="Characterset$ | async"
+                [search]="true" [clearable]="true" [config]="this.dropDownConfig" [loading]="!(Characterset$ | async)"
+                viewValue="value" optionValue="value">
+            </xa-select>
+            <show-errors [control]="this.form.get('Characterset')"></show-errors>
+        </div>
+    </div>
+    <div class="two fields">
+
+        <div class="field">
+            <div *ngIf="this._controlmanagementpack.length > 0">
+                <div class="required field" [class.required]="isFormElementRequired('ControlManagementPack')">
+                    <label for="ControlManagementPack">
+                        Control Management Pack<br>
+                        (extra licenses needed)</label>
+                </div>
+
+                <div class="grouped fields" style="margin-bottom: 30px;">
+                    <div class="field" *ngFor="let pack of ControlManagementPack$ | async">
+                        <div class="ui radio checkbox">
+                            <input type="radio" formControlName="ControlManagementPack" [value]="pack.value">
+                            <label>{{pack.value}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="field">
+            <div *ngIf="this._dbOptions.length > 0">
+                <div class="required field" [class.required]="isFormElementRequired('DBOptions')">
+                    <label for="DBOptions">
+                        DB Options<br>
+                        (extra licenses needed)</label>
+                </div>
+
+                <div class="grouped fields" style="margin-bottom: 30px;">
+                    <div class="field" formArrayName="DBOptions"
+                        *ngFor="let genre of form.get('DBOptions')['controls']; let i = index">
+                        <div class="ui checkbox">
+                            <input type="checkbox" [formControlName]="i">
+                            <label>{{_dbOptions[i].value}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div *ngIf="this._dbBlockSize.length > 0">
+        <div class="required field" [class.required]="isFormElementRequired('DBBlockSize')">
+            <label for="DBBlockSize">
+                DB Block Size (Byte)</label>
+        </div>
+        <div class="inline fields" style="margin-bottom: 30px;">
+            <div class="field" *ngFor="let size of DBBlockSize$ | async">
+
+                <div class="ui radio checkbox">
+                    <input type="radio" formControlName="DBBlockSize" [value]="size.value">
+                    <label>{{size.value}}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="three fields">
+        <div class="required field" [class.required]="isFormElementRequired('DBName')">
+            <label>DB Name (arbitrary)</label>
+            <input type="text" formControlName="DBName" [placeholder]="this.getPlaceholderFromConfigPayload('DBName')">
+            <show-errors [control]="this.form.get('DBName')"></show-errors>
+        </div>
+
+        <div class="required field" [class.required]="isFormElementRequired('DBNameSequence')">
+            <label>DB Name Sequence</label>
+            <input type="number" [maxlength]="this.Context.ConfigPayload.Sequence.maxLenght"
+                [min]="this.Context.ConfigPayload.Sequence.min" [max]="this.Context.ConfigPayload.Sequence.max"
+                [placeholder]="this.Context.ConfigPayload.Sequence.placeholder" formControlName="DBNameSequence">
+            <show-errors [control]="this.form.get('DBNameSequence')"></show-errors>
+        </div>
+
+
+        <div class="required field">
+            <label>DB Name (generated) (readonly)</label>
+            <input type="text" formControlName="DBName_generated"
+                [placeholder]="this.getPlaceholderFromConfigPayload('DBName_generated')" readonly>
+            <show-errors [control]="this.form.get('DBName_generated')"></show-errors>
+        </div>
+    </div>
+
+    <div class="required field" [class.required]="isFormElementRequired('ListenerServiceName')">
+        <label>Listener Service Name<br>
+            (used for Connect String)</label>
+        <xa-select formControlName="ListenerServiceName"
+            [placeholder]="this.getPlaceholderFromConfigPayload('ListenerServiceName')"
+            [options]="ListenerServiceName$ | async" [search]="true" [loading]="!(ListenerServiceName$ | async)"
+            viewValue="value" optionValue="value" [clearable]="true" [config]="this.dropDownConfig">
+        </xa-select>
+        <show-errors [control]="this.form.get('ListenerServiceName')"></show-errors>
+    </div>
+
+
+    <div class="field">
+        <div class="ui icon message">
+            <i class="info icon"></i>
+            <div class="content">
+                SGA Memory-Sizing will be decided by Approval-Group, according to the Database-Sizing
+            </div>
+        </div>
+    </div>
+
+    <h5 class="ui dividing header">
+        <i class="cog icon"></i>
+        <div class="content">
+            <span> Linux OS User Configuration </span>
+        </div>
+    </h5>
+
+
+    <div class="inline fields" [class.required]="isFormElementRequired('OracleCustomize')" style="padding-top: 5px;">
+
+        <label for="OracleCustomize">Change default uid gid</label>
+        <div class="field">
+            <div class="ui radio checkbox">
+                <input type="radio" formControlName="OracleCustomize" value="yes">
+                <label>yes</label>
+            </div>
+        </div>
+        <div class="field">
+            <div class="ui radio checkbox">
+                <input type="radio" formControlName="OracleCustomize" value="no">
+                <label>no</label>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="three inline fields">
+        <div class="field" [class.required]="isFormElementRequired('UIDnumber')">
+            <label>oracle uid</label>
+            <input type="text" [readonly]="this.form.get('OracleCustomize').value == 'no'" formControlName="UIDnumber"
+                [placeholder]="this.getPlaceholderFromConfigPayload('UIDnumber')">
+        </div>
+        <div class="field" [class.required]="isFormElementRequired('Oinstallgid')">
+            <label>oinstall gid</label>
+            <input type="text" [readonly]="this.form.get('OracleCustomize').value == 'no'" formControlName="Oinstallgid"
+                [placeholder]="this.getPlaceholderFromConfigPayload('Oinstallgid')">
+        </div>
+        <div class="field" [class.required]="isFormElementRequired('Dbagid')">
+            <label>dba gid</label>
+            <input type="text" [readonly]="this.form.get('OracleCustomize').value == 'no'" formControlName="Dbagid"
+                [placeholder]="this.getPlaceholderFromConfigPayload('Dbagid')">
+        </div>
+    </div>
+
+
+
+    <div class="inline fields">
+        <div class="required field" [class.required]="isFormElementRequired('BackupDatabase')">
+            <label for="BackupDatabase">Backup Database</label>
+        </div>
+        <div class="field">
+            <div *ngIf="this.isBackupInterfaceAvailableOnHost ||
+            this.form.get('Environment').value === 'PROD'" class="ui radio checkbox">
+                <input type="radio" formControlName="BackupDatabase" value="yes">
+                <label>yes</label>
+            </div>
+        </div>
+        <div *ngIf="this.form.get('Environment').value !== 'PROD'" class="field">
+            <div class="ui radio checkbox">
+                <input type="radio" formControlName="BackupDatabase" value="no">
+                <label>no</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="five wide field" *ngIf="this.form.get('BackupDatabase').value == 'yes'" [class.required]="isFormElementRequired('RMANBackup')">
+        <label>RMAN Backup Retention in days</label>
+        <input type="number" formControlName="RMANBackup">
+        <show-errors [control]="this.form.get('RMANBackup')"></show-errors>
+    </div>
+
+
+
+    <div class="field" *ngIf="this.form.get('CMDBFee').value">
+        <div class="ui message">
+         {{this.form.get('CMDBFee').value}}
+        </div>
+    </div>
+
+    <h2 class="ui dividing header padding-top-30">
+        <i class="share alternate icon"></i>
+        <div class="content">
+            <span> Information Sharing </span>
+            <div class="sub header">Specify e-mail addresses below that you want to inform about the creation of the
+                change
+                (separated by ; ).</div>
+        </div>
+    </h2>
+
+    <div class="field" [class.required]="isFormElementRequired('MailAddressesShareInformation')">
+        <label>E-Mail Addresses:</label>
+        <input type="text" formControlName="MailAddressesShareInformation"
+            placeholder="mr.acme@t-systems.com;max.mustermann@t-systems.com" />
+        <show-errors [control]="this.form.get('MailAddressesShareInformation')"></show-errors>
+    </div>
+
+    <div class="required field" [class.required]="isFormElementRequired('Agree')">
+        <div class="ui checkbox">
+            <input type="checkbox" formControlName="Agree">
+            <label> I confirm that all provided data are correct!</label>
+            <show-errors [control]="this.form.get('Agree')"></show-errors>
+        </div>
+    </div>
+
+
+</form>
