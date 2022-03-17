@@ -15,8 +15,7 @@ import { AppInitializeService } from './app-initialize.service';
 import { SharedModule } from './shared/shared.module';
 import { ErrorModalComponent } from './requests/ce-request/error-modal/error-modal-component';
 import { UserTaskZoneComponent } from './user-tasks/user-task-zone.component';
-import { FormsImportModule } from './forms-import.module';
-
+import { UseCasesFormsAppModule } from 'projects/use-cases-forms.app.module';
 
 const appInitializerFn = (appConfig: AppConfigService) => {
   return () => {
@@ -42,7 +41,7 @@ const appInitializerFn = (appConfig: AppConfigService) => {
       ...AllCellEditors,
       ...AllCellRenderers
     ]),
-    FormsImportModule
+    UseCasesFormsAppModule
   ],
 
   providers: [

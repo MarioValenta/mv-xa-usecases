@@ -1,14 +1,14 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { UTValidateComponent } from './app.component';
 
 describe('UTValidateComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
       declarations: [
         UTValidateComponent
       ],
     }).compileComponents();
-  });
+  }));
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(UTValidateComponent);
@@ -16,16 +16,16 @@ describe('UTValidateComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title '@create-f5-virtual-server/ut-validate-data'`, () => {
+  it(`should have as title 'ValidateRequestData'`, () => {
     const fixture = TestBed.createComponent(UTValidateComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('@create-f5-virtual-server/ut-validate-data');
+    expect(app.title).toEqual('ValidateRequestData');
   });
 
-  it('should render title', () => {
+  it('should render title in a h1 tag', () => {
     const fixture = TestBed.createComponent(UTValidateComponent);
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('@create-f5-virtual-server/ut-validate-data app is running!');
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h1').textContent).toContain('Welcome to ValidateRequestData!');
   });
 });

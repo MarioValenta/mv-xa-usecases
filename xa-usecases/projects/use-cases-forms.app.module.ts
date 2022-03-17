@@ -15,7 +15,6 @@ import { StorageExtensionRequestFormAppModule } from 'projects/@storage-extensio
 import { VMCreateRequestFormAppModule } from 'projects/@vmcreate/request-form/src/app/app.module';
 
 
-
 @NgModule({
   exports: [
     RanfRequestFormAppModule,
@@ -33,4 +32,4 @@ import { VMCreateRequestFormAppModule } from 'projects/@vmcreate/request-form/sr
     CreateF5VirtualServerUTValidateAppModule
   ]
 })
-export class FormsImportModule { }
+export class UseCasesFormsAppModule { }
