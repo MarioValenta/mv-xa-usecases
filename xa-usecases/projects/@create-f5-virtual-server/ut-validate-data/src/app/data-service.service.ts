@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { share } from 'rxjs/operators';
 import { XAServices } from '@xa/lib-ui-common';
+import { share } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CiTableDataService {
+export class DataService {
 
   constructor(private xaservices: XAServices) {
     if (this.xaservices === undefined || this.xaservices === null) {
@@ -13,8 +13,8 @@ export class CiTableDataService {
     }
   }
 
-  public EnrichRows(hosts: Array<any>) {
-    return this.xaservices.Http.Get<Array<string>>(`api/f5/pooldata/`, { params: { "hosts": JSON.stringify(hosts) } }).pipe(
+  public GetF5Cluster(customer: string) {
+    return this.xaservices.Http.Get<Array<any>>(`api/f5/clusters/${customer}`).pipe(
       share()
     );
   }

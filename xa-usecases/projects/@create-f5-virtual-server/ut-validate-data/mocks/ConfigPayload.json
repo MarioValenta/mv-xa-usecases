@@ -1,0 +1,126 @@
+{
+  "variablesToBeStoredInCamunda": [
+    "F5Cluster",
+    "F5Partition",
+    "ServiceName",
+    "Customer",
+    "WBS",
+    "HSTBY",
+    "Aborted",
+    "Environment",
+    "NetworkRequestOptions",
+    "SendString",
+    "ReceiveString",
+    "ReceiveDisableString"
+  ],
+  "allowedStatus": [
+    "BASE_INSTALLED",
+    "ACTIVE"
+  ],
+  "textarea": {
+    "rows": 10,
+    "textLength": 4000,
+    "placeholder": "\r\n(limited to 4000 characters)"
+  },
+  "placeholders": {
+    "Customer": "select Customer ...",
+    "WBS": "enter valid WBS",
+    "DNSName": "enter valid DNS name",
+    "CookieName": "enter Cookie name",
+    "ServicePort": "enter Port between 0-65535",
+    "SendString": "enter SEND STRING",
+    "ReceiveString": "enter RECEIVE STRING",
+    "ReceiveDisableString": "enter RECEIVE DISABLE STRING",
+    "F5Partition": "enter valid F5 Partition",
+    "ServiceName": "enter Service Name",
+    "Comments": "write some comments if needed ...",
+    "CertificateText": "enter name of existing client profile",
+    "BackendSSLTLSText": "enter name of existing server profile",
+    "TechnicalComment": "write some technical comment if needed ...",
+    "NWSComment": "write some NWS comment if needed ...",
+    "HealthCheck": "select Health Check ...",
+    "Persistence": "select Persistence ...",
+    "Network": "select Network ...",
+    "Environment": "select Environment ...",
+    "Protocol": "select Protocol ...",
+    "CertificateKey": "enter PEM Key",
+    "Certificate": "enter Certificate"
+  },
+  "searchcomponent": {
+    "top": "50px",
+    "width": "75%",
+    "myStyle": {
+      "height": "400px"
+    }
+  },
+  "gridColumnsUTValidateData": [
+    {
+      "field": "HostID",
+      "headerName": "HostID",
+      "resizable": true,
+      "hide": true
+    },
+    {
+      "field": "PoolMember",
+      "headerName": "Pool Member",
+      "resizable": true
+    },
+    {
+      "field": "IPAddress",
+      "headerName": "IP Address",
+      "resizable": true
+    },
+    {
+      "field": "ServicePort",
+      "headerName": "Member Service Port",
+      "resizable": true,
+      "editable": true
+    },
+    {
+      "field": "Ratio",
+      "headerName": "Ratio",
+      "resizable": true,
+      "editable": true
+    },
+    {
+      "field": "ConnectionLimit",
+      "headerName": "Connection Limit",
+      "resizable": true,
+      "editable": true
+    },
+    {
+      "field": "PriorityGroup",
+      "headerName": "Priority Group",
+      "resizable": true,
+      "editable": true
+    }
+  ],
+  "searchcomponentColumns": [
+    {
+      "Name": "HOSTID",
+      "Label": "HostID"
+    },
+    {
+      "Name": "HOSTNAME",
+      "Label": "Hostname",
+      "UseFormatValue": true
+    },
+    {
+      "Name": "HKTR",
+      "Label": "WBS",
+      "HideTable": true,
+      "HideInput": true
+    },
+    {
+      "Name": "HSTATUS",
+      "Label": "Status",
+      "HideInput": true
+    }
+  ],
+  "searchModal": {
+    "uniqueKeyForDuplicates": "HostID",
+    "searchButtonText": "search Pool Member",
+    "addButtonText": "add Pool Member",
+    "description": "<p><b>Hints:</b> (You can remove entries by \"right-clicking\" and selecting \"remove\".)</p>"
+  }
+}

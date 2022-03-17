@@ -1299,10 +1299,6 @@
                 {
                   "replace": "projects/@create-f5-virtual-server/request-form/src/environments/environment.ts",
                   "with": "projects/@create-f5-virtual-server/request-form/src/environments/environment.prod.ts"
-                },
-                {
-                  "replace": "projects/@create-f5-virtual-server/shared/environments/environment.ts",
-                  "with": "projects/@create-f5-virtual-server/shared/environments/environment.prod.ts"
                 }
               ],
               "outputHashing": "all"
@@ -1349,6 +1345,104 @@
             ],
             "styles": [
               "projects/@create-f5-virtual-server/request-form/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "@create-f5-virtual-server/ut-validate-data": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@create-f5-virtual-server/ut-validate-data",
+      "sourceRoot": "projects/@create-f5-virtual-server/ut-validate-data/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@create-f5-virtual-server/ut-validate-data",
+            "index": "projects/@create-f5-virtual-server/ut-validate-data/src/index.html",
+            "main": "projects/@create-f5-virtual-server/ut-validate-data/src/main.ts",
+            "polyfills": "projects/@create-f5-virtual-server/ut-validate-data/src/polyfills.ts",
+            "tsConfig": "projects/@create-f5-virtual-server/ut-validate-data/tsconfig.app.json",
+            "assets": [
+              "projects/@create-f5-virtual-server/ut-validate-data/src/favicon.ico",
+              "projects/@create-f5-virtual-server/ut-validate-data/src/assets"
+            ],
+            "styles": [
+              "projects/@create-f5-virtual-server/ut-validate-data/src/styles.css"
+            ],
+            "scripts": [],
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "2mb",
+                "maximumError": "3mb"
+              },
+              {
+                "type": "anyComponentStyle",
+                "maximumWarning": "2kb",
+                "maximumError": "4kb"
+              }
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/@create-f5-virtual-server/ut-validate-data/src/environments/environment.ts",
+                  "with": "projects/@create-f5-virtual-server/ut-validate-data/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@create-f5-virtual-server/ut-validate-data:build:production"
+            },
+            "development": {
+              "browserTarget": "@create-f5-virtual-server/ut-validate-data:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "@create-f5-virtual-server/ut-validate-data:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@create-f5-virtual-server/ut-validate-data/src/test.ts",
+            "polyfills": "projects/@create-f5-virtual-server/ut-validate-data/src/polyfills.ts",
+            "tsConfig": "projects/@create-f5-virtual-server/ut-validate-data/tsconfig.spec.json",
+            "karmaConfig": "projects/@create-f5-virtual-server/ut-validate-data/karma.conf.js",
+            "assets": [
+              "projects/@create-f5-virtual-server/ut-validate-data/src/favicon.ico",
+              "projects/@create-f5-virtual-server/ut-validate-data/src/assets"
+            ],
+            "styles": [
+              "projects/@create-f5-virtual-server/ut-validate-data/src/styles.css"
             ],
             "scripts": []
           }

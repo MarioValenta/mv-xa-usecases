@@ -1,0 +1,59 @@
+{
+  "WBS": "V.00301363.10",
+  "DNSName": "test.dummy.t-systems.at",
+  "Network": "5529",
+  "NetworkRequestOptions": {
+    "IPv4": true,
+    "IPv6": false,
+    "SelectIPVersion": false,
+    "SelectedLANLabel": "Azure POC | 10.84.110.0/24"
+  },
+  "Comments": "Hier sollte ein Kommentar stehen, aber .... Testasdoür9ß34ujtß",
+  "Customer": "UNIQA",
+  "Protocol": "TCP",
+  "CookieName": "testCookie",
+  "SendString": "",
+  "Certificate": "Cert:aopsfijTestasdoür9ß34ujtßg9049ßjmerügß9erjoperjg09ehjg90834hfn4pihwefwe8ifgTestasd",
+  "Environment": "TEST",
+  "HealthCheck": "TCP",
+  "Persistence": "existing cookie",
+  "PoolMembers": [
+    {
+      "HostID": "H11982279",
+      "PoolMember": "sv151lxbuild01",
+      "IPAddress": "34.65.123.31",
+      "ServicePort": "1"
+    },
+    {
+      "HostID": "H11822916",
+      "PoolMember": "sv151lxdh01",
+      "IPAddress": "34.65.123.31",
+      "ServicePort": "2"
+    },
+    {
+      "HostID": "H11822917",
+      "PoolMember": "sv151lxdh02",
+      "IPAddress": "34.65.123.31",
+      "ServicePort": "3"
+    },
+    {
+      "HostID": "H11822918",
+      "PoolMember": "sv151lxdh03",
+      "IPAddress": "34.65.123.31",
+      "ServicePort": "4"
+    },
+    {
+      "HostID": "H12985364",
+      "PoolMember": "sv151lxpg01",
+      "IPAddress": "34.65.123.31",
+      "ServicePort": "5"
+    }
+  ],
+  "ServicePort": "1234",
+  "BackendSSLTLS": true,
+  "ReceiveString": "",
+  "CertificateKey": "Key:Testasdoür9ß34ujtßg9049ßjmerügß9erjoperjg09ehjg90834hfn4pihwefwe8i",
+  "SSLTLSTermination": true,
+  "SelectCertificate": "provideCert",
+  "ReceiveDisableString": ""
+}

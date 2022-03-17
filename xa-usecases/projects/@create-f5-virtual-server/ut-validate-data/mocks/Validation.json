@@ -1,0 +1,105 @@
+{
+  "UT.F5CreateVServer.ValidateData": [
+    {
+      "varName": "SSLTLSTermination",
+      "required": true,
+      "type": "boolean",
+      "dependencies": {
+        "true": [
+          {
+            "varName": "SelectCertificate",
+            "required": true,
+            "type": "list",
+            "dependencies": {
+              "useCert": [
+                {
+                  "varName": "CertificateText",
+                  "required": true,
+                  "type": "text"
+                }
+              ]
+            }
+          },
+          {
+            "varName": "BackendSSLTLS",
+            "required": true,
+            "type": "boolean",
+            "dependencies": {
+              "true": [
+                {
+                  "varName": "BackendSSLTLSText",
+                  "required": true,
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "varName": "PoolMembers",
+      "required": true,
+      "type": "array",
+      "fields": [
+        {
+          "varName": "HostID",
+          "required": true,
+          "type": "text"
+        },
+        {
+          "varName": "PoolMember",
+          "required": true,
+          "type": "text"
+        },
+        {
+          "varName": "IPAddress",
+          "required": true,
+          "type": "text"
+        },
+        {
+          "varName": "ServicePort",
+          "required": true,
+          "type": "number",
+          "min": 1,
+          "max": 65535
+        },
+        {
+          "varName": "Ratio",
+          "required": true,
+          "type": "text",
+          "min": 0,
+          "max": 65535
+        },
+        {
+          "varName": "ConnectionLimit",
+          "required": true,
+          "type": "number",
+          "min": 0
+        },
+        {
+          "varName": "PriorityGroup",
+          "required": true,
+          "type": "text",
+          "min": 0
+        }
+      ]
+    },
+    {
+      "varName": "F5Cluster",
+      "required": true,
+      "type": "list",
+      "possibleValuesUrl": "api/f5/clusters/${customer}"
+    },
+    {
+      "varName": "F5Partition",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "varName": "ServiceName",
+      "required": true,
+      "type": "text"
+    }
+  ]
+}

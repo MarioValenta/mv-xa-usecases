@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { BillingRequestFormAppModule } from 'projects/@billing/request-form/src/app/app.module';
 import { CreateF5VirtualServerRequestFormAppModule } from 'projects/@create-f5-virtual-server/request-form/src/app/app.module';
+import { CreateF5VirtualServerUTValidateAppModule } from 'projects/@create-f5-virtual-server/ut-validate-data/src/app/app.module';
 import { CreateNFSVolumeRequestFormAppModule } from 'projects/@create-nfs-volume/request-form/src/app/app.module';
 import { CreateRfcRequestFormAppModule } from 'projects/@create-rfc/request-form/src/app/app.module';
 import { CreateSRRequestFormAppModule } from 'projects/@create-sr/request-form/src/app/app.module';
@@ -28,7 +29,8 @@ import { VMCreateRequestFormAppModule } from 'projects/@vmcreate/request-form/sr
     PatchautomationRequestFormAppModule,
     PatchautomationRemoveRequestFormAppModule,
     VMCreateRequestFormAppModule,
-    CreateF5VirtualServerRequestFormAppModule
+    CreateF5VirtualServerRequestFormAppModule,
+    CreateF5VirtualServerUTValidateAppModule
   ]
 })
 export class FormsImportModule { }

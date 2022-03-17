@@ -1,0 +1,278 @@
+<form [formGroup]="form" class="ui container form" style="padding:20px 10px">
+
+  <h2 class="ui dividing header">
+    <div class="content">
+      <i class="edit outline icon"></i>
+      <span> General Data </span>
+      <div class="sub header"> Check the request data. </div>
+    </div>
+  </h2>
+
+  <div class="field" [class.required]="this.getValidationService | required:'Comments'">
+    <label for="Comments">additional comments (readonly)</label>
+    <textarea formControlName="Comments" [placeholder]="this.Context | placeholder:'Comments'" class="readonly"
+      readonly></textarea>
+  </div>
+
+  <div class="two fields">
+    <div class="field">
+      <label>Customer (readonly)</label>
+      <input type="text" formControlName="Customer" class="readonly" readonly />
+    </div>
+
+    <div class="field">
+      <label>WBS (readonly)</label>
+      <input type="text" formControlName="WBS" class="readonly" readonly />
+    </div>
+  </div>
+
+  <h2 class="ui dividing header">
+    <div class="content">
+      <i class="edit outline icon"></i>
+      <span> Settings </span>
+      <div class="sub header"> Check the settings. </div>
+    </div>
+  </h2>
+
+  <div class="three fields">
+    <div class="field">
+      <label>Session Persistence (readonly)</label>
+      <input type="text" formControlName="Persistence" class="readonly" readonly />
+    </div>
+
+    <div class="field">
+      <label>Health Check (readonly)</label>
+      <input type="text" formControlName="HealthCheck" class="readonly" readonly />
+    </div>
+
+    <div class="field"></div>
+  </div>
+
+  <div *ngIf="this.getFormDataByName('HealthCheck') === 'HTTP' || this.getFormDataByName('HealthCheck') === 'HTTPS' ||
+    this.getFormDataByName('Persistence') === 'existing cookie'" class="three fields">
+    <div class="grouped fields" style="padding-left: 7px;padding-right: 7px;">
+      <div *ngIf="this.getFormDataByName('Persistence') === 'existing cookie'">
+        <div class="field">
+          <label>Cookie Name (case sensitive) (readonly)</label>
+          <input type="text" formControlName="CookieName" class="readonly" readonly />
+        </div>
+      </div>
+    </div>
+
+    <div class="grouped fields" style="padding-left: 7px;padding-right: 7px;">
+      <div
+        *ngIf="this.getFormDataByName('HealthCheck') === 'HTTP' || this.getFormDataByName('HealthCheck') === 'HTTPS'">
+        <div class="field">
+          <label>SEND STRING (readonly)</label>
+          <input type="text" formControlName="SendString" class="readonly" readonly />
+        </div>
+        <div class="field">
+          <label>RECEIVE STRING (readonly)</label>
+          <input type="text" formControlName="ReceiveString" class="readonly" readonly />
+        </div>
+        <div class="field">
+          <label>RECEIVE DISABLE STRING (readonly)</label>
+          <input type="text" formControlName="ReceiveDisableString" class="readonly" readonly />
+        </div>
+      </div>
+    </div>
+
+    <div class="field"></div>
+  </div>
+
+  <h2 class="ui dividing header">
+    <div class="content">
+      <span> Pool Members </span>
+      <div class="sub header"> Please check the members of the pool. </div>
+    </div>
+  </h2>
+  <ul>
+    <li>You can edit the <b>Member Service Port</b> between
+      <b>{{this.getConfigsForPoolMembers('ServicePort').min}} -
+        {{this.getConfigsForPoolMembers('ServicePort').max}}</b>.
+    </li>
+    <li>You can enter a value for <b>Ratio</b>.</li>
+    <li>You can enter a value for <b>Connection Limit</b>.</li>
+    <li>You can enter a value for <b>Priority Group</b>.</li>
+    <li>Press <b>"ENTER"</b> to finish editing.</li>
+  </ul>
+  <div class="field" [class.required]="this.getValidationService | required:'PoolMembers'">
+    <label> Selected servers </label>
+    <ci-table *ngIf="loaded" [Context]="this.Context" [inputData]="this.Context.Payload.PoolMembers"
+      [columnDefs]="this.Context.ConfigPayload.gridColumnsUTValidateData" [showSearchButton]="false"
+      [showClearButton]="false" [searchButtonText]="this.Context.ConfigPayload.searchModal.searchButtonText"
+      [uniqueKeyForDuplicates]="this.Context.ConfigPayload.searchModal.uniqueKeyForDuplicates" [allowDelete]="false"
+      rowSelection="single" (gridChanged)="updateCIForm($event)"></ci-table>
+    <show-errors [control]="this.form.get('PoolMembers')"></show-errors>
+  </div>
+
+
+  <h2 class="ui dividing header">
+    <div class="content">
+      <span> Network Settings </span>
+    </div>
+  </h2>
+
+  <div class="three fields">
+    <div class="five wide field">
+      <label>DNS Name (readonly)</label>
+      <input type="text" formControlName="DNSName" class="readonly" readonly />
+      <show-errors [control]="this.form.get('DNSName')"></show-errors>
+    </div>
+
+    <div formGroupName="NetworkRequestOptions" class="eight wide field">
+      <label>Network (readonly)</label>
+      <div>
+        <input type="text" formControlName="SelectedLANLabel" class="readonly" readonly />
+        <div style="padding: 5px; text-align: right"
+          [style.opacity]="!this.form.get('NetworkRequestOptions.SelectIPVersion').value ? '0.3' : '1'"
+          [style.visibility]="form.get('NetworkRequestOptions.SelectedLANLabel').value ? 'visible' : 'hidden'">
+          <span *ngIf="this.form.get('NetworkRequestOptions.SelectIPVersion').value" class="ui teal label"
+            style="margin-right: 20px;">You can update the IP version selection!</span>
+          <xa-checkbox [clickable]="this.form.get('NetworkRequestOptions.SelectIPVersion').value"
+            style="padding-right: 5px" [formControl]="form.get('NetworkRequestOptions.IPv4')">IPv4
+          </xa-checkbox>
+          <xa-checkbox [clickable]="this.form.get('NetworkRequestOptions.SelectIPVersion').value"
+            [formControl]="form.get('NetworkRequestOptions.IPv6')">
+            IPv6</xa-checkbox>
+        </div>
+      </div>
+    </div>
+
+    <div class="three wide field">
+      <label>Environment (readonly)</label>
+      <div>
+        <input type="text" formControlName="Environment" class="readonly" readonly />
+      </div>
+    </div>
+  </div>
+
+  <div class="four fields">
+    <div class="field">
+      <label>Protocol (readonly)</label>
+      <input type="text" formControlName="Protocol" class="readonly" readonly />
+
+    </div>
+
+    <div class="field">
+      <label>Service Port (readonly)</label>
+      <input type="text" formControlName="ServicePort" class="readonly" readonly />
+
+    </div>
+
+
+    <div class="grouped fields" style="margin-top: 25px;margin-left: 20px;">
+      <div class="field">
+        <xa-checkbox formControlName="SSLTLSTermination" class="readonly" readonly>SSL/TLS Termination
+        </xa-checkbox>
+      </div>
+      <div *ngIf="this.form.get('SSLTLSTermination').value">
+        <!-- <label for="Certificate">Select the certificate</label> -->
+        <div class="field" class="readonly" readonly>
+          <div class="ui radio checkbox">
+            <input type="radio" formControlName="SelectCertificate" value="useCert" class="readonly" readonly />
+            <label>use existing certificate</label>
+          </div>
+        </div>
+        <div class="field" class="readonly" readonly>
+          <div class="ui radio checkbox">
+            <input type="radio" formControlName="SelectCertificate" value="provideCert" class="readonly" readonly />
+            <label>I will provide the certificate with intermediate chain</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="this.form.get('SSLTLSTermination').value" class="field"
+      [class.required]="this.getValidationService | required:'BackendSSLTLS'"
+      style="margin-top: 25px;margin-left: 20px;">
+      <xa-checkbox formControlName="BackendSSLTLS" class="readonly" readonly>Backend uses SSL/TLS</xa-checkbox>
+    </div>
+  </div>
+
+  <div class="ui grid" style="margin-bottom: 14px; margin-top: 0px;">
+    <div *ngIf="this.form.get('SSLTLSTermination').value && this.form.get('SelectCertificate').value === 'useCert'"
+      class="two column row">
+      <div class="right floated column">
+        <div class="field" [class.required]="this.getValidationService | required:'CertificateText'">
+          <label for="CertificateText">Name of existing client profile</label>
+          <input type="text" formControlName="CertificateText"
+            [placeholder]="this.Context | placeholder:'CertificateText'" />
+          <show-errors [control]="this.form.get('CertificateText')"></show-errors>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="this.form.get('SSLTLSTermination').value && this.form.get('BackendSSLTLS').value"
+      class="two column row">
+      <div class="right floated column">
+        <div class="field" [class.required]="this.getValidationService | required:'BackendSSLTLSText'">
+          <label for="BackendSSLTLSText">Name of existing server profile</label>
+          <input type="text" formControlName="BackendSSLTLSText"
+            [placeholder]="this.Context | placeholder:'BackendSSLTLSText'" />
+          <show-errors [control]="this.form.get('BackendSSLTLSText')"></show-errors>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="two fields">
+    <div *ngIf="this.getFormDataByName('CertificateKey')" class="field">
+      <label for="Certificate">CertificateKey (readonly)</label>
+      <textarea formControlName="CertificateKey" class="readonly" readonly></textarea>
+    </div>
+
+    <div *ngIf="this.getFormDataByName('Certificate')" class="field">
+      <label for="Certificate">Certificate (readonly)</label>
+      <textarea formControlName="Certificate" class="readonly" readonly></textarea>
+    </div>
+  </div>
+
+  <h2 class="ui dividing header">
+    <div class="content">
+      <i class="edit outline icon"></i>
+      <span> Additional Settings </span>
+      <div class="sub header"> Fill in the missing settings. </div>
+    </div>
+  </h2>
+
+
+  <div class="three fields">
+
+    <div class="field" [class.required]="this.getValidationService | required:'F5Cluster'">
+      <label>F5 Cluster</label>
+      <div *ngIf="this.getFormDataByName('Customer')">
+        <xa-select formControlName="F5Cluster" placeholder="Select Cluster" [options]="F5Cluster$ | async"
+          [search]="true" [clearable]="true" [loading]="!(F5Cluster$ | async)" viewValue="CLUSTERNAME"
+          optionValue="CLUSTERID">
+        </xa-select>
+        <show-errors [control]="this.form.get('F5Cluster')"></show-errors>
+      </div>
+    </div>
+
+    <div class="field" [class.required]="this.getValidationService | required:'F5Partition'">
+      <label>F5 Partition</label>
+      <input type="text" formControlName="F5Partition" [placeholder]="this.Context | placeholder:'F5Partition'" />
+      <show-errors [control]="this.form.get('F5Partition')"></show-errors>
+    </div>
+    <div class="field" [class.required]="this.getValidationService | required:'ServiceName'">
+      <label>Service Name (without port)</label>
+      <input type="text" formControlName="ServiceName" [placeholder]="this.Context | placeholder:'ServiceName'" />
+      <show-errors [control]="this.form.get('ServiceName')"></show-errors>
+    </div>
+  </div>
+
+  <div class="field" [class.required]="this.getValidationService | required:'NWSComment'">
+    <label for="NWSComment">NWS comment</label>
+    <textarea formControlName="NWSComment" [placeholder]="this.Context | placeholder:'NWSComment'"></textarea>
+  </div>
+
+  <div class="field" [class.required]="this.getValidationService | required:'TechnicalComment'">
+    <label for="TechnicalComment">additional technical comment</label>
+    <textarea formControlName="TechnicalComment"
+      [placeholder]="this.Context | placeholder:'TechnicalComment'"></textarea>
+  </div>
+
+  <pre *if-dev class="field">
+        <p>{{this.form.value | json}}</p>
+    </pre>
+
+</form>

@@ -1,0 +1,16 @@
+.readonly {
+    opacity: 0.50;
+    /* background-color: chartreuse; */
+    }
+  
+    input[type="checkbox"][readonly] {
+      pointer-events: none;
+    }
+  
+    input[type="radio"][readonly] {
+      pointer-events: none;
+    }
+  
+    xa-checkbox[readonly] {
+      pointer-events: none;
+    }

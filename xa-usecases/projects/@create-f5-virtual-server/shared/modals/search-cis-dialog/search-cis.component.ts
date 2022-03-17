@@ -10,7 +10,7 @@ import { XAServices } from '@xa/lib-ui-common';
 export class SearchCisModalComponent implements OnInit {
 
   selection = 'multiple';
-  rowSelection;
+  rowSelection: any;
   SearchFields: Array<SearchField> = [];
   myStyle = '';
   addButtonText = 'add';

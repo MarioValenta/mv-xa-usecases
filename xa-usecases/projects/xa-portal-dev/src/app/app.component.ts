@@ -7,9 +7,9 @@ import { AppInitializeService } from './app-initialize.service';
 import { TaskContext } from './user-tasks/user-task-zone.component';
 
 // TODO: Needs to be adjusted for every UseCase form
-import * as Payload from '../../../@create-f5-virtual-server/request-form/mocks/Payload.json';
-import * as ConfigPayload from '../../../@create-f5-virtual-server/request-form/mocks/ConfigPayload.json';
-import * as Validation from '../../../@create-f5-virtual-server/request-form/mocks/Validation.json';
+import * as Payload from '../../../@create-f5-virtual-server/ut-validate-data/mocks/Payload.json';
+import * as ConfigPayload from '../../../@create-f5-virtual-server/ut-validate-data/mocks/ConfigPayload.json';
+import * as Validation from '../../../@create-f5-virtual-server/ut-validate-data/mocks/Validation.json';
 
 @Component({
   selector: 'app-html-forms',
