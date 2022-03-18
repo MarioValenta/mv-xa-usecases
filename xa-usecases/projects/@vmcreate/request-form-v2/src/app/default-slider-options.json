@@ -1,0 +1,111 @@
+{
+  "cpuRangeOptions": {
+    "step": 1,
+    "start": 1,
+    "pips": {
+      "mode": "positions",
+      "values": [
+        0,
+        20,
+        40,
+        60,
+        80,
+        100
+      ],
+      "density": 2
+    },
+    "range": {
+      "min": 1,
+      "max": 32
+    },
+    "behaviour": "snap",
+    "connect": [
+      true,
+      false
+    ]
+  },
+  "memoryRangeOptions": {
+    "step": 2,
+    "start": 2,
+    "pips": {
+      "mode": "positions",
+      "values": [
+        0,
+        20,
+        40,
+        60,
+        80,
+        100
+      ],
+      "density": 2
+    },
+    "range": {
+      "min": 2,
+      "max": 256
+    },
+    "behaviour": "snap",
+    "connect": [
+      true,
+      false
+    ]
+  },
+  "storageSizeOptions": {
+    "start": 10,
+    "step": 10,
+    "connect": [
+      true,
+      false
+    ],
+    "pips": {
+      "mode": "values",
+      "density": 2,
+      "values": [
+        10,
+        50,
+        100,
+        150,
+        200,
+        250,
+        300,
+        350,
+        400,
+        450,
+        500
+      ]
+    },
+    "range": {
+      "min": 10,
+      "max": 500
+    },
+    "behaviour": "snap"
+  },
+  "initialWindowsStorageSizeOptions": {
+    "start": 100,
+    "step": 10,
+    "connect": [
+      true,
+      false
+    ],
+    "pips": {
+      "mode": "values",
+      "density": 2,
+      "values": [
+        80,
+        100,
+        150,
+        200,
+        250,
+        300,
+        350,
+        400,
+        450,
+        500
+      ]
+    },
+    "range": {
+      "min": 80,
+      "max": 500
+    },
+    "behaviour": "snap"
+  }
+}

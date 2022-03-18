@@ -1546,6 +1546,104 @@
           }
         }
       }
+    },
+    "@vmcreate/request-form-v2": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@vmcreate/request-form-v2",
+      "sourceRoot": "projects/@vmcreate/request-form-v2/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@vmcreate/request-form-v2",
+            "index": "projects/@vmcreate/request-form-v2/src/index.html",
+            "main": "projects/@vmcreate/request-form-v2/src/main.ts",
+            "polyfills": "projects/@vmcreate/request-form-v2/src/polyfills.ts",
+            "tsConfig": "projects/@vmcreate/request-form-v2/tsconfig.app.json",
+            "assets": [
+              "projects/@vmcreate/request-form-v2/src/favicon.ico",
+              "projects/@vmcreate/request-form-v2/src/assets"
+            ],
+            "styles": [
+              "projects/@vmcreate/request-form-v2/src/styles.css"
+            ],
+            "scripts": [],
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "500kb",
+                "maximumError": "1mb"
+              },
+              {
+                "type": "anyComponentStyle",
+                "maximumWarning": "2kb",
+                "maximumError": "4kb"
+              }
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/@vmcreate/request-form-v2/src/environments/environment.ts",
+                  "with": "projects/@vmcreate/request-form-v2/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@vmcreate/request-form-v2:build:production"
+            },
+            "development": {
+              "browserTarget": "@vmcreate/request-form-v2:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "@vmcreate/request-form-v2:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@vmcreate/request-form-v2/src/test.ts",
+            "polyfills": "projects/@vmcreate/request-form-v2/src/polyfills.ts",
+            "tsConfig": "projects/@vmcreate/request-form-v2/tsconfig.spec.json",
+            "karmaConfig": "projects/@vmcreate/request-form-v2/karma.conf.js",
+            "assets": [
+              "projects/@vmcreate/request-form-v2/src/favicon.ico",
+              "projects/@vmcreate/request-form-v2/src/assets"
+            ],
+            "styles": [
+              "projects/@vmcreate/request-form-v2/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
     }
   },
   "defaultProject": "xa-portal-dev"

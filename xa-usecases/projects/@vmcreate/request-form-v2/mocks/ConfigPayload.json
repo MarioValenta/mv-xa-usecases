@@ -1,0 +1,147 @@
+{
+  "variablesToBeStoredInCamunda": [],
+  "variablesNotToBeCloned": [],
+  "placeholders": {
+    "Customer": "select Customer ...",
+    "WbsInstall": "enter a valid WBS Install ...",
+    "WbsOperations": "enter a valid WBS Operations ...",
+    "OSSupportedBy": "select OS Supported By ...",
+    "AppSupportedBy": "select Application Supported By ...",
+    "ServiceTimeOS": "select Service Time OS Support ...",
+    "ServiceTimeAppSupport": "select Service Time App Support ...",
+    "Environment": "select Environment ...",
+    "Criticality": "select Criticality ...",
+    "SLA": "select SLA ...",
+    "Infrastructure": "select Infrastructure ...",
+    "ESXCluster": "select Cluster ...",
+    "DatastoreType": "select Datastore Type ...",
+    "OS": "select OS ...",
+    "OSVersion": "select OS Version ...",
+    "Release": "select Release ...",
+    "Hostname": "enter Hostname",
+    "Domain": "select Domain ...",
+    "Patchmode": "select Patch Mode ...",
+    "FQDN": "select Fully Qualified Domain Name ...",
+    "ExpertVCPUs": "enter Number of the CPUs",
+    "ExpertRAM": "enter Amount of RAM",
+    "ExpertLimitsUnit": "select Limits Unit ...",
+    "ExpertLowerLimit": "enter Lower Limit",
+    "ExpertUpperLimit": "enter Upper Limit",
+    "CustomerLAN": "select Customer LAN ...",
+    "AdminLAN": "select Admin LAN ...",
+    "NASLAN": "select NAS LAN ...",
+    "CustomerSpecificIPs": "Fill only if IP - Addresses are managed by Customer",
+    "MailAddressesShareInformation": "mr.acme@t-systems.com;max.mustermann@t-systems.com"
+  },
+  "SliderOptions": {
+    "cpuRangeOptions": {
+      "step": 1,
+      "start": 1,
+      "pips": {
+        "mode": "positions",
+        "values": [
+          0,
+          20,
+          40,
+          60,
+          80,
+          100
+        ],
+        "density": 2
+      },
+      "range": {
+        "min": 1,
+        "max": 32
+      },
+      "behaviour": "snap",
+      "connect": [
+        true,
+        false
+      ]
+    },
+    "memoryRangeOptions": {
+      "step": 2,
+      "start": 2,
+      "pips": {
+        "mode": "positions",
+        "values": [
+          0,
+          20,
+          40,
+          60,
+          80,
+          100
+        ],
+        "density": 2
+      },
+      "range": {
+        "min": 2,
+        "max": 256
+      },
+      "behaviour": "snap",
+      "connect": [
+        true,
+        false
+      ]
+    },
+    "storageSizeOptions": {
+      "start": 10,
+      "step": 10,
+      "connect": [
+        true,
+        false
+      ],
+      "pips": {
+        "mode": "values",
+        "density": 2,
+        "values": [
+          10,
+          50,
+          100,
+          150,
+          200,
+          250,
+          300,
+          350,
+          400,
+          450,
+          500
+        ]
+      },
+      "range": {
+        "min": 10,
+        "max": 500
+      },
+      "behaviour": "snap"
+    },
+    "initialWindowsStorageSizeOptions": {
+      "start": 100,
+      "step": 10,
+      "connect": [
+        true,
+        false
+      ],
+      "pips": {
+        "mode": "values",
+        "density": 2,
+        "values": [
+          80,
+          100,
+          150,
+          200,
+          250,
+          300,
+          350,
+          400,
+          450,
+          500
+        ]
+      },
+      "range": {
+        "min": 80,
+        "max": 500
+      },
+      "behaviour": "snap"
+    }
+  }
+}
