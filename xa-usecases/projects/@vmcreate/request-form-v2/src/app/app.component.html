@@ -685,18 +685,17 @@
     <i class="share alternate icon"></i>
     <div class="content">
       <span> Information Sharing </span>
-      <div class="sub header">Specify e-mail addresses below that you want to inform about the creation of the change
-        (separated by ; ).</div>
+      <div class="sub header">
+        Specify e-mail address(es) below that you want to inform about the creation of the change
+        <b>(separated by ; )</b>.
+      </div>
     </div>
   </h2>
 
   <div class="field">
-    <label>E-Mail Addresses:</label>
-    <input type="text" [formControlName]="FORM_KEY_EMAIL_ADDRESSES_SHARING_INFORMATION"
-      [placeholder]="this.Context | placeholder: FORM_KEY_EMAIL_ADDRESSES_SHARING_INFORMATION" />
-    <show-errors [control]="this.form.get(FORM_KEY_EMAIL_ADDRESSES_SHARING_INFORMATION)"></show-errors>
+    <info-mail-share [controlName]="FORM_KEY_EMAIL_ADDRESSES_SHARING_INFORMATION"
+      [required]="this.getValidationService | required: FORM_KEY_EMAIL_ADDRESSES_SHARING_INFORMATION"></info-mail-share>
   </div>
-
 
 </form>
 

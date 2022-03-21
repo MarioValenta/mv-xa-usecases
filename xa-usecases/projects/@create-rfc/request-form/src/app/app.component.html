@@ -747,45 +747,30 @@
     <div class="content">
       <span> Attachments </span>
       <div class="sub header">
-        Select the attachments that you want to add to the change.
+        Select and add attachments that you want to add to the change.
       </div>
     </div>
   </h2>
 
-  <ui-attachments-upload
-  style="width: 100%; height: 250px"
-    [maxNumberofFiles]="3"
-    [maxFileSizeInMB]="5"
-    formFieldName="Attachments"
-  >
-  </ui-attachments-upload>
+    <ui-attachments-upload style="width: 100%; height: 250px" [maxNumberofFiles]="3" [maxFileSizeInMB]="5"
+      formFieldName="Attachments">
+    </ui-attachments-upload>
 
   <h2 class="ui dividing header">
     <i class="share alternate icon"></i>
     <div class="content">
       <span> Information Sharing </span>
       <div class="sub header">
-        Specify e-mail addresses below that you want to inform about the
-        creation of the change (separated by ; ).
+        Specify e-mail address(es) below that you want to inform about the creation of the change
+        <b>(separated by ; )</b>.
       </div>
     </div>
   </h2>
 
-  <div
-    class="field"
-    [class.required]="
-      this.getValidationService | required: 'MailAddressesShareInformation'
-    "
-  >
-    <label>E-Mail Addresses:</label>
-    <input
-      type="text"
-      formControlName="MailAddressesShareInformation"
-      placeholder="mr.acme@t-systems.com;max.mustermann@t-systems.com"
-    />
-    <show-errors
-      [control]="this.form.get('MailAddressesShareInformation')"
-    ></show-errors>
+  <div class="field">
+    <info-mail-share controlName="MailAddressesShareInformation" [required]="
+          this.getValidationService | required: 'MailAddressesShareInformation'">
+    </info-mail-share>
   </div>
 
   <h2 class="ui dividing header">

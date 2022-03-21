@@ -373,20 +373,15 @@
     <div class="content">
       <span> Information Sharing </span>
       <div class="sub header">
-        Specify e-mail addresses below that you want to inform about the
-        creation of the change <b>(separated by ; )</b>.
+        Specify e-mail address(es) below that you want to inform about the creation of the change
+        <b>(separated by ; )</b>.
       </div>
     </div>
   </h2>
 
-  <div class="field" [class.required]="isFormElementRequired(FORM_KEY_MAILS)">
-    <label>{{ FORM_LABEL_MAILS }}</label>
-    <input
-      type="text"
-      [formControlName]="FORM_KEY_MAILS"
-      placeholder="mr.acme@t-systems.com;max.mustermann@t-systems.com"
-    />
-    <show-errors [control]="this.form.get(FORM_KEY_MAILS)"></show-errors>
+  <div class="field">
+    <info-mail-share [label]="FORM_LABEL_MAILS" [controlName]="FORM_KEY_MAILS"
+      [required]="isFormElementRequired(FORM_KEY_MAILS)"></info-mail-share>
   </div>
 
   <pre *if-dev class="field">

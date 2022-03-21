@@ -405,21 +405,20 @@
         </div>
     </div>
 
-    <h2 class="ui dividing header padding-top-30">
-        <i class="share alternate icon"></i>
-        <div class="content">
-            <span> Information Sharing </span>
-            <div class="sub header">Specify e-mail addresses below that you want to inform about the creation of the
-                change
-                (separated by ; ).</div>
+    <h2 class="ui dividing header">
+      <i class="share alternate icon"></i>
+      <div class="content">
+        <span> Information Sharing </span>
+        <div class="sub header">
+          Specify e-mail address(es) below that you want to inform about the creation of the change
+          <b>(separated by ; )</b>.
         </div>
+      </div>
     </h2>
 
-    <div class="field" [class.required]="isFormElementRequired('MailAddressesShareInformation')">
-        <label>E-Mail Addresses:</label>
-        <input type="text" formControlName="MailAddressesShareInformation"
-            placeholder="mr.acme@t-systems.com;max.mustermann@t-systems.com" />
-        <show-errors [control]="this.form.get('MailAddressesShareInformation')"></show-errors>
+    <div class="field">
+      <info-mail-share controlName="MailAddressesShareInformation"
+        [required]="isFormElementRequired('MailAddressesShareInformation')"></info-mail-share>
     </div>
 
     <div class="required field" [class.required]="isFormElementRequired('Agree')">

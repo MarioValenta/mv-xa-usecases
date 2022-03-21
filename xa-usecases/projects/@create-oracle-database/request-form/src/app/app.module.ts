@@ -3,7 +3,7 @@ import { NgModule, Injector } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { XAServices } from '@xa/lib-ui-common';
+import { InfoMailShareModule, XAServices } from '@xa/lib-ui-common';
 import { ValidationService } from '@xa/validation';
 import { ShowErrorsModule } from '@xa/show-errors';
 import { XAUIModule } from '@xa/ui';
@@ -18,7 +18,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     XAUIModule.forRoot(),
     BrowserAnimationsModule,
-    ShowErrorsModule
+    ShowErrorsModule,
+    InfoMailShareModule
   ],
   entryComponents: [
     AppComponent

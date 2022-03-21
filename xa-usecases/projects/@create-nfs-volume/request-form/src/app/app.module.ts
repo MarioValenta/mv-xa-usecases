@@ -6,7 +6,7 @@ import { createCustomElement } from '@angular/elements';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShowErrorsModule } from '@xa/show-errors';
-import { XAServices } from '@xa/lib-ui-common';
+import { InfoMailShareModule, XAServices } from '@xa/lib-ui-common';
 import { XAModalService, XAUIModule } from '@xa/ui';
 import { ValidationService } from '@xa/validation';
 import { environment } from '../environments/environment';
@@ -29,7 +29,8 @@ import { NouisliderModule } from 'ng2-nouislider';
     BrowserAnimationsModule,
     ShowErrorsModule,
     environment.production ? [] : DEVSharedModule,
-    SharedModule
+    SharedModule,
+    InfoMailShareModule
   ],
   providers: [
     {

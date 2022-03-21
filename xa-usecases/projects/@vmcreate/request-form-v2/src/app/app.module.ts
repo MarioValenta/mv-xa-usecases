@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XAUIModule } from '@xa/ui';
 import { ShowErrorsModule } from '@xa/show-errors';
 import { ValidationService } from '@xa/validation';
-import { XAServices } from '@xa/lib-ui-common';
+import { XAServices, InfoMailShareModule } from '@xa/lib-ui-common';
 import { NouisliderModule } from 'ng2-nouislider';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
@@ -31,7 +31,8 @@ import { XAToastDefaults } from 'projects/shared/toast-config';
     BrowserAnimationsModule,
     NouisliderModule,
     FormsModule,
-    environment.production ? [] : SharedModule
+    environment.production ? [] : SharedModule,
+    InfoMailShareModule
   ],
   exports: [
     AppComponent,
