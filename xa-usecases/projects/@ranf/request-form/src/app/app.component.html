@@ -362,12 +362,13 @@
     </div>
   </h2>
 
-  <ui-attachments-upload
-  style="width: 100%; height: 250px"
-  [maxNumberofFiles]="this.Context.ConfigPayload.attachmentsConfigFrontend.maxNumberOfFiles || 3"
-  [maxFileSizeInMB]="this.Context.ConfigPayload.attachmentsConfigFrontend.maxFileSizeInMB || 5"
-  formFieldName="Attachments">
-</ui-attachments-upload>
+  <div class="field">
+    <ui-attachments-upload style="width: 100%; height: 250px"
+      [maxNumberofFiles]="this.Context.ConfigPayload.attachmentsConfigFrontend.maxNumberOfFiles || 3"
+      [maxFileSizeInMB]="this.Context.ConfigPayload.attachmentsConfigFrontend.maxFileSizeInMB || 5"
+      formFieldName="Attachments">
+    </ui-attachments-upload>
+  </div>
 
 <h2 class="ui dividing header"></h2>
   <div class="field">

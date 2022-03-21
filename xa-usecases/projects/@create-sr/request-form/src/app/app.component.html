@@ -1,5 +1,4 @@
-<form [formGroup]="form" class="ui container form" style="padding:20px 10px">
-
+<form [formGroup]="form" class="ui container form" style="padding: 20px 10px">
   <h2 class="ui dividing header">
     <i class="edit outline icon"></i>
     <div class="content">
@@ -10,15 +9,30 @@
 
   <div class="field" [class.required]="isFormElementRequired('Title')">
     <label>Title</label>
-    <input type="text" formControlName="Title" [placeholder]="this.Context.ConfigPayload.Placeholders.Title" />
+    <input
+      type="text"
+      formControlName="Title"
+      [placeholder]="this.Context.ConfigPayload.Placeholders.Title"
+    />
     <show-errors [control]="this.form.get('Title')"></show-errors>
   </div>
 
-  <div class="five wide field" [class.required]="isFormElementRequired('Customer')">
+  <div
+    class="five wide field"
+    [class.required]="isFormElementRequired('Customer')"
+  >
     <label>Customer</label>
-    <xa-select [search]="true" [options]="Customers$ | async" [loading]="!(Customers$ | async)"
-      formControlName="CustomerSM9Name" [placeholder]="this.Context.ConfigPayload.Placeholders.Customer" viewValue="label" optionValue="sm9name"
-      (change)="customerSelected()" #customerDropDown></xa-select>
+    <xa-select
+      [search]="true"
+      [options]="Customers$ | async"
+      [loading]="!(Customers$ | async)"
+      formControlName="CustomerSM9Name"
+      [placeholder]="this.Context.ConfigPayload.Placeholders.Customer"
+      viewValue="label"
+      optionValue="sm9name"
+      (change)="customerSelected()"
+      #customerDropDown
+    ></xa-select>
     <show-errors [control]="this.form.get('Customer')"></show-errors>
   </div>
 
@@ -26,18 +40,31 @@
     <i class="users icon"></i>
     <div class="content">
       <span> Group </span>
-      <div class="sub header">Please select the Assignment-Group required for the request. </div>
+      <div class="sub header">
+        Please select the Assignment-Group required for the request.
+      </div>
     </div>
   </h2>
 
-  <div class="five wide field" [class.required]="isFormElementRequired('AssignmentGroup')">
+  <div
+    class="five wide field"
+    [class.required]="isFormElementRequired('AssignmentGroup')"
+  >
     <label>Assignment-Group </label>
-    <xa-select [search]="true" formControlName="AssignmentGroup" [placeholder]="this.Context.ConfigPayload.Placeholders.AssignmentGroup"
-      [options]="this.AssignmentGroups$ | async" [loading]="!(this.AssignmentGroups$ | async)">
+    <xa-select
+      [search]="true"
+      formControlName="AssignmentGroup"
+      [placeholder]="this.Context.ConfigPayload.Placeholders.AssignmentGroup"
+      [options]="this.AssignmentGroups$ | async"
+      [loading]="!(this.AssignmentGroups$ | async)"
+    >
     </xa-select>
     <show-errors [control]="this.form.get('AssignmentGroup')"></show-errors>
   </div>
-  <span>If a required Assignmentgroup is not available, please contact: DL_AT_Delivery-Support_Systems@t-systems.com</span>
+  <span
+    >If a required Assignmentgroup is not available, please contact:
+    DL_AT_Delivery-Support_Systems@t-systems.com</span
+  >
 
   <h2 class="ui dividing header">
     <i class="tasks icon"></i>
@@ -47,19 +74,40 @@
     </div>
   </h2>
 
-  <div class="field" [class.required]="isFormElementRequired('ServiceRequestDescriptionTextArea')">
+  <div
+    class="field"
+    [class.required]="
+      isFormElementRequired('ServiceRequestDescriptionTextArea')
+    "
+  >
     <label>Service Request Description</label>
     Please provide a thorough request description.
-    <textarea [rows]="this.Context.ConfigPayload.textarea.rows" formControlName="ServiceRequestDescriptionTextArea"
+    <textarea
+      [rows]="this.Context.ConfigPayload.textarea.rows"
+      formControlName="ServiceRequestDescriptionTextArea"
       [maxlength]="this.Context.ConfigPayload.textarea.textLength"
-      [placeholder]="this.Context.ConfigPayload.Placeholders.ServiceRequestDescriptionTextArea"></textarea>
-    <show-errors [control]="this.form.get('ServiceRequestDescriptionTextArea')"></show-errors>
+      [placeholder]="
+        this.Context.ConfigPayload.Placeholders
+          .ServiceRequestDescriptionTextArea
+      "
+    ></textarea>
+    <show-errors
+      [control]="this.form.get('ServiceRequestDescriptionTextArea')"
+    ></show-errors>
   </div>
 
-  <div *ngIf="this.Context.ConfigPayload.textarea.textLength" class="ui right aligned grid">
+  <div
+    *ngIf="this.Context.ConfigPayload.textarea.textLength"
+    class="ui right aligned grid"
+  >
     <div class="sixteen wide column">
-      <span>{{this.Context.ConfigPayload.textarea.textLength - this.form.get('ServiceRequestDescriptionTextArea').value.length}}/{{this.Context.ConfigPayload.textarea.textLength}}
-        characters left</span>
+      <span
+        >{{
+          this.Context.ConfigPayload.textarea.textLength -
+            this.form.get("ServiceRequestDescriptionTextArea").value.length
+        }}/{{ this.Context.ConfigPayload.textarea.textLength }} characters
+        left</span
+      >
     </div>
   </div>
 
@@ -68,18 +116,16 @@
     <div class="content">
       <span> Attachments </span>
       <div class="sub header">
-        Select the attachments that you want to add to the service request.
+        Select and add attachments that you want to add to the service request.
       </div>
     </div>
   </h2>
 
-  <ui-attachments-upload
-  style="width: 100%; height: 250px"
-  [maxNumberofFiles]="3"
-  [maxFileSizeInMB]="5"
-  formFieldName="Attachments"
->
-</ui-attachments-upload>
+  <div class="field">
+    <ui-attachments-upload style="width: 100%; height: 250px" [maxNumberofFiles]="3" [maxFileSizeInMB]="5"
+      formFieldName="Attachments">
+    </ui-attachments-upload>
+  </div>
 
 </form>
 
