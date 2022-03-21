@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Injector } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { AppComponent } from './app.component';
-import { XAServices, UiAttachmentsUploadModule } from '@xa/lib-ui-common';
+import { XAServices, UiAttachmentsUploadModule, InfoMailShareModule } from '@xa/lib-ui-common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { XAUIModule, XAModalService } from '@xa/ui';
@@ -14,6 +14,7 @@ import { XAGridHelperModule } from '@xa/grid';
 import { environment } from '../environments/environment';
 import 'ag-grid-enterprise';
 import { SharedModule } from 'projects/xa-portal-dev/src/app/shared/shared.module';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { SharedModule } from 'projects/xa-portal-dev/src/app/shared/shared.modul
     BrowserAnimationsModule,
     ShowErrorsModule,
     environment.production ? [] : SharedModule,
-    UiAttachmentsUploadModule
+    UiAttachmentsUploadModule,
+    InfoMailShareModule
   ],
   providers: [
     {

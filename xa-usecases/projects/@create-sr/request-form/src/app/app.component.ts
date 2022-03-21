@@ -45,7 +45,8 @@ export class AppComponent implements ICERequest, OnInit, OnDestroy {
       Title: [''],
       ServiceRequestDescriptionTextArea: [''],
       AssignmentGroup: [''],
-      Attachments: [[]]
+      Attachments: [[]],
+      MailAddressesShareInformation: ['']
     });
   }
 

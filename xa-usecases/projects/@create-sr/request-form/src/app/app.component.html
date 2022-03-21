@@ -9,30 +9,15 @@
 
   <div class="field" [class.required]="isFormElementRequired('Title')">
     <label>Title</label>
-    <input
-      type="text"
-      formControlName="Title"
-      [placeholder]="this.Context.ConfigPayload.Placeholders.Title"
-    />
+    <input type="text" formControlName="Title" [placeholder]="this.Context.ConfigPayload.Placeholders.Title" />
     <show-errors [control]="this.form.get('Title')"></show-errors>
   </div>
 
-  <div
-    class="five wide field"
-    [class.required]="isFormElementRequired('Customer')"
-  >
+  <div class="five wide field" [class.required]="isFormElementRequired('Customer')">
     <label>Customer</label>
-    <xa-select
-      [search]="true"
-      [options]="Customers$ | async"
-      [loading]="!(Customers$ | async)"
-      formControlName="CustomerSM9Name"
-      [placeholder]="this.Context.ConfigPayload.Placeholders.Customer"
-      viewValue="label"
-      optionValue="sm9name"
-      (change)="customerSelected()"
-      #customerDropDown
-    ></xa-select>
+    <xa-select [search]="true" [options]="Customers$ | async" [loading]="!(Customers$ | async)"
+      formControlName="CustomerSM9Name" [placeholder]="this.Context.ConfigPayload.Placeholders.Customer"
+      viewValue="label" optionValue="sm9name" (change)="customerSelected()" #customerDropDown></xa-select>
     <show-errors [control]="this.form.get('Customer')"></show-errors>
   </div>
 
@@ -46,25 +31,16 @@
     </div>
   </h2>
 
-  <div
-    class="five wide field"
-    [class.required]="isFormElementRequired('AssignmentGroup')"
-  >
+  <div class="five wide field" [class.required]="isFormElementRequired('AssignmentGroup')">
     <label>Assignment-Group </label>
-    <xa-select
-      [search]="true"
-      formControlName="AssignmentGroup"
-      [placeholder]="this.Context.ConfigPayload.Placeholders.AssignmentGroup"
-      [options]="this.AssignmentGroups$ | async"
-      [loading]="!(this.AssignmentGroups$ | async)"
-    >
+    <xa-select [search]="true" formControlName="AssignmentGroup"
+      [placeholder]="this.Context.ConfigPayload.Placeholders.AssignmentGroup" [options]="this.AssignmentGroups$ | async"
+      [loading]="!(this.AssignmentGroups$ | async)">
     </xa-select>
     <show-errors [control]="this.form.get('AssignmentGroup')"></show-errors>
   </div>
-  <span
-    >If a required Assignmentgroup is not available, please contact:
-    DL_AT_Delivery-Support_Systems@t-systems.com</span
-  >
+  <span>If a required Assignmentgroup is not available, please contact:
+    DL_AT_Delivery-Support_Systems@t-systems.com</span>
 
   <h2 class="ui dividing header">
     <i class="tasks icon"></i>
@@ -74,40 +50,24 @@
     </div>
   </h2>
 
-  <div
-    class="field"
-    [class.required]="
-      isFormElementRequired('ServiceRequestDescriptionTextArea')
-    "
-  >
+  <div class="field" [class.required]="isFormElementRequired('ServiceRequestDescriptionTextArea')">
     <label>Service Request Description</label>
     Please provide a thorough request description.
-    <textarea
-      [rows]="this.Context.ConfigPayload.textarea.rows"
-      formControlName="ServiceRequestDescriptionTextArea"
-      [maxlength]="this.Context.ConfigPayload.textarea.textLength"
-      [placeholder]="
+    <textarea [rows]="this.Context.ConfigPayload.textarea.rows" formControlName="ServiceRequestDescriptionTextArea"
+      [maxlength]="this.Context.ConfigPayload.textarea.textLength" [placeholder]="
         this.Context.ConfigPayload.Placeholders
           .ServiceRequestDescriptionTextArea
-      "
-    ></textarea>
-    <show-errors
-      [control]="this.form.get('ServiceRequestDescriptionTextArea')"
-    ></show-errors>
+      "></textarea>
+    <show-errors [control]="this.form.get('ServiceRequestDescriptionTextArea')"></show-errors>
   </div>
 
-  <div
-    *ngIf="this.Context.ConfigPayload.textarea.textLength"
-    class="ui right aligned grid"
-  >
+  <div *ngIf="this.Context.ConfigPayload.textarea.textLength" class="ui right aligned grid">
     <div class="sixteen wide column">
-      <span
-        >{{
-          this.Context.ConfigPayload.textarea.textLength -
-            this.form.get("ServiceRequestDescriptionTextArea").value.length
+      <span>{{
+        this.Context.ConfigPayload.textarea.textLength -
+        this.form.get("ServiceRequestDescriptionTextArea").value.length
         }}/{{ this.Context.ConfigPayload.textarea.textLength }} characters
-        left</span
-      >
+        left</span>
     </div>
   </div>
 
@@ -127,7 +87,23 @@
     </ui-attachments-upload>
   </div>
 
+  <h2 class="ui dividing header">
+    <i class="share alternate icon"></i>
+    <div class="content">
+      <span> Information Sharing </span>
+      <div class="sub header">
+        Specify e-mail address(es) below that you want to inform about the creation of the change
+        <b>(separated by ; )</b>.
+      </div>
+    </div>
+  </h2>
+
+  <div class="field">
+    <info-mail-share controlName="MailAddressesShareInformation"
+      [required]="isFormElementRequired('MailAddressesShareInformation')"></info-mail-share>
+  </div>
 </form>
+<xa-notify></xa-notify>
 
 <pre *if-dev>
   <div class="ui two column divided grid">
@@ -141,5 +117,3 @@
     </div>
     </div>
 </pre>
-
-<xa-notify></xa-notify>
