@@ -49,7 +49,7 @@
     "@xa/editor": "^12.1.1",
     "@xa/file-editor": "^12.1.1",
     "@xa/grid": "^12.1.4",
-    "@xa/lib-ui-common": "^12.1.4",
+    "@xa/lib-ui-common": "^12.1.5",
     "@xa/search": "^12.1.2",
     "@xa/show-errors": "^12.1.2",
     "@xa/ui": "^12.1.1",
