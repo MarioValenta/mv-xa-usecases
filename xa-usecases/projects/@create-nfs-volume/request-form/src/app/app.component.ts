@@ -129,7 +129,7 @@ export class AppComponent implements ICERequest, OnInit, OnDestroy {
       [this.FORM_KEY_LOCALSNAPSHOTPOLICY]: [{ value: '', disabled: true }],
       [this.FORM_KEY_VOLUMESIZE]: ['0'],
       [this.FORM_KEY_STORAGECLASS]: [{ value: '', disabled: true }],
-      [this.FORM_KEY_MAILS]: [[]]
+      [this.FORM_KEY_MAILS]: ['']
     });
   }
 
