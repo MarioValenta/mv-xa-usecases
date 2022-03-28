@@ -15,6 +15,7 @@ import { StorageExtensionRequestFormAppModule } from 'projects/@storage-extensio
 import { VMCreateRequestFormAppModule } from 'projects/@vmcreate/request-form/src/app/app.module';
 import { CreateOracleDatabaseRequestFormAppModule } from 'projects/@create-oracle-database/request-form/src/app/app.module';
 import { VMCreateRequestFormv2AppModule } from 'projects/@vmcreate/request-form-v2/src/app/app.module';
+import { UniversalTapExecutionKfaDeploymentRequestFormAppModule } from 'projects/@universal-tap-execution/kfa-deployment-request-form/src/app/app.module';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { VMCreateRequestFormv2AppModule } from 'projects/@vmcreate/request-form-
     CreateF5VirtualServerRequestFormAppModule,
     CreateF5VirtualServerUTValidateAppModule,
     CreateOracleDatabaseRequestFormAppModule,
-    VMCreateRequestFormv2AppModule
+    VMCreateRequestFormv2AppModule,
+    UniversalTapExecutionKfaDeploymentRequestFormAppModule
   ]
 })
 export class UseCasesFormsAppModule { }

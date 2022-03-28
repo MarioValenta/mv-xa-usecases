@@ -1,0 +1,30 @@
+<form [formGroup]="form" class="ui container form" style="padding:20px 10px">
+
+  <h2 class="ui dividing header">
+    <i class="edit outline icon"></i>
+    <div class="content">
+      <span> KFA-Deployment </span>
+      <div class="sub header">Lorem ipsum dolor sit amet, consetet</div>
+    </div>
+  </h2>
+
+  <div class="ui segment">
+    <label class="ui ribbon label">Todo: Description</label>
+    <ul>
+      <li>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy </li>
+      <li>eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</li>
+      <li> At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata</li>
+      <li> sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+        dolor sit amet..</li>
+      <li>Right click inside the grid opens the context menu.</li>
+    </ul>
+  </div>
+
+  <div class="required field">
+    <label>Patch Startdate</label>
+    <ng2-flatpickr formControlName="Startdate" [config]="startOptions" placeholder="Select Date...">
+    </ng2-flatpickr>
+    <show-errors [control]="this.form.get('Startdate')"></show-errors>
+  </div>
+</form>
+<pre *if-dev>{{form.value | json }}</pre>

@@ -6,9 +6,9 @@ import { filter, takeUntil } from 'rxjs/operators';
 import { AppInitializeService } from './app-initialize.service';
 import { TaskContext } from './user-tasks/user-task-zone.component';
 // TODO: Needs to be adjusted for every UseCase form
-import * as Payload from '../../../@create-sr/request-form/mocks/Payload.json';
-import * as ConfigPayload from '../../../@create-sr/request-form/mocks/ConfigPayload.json';
-import * as Validation from '../../../@create-sr/request-form/mocks/Validation.json';
+import * as Payload from '../../../@universal-tap-execution/kfa-deployment-request-form/mocks/Payload.json';
+import * as ConfigPayload from '../../../@universal-tap-execution/kfa-deployment-request-form/mocks/ConfigPayload.json';
+import * as Validation from '../../../@universal-tap-execution/kfa-deployment-request-form/mocks/Validation.json';
 
 @Component({
   selector: 'app-html-forms',
