@@ -10,7 +10,6 @@ import 'ag-grid-enterprise';
 
 import { AppComponent } from './app.component';
 import { AttachmentListComponent } from './attachmentlist-component/AttachmentList.component';
-import { ValidationService } from '@xa/validation';
 import { BtnCellRenderer } from './attachmentlist-component/button-cell-renderer.component';
 import { GridStatusBarSharedModule } from 'projects/shared/grid-status-bar/grid-status-bar.shared.module';
 import { SharedModule } from 'projects/xa-portal-dev/src/app/shared/shared.module';
@@ -51,8 +50,7 @@ import { windowFactory, XASERVICE_TOKEN } from 'projects/shared.functions';
       provide: 'XANotifyToastConfig',
       useValue: XAToastDefaults
     },
-    XAModalService,
-    ValidationService
+    XAModalService
   ],
   exports: [AppComponent],
   entryComponents: [
@@ -68,9 +66,7 @@ import { windowFactory, XASERVICE_TOKEN } from 'projects/shared.functions';
 })
 export class RanfUtCheckAppModule {
 
-  constructor(private injector: Injector) {
-
-  }
+  constructor(private injector: Injector) { }
 
   ngDoBootstrap() {
     const ce = createCustomElement(AppComponent, { injector: this.injector });

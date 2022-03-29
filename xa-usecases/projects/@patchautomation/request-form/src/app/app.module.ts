@@ -11,7 +11,6 @@ import { XAGridHelperModule } from '@xa/grid';
 import { CiTableComponent } from './ci-table/ci-table.component';
 import { PatchAutomationSearchCisModalComponent } from './modals/search-cis-dialog/patch-automation-search-cis.component';
 import 'ag-grid-enterprise';
-import { ValidationService } from '@xa/validation';
 import { environment } from '../environments/environment';
 import { SharedModule as DEVSharedModule } from 'projects/xa-portal-dev/src/app/shared/shared.module';
 import { ShowErrorsModule } from '@xa/show-errors';
@@ -48,8 +47,7 @@ import { XASERVICE_TOKEN, windowFactory } from 'projects/shared.functions';
       useValue: XAToastDefaults
     },
 
-    XAModalService,
-    ValidationService
+    XAModalService
   ],
   exports: [
     AppComponent
@@ -65,9 +63,7 @@ import { XASERVICE_TOKEN, windowFactory } from 'projects/shared.functions';
 
 export class PatchautomationRequestFormAppModule {
 
-  constructor(private injector: Injector) {
-
-  }
+  constructor(private injector: Injector) { }
 
   ngDoBootstrap() {
     const ce = createCustomElement(AppComponent, { injector: this.injector });

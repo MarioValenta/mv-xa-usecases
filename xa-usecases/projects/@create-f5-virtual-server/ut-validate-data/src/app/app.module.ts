@@ -9,7 +9,6 @@ import { createCustomElement } from '@angular/elements';
 import { PipeModule } from 'projects/@create-f5-virtual-server/shared/pure-pipes/pipe.module';
 import { SharedModule } from 'projects/@create-f5-virtual-server/shared/shared-module';
 import { XASERVICE_TOKEN, windowFactory } from 'projects/shared.functions';
-import { ValidationService } from '@xa/validation';
 
 @NgModule({
   declarations: [
@@ -31,8 +30,7 @@ import { ValidationService } from '@xa/validation';
       provide: XASERVICE_TOKEN,
       useFactory: windowFactory
     },
-    XAModalService,
-    ValidationService
+    XAModalService
   ],
   entryComponents: [
     UTValidateComponent
@@ -40,14 +38,11 @@ import { ValidationService } from '@xa/validation';
   bootstrap: []
 })
 export class CreateF5VirtualServerUTValidateAppModule {
-  constructor(private injector: Injector) {
 
-  }
+  constructor(private injector: Injector) { }
 
   ngDoBootstrap() {
-
     const ce = createCustomElement(UTValidateComponent, { injector: this.injector });
     customElements.define('ut-validate-form', ce);
-
   }
 }

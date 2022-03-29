@@ -10,7 +10,6 @@ import { AgGridModule } from 'ag-grid-angular';
 import { SearchModule } from '@xa/search';
 import { XAGridHelperModule } from '@xa/grid';
 import 'ag-grid-enterprise';
-import { ValidationService } from '@xa/validation';
 import { ShowErrorsModule } from '@xa/show-errors';
 import { environment } from '../environments/environment';
 import { SharedModule } from 'projects/xa-portal-dev/src/app/shared/shared.module';
@@ -54,8 +53,7 @@ import { XASERVICE_TOKEN, windowFactory } from 'projects/shared.functions';
       provide: 'XANotifyToastConfig',
       useValue: XAToastDefaults
     },
-    XAModalService,
-    ValidationService
+    XAModalService
   ],
   exports: [
     AppComponent
@@ -70,14 +68,10 @@ import { XASERVICE_TOKEN, windowFactory } from 'projects/shared.functions';
 })
 export class CreateRfcRequestFormAppModule {
 
-  constructor(private injector: Injector) {
-
-  }
+  constructor(private injector: Injector) { }
 
   ngDoBootstrap() {
-
     const ce = createCustomElement(AppComponent, { injector: this.injector });
     customElements.define('create-rfc-request-form', ce);
-
   }
 }

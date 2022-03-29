@@ -6,7 +6,6 @@ import { UiAttachmentsUploadModule, InfoMailShareModule } from '@xa/lib-ui-commo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { XAUIModule, XAModalService } from '@xa/ui';
-import { ValidationService } from '@xa/validation';
 import { ShowErrorsModule } from '@xa/show-errors';
 import { AgGridModule } from 'ag-grid-angular';
 import { XAToastDefaults } from 'projects/shared/toast-config';
@@ -43,8 +42,7 @@ import { XASERVICE_TOKEN, windowFactory } from 'projects/shared.functions';
       useValue: XAToastDefaults
     },
 
-    XAModalService,
-    ValidationService
+    XAModalService
   ],
   entryComponents: [
     AppComponent
@@ -54,12 +52,9 @@ import { XASERVICE_TOKEN, windowFactory } from 'projects/shared.functions';
 
 export class CreateSRRequestFormAppModule {
 
-  constructor(private injector: Injector) {
-
-  }
+  constructor(private injector: Injector) { }
 
   ngDoBootstrap() {
-
     const ce = createCustomElement(AppComponent, { injector: this.injector });
     customElements.define('createsr-request-form', ce);
   }

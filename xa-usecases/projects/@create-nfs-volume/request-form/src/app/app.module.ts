@@ -15,7 +15,6 @@ import { SharedModule } from 'projects/@create-nfs-volume/shared/shared-module';
 import { XAToastDefaults } from 'projects/shared/toast-config';
 import { NouisliderModule } from 'ng2-nouislider';
 import { XASERVICE_TOKEN, windowFactory } from 'projects/shared.functions';
-import { ValidationService } from '@xa/validation';
 
 @NgModule({
   declarations: [
@@ -42,8 +41,7 @@ import { ValidationService } from '@xa/validation';
       provide: 'XANotifyToastConfig',
       useValue: XAToastDefaults
     },
-      XAModalService,
-      ValidationService
+    XAModalService
   ],
   exports: [AppComponent],
   entryComponents: [
@@ -54,9 +52,7 @@ import { ValidationService } from '@xa/validation';
 })
 export class CreateNFSVolumeRequestFormAppModule {
 
-  constructor(private injector: Injector) {
-
-  }
+  constructor(private injector: Injector) { }
 
   ngDoBootstrap() {
     const ce = createCustomElement(AppComponent, { injector: this.injector });

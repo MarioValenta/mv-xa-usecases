@@ -29,13 +29,10 @@ import { XASERVICE_TOKEN, windowFactory } from 'projects/shared.functions';
 })
 export class BillingRequestFormAppModule {
 
-  constructor(private injector: Injector) {
-
-  }
+  constructor(private injector: Injector) { }
 
   ngDoBootstrap() {
       const ce = createCustomElement(AppComponent, { injector: this.injector });
       customElements.define('billing-request-form', ce);
   }
-
 }

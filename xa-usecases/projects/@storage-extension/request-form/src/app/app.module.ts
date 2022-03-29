@@ -16,46 +16,44 @@ import { SharedModule } from 'projects/xa-portal-dev/src/app/shared/shared.modul
 import { windowFactory, XASERVICE_TOKEN } from 'projects/shared.functions';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        StorageTableComponent,
-        ShowErrorsComponent,
-        InfoTableComponent
-    ],
-    imports: [
-        BrowserModule,
-        XAUIModule.forRoot(),
-        ReactiveFormsModule,
-        AgGridModule,
-        BrowserAnimationsModule,
-        SearchModule,
-        environment.production ? [] : SharedModule,
-    ],
-    exports: [
-        AppComponent
-    ],
-    providers: [
-      {
-        provide: XASERVICE_TOKEN,
-        useFactory: windowFactory
-      }
-    ],
-    entryComponents: [
-        AppComponent,
-        StorageTableComponent,
-        ShowErrorsComponent,
-        InfoTableComponent
-    ],
-    bootstrap: []
+  declarations: [
+    AppComponent,
+    StorageTableComponent,
+    ShowErrorsComponent,
+    InfoTableComponent
+  ],
+  imports: [
+    BrowserModule,
+    XAUIModule.forRoot(),
+    ReactiveFormsModule,
+    AgGridModule,
+    BrowserAnimationsModule,
+    SearchModule,
+    environment.production ? [] : SharedModule,
+  ],
+  exports: [
+    AppComponent
+  ],
+  providers: [
+    {
+      provide: XASERVICE_TOKEN,
+      useFactory: windowFactory
+    }
+  ],
+  entryComponents: [
+    AppComponent,
+    StorageTableComponent,
+    ShowErrorsComponent,
+    InfoTableComponent
+  ],
+  bootstrap: []
 })
 export class StorageExtensionRequestFormAppModule {
 
-    constructor(private injector: Injector) {
+  constructor(private injector: Injector) { }
 
-    }
-
-    ngDoBootstrap() {
-        const ce = createCustomElement(AppComponent, { injector: this.injector });
-        customElements.define('storage-extension-request-form', ce);
-    }
+  ngDoBootstrap() {
+    const ce = createCustomElement(AppComponent, { injector: this.injector });
+    customElements.define('storage-extension-request-form', ce);
+  }
 }

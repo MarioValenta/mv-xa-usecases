@@ -40,7 +40,7 @@ export class UniversalTapExecutionKfaDeploymentRequestFormAppModule {
 
   ngDoBootstrap() {
     const ce = createCustomElement(AppComponent, { injector: this.injector });
-    customElements.define('<universal-tap-execution-kaf-deployment>', ce);
+    customElements.define('universal-tap-execution-kaf-deployment-request-form', ce);
   }
 }
 

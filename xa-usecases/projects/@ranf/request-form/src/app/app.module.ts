@@ -9,7 +9,6 @@ import { XAUIModule, XAModalService } from '@xa/ui';
 import { AgGridModule } from 'ag-grid-angular';
 import { XAGridHelperModule, AllCellRenderers, AllCellEditors } from '@xa/grid';
 import 'ag-grid-enterprise';
-import { ValidationService } from '@xa/validation';
 import { SharedModule } from 'projects/xa-portal-dev/src/app/shared/shared.module';
 import { environment } from '../environments/environment';
 import { ExcelTableUploadComponent } from './excel-table-component/excel.table.component';
@@ -52,8 +51,7 @@ import { windowFactory, XASERVICE_TOKEN } from 'projects/shared.functions';
       provide: 'XANotifyToastConfig',
       useValue: XAToastDefaults
     },
-    XAModalService,
-    ValidationService
+    XAModalService
   ],
   entryComponents: [
     AppComponent,
@@ -68,15 +66,10 @@ import { windowFactory, XASERVICE_TOKEN } from 'projects/shared.functions';
 
 export class RanfRequestFormAppModule {
 
-  constructor(private injector: Injector) {
-
-  }
+  constructor(private injector: Injector) { }
 
   ngDoBootstrap() {
-
-    // const strategyFactory = new ElementZoneStrategyFactory(VMCreateRequestComponent, this.injector);
     const ce = createCustomElement(AppComponent, { injector: this.injector });
-    customElements.define('ranf', ce);
-
+    customElements.define('ranf-request-form', ce);
   }
 }

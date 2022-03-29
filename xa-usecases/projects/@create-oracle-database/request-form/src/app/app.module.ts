@@ -8,7 +8,6 @@ import { ShowErrorsModule } from '@xa/show-errors';
 import { XAUIModule } from '@xa/ui';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { windowFactory, XASERVICE_TOKEN } from 'projects/shared.functions';
-import { ValidationService } from '@xa/validation';
 
 @NgModule({
   declarations: [
@@ -32,8 +31,7 @@ import { ValidationService } from '@xa/validation';
     {
       provide: XASERVICE_TOKEN,
       useFactory: windowFactory
-    },
-    ValidationService
+    }
   ]
 })
 export class CreateOracleDatabaseRequestFormAppModule {
@@ -41,9 +39,7 @@ export class CreateOracleDatabaseRequestFormAppModule {
   constructor(private injector: Injector) { }
 
   ngDoBootstrap() {
-    const el = createCustomElement(AppComponent,
-      { injector: this.injector });
+    const el = createCustomElement(AppComponent, { injector: this.injector });
     customElements.define('create-new-oracle-database', el);
   }
-
 }

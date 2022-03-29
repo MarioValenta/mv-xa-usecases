@@ -9,7 +9,6 @@ import { ShowErrorsModule } from '@xa/show-errors';
 import { SharedModule } from 'projects/@create-f5-virtual-server/shared/shared-module';
 import { PipeModule } from 'projects/@create-f5-virtual-server/shared/pure-pipes/pipe.module';
 import { XASERVICE_TOKEN, windowFactory } from 'projects/shared.functions';
-import { ValidationService } from '@xa/validation';
 
 @NgModule({
   declarations: [
@@ -30,8 +29,7 @@ import { ValidationService } from '@xa/validation';
       provide: XASERVICE_TOKEN,
       useFactory: windowFactory
     },
-    XAModalService,
-    ValidationService
+    XAModalService
   ],
   entryComponents: [
     RequestFormComponent
@@ -40,13 +38,10 @@ import { ValidationService } from '@xa/validation';
 })
 export class CreateF5VirtualServerRequestFormAppModule {
 
-  constructor(private injector: Injector) {
-
-  }
+  constructor(private injector: Injector) { }
 
   ngDoBootstrap() {
     const ce = createCustomElement(RequestFormComponent, { injector: this.injector });
     customElements.define('createF5vServer-request-form', ce);
   }
-
 }

@@ -5,7 +5,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XAUIModule } from '@xa/ui';
 import { ShowErrorsModule } from '@xa/show-errors';
-import { ValidationService } from '@xa/validation';
 import { InfoMailShareModule } from '@xa/lib-ui-common';
 import { NouisliderModule } from 'ng2-nouislider';
 import { AppComponent } from './app.component';
@@ -39,7 +38,6 @@ import { XASERVICE_TOKEN, windowFactory } from 'projects/shared.functions';
     AppComponent,
   ],
   providers: [
-    ValidationService,
     {
       provide: XASERVICE_TOKEN,
       useFactory: windowFactory
@@ -56,6 +54,7 @@ import { XASERVICE_TOKEN, windowFactory } from 'projects/shared.functions';
   ],
 })
 export class VMCreateRequestFormv2AppModule {
+
   constructor(private injector: Injector) { }
 
   ngDoBootstrap() {

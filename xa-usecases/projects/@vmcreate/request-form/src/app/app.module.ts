@@ -36,9 +36,8 @@ import { XASERVICE_TOKEN, windowFactory } from 'projects/shared.functions';
 })
 export class VMCreateRequestFormAppModule {
 
-  constructor(private injector: Injector) {
+  constructor(private injector: Injector) { }
 
-  }
   ngDoBootstrap() {
     const ce = createCustomElement(VMCreateRequestComponent, { injector: this.injector });
     customElements.define('vm-create-request-form', ce);
