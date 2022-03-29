@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { XAModalPageContext } from '@xa/ui';
 import { SearchField } from '@xa/search';
 import { XAServices } from '@xa/lib-ui-common';
+import { XASERVICE_TOKEN } from 'projects/shared.functions';
 
 @Component({
   selector: 'search-cis',
@@ -15,11 +16,7 @@ export class SearchCisModalComponent implements OnInit {
   myStyle = '';
   addButtonText = 'add';
 
-  constructor(private context: XAModalPageContext<any>, public xaservices: XAServices) {
-
-    if (this.xaservices === undefined || this.xaservices === null) {
-      this.xaservices = ((window as any).xa as XAServices);
-    }
+  constructor(private context: XAModalPageContext<any>, @Inject(XASERVICE_TOKEN) private xaservices: XAServices) {
 
     if (context.Data.parentContext.ConfigPayload.searchcomponentColumns) {
       this.SearchFields = context.Data.parentContext.ConfigPayload.searchcomponentColumns;
@@ -77,6 +74,6 @@ export class SearchCisModalComponent implements OnInit {
       httpParams['allowedStatus'] = this.context.Data.parentContext.ConfigPayload.allowedStatus.toString();
     }
 
-    return this.xaservices.Http.Get<Array<any>>('api/cmdb/hosts', { params: httpParams });
+    return this.xaservices.Http!.Get<Array<any>>('api/cmdb/hosts', { params: httpParams });
   }
 }

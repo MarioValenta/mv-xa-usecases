@@ -1,9 +1,9 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { XAModalPageContext } from '@xa/ui';
 import { SearchField } from '@xa/search';
 import { XAServices } from '@xa/lib-ui-common';
 import { take, share } from 'rxjs/operators';
+import { XASERVICE_TOKEN } from 'projects/shared.functions';
 
 @Component({
   selector: 'app-patch-automation-search-cis',
@@ -16,11 +16,7 @@ export class PatchAutomationSearchCisModalComponent implements OnInit {
   SearchFields: Array<SearchField> = [];
   myStyle = '';
 
-  constructor(public context: XAModalPageContext<any>, public xaservices: XAServices) {
-
-    if (this.xaservices === undefined || this.xaservices === null) {
-      this.xaservices = ((window as any).xa as XAServices);
-    }
+  constructor(public context: XAModalPageContext<any>, @Inject(XASERVICE_TOKEN) private xaservices: XAServices) {
 
     // TODO refactor this quickfix
     if (context.Data.parentContext.ConfigPayload.columns) {
@@ -122,7 +118,7 @@ export class PatchAutomationSearchCisModalComponent implements OnInit {
   searchFunctionById = (data: any) => {
     console.debug('loading hosts... ');
     console.debug('processID', this.context.Data.processId);
-    return this.xaservices.Http.Get<Array<any>>(`api/patchautomation/${this.context.Data.processId}/hosts`).pipe(
+    return this.xaservices.Http!.Get<Array<any>>(`api/patchautomation/${this.context.Data.processId}/hosts`).pipe(
       take(1),
       share()
     );

@@ -10,7 +10,6 @@ import 'ag-grid-enterprise';
 
 import { AppComponent } from './app.component';
 import { AttachmentListComponent } from './attachmentlist-component/AttachmentList.component';
-import { XAServices } from '@xa/lib-ui-common';
 import { ValidationService } from '@xa/validation';
 import { BtnCellRenderer } from './attachmentlist-component/button-cell-renderer.component';
 import { GridStatusBarSharedModule } from 'projects/shared/grid-status-bar/grid-status-bar.shared.module';
@@ -19,6 +18,7 @@ import { GridStatusBarComponent } from 'projects/shared/grid-status-bar/grid-sta
 import { environment } from '../environments/environment';
 import { XAToastDefaults } from 'projects/shared/toast-config';
 import { Ng2FlatpickrModule } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.module';
+import { windowFactory, XASERVICE_TOKEN } from 'projects/shared.functions';
 
 
 @NgModule({
@@ -44,8 +44,8 @@ import { Ng2FlatpickrModule } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.
   ],
   providers: [
     {
-      provide: XAServices,
-      useValue: (window as any).xa
+      provide: XASERVICE_TOKEN,
+      useFactory: windowFactory
     },
     {
       provide: 'XANotifyToastConfig',

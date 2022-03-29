@@ -1,12 +1,12 @@
-import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, OnInit, OnDestroy, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ICERequestContext, ICERequest, XAServices, FeedbackRequestPayload } from '@xa/lib-ui-common';
-import { Subject, of } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { StorageParameters } from './models/storage-parameters.model';
 import { DataService } from './data-service.service';
 import { SearchField } from '@xa/search';
-import { environment } from '../environments/environment';
+import { XASERVICE_TOKEN } from 'projects/shared.functions';
 
 @Component({
     selector: 'storage-extension-request-form',
@@ -27,14 +27,7 @@ export class AppComponent implements ICERequest, OnInit, OnDestroy {
     public HostId: string;
 
     destroy$ = new Subject();
-    constructor(private fb: FormBuilder, private dataService: DataService, private xaservices: XAServices) {
-
-        if (!environment.production) {
-            console.debug('ENV: NON PROD');
-            this.xaservices = ((window as any).xa as XAServices);
-        }
-
-    }
+    constructor(private fb: FormBuilder, private dataService: DataService, @Inject(XASERVICE_TOKEN) private xaservices: XAServices) { }
 
     ngOnInit() {
 
@@ -265,6 +258,6 @@ export class AppComponent implements ICERequest, OnInit, OnDestroy {
 
         const showFields = this.SearchFields.filter(f => f && !f.HideResult).map(f => f.Name).join(',')
         httpParams['fields'] = showFields;
-        return this.xaservices.Http.Get<Array<any>>('api/feature/cmdbsearch/host', { params: httpParams })
+        return this.xaservices.Http!.Get<Array<any>>('api/feature/cmdbsearch/host', { params: httpParams })
     }
 }

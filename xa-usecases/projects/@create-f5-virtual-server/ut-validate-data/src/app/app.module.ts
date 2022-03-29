@@ -6,10 +6,10 @@ import { ShowErrorsModule } from '@xa/show-errors';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XAUIModule, XAModalService } from '@xa/ui';
 import { createCustomElement } from '@angular/elements';
-import { XAServices } from '@xa/lib-ui-common';
-import { ValidationService } from '@xa/validation';
 import { PipeModule } from 'projects/@create-f5-virtual-server/shared/pure-pipes/pipe.module';
 import { SharedModule } from 'projects/@create-f5-virtual-server/shared/shared-module';
+import { XASERVICE_TOKEN, windowFactory } from 'projects/shared.functions';
+import { ValidationService } from '@xa/validation';
 
 @NgModule({
   declarations: [
@@ -26,11 +26,11 @@ import { SharedModule } from 'projects/@create-f5-virtual-server/shared/shared-m
     PipeModule
   ],
   exports: [UTValidateComponent],
-  providers: [{
-    provide: XAServices,
-    useValue: (window as any).xa
-  },
-
+  providers: [
+    {
+      provide: XASERVICE_TOKEN,
+      useFactory: windowFactory
+    },
     XAModalService,
     ValidationService
   ],

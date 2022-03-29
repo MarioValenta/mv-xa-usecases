@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { XAServices } from '@xa/lib-ui-common';
+import { XASERVICE_TOKEN } from 'projects/shared.functions';
 import { environment } from '../environments/environment';
 
 @Injectable({
@@ -7,14 +8,10 @@ import { environment } from '../environments/environment';
 })
 export class DataService {
 
-  constructor(private xaservices: XAServices) {
-    if (this.xaservices === undefined || this.xaservices === null) {
-      this.xaservices = ((window as any).xa as XAServices);
-    }
-  }
+  constructor(@Inject(XASERVICE_TOKEN) private xaservices: XAServices) { }
 
   public GetCustomers() {
-    return this.xaservices.Http.Get(environment.customerEndpointUrl);
+    return this.xaservices.Http!.Get(environment.customerEndpointUrl);
   }
 
 }

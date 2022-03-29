@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Injector, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { AppComponent } from './app.component';
-import { XAServices, UiAttachmentsUploadModule } from '@xa/lib-ui-common';
+import { UiAttachmentsUploadModule } from '@xa/lib-ui-common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { XAUIModule, XAModalService } from '@xa/ui';
@@ -17,6 +17,7 @@ import { GridStatusBarSharedModule } from 'projects/shared/grid-status-bar/grid-
 import { GridStatusBarComponent } from 'projects/shared/grid-status-bar/grid-status-bar-component.component';
 import { XAToastDefaults } from 'projects/shared/toast-config';
 import { Ng2FlatpickrModule } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.module';
+import { windowFactory, XASERVICE_TOKEN } from 'projects/shared.functions';
 
 @NgModule({
   declarations: [
@@ -44,8 +45,8 @@ import { Ng2FlatpickrModule } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.
   ],
   providers: [
     {
-      provide: XAServices,
-      useValue: (window as any).xa
+      provide: XASERVICE_TOKEN,
+      useFactory: windowFactory
     },
     {
       provide: 'XANotifyToastConfig',

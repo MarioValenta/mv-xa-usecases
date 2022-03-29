@@ -4,7 +4,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AllCellEditors, AllCellRenderers, XAGridHelperModule } from '@xa/grid';
-import { XAServices } from '@xa/lib-ui-common';
 import { XAModalService, XAUIModule } from '@xa/ui';
 import { ValidationService } from '@xa/validation';
 import { AgGridModule } from 'ag-grid-angular';
@@ -15,6 +14,7 @@ import { ExcelTableUploadComponent } from './excel-table-component/excel.table.c
 import { XAToastDefaults } from 'projects/shared/toast-config';
 import { Ng2FlatpickrModule } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.module';
 import { SharedModule } from 'projects/xa-portal-dev/src/app/shared/shared.module';
+import { XASERVICE_TOKEN, windowFactory } from 'projects/shared.functions';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -38,8 +38,8 @@ describe('AppComponent', () => {
       ],
       providers: [
         {
-          provide: XAServices,
-          useValue: (window as any).xa
+          provide: XASERVICE_TOKEN,
+          useFactory: windowFactory
         },
         {
           provide: 'XANotifyToastConfig',

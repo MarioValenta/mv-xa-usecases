@@ -4,6 +4,7 @@ import { createCustomElement } from '@angular/elements';
 import { XAUIModule } from '@xa/ui';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { XASERVICE_TOKEN, windowFactory } from 'projects/shared.functions';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,12 @@ import { ReactiveFormsModule } from '@angular/forms';
   exports: [
     AppComponent
   ],
-  providers: [],
+  providers: [
+    {
+      provide: XASERVICE_TOKEN,
+      useFactory: windowFactory
+    }
+  ],
   entryComponents: [AppComponent],
   bootstrap: []
 })
@@ -28,11 +34,8 @@ export class BillingRequestFormAppModule {
   }
 
   ngDoBootstrap() {
-
-      //const strategyFactory = new ElementZoneStrategyFactory(VMCreateRequestComponent, this.injector);
       const ce = createCustomElement(AppComponent, { injector: this.injector });
       customElements.define('billing-request-form', ce);
-
   }
 
 }

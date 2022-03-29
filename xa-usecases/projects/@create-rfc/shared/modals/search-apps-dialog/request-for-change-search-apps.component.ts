@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { XAModalPageContext } from '@xa/ui';
 import { SearchField } from '@xa/search';
 import { XAServices, ICERequestContext } from '@xa/lib-ui-common';
+import { XASERVICE_TOKEN } from 'projects/shared.functions';
 
 @Component({
   selector: 'request-for-change-search-apps',
@@ -10,11 +11,7 @@ import { XAServices, ICERequestContext } from '@xa/lib-ui-common';
 })
 export class RequestForChangeSearchAppsModalComponent implements OnInit {
 
-  constructor(private context: XAModalPageContext<any>, public xaservices: XAServices) {
-    if (this.xaservices === undefined || this.xaservices === null) {
-      this.xaservices = ((window as any).xa as XAServices);
-    }
-  }
+  constructor(private context: XAModalPageContext<any>, @Inject(XASERVICE_TOKEN) private xaservices: XAServices) { }
 
   searchfields: Array<string> = ['ApplicationID', 'ApplicationName'];
   resultfields: Array<string> = ['ApplicationID', 'ApplicationName'];
@@ -102,6 +99,6 @@ export class RequestForChangeSearchAppsModalComponent implements OnInit {
     httpParams['fields'] = showFields;
     httpParams['allowedStatus'] = this.allowedStatusService.toString();
 
-    return this.xaservices.Http.Get<Array<any>>('api/feature/cmdbsearch/Service', { params: httpParams });
+    return this.xaservices.Http!.Get<Array<any>>('api/feature/cmdbsearch/Service', { params: httpParams });
   }
 }

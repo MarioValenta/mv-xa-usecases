@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { SearchField } from '@xa/search';
 import { XAServices, ICERequestContext } from '@xa/lib-ui-common';
+import { XASERVICE_TOKEN } from 'projects/shared.functions';
 
 @Component({
   selector: 'search-cis',
@@ -16,11 +17,7 @@ export class SearchCisModalComponent implements OnInit {
   @Input() context: ICERequestContext;
   @Output() selectedRow = new EventEmitter<string>();
 
-  constructor(public xaservices: XAServices) {
-    if (this.xaservices === undefined || this.xaservices === null) {
-      this.xaservices = ((window as any).xa as XAServices);
-    }
-  }
+  constructor(@Inject(XASERVICE_TOKEN) private xaservices: XAServices) { }
 
   ngOnInit() {
     if (this.context.ConfigPayload.searchcomponentColumns) {
@@ -65,6 +62,6 @@ export class SearchCisModalComponent implements OnInit {
       httpParams['allowedStatus'] = this.context.ConfigPayload.allowedStatus.toString();
     }
 
-    return this.xaservices.Http.Get<Array<any>>('api/cmdb/hosts', { params: httpParams });
+    return this.xaservices.Http!.Get<Array<any>>('api/cmdb/hosts', { params: httpParams });
   }
 }

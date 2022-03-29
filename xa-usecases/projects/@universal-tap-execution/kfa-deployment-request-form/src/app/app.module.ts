@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShowErrorsModule } from '@xa/show-errors';
 import { XAUIModule } from '@xa/ui';
+import { windowFactory, XASERVICE_TOKEN } from 'projects/shared.functions';
 import { Ng2FlatpickrModule } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.module';
 import { SharedModule } from 'projects/xa-portal-dev/src/app/shared/shared.module';
 import { environment } from '../environments/environment';
@@ -27,11 +28,10 @@ import { AppComponent } from './app.component';
   exports: [AppComponent],
   providers: [
     {
-      provide: 'xaservices',
+      provide: XASERVICE_TOKEN,
       useFactory: windowFactory
     }
-  ],
-  bootstrap: []
+  ]
 })
 
 export class UniversalTapExecutionKfaDeploymentRequestFormAppModule {
@@ -44,6 +44,3 @@ export class UniversalTapExecutionKfaDeploymentRequestFormAppModule {
   }
 }
 
-export function windowFactory(): any {
-  return (window as any).xa;
-}

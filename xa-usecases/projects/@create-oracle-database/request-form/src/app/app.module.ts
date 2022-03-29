@@ -3,11 +3,12 @@ import { NgModule, Injector } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { InfoMailShareModule, XAServices } from '@xa/lib-ui-common';
-import { ValidationService } from '@xa/validation';
+import { InfoMailShareModule } from '@xa/lib-ui-common';
 import { ShowErrorsModule } from '@xa/show-errors';
 import { XAUIModule } from '@xa/ui';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { windowFactory, XASERVICE_TOKEN } from 'projects/shared.functions';
+import { ValidationService } from '@xa/validation';
 
 @NgModule({
   declarations: [
@@ -27,11 +28,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   exports: [
     AppComponent
   ],
-  providers: [{
-    provide: XAServices,
-    useValue: (window as any).xa
-  },
-    ValidationService]
+  providers: [
+    {
+      provide: XASERVICE_TOKEN,
+      useFactory: windowFactory
+    },
+    ValidationService
+  ]
 })
 export class CreateOracleDatabaseRequestFormAppModule {
 

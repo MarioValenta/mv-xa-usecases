@@ -2,19 +2,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Injector } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { AppComponent } from './app.component';
-import { XAServices } from '@xa/lib-ui-common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { XAUIModule, XAModalService } from '@xa/ui';
 import { AgGridModule } from 'ag-grid-angular';
 import { SearchModule } from '@xa/search';
-import { XAGridHelperModule, AllCellRenderers, AllCellEditors } from '@xa/grid';
+import { XAGridHelperModule } from '@xa/grid';
 import { CiTableComponent } from './ci-table/ci-table.component';
 import { PatchAutomationSearchCisModalComponent } from './modals/search-cis-dialog/patch-automation-search-cis.component';
 import 'ag-grid-enterprise';
 import { XAToastDefaults } from 'projects/shared/toast-config';
 import { environment } from '../environments/environment';
 import { SharedModule as DEVSharedModule } from 'projects/xa-portal-dev/src/app/shared/shared.module';
+import { XASERVICE_TOKEN, windowFactory } from 'projects/shared.functions';
 
 @NgModule({
   declarations: [
@@ -34,8 +34,8 @@ import { SharedModule as DEVSharedModule } from 'projects/xa-portal-dev/src/app/
   ],
   providers: [
     {
-      provide: XAServices,
-      useValue: (window as any).xa
+      provide: XASERVICE_TOKEN,
+      useFactory: windowFactory
     },
     {
       provide: 'XANotifyToastConfig',

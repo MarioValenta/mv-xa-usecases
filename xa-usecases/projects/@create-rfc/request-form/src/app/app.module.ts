@@ -20,6 +20,7 @@ import { RequestForChangeSearchCisModalComponent } from 'projects/@create-rfc/sh
 import { PipeModule } from 'projects/@create-rfc/shared/pure-pipes/pipe.module';
 import { Ng2FlatpickrModule } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.module';
 import { XAToastDefaults } from 'projects/shared/toast-config';
+import { XASERVICE_TOKEN, windowFactory } from 'projects/shared.functions';
 
 
 @NgModule({
@@ -46,8 +47,8 @@ import { XAToastDefaults } from 'projects/shared/toast-config';
   ],
   providers: [
     {
-      provide: XAServices,
-      useValue: (window as any).xa
+      provide: XASERVICE_TOKEN,
+      useFactory: windowFactory
     },
     {
       provide: 'XANotifyToastConfig',

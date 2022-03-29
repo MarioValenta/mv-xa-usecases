@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { XAModalPageContext } from '@xa/ui';
 import { SearchField } from '@xa/search';
 import { XAServices } from '@xa/lib-ui-common';
 import { environment } from '../../../environments/environment';
+import { XASERVICE_TOKEN } from 'projects/shared.functions';
 
 @Component({
   selector: 'app-patch-automation-search-cis',
@@ -16,11 +17,7 @@ export class PatchAutomationSearchCisModalComponent implements OnInit {
   myStyle = '';
   private httpParamsFields = 'fields';
 
-  constructor(private context: XAModalPageContext<any>, public xaservices: XAServices) {
-
-    if (this.xaservices === undefined || this.xaservices === null) {
-      this.xaservices = ((window as any).xa as XAServices);
-    }
+  constructor(private context: XAModalPageContext<any>, @Inject(XASERVICE_TOKEN) private xaservices: XAServices) {
 
     if (context.Data.parentContext.ConfigPayload.columns) {
       context.Data.parentContext.ConfigPayload.columns.forEach(element => {
@@ -82,7 +79,7 @@ export class PatchAutomationSearchCisModalComponent implements OnInit {
 
     httpParams[this.httpParamsFields] = this.SearchFields.filter(f => f && !f.HideResult).map(f => f.Name).join(',');
     console.log('httpParams', httpParams);
-    return this.xaservices.Http.Get<Array<any>>(environment.hostEndpointUrl, { params: httpParams });
+    return this.xaservices.Http!.Get<Array<any>>(environment.hostEndpointUrl, { params: httpParams });
   }
 
 

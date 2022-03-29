@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { XAServices } from '@xa/lib-ui-common';
+import { XASERVICE_TOKEN } from 'projects/shared.functions';
 import { Observable } from 'rxjs';
 import { share } from 'rxjs/operators';
 import * as XLSX from 'xlsx';
-import { environment } from '../environments/environment';
 import { CustomerInformationDto } from './dto/CustomerInformation';
 
 @Injectable({
@@ -11,51 +11,46 @@ import { CustomerInformationDto } from './dto/CustomerInformation';
 })
 export class DataService {
 
-    constructor(private xaservices: XAServices) {
-        if (!environment.production) {
-            console.debug('ENV: NON PROD');
-            this.xaservices = ((window as any).xa as XAServices);
-        }
-    }
+    constructor(@Inject(XASERVICE_TOKEN) private xaservices: XAServices) { }
 
 
     // Service function to fetch data for Customer dropdown box
     public getCustomers() {
-        return this.xaservices.Http.Get<Array<string>>(`api/cmdb/getdebitor`).pipe(
+        return this.xaservices.Http!.Get<Array<string>>(`api/cmdb/getdebitor`).pipe(
             share()
         );
     }
 
     // Service function to fetch data for Settlement dropdown box
     public getSettlements() {
-        return this.xaservices.Http.Get<Array<string>>(`api/ranf/gettypeofsettlement`).pipe(
+        return this.xaservices.Http!.Get<Array<string>>(`api/ranf/gettypeofsettlement`).pipe(
             share()
         );
     }
 
       // Service function to fetch data for TimePayment dropdown box
       public getTimeForPayment() {
-        return this.xaservices.Http.Get<Array<string>>(`api/ranf/timeforpayment`).pipe(
+        return this.xaservices.Http!.Get<Array<string>>(`api/ranf/timeforpayment`).pipe(
             share()
         );
     }
 
     // Service function to fetch data for BillingCycle dropdown box
     public getBillingCycle() {
-        return this.xaservices.Http.Get<Array<string>>(`api/ranf/getbillingcycle`).pipe(
+        return this.xaservices.Http!.Get<Array<string>>(`api/ranf/getbillingcycle`).pipe(
             share()
         );
     }
 
     public GetCustomerInformation(customerDebitorId: string): Observable<CustomerInformationDto> {
-        return this.xaservices.Http.Get<CustomerInformationDto>(`api/ranf/GetCustomerInformation/${customerDebitorId}`).pipe(
+        return this.xaservices.Http!.Get<CustomerInformationDto>(`api/ranf/GetCustomerInformation/${customerDebitorId}`).pipe(
             share()
         );
     }
 
     // // Service function to fetch data for Addresses dropdown box
     // public getAddresses(customer: string) {
-    //     return this.xaservices.Http.Get<Array<string>>(`api/ranf/getaddress/${customer}`).pipe(
+    //     return this.xaservices.Http!.Get<Array<string>>(`api/ranf/getaddress/${customer}`).pipe(
     //         share()
     //     );
     // }
@@ -64,14 +59,14 @@ export class DataService {
     // public getAccountsNumbers(customer: string) {
     //     // TODO redo httpclient.get => xaservice.Http.Get
     //     // AND remove baseURL
-    //     return this.xaservices.Http.Get<Array<string>>(`api/ranf/accountnumbers/${customer}`).pipe(
+    //     return this.xaservices.Http!.Get<Array<string>>(`api/ranf/accountnumbers/${customer}`).pipe(
     //         share()
     //     );
     // }
 
     // // Service function to fetch data for UID number input formControl
     // public getUIDNumber(customer: string) {
-    //     return this.xaservices.Http.Get<string>(`api/ranf/accountnumbers/getuidnumber/${customer}`).pipe(
+    //     return this.xaservices.Http!.Get<string>(`api/ranf/accountnumbers/getuidnumber/${customer}`).pipe(
     //         share()
     //     );
     // }

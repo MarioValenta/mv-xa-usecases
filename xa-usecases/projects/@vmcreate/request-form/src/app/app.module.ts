@@ -7,40 +7,40 @@ import { VMCreateRequestComponent } from './vm-create-request.component';
 import { XAUIModule } from '@xa/ui';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NouisliderModule } from 'ng2-nouislider';
-import { XAServices } from '@xa/lib-ui-common';
 import { ShowErrorsModule } from '@xa/show-errors';
+import { XASERVICE_TOKEN, windowFactory } from 'projects/shared.functions';
 
 @NgModule({
-    declarations: [
-        VMCreateRequestComponent,
-        VmdkStorageLinuxComponent,
-        VmdkStorageWindowsComponent
-    ],
-    imports: [
-        BrowserModule,
-        XAUIModule,
-        ReactiveFormsModule,
-        FormsModule,
-        NouisliderModule,
-        ShowErrorsModule
-    ],
-    exports: [VMCreateRequestComponent],
-    providers: [
-        {
-            provide: XAServices,
-            useValue: (window as any).xa
-        }
-    ],
-    entryComponents: [VMCreateRequestComponent],
-    bootstrap: []
+  declarations: [
+    VMCreateRequestComponent,
+    VmdkStorageLinuxComponent,
+    VmdkStorageWindowsComponent
+  ],
+  imports: [
+    BrowserModule,
+    XAUIModule,
+    ReactiveFormsModule,
+    FormsModule,
+    NouisliderModule,
+    ShowErrorsModule
+  ],
+  exports: [VMCreateRequestComponent],
+  providers: [
+    {
+      provide: XASERVICE_TOKEN,
+      useFactory: windowFactory
+    }
+  ],
+  entryComponents: [VMCreateRequestComponent],
+  bootstrap: []
 })
 export class VMCreateRequestFormAppModule {
 
-    constructor(private injector: Injector) {
+  constructor(private injector: Injector) {
 
-    }
-    ngDoBootstrap() {
-        const ce = createCustomElement(VMCreateRequestComponent, { injector: this.injector });
-        customElements.define('vm-create-request-form', ce);
-    }
+  }
+  ngDoBootstrap() {
+    const ce = createCustomElement(VMCreateRequestComponent, { injector: this.injector });
+    customElements.define('vm-create-request-form', ce);
+  }
 }

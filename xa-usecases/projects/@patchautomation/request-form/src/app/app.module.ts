@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Injector } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { AppComponent } from './app.component';
-import { XAServices } from '@xa/lib-ui-common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { XAUIModule, XAModalService } from '@xa/ui';
@@ -18,6 +17,7 @@ import { SharedModule as DEVSharedModule } from 'projects/xa-portal-dev/src/app/
 import { ShowErrorsModule } from '@xa/show-errors';
 import { XAToastDefaults } from 'projects/shared/toast-config';
 import { Ng2FlatpickrModule } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.module';
+import { XASERVICE_TOKEN, windowFactory } from 'projects/shared.functions';
 
 
 @NgModule({
@@ -40,8 +40,8 @@ import { Ng2FlatpickrModule } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.
   ],
   providers: [
     {
-      provide: XAServices,
-      useValue: (window as any).xa
+      provide: XASERVICE_TOKEN,
+      useFactory: windowFactory
     },
     {
       provide: 'XANotifyToastConfig',
@@ -52,7 +52,7 @@ import { Ng2FlatpickrModule } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.
     ValidationService
   ],
   exports: [
-    AppComponent,
+    AppComponent
   ],
   entryComponents: [
     AppComponent,

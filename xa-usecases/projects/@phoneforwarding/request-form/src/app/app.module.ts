@@ -3,8 +3,8 @@ import { NgModule, Injector } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { XAServices } from '@xa/lib-ui-common';
 import { XAUIModule, XAModalService } from '@xa/ui';
+import { windowFactory, XASERVICE_TOKEN } from 'projects/shared.functions';
 
 @NgModule({
   declarations: [
@@ -17,10 +17,11 @@ import { XAUIModule, XAModalService } from '@xa/ui';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [{
-    provide: XAServices,
-    useValue: (window as any).xa
-  },
+  providers: [
+    {
+      provide: XASERVICE_TOKEN,
+      useFactory: windowFactory
+    },
     XAModalService
   ],
   entryComponents: [

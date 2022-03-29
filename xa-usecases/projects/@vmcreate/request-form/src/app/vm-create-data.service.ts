@@ -1,7 +1,8 @@
 import { of } from 'rxjs';
 import { map, share } from 'rxjs/operators';
 import { XAServices } from '@xa/lib-ui-common';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
+import { XASERVICE_TOKEN } from 'projects/shared.functions';
 
 @Injectable({
     providedIn: 'root'
@@ -61,15 +62,11 @@ export class VMCreateDataService {
         connect: [true, false]
     };
 
-    constructor(private xaservices: XAServices) {
-      if (this.xaservices === undefined || this.xaservices === null) {
-        this.xaservices = ((window as any).xa as XAServices);
-      }
-    }
+    constructor(@Inject(XASERVICE_TOKEN) private xaservices: XAServices) { }
 
 
     public GetSlas(customer: string) {
-        return this.xaservices.Http.Get<any>(`api/cmdb/sla?customer=${customer}`).pipe(
+        return this.xaservices.Http!.Get<any>(`api/cmdb/sla?customer=${customer}`).pipe(
             share(),
             //map(res => res.Data as Array<any>)
         );
@@ -95,7 +92,7 @@ export class VMCreateDataService {
         }
 
         if (infrastructure === 'Dedicated Local Infrastructure') {
-            return this.xaservices.Http.Get<Array<any>>(`/api/cmdb/getesxcluster?customer=${customer}&location=local`).pipe(
+            return this.xaservices.Http!.Get<Array<any>>(`/api/cmdb/getesxcluster?customer=${customer}&location=local`).pipe(
                 map(data => data.map(d => ({
                     ...d,
                     label: d.entry
@@ -105,7 +102,7 @@ export class VMCreateDataService {
 
 
         if (infrastructure === 'Dedicated Remote Infrastructure (DSI-R)') {
-            return this.xaservices.Http.Get<Array<any>>(`/api/cmdb/getesxcluster?customer=${customer}&location=remote`).pipe(
+            return this.xaservices.Http!.Get<Array<any>>(`/api/cmdb/getesxcluster?customer=${customer}&location=remote`).pipe(
                 map(data => data.map(d => ({
                     ...d,
                     label: d.entry
@@ -117,68 +114,68 @@ export class VMCreateDataService {
     }
 
     public GetOSImage(osType: string) {
-        return this.xaservices.Http.Get<any>(`/api/rmdb/osimages?osType=${osType}`).pipe(
+        return this.xaservices.Http!.Get<any>(`/api/rmdb/osimages?osType=${osType}`).pipe(
             share(),
             //map(data => data.Data)
         );
     }
 
     public GetCustomerLANsFor(customer: string) {
-        return this.xaservices.Http.Get<Array<any>>(`/api/cmdb/lan/${customer}/1`).pipe(
+        return this.xaservices.Http!.Get<Array<any>>(`/api/cmdb/lan/${customer}/1`).pipe(
             share()
         );
     }
 
     public GetAdminLANsFor(customer: string) {
-        return this.xaservices.Http.Get<Array<any>>(`/api/cmdb/lan/${customer}/2`).pipe(
+        return this.xaservices.Http!.Get<Array<any>>(`/api/cmdb/lan/${customer}/2`).pipe(
             share()
         );
     }
 
     public GetTsmLANsFor(customer: string) {
-        return this.xaservices.Http.Get<Array<any>>(`/api/cmdb/lan/${customer}/3`).pipe(
+        return this.xaservices.Http!.Get<Array<any>>(`/api/cmdb/lan/${customer}/3`).pipe(
             share()
         );
     }
 
     public GetCustomers() {
-        return this.xaservices.Http.Get<Array<any>>(`/api/cmdb/customer`).pipe(
+        return this.xaservices.Http!.Get<Array<any>>(`/api/cmdb/customer`).pipe(
             share()
         );
     }
 
     public GetOSSupportedBy() {
-        return this.xaservices.Http.Get<Array<any>>(`/api/cmdb/group/ossupportedby`).pipe(
+        return this.xaservices.Http!.Get<Array<any>>(`/api/cmdb/group/ossupportedby`).pipe(
             share()
         );
     }
 
     public GetAppSupportedBy() {
-        return this.xaservices.Http.Get<Array<any>>(`/api/cmdb/group/appsupportedby`).pipe(
+        return this.xaservices.Http!.Get<Array<any>>(`/api/cmdb/group/appsupportedby`).pipe(
             share()
         );
     }
 
     public GetEnvironments() {
-        return this.xaservices.Http.Get<Array<any>>(`api/cmdb/environments`).pipe(
+        return this.xaservices.Http!.Get<Array<any>>(`api/cmdb/environments`).pipe(
             share()
         );
     }
 
     public GetCriticality() {
-        return this.xaservices.Http.Get<Array<any>>(`api/cmdb/criticality`).pipe(
+        return this.xaservices.Http!.Get<Array<any>>(`api/cmdb/criticality`).pipe(
             share()
         );
     }
 
     public GetPatchMode() {
-        return this.xaservices.Http.Get<any>(`api/cmdb/patchmode`).pipe(
+        return this.xaservices.Http!.Get<any>(`api/cmdb/patchmode`).pipe(
             share(),
         );
     }
 
     public GetBasicData() {
-        return this.xaservices.Http.Get<any>(`/api/dataproxy/startup/basic`).pipe(
+        return this.xaservices.Http!.Get<any>(`/api/dataproxy/startup/basic`).pipe(
             share(),
             map(res => res.Data as {
                 Criticality: Array<string>,

@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { XAUIModule } from '@xa/ui';
 import { ShowErrorsModule } from '@xa/show-errors';
 import { ValidationService } from '@xa/validation';
-import { XAServices, InfoMailShareModule } from '@xa/lib-ui-common';
+import { InfoMailShareModule } from '@xa/lib-ui-common';
 import { NouisliderModule } from 'ng2-nouislider';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
@@ -15,6 +15,7 @@ import { PlaceholderPipe } from './pure-pipes/placeholder.pipe';
 import { RequiredPipe } from './pure-pipes/required.pipe';
 import { SharedModule } from 'projects/xa-portal-dev/src/app/shared/shared.module';
 import { XAToastDefaults } from 'projects/shared/toast-config';
+import { XASERVICE_TOKEN, windowFactory } from 'projects/shared.functions';
 
 @NgModule({
   declarations: [
@@ -40,8 +41,8 @@ import { XAToastDefaults } from 'projects/shared/toast-config';
   providers: [
     ValidationService,
     {
-      provide: XAServices,
-      useValue: (window as any).xa
+      provide: XASERVICE_TOKEN,
+      useFactory: windowFactory
     },
     {
       provide: 'XANotifyToastConfig',
