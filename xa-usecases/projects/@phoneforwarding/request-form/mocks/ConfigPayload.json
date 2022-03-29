@@ -1,0 +1,5 @@
+{
+  "header": "Phone Forwarding Automation",
+  "subheader": "Please select a user name!",
+  "endpointURL": "api/phone/phonelist/automation"
+}

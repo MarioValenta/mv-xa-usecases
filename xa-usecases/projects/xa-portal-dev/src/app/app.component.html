@@ -47,22 +47,22 @@
       </div>
 
       <div class="content-main">
-        <!-- <create-sr-request-form [Context]="requestContext"></create-sr-request-form> -->
-        <!-- <create-rfc-request-form [Context]="requestContext"></create-rfc-request-form> -->
-        <!-- <ranf-request-form [Context]="requestContext"></ranf-request-form> -->
-        <!-- <ranf-ut-check [Context]="taskContext"></ranf-ut-check> -->
-        <!-- <billing-request-form [Context]="requestContext"></billing-request-form> -->
-        <!-- <phoneforwarding-request-form [Context]="requestContext"></phoneforwarding-request-form> -->
-        <!-- <create-nfs-volume-request-form [Context]="requestContext"></create-nfs-volume-request-form> -->
-        <!-- <storage-extension-request-form [Context]="requestContext"></storage-extension-request-form> -->
-        <!-- <patchautomation-request-form [Context]="requestContext"></patchautomation-request-form> -->
-        <!-- <patchautomation-remove-request-form [Context]="requestContext"></patchautomation-remove-request-form> -->
-        <!-- <vm-create-request-form [Context]="requestContext"></vm-create-request-form> -->
-        <!-- <create-f5-virtual-server-request-form [Context]="requestContext"></create-f5-virtual-server-request-form> -->
-        <!-- <create-f5-virtual-server-ut-validate [Context]="taskContext"></create-f5-virtual-server-ut-validate> -->
-        <!-- <create-oracle-database-request-form [Context]="requestContext"></create-oracle-database-request-form> -->
-        <!-- <vmcreate-request-form-v2 [Context]="requestContext"></vmcreate-request-form-v2> -->
-        <universal-tap-execution-kfa-deployment-request-form [Context]="requestContext"></universal-tap-execution-kfa-deployment-request-form>
+        <create-sr-request-form [Context]="CreateSR_Context"></create-sr-request-form>
+        <create-rfc-request-form [Context]="CreateRFC_Context"></create-rfc-request-form>
+        <ranf-request-form [Context]="RANF_RF_Context"></ranf-request-form>
+        <ranf-ut-check [Context]="RANF_RF_UT_Check_Context"></ranf-ut-check>
+        <billing-request-form [Context]="Billing_Context"></billing-request-form>
+        <phoneforwarding-request-form [Context]="Phoneforwarding_Context"></phoneforwarding-request-form>
+        <create-nfs-volume-request-form [Context]="CreateNFS_Context"></create-nfs-volume-request-form>
+        <storage-extension-request-form [Context]="Storage_Extension_Context"></storage-extension-request-form>
+        <patchautomation-request-form [Context]="Patchautomation_Context"></patchautomation-request-form>
+        <patchautomation-remove-request-form [Context]="Patchautomation_Remove_Context"></patchautomation-remove-request-form>
+        <vm-create-request-form [Context]="VMCreate_v1_Context"></vm-create-request-form>
+        <vmcreate-request-form-v2 [Context]="VMCreate_v2_Context"></vmcreate-request-form-v2>
+        <create-f5-virtual-server-request-form [Context]="CreateF5VirtualServer_RF_Context"></create-f5-virtual-server-request-form>
+        <create-f5-virtual-server-ut-validate [Context]="CreateF5VirtualServer_UT_Validate_Context"></create-f5-virtual-server-ut-validate>
+        <create-oracle-database-request-form [Context]="Create_Oracle_DB_Context"></create-oracle-database-request-form>
+        <universal-tap-execution-kfa-deployment-request-form [Context]="Universal_Tap_Execution_KFA_Deploy_Context"></universal-tap-execution-kfa-deployment-request-form>
       </div>
 
       <div *ngIf="ui.Footer.Show$ | async" class="content-footer">
