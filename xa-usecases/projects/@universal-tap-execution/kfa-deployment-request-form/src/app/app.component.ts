@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FeedbackRequestPayload, ICERequest, ICERequestContext } from '@xa/lib-ui-common';
+import { getFlatpickrSettings } from 'projects/shared.functions';
 import { FlatpickrOptions } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.module';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -13,29 +14,15 @@ import { DataService } from './data.service';
 })
 export class AppComponent implements ICERequest, OnInit, OnDestroy {
 
-  @Input() public Context: ICERequestContext;
+  @Input() public Context!: ICERequestContext;
 
   title = 'KFA-Deployment';
-  form: FormGroup;
+  form!: FormGroup;
   destroy$ = new Subject();
 
-  constructor(private fb: FormBuilder, dataService: DataService) {
-    dataService.getCatalogDbData('test').subscribe(values => {
-      console.log(values);
-    });
-   }
+  constructor(private fb: FormBuilder, private dataService: DataService) { }
 
-  startOptions: FlatpickrOptions = {
-    enableTime: true,
-    mode: 'single',
-    time_24hr: true,
-    weekNumbers: true,
-    minuteIncrement: 15,
-    defaultHour: 10,
-    altInput: true,
-    altFormat: 'l j.F Y, H:i',
-    minDate: this.getDate()
-  };
+  startOptions: FlatpickrOptions = getFlatpickrSettings();
 
   ngOnInit() {
 
@@ -52,6 +39,10 @@ export class AppComponent implements ICERequest, OnInit, OnDestroy {
       this.form.patchValue(this.Context.Payload);
     }
 
+    this.dataService.getCatalogDbData(`api/universaltapexecution/getusecaseinfosfromcatdb/${this.form.get(['catDbData'])!.value['nameOfUseCase']}/${this.form.get('customer')!.value}`).subscribe(values => {
+      this.form.get('catDbData')!.patchValue(values);
+      console.log('catDbData: ', values);
+    });
   }
 
   ngOnDestroy() {
@@ -61,7 +52,10 @@ export class AppComponent implements ICERequest, OnInit, OnDestroy {
   private buildForm() {
 
     this.form = this.fb.group({
-      Startdate: ['', Validators.required]
+      startdate: ['', Validators.required],
+      customer: ['', Validators.required],
+      catDbConfig: ['', Validators.required],
+      catDbData: ['', Validators.required]
     });
 
   }
@@ -86,8 +80,4 @@ export class AppComponent implements ICERequest, OnInit, OnDestroy {
   dateSelected(event: any) {
   }
 
-  public getDate() {
-    const dt = new Date();
-    return new Date(dt.setHours(dt.getHours(), dt.getMinutes() + 30, 0, 0));
-  }
 }

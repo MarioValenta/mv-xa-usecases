@@ -1,3 +1,21 @@
 {
-
+  "customer": "PRINZHORN",
+  "catDbConfig": {
+    "listOfCIs": "H11822916, H11822917",
+    "requestName": "UniversalTapExecution",
+    "jenkinsPath": "/jenkins/job/Camunda/job/Testcorner/job/OS/job/Windows/job/Patching/job/precheck_patching_OperatingSystem/build",
+    "approvalGroup": "GDE.BA.AT.PRINZHORN-ACCOUNT.CA",
+    "nameOfUseCase": "precheck_patching_OperatingSystem",
+    "isApprovalWished": "true",
+    "isMailOnEndWished": "true",
+    "isSM9ChangeWished": "true",
+    "jenkinsParameters": "{\"Host\":\"svphg200mig001\"}",
+    "maxWaitTimeMinutes": "5",
+    "isMailOnStartWished": "true",
+    "contact4ErrorHandling": "Stefan.Bruder@t-systems.com",
+    "changeDurationTimeMinutes": "10",
+    "isSM9ServiceRequestWished": "false",
+    "isMaintainanceWindowWished": "true",
+    "contact2InformOnStartAndEnd": "Stefan.Bruder@t-systems.com"
+  }
 }

@@ -10,7 +10,7 @@ export class DataService {
   constructor(@Inject(XASERVICE_TOKEN) private xaservices: XAServices) {}
 
   public getCatalogDbData(endpoint: string) {
-    return this.xaservices.Http!.Get('api/cmdb/customer');
+    return this.xaservices.Http!.Get(endpoint);
   }
 
 }

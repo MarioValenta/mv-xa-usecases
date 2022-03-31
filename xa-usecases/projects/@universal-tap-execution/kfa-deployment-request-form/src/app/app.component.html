@@ -22,9 +22,11 @@
 
   <div class="required field">
     <label>Patch Startdate</label>
-    <ng2-flatpickr formControlName="Startdate" [config]="startOptions" placeholder="Select Date...">
+    <ng2-flatpickr formControlName="startdate" [config]="startOptions" placeholder="Select Date...">
     </ng2-flatpickr>
-    <show-errors [control]="this.form.get('Startdate')"></show-errors>
+    <show-errors [control]="this.form.get('startdate')"></show-errors>
   </div>
 </form>
-<pre *if-dev>{{form.value | json }}</pre>
+<pre>{{form.getRawValue() | json }}</pre>
+<!-- <pre *if-dev>{{form.value | json }}</pre>
+<pre *if-dev>{{form.getRawValue() | json }}</pre> -->
