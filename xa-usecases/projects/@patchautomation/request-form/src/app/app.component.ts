@@ -1,14 +1,16 @@
-import { Component, ChangeDetectionStrategy, OnInit, OnDestroy, Input, ViewChild } from '@angular/core';
-import { ICERequest, ICERequestContext, FeedbackRequestPayload } from '@xa/lib-ui-common';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { Subject, Observable } from 'rxjs';
-import { takeUntil, tap } from 'rxjs/operators';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FeedbackRequestPayload, ICERequest, ICERequestContext } from '@xa/lib-ui-common';
 import { ValidationService } from '@xa/validation';
-import { DataService } from './data.service';
-import { CustomerDTO } from './customer-dto';
-import { CiTableComponent } from './ci-table/ci-table.component';
-import {trigger, style, animate, transition, state} from '@angular/animations';
+import { getFlatpickrSettings } from 'projects/shared.functions';
 import { FlatpickrOptions } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.module';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil, tap } from 'rxjs/operators';
+
+import { CiTableComponent } from './ci-table/ci-table.component';
+import { CustomerDTO } from './customer-dto';
+import { DataService } from './data.service';
 
 
 @Component({
@@ -19,17 +21,17 @@ import { FlatpickrOptions } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.mo
     trigger('simpleFadeAnimation', [
 
       // the "in" style determines the "resting" state of the element when it is visible.
-      state('in', style({opacity: 1})),
+      state('in', style({ opacity: 1 })),
 
       // fade in when created. this could also be written as transition('void => *')
       transition(':enter', [
-        style({opacity: 0}),
+        style({ opacity: 0 }),
         animate(600)
       ]),
 
       // fade out when destroyed. this could also be written as transition('void => *')
       transition(':leave',
-        animate(400, style({opacity: 0})))
+        animate(400, style({ opacity: 0 })))
     ])
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -58,17 +60,7 @@ export class AppComponent implements ICERequest, OnInit, OnDestroy {
 
   }
 
-  startOptions: FlatpickrOptions = {
-    enableTime: true,
-    mode: 'single',
-    time_24hr: true,
-    weekNumbers: true,
-    minuteIncrement: 15,
-    defaultHour: 10,
-    altInput: true,
-    altFormat: 'l j.F Y, H:i',
-    minDate: this.getDate()
-  };
+  startOptions: FlatpickrOptions = getFlatpickrSettings();
 
   buildForm() {
     this.form = this.fb.group({
@@ -158,7 +150,7 @@ export class AppComponent implements ICERequest, OnInit, OnDestroy {
         + '-' + this.appendLeadingZeroToNumber(selectedDate.getMonth() + 1)
         + '-' + this.appendLeadingZeroToNumber(selectedDate.getDate())
         + ' ' + this.appendLeadingZeroToNumber(selectedDate.getHours())
-              + this.appendLeadingZeroToNumber(selectedDate.getMinutes());
+        + this.appendLeadingZeroToNumber(selectedDate.getMinutes());
     }
 
     this.form.get('Identifier').setValue(customerShortName + ' | Autopatch | ' + date);
@@ -168,8 +160,4 @@ export class AppComponent implements ICERequest, OnInit, OnDestroy {
     return ("0" + value).slice(-2);
   }
 
-  public getDate() {
-    const dt = new Date();
-    return new Date(dt.setHours(dt.getHours() + 1, 0, 0, 0));
-  }
 }

@@ -11,6 +11,7 @@ import { environment } from '../environments/environment';
 import { DebitorCustomerDto } from './dto/DebitorCustomer';
 import { CustomerInformationDto } from './dto/CustomerInformation';
 import { FlatpickrOptions } from 'projects/shared/ng2-flatpickr/flatpickr-options.interface';
+import { getDate, getFlatpickrSettings } from 'projects/shared.functions';
 
 @Component({
     selector: 'ranf-request-form',
@@ -57,33 +58,20 @@ export class AppComponent implements ICERequest, OnInit, OnDestroy, AfterViewIni
     TimePayment$: Observable<string[]>;
     BillingCycle$: Observable<string[]>;
 
-    periodStart = this.getDate();
+    periodStart = getDate(0);
     periodEnd = null;
 
-    startOptions: FlatpickrOptions = {
-      locale: {
-        firstDayOfWeek: 1
-    },
-        enableTime: false,
-        mode: 'single',
-        weekNumbers: true,
-        altInput: true,
-        altFormat: 'j. F Y',
-        dateFormat: "Y-m-d\\Z",
-    };
+    startOptions: FlatpickrOptions = getFlatpickrSettings({
+      enableTime: false,
+      altFormat: 'j. F Y',
+      dateFormat: "j. F Y\\Z",
+    });
 
-    endOptions: FlatpickrOptions = {
-      locale: {
-        firstDayOfWeek: 1
-    },
-        enableTime: false,
-        mode: 'single',
-        weekNumbers: true,
-        altInput: true,
-        altFormat: 'j. F Y',
-        dateFormat: 'j. F Y\\Z'
-    };
-
+    endOptions: FlatpickrOptions = getFlatpickrSettings({
+      enableTime: false,
+      altFormat: 'j. F Y',
+      dateFormat: 'j. F Y\\Z'
+    });
 
     constructor(
         private fb: FormBuilder,
@@ -165,11 +153,6 @@ export class AppComponent implements ICERequest, OnInit, OnDestroy, AfterViewIni
 
     ngOnDestroy() {
         this.destroy$.next();
-    }
-
-    public getDate(addHours = 0) {
-        const dt = new Date();
-        return new Date(dt.setHours(dt.getHours() + addHours, 0, 0, 0));
     }
 
     isFormElementRequired(elementName: string) {
@@ -285,7 +268,6 @@ export class AppComponent implements ICERequest, OnInit, OnDestroy, AfterViewIni
     onValueChangesFlatPicker() {
         this.form.get(this.FORM_KEY_PERIOD_START).valueChanges.subscribe(data => {
           this.logger('DEBUG', data);
-          this.logger('DEBUG', this.startPicker.flatpickr.formatDate(data, 'j. F Y', ));
             if (data) {
                 this.periodStart = new Date(data);
                 this.endPicker.flatpickr.set({ minDate: this.periodStart.setDate(this.periodStart.getDate() + 1) });

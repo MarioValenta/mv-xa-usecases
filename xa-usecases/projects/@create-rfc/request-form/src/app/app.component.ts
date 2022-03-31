@@ -1,15 +1,17 @@
-import { Component, OnInit, OnDestroy, Input, ChangeDetectorRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray, AbstractControl, FormControl } from '@angular/forms';
-import { ICERequest, ICERequestContext, FeedbackRequestPayload } from '@xa/lib-ui-common';
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
-import { DataService } from './data.service';
-import { RequestForChangeService } from './request-for-change.service';
+import { Component, Input, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FeedbackRequestPayload, ICERequest, ICERequestContext } from '@xa/lib-ui-common';
 import { ValidationService } from '@xa/validation';
-import { ValidatorConfig } from '@xa/validation/lib/Validation/ValidatorConfig';
-import { IAssignmentGroupDTO } from './dto/AssignmentGroup';
 import { RequiredPipe } from 'projects/@create-rfc/shared/pure-pipes/required.pipe';
+import { getDate, getFlatpickrSettings } from 'projects/shared.functions';
 import { FlatpickrOptions, Ng2FlatpickrComponent } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.module';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
+import { DataService } from './data.service';
+import { IAssignmentGroupDTO } from './dto/AssignmentGroup';
+import { RequestForChangeService } from './request-for-change.service';
+
 
 @Component({
   selector: 'create-rfc-request-form',
@@ -28,7 +30,7 @@ export class AppComponent implements ICERequest, OnInit, OnDestroy {
 
   linkForDeliveryTeams = "https://share.t-systems.ch/alpine/de-esc/Lists/Delivery%20relevant%20teams/AllItems.aspx";
 
-  latestStart = this.GetDate(1);
+  latestStart = getDate(1);
   latestEnd = null;
   loaded = false;
 
@@ -41,88 +43,21 @@ export class AppComponent implements ICERequest, OnInit, OnDestroy {
   @ViewChildren('startTaskPicker') startTaskPicker: QueryList<Ng2FlatpickrComponent>;
   @ViewChildren('endTaskPicker') endTaskPicker: QueryList<Ng2FlatpickrComponent>;
 
-  startOptions: FlatpickrOptions = {
-    enableTime: true,
-    mode: 'single',
-    time_24hr: true,
-    weekNumbers: true,
-    minuteIncrement: 15,
-    defaultHour: 10,
-    altInput: true,
-    altFormat: 'l j.F Y, H:i',
-    minDate: this.GetDate(1)
-  };
+  startOptions: FlatpickrOptions = getFlatpickrSettings({ minDate: getDate(1) });
+  endOptions: FlatpickrOptions = getFlatpickrSettings({ minDate: getDate(2) });
 
-  endOptions: FlatpickrOptions = {
-    enableTime: true,
-    mode: 'single',
-    time_24hr: true,
-    weekNumbers: true,
-    minuteIncrement: 15,
-    defaultHour: 10,
-    altInput: true,
-    altFormat: 'l j.F Y, H:i',
-    minDate: this.GetDate(2)
-  };
+  startMWOptions: FlatpickrOptions = getFlatpickrSettings({ minDate: getDate(1) });
+  endMWOptions: FlatpickrOptions = getFlatpickrSettings({ minDate: getDate(2) });
 
-  startMWOptions: FlatpickrOptions = {
-    enableTime: true,
-    mode: 'single',
-    time_24hr: true,
-    weekNumbers: true,
-    minuteIncrement: 15,
-    defaultHour: 10,
-    altInput: true,
-    altFormat: 'l j.F Y, H:i',
-    minDate: this.GetDate(1)
-  };
-
-  endMWOptions: FlatpickrOptions = {
-    enableTime: true,
-    mode: 'single',
-    time_24hr: true,
-    weekNumbers: true,
-    minuteIncrement: 15,
-    defaultHour: 10,
-    altInput: true,
-    altFormat: 'l j.F Y, H:i',
-    minDate: this.GetDate(2),
-  };
-
-  startGroupOptions: FlatpickrOptions = {
-    enableTime: true,
-    mode: 'single',
-    time_24hr: true,
-    weekNumbers: true,
-    minuteIncrement: 15,
-    defaultHour: 10,
-    altInput: true,
-    altFormat: 'l j.F Y, H:i',
-    minDate: this.GetDate(1)
-  };
-
-  endGroupOptions: FlatpickrOptions = {
-    enableTime: true,
-    mode: 'single',
-    time_24hr: true,
-    weekNumbers: true,
-    minuteIncrement: 15,
-    defaultHour: 10,
-    altInput: true,
-    altFormat: 'l j.F Y, H:i',
-    minDate: this.GetDate(2),
-  };
+  startGroupOptions: FlatpickrOptions = getFlatpickrSettings({ minDate: getDate(1) });
+  endGroupOptions: FlatpickrOptions = getFlatpickrSettings({ minDate: getDate(2) });
 
   constructor(
-
     private fb: FormBuilder,
     private data: DataService,
     public rfcService: RequestForChangeService,
     private validationService: ValidationService
-
-  ) {
-
-  }
+  ) { }
 
   BuildForm() {
     this.form = this.fb.group({
@@ -663,10 +598,7 @@ export class AppComponent implements ICERequest, OnInit, OnDestroy {
     }
   }
 
-  public GetDate(addHours = 0) {
-    const dt = new Date();
-    return new Date(dt.setHours(dt.getHours() + addHours, 0, 0, 0));
-  }
+
 
   Feedback(): FeedbackRequestPayload {
     return this.form.value;
