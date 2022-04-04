@@ -1,0 +1,8 @@
+<div class="ui message">
+  <table>
+    <tr *ngFor="let item of infoData | keyvalue">
+      <td><b>{{item.key}}</b>:</td>
+      <td>{{item.value}}</td>
+    </tr>
+  </table>
+</div>
