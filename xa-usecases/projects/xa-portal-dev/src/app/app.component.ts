@@ -70,6 +70,10 @@ import * as Create_Oracle_DB_Validation from '../../../@create-oracle-database/r
 import * as UTE_KFA_Deployment_Payload from '../../../@universal-tap-execution/kfa-deployment-request-form/mocks/Payload.json';
 import * as UTE_KFA_Deployment_ConfigPayload from '../../../@universal-tap-execution/kfa-deployment-request-form/mocks/ConfigPayload.json';
 import * as UTE_KFA_Deployment_Validation from '../../../@universal-tap-execution/kfa-deployment-request-form/mocks/Validation.json';
+// Create Problem
+import * as CreateProblem_Payload from '../../../@create-problem/request-form/mocks/Payload.json';
+import * as CreateProblem_ConfigPayload from '../../../@create-problem/request-form/mocks/ConfigPayload.json';
+import * as CreateProblem_Validation from '../../../@create-problem/request-form/mocks/Validation.json';
 
 // TODO: add new imports for every project (request-form, user-tasks)
 
@@ -101,7 +105,8 @@ export class AppHtmlFormsComponent {
   CreateF5VirtualServer_UT_Validate_Context: TaskContext = this.BuildCeTaskContext({ payload: CreateF5VirtualServer_UT_Validate_Payload, configPayload: CreateF5VirtualServer_UT_Validate_ConfigPayload, validation: CreateF5VirtualServer_UT_Validate_Validation });
   Create_Oracle_DB_Context: RequestContext = this.BuildRequestContext({ payload: Create_Oracle_DB_Payload, configPayload: Create_Oracle_DB_ConfigPayload, validation: Create_Oracle_DB_Validation });
   Universal_Tap_Execution_KFA_Deploy_Context: RequestContext = this.BuildRequestContext({ payload: UTE_KFA_Deployment_Payload, configPayload: UTE_KFA_Deployment_ConfigPayload, validation: UTE_KFA_Deployment_Validation });
-
+  CreateProblem_Context: RequestContext = this.BuildRequestContext({ payload: CreateProblem_Payload, configPayload: CreateProblem_ConfigPayload, validation: CreateProblem_Validation });
+ 
   constructor(
     private initialize: AppInitializeService,
     public ui: ContentUiService) {
