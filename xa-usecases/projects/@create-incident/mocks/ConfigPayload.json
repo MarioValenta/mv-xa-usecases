@@ -1,0 +1,16 @@
+{
+  "variablesToBeStoredInCamunda": ["MailAddressesShareInformation"],
+  "variablesNotToBeCloned": [],
+  "Endpoint": ["https://api-portal-ucdev.xanet.at/api/vmcreate/appliance/IDBAPROXY_UCDEV/parameters"],
+  "Placeholders": {
+    "Customer": "select the customer ...",
+    "Title": "specify title ...",
+    "ServiceRequestDescriptionTextArea": "describe the incident here ...",
+    "AssignmentGroup": "Assignment-Group",
+    "Category1": "select a category",
+    "Category2": "select a category"
+  },
+  "textarea": {
+    "rows": 10
+  }
+}
