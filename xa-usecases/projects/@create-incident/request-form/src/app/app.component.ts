@@ -116,7 +116,7 @@ export class AppComponent implements ICERequest, OnInit, OnDestroy {
                 {
                   titleMaxLength: 40,
                   closeOnClick: true,
-                  timeout: 3000,
+                  timeout: 0,
                   pauseOnHover: true
                 }
                 

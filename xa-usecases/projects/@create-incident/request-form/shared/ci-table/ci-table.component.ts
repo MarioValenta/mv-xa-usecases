@@ -3,14 +3,12 @@ import { GridApi, ColumnApi, ColDef } from 'ag-grid-community';
 import { RequestForChangeModalService } from '../modals/request-for-change-modal.service';
 import { ICERequestContext } from '@xa/lib-ui-common';
 
-
 @Component({
   selector: 'ci-table',
   templateUrl: './ci-table.component.html',
-  styleUrls: ['./ci-table.component.scss']
+  styleUrls: ['./ci-table.component.scss'],
 })
 export class CiTableComponent implements OnInit {
-
   @Input() public Context: ICERequestContext;
 
   @Input()
@@ -37,7 +35,6 @@ export class CiTableComponent implements OnInit {
   get searchButtonText() {
     return this._searchButtonText;
   }
-
 
   private _showClearButton = true;
   @Input()
@@ -95,8 +92,7 @@ export class CiTableComponent implements OnInit {
 
   @Output() gridChanged: EventEmitter<any>;
 
-
-  rowData = [];
+  rowData : any[] = [];
   rowDataDuplicates = [];
 
   overlayLoadingTemplate: string;
@@ -113,11 +109,10 @@ export class CiTableComponent implements OnInit {
       '<span class="ag-overlay-loading-center">Please wait while your rows are loading...</span>';
     this.overlayNoRowsTemplate =
       '<span class="ag-overlay-loading-center">No CI selected.</span>';
-
   }
 
   // necessary for providing the right scope to context items
-  getContextMenuItems = params => this.contextMenu(params);
+  getContextMenuItems = (params) => this.contextMenu(params);
 
   ngOnInit() {
     this.columnDefs = this.createColumnDefs();
@@ -136,7 +131,6 @@ export class CiTableComponent implements OnInit {
     this.api.sizeColumnsToFit();
   }
 
-
   onCellChanged(params): void {
     this.gridChanged.emit(this.rowData);
   }
@@ -152,18 +146,14 @@ export class CiTableComponent implements OnInit {
             if (params.node !== null) {
               this.RemoveFromTable(params.node);
             }
-          }
+          },
         },
         'copy',
         'export',
-        'autoSizeAll'
+        'autoSizeAll',
       ];
     } else {
-      result = [
-        'copy',
-        'export',
-        'autoSizeAll'
-      ];
+      result = ['copy', 'export', 'autoSizeAll'];
     }
     return result;
   }
@@ -178,14 +168,13 @@ export class CiTableComponent implements OnInit {
         {
           headerName: 'SupportGroup',
           field: 'CustomerScope',
-
-      }
-      ]
+        },
+      ];
     }
   }
 
-  RemoveFromTable(row: { data: any; }) {
-    this.rowData = this.rowData.filter(element => {
+  RemoveFromTable(row: { data: any }) {
+    this.rowData = this.rowData.filter((element) => {
       if (row !== null) {
         return element === row.data ? false : true;
       }
@@ -194,46 +183,61 @@ export class CiTableComponent implements OnInit {
   }
 
   OpenHostSearchComponentModal() {
-    this.rfcModalService.OpenHostSearchComponent('adddevice', this.Context, (context) => {
-      this.AddCIs(context.Data.map(element => {
-        // these array indices (JSON attributes) have to match the Label value of the SearchField array in the RequestForChangeSearchCisModalComponent
-        return { ID: element['HostID'], Name: element['Hostname'], CustomerScope: element['SupportGroup'], FKey: element['FKey'] };
-      }));
-    });
+    this.rfcModalService.OpenHostSearchComponent(
+      'adddevice',
+      this.Context,
+      (context) => {
+        const hostci = {
+          ID: context.Data['HostID'],
+          Name: context.Data['Hostname'],
+          CustomerScope: context.Data['SupportGroup'],
+          FKey: context.Data['FKey'],
+        };
+        this.AddCIs([hostci]);
+      }
+    );
   }
 
   OpenAppSearchComponentModal() {
-    this.rfcModalService.OpenAppSearchComponent('adddevice', this.Context, (context) => {
-      this.AddCIs(context.Data.map(element => {
-        return { ID: element['ApplicationID'], Name: element['ApplicationName'], CustomerScope: element['SupportGroup'],};
-      }));
-    });
+    this.rfcModalService.OpenAppSearchComponent(
+      'adddevice',
+      this.Context,
+      (context) => {
+        const appci = {
+          ID: context.Data['ApplicationID'],
+          Name: context.Data['ApplicationName'],
+          CustomerScope: context.Data['SupportGroup'],
+        };
+        this.AddCIs([appci]);
+      }
+    );
   }
 
-  AddCIs(cis: any[]) {
-    if (this.rowData.length > 0) {
-      if (this.uniqueKeyForDuplicates) {
-        cis = this.checkDuplicatesInRowData(cis, this.uniqueKeyForDuplicates);
-      }
-    }
-    this.rowData = this.rowData.concat(cis);
+  AddCIs(ci: any[]) {
+    this.rowData = ci;
     this.gridChanged.emit(this.rowData);
   }
 
   /**
-  * Precondition: the inputArray must contain only unique values
-  *
-  * @param {any[]} inputArray
-  * @param {(string | number)} criteria
-  * @returns {any[]}
-  * @memberof CiTableComponent
-  */
-  checkDuplicatesInRowData(inputArray: any[], criteria: string | number): any[] {
+   * Precondition: the inputArray must contain only unique values
+   *
+   * @param {any[]} inputArray
+   * @param {(string | number)} criteria
+   * @returns {any[]}
+   * @memberof CiTableComponent
+   */
+  checkDuplicatesInRowData(
+    inputArray: any[],
+    criteria: string | number
+  ): any[] {
     if (this.rowData.length > 0) {
       this.rowData.forEach((row) => {
-        this.rowDataDuplicates = this.rowDataDuplicates.concat(inputArray.filter(
-          item => item[criteria] === row[criteria]));
-        inputArray = inputArray.filter(item => item[criteria] !== row[criteria]);
+        this.rowDataDuplicates = this.rowDataDuplicates.concat(
+          inputArray.filter((item) => item[criteria] === row[criteria])
+        );
+        inputArray = inputArray.filter(
+          (item) => item[criteria] !== row[criteria]
+        );
       });
     }
     return inputArray;

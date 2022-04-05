@@ -15,7 +15,7 @@ export class RequestForChangeSearchAppsModalComponent implements OnInit {
 
   searchfields: Array<string> = ['ApplicationID', 'ApplicationName'];
   resultfields: Array<string> = ['ApplicationID', 'ApplicationName','TBLHOST'];
-  selection = 'multiple';
+  selection = 'single';
   rowSelection: any;
 
   @Input() public Context: ICERequestContext;

@@ -12,7 +12,7 @@ export class RequestForChangeSearchCisModalComponent implements OnInit {
 
   searchfields: Array<string> = ['HostID', 'Hostname'];
   resultfields: Array<string> = ['HostID', 'Hostname'];
-  selection = 'multiple';
+  selection = 'single';
   rowSelection: any;
 
   constructor(private context: XAModalPageContext<any>, @Inject(XASERVICE_TOKEN) private xaservices: XAServices) { }
