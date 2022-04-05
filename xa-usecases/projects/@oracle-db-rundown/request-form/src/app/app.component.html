@@ -1,0 +1,97 @@
+<form [formGroup]="form" class="ui container form" style="padding:20px 10px">
+    <h2 class="ui dividing header">
+        <i class="desktop icon"></i>
+        <div class="content">
+          <span> Service Selection </span>
+          <div class="sub header">Select Service by providing at least one of the following critieria.</div>
+        </div>
+    </h2>
+
+    <search-component style="height: 500px" (selectionChanged)='onSearchChanged($event)' selectionMods="single"
+        [fields]="SearchFields" [search]="searchFunction"></search-component>
+
+    <h5>Selected Service</h5>
+    <infotable [info]="info"></infotable>
+
+    <h5>Host Relations</h5>
+    <relation-table [Entries]="EntriesHost" [fields]="hostfields"></relation-table>
+
+    <h5>Service Relations</h5>
+    <relation-table [Entries]="EntriesService" [fields]="servicefields"></relation-table>
+
+
+    <div class="three wide required field" style="padding-top: 30px">
+        <label>Rundown Start Date</label>
+        <input type="text" id="datepicker" formControlName="RUNDOWN_DATE" />
+    </div>
+    <show-errors [control]="form.get('RUNDOWN_DATE')"></show-errors>
+
+    <div class="field">
+        <p>DBs will be taken offline and kept for a grace period of 10 days before deletion.</p>
+    </div>
+
+    <div class="required field" style="padding-top: 20px">
+        <label>Acknowledgement regarding final data export or backup</label>
+        <div class="field">
+            <p>I understand, that <b>BEFORE</b> submitting this request for rundown, I have to have a final data export or backup if required.
+                (This workflow does <b>NOT</b> create a final data export or backup - you need to have it <b>BEFORE</b> submitting this request.)
+            </p>
+        </div>
+
+
+        <div class="field">
+            <div class="grouped fields">
+                <div class="field">
+                    <xa-radiobox formControlName="Backup" group="Backup" value="AlreadyExistingBackup">
+                      A final data export / backup has been created and is in my possession.
+                    </xa-radiobox>
+                </div>
+                <div class="field">
+                    <xa-radiobox formControlName="Backup" group="Backup" value="DontKeepOtherReason">
+                      No final data export / backup is needed for the following reason:
+                    </xa-radiobox>
+                </div>
+            </div>
+            <div class="field" *ngIf="form.get('Backup').value == 'DontKeepOtherReason'">
+                <input type="text" formControlName="Reason" placeholder="state reason here">
+            </div>
+            <show-errors [control]="form.get('Reason')"></show-errors>
+        </div>
+    </div>
+    <div class="field">
+        <p>
+          <i>
+            If you cannot check one of those two boxes do <b>NOT</b>
+            submit this request, but create an RfC for a final data export / backup first.
+          </i>
+        </p>
+    </div>
+
+
+
+    <div class="field" style="padding-top: 20px">
+        <label>NAS data deletion grace period</label>
+        <p>Volumes associated with the server run down are taken offline and kept for a grace period of 10 days by default.</p>
+        <p>If you want specific NAS-volumes to be kept for longer that seven days, specifiy here, which NAS volumes to keep longer:</p>
+        <div class="field">
+            <textarea rows="2" placeholder="e.g. tma_updeploy01_data1n, tma_updeploy01_data2n"
+                formControlName="VolumestoKeepLonger"></textarea>
+        </div>
+
+        <div class="fields">
+            <div class="field" style="padding-top: 10px">
+                <p>NAS volumes specified above shall be kept for </p>
+            </div>
+            <div class="one wide field">
+                <input type="text" (keypress)="keyPress($event)" formControlName="DaystoKeep">
+
+            </div>
+
+            <div class="field" style="padding-top: 10px">
+                <p>days after NAS volumes are taken offline (min: 10 days).</p>
+            </div>
+        </div>
+        <show-errors [control]="form.get('DaystoKeep')"></show-errors>
+    </div>
+</form>
+<xa-notify></xa-notify>
