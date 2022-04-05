@@ -1,0 +1,98 @@
+<form [formGroup]="form" class="ui container form" style="padding: 20px 10px">
+  <h2 class="ui dividing header">
+    <i class="edit outline icon"></i>
+    <div class="content">
+      <span> General </span>
+      <div class="sub header">Specify general information.</div>
+    </div>
+  </h2>
+
+  <div class="field" [class.required]="isFormElementRequired('Title')">
+    <label>Title</label>
+    <input type="text" formControlName="Title" [placeholder]="this.Context.ConfigPayload.Placeholders.Title" />
+    <show-errors [control]="this.form.get('Title')"></show-errors>
+  </div>
+
+  <div class="five wide field" [class.required]="isFormElementRequired('Customer')">
+    <label>Customer</label>
+    <xa-select [search]="true" [options]="Customers$ | async" [loading]="!(Customers$ | async)"
+      formControlName="CustomerName" [placeholder]="this.Context.ConfigPayload.Placeholders.Customer"
+      viewValue="label" optionValue="sm9name" (change)="customerSelected()" #customerDropDown></xa-select>
+    <show-errors [control]="this.form.get('Customer')"></show-errors>
+  </div>
+
+  <h2 class="ui dividing header">
+    <i class="exclamation icon"></i>
+    <div class="content">
+      <span> Problem </span>
+      <div class="sub header">Description of the Problem</div>
+    </div>
+  </h2>
+
+  <div class="field" [class.required]="isFormElementRequired('ServiceRequestDescriptionTextArea')">
+    <label>Problem Description</label>
+    Please provide a thorough problem description.
+    <textarea [rows]="this.Context.ConfigPayload.textarea.rows" formControlName="ServiceRequestDescriptionTextArea"
+      [maxlength]="this.Context.ConfigPayload.textarea.textLength" [placeholder]="
+        this.Context.ConfigPayload.Placeholders
+          .ServiceRequestDescriptionTextArea
+      "></textarea>
+    <show-errors [control]="this.form.get('ServiceRequestDescriptionTextArea')"></show-errors>
+  </div>
+
+  <div *ngIf="this.Context.ConfigPayload.textarea.textLength" class="ui right aligned grid">
+    <div class="sixteen wide column">
+      <span>{{
+        this.Context.ConfigPayload.textarea.textLength -
+        this.form.get("ServiceRequestDescriptionTextArea")?.value.length
+        }}/{{ this.Context.ConfigPayload.textarea.textLength }} characters
+        left</span>
+    </div>
+  </div>
+
+  <h2 class="ui dividing header">
+    <i class="file outline icon"></i>
+    <div class="content">
+      <span> Attachments </span>
+      <div class="sub header">
+        Select and add attachments that you want to add to the problem
+      </div>
+    </div>
+  </h2>
+
+  <div class="field">
+    <ui-attachments-upload style="width: 100%; height: 250px" [maxNumberofFiles]="3" [maxFileSizeInMB]="5"
+      formFieldName="Attachments">
+    </ui-attachments-upload>
+  </div>
+
+  <h2 class="ui dividing header">
+    <i class="share alternate icon"></i>
+    <div class="content">
+      <span> Information Sharing </span>
+      <div class="sub header">
+        Specify e-mail address(es) below that you want to inform about the problem
+        <b>(separated by ; )</b>.
+      </div>
+    </div>
+  </h2>
+
+  <div class="field">
+    <info-mail-share controlName="MailAddressesShareInformation"
+      [required]="isFormElementRequired('MailAddressesShareInformation')"></info-mail-share>
+  </div>
+</form>
+<xa-notify></xa-notify>
+
+<pre *if-dev>
+  <div class="ui two column divided grid">
+    <div class="row">
+      <div class="column">
+        <p>   {{ form.getRawValue() | json }}</p>
+      </div>
+      <div class="column">
+        <p>  {{ form.value | json }}</p>
+      </div>
+    </div>
+    </div>
+</pre>

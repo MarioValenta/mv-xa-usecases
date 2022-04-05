@@ -17,6 +17,8 @@ import { VMCreateRequestFormv2AppModule } from 'projects/@vmcreate/request-form-
 import { VMCreateRequestFormAppModule } from 'projects/@vmcreate/request-form/src/app/app.module';
 import { OracleDbRdnRequestFormAppModule } from './@oracle-db-rundown/request-form/src/app/app.module';
 import { OracleDbRdnUTEnterInterfaceAppModuleAppModule } from './@oracle-db-rundown/ut-enter-interface/src/app/app.module';
+import { CreateProblemRequestFormAppModule } from './@create-problem/request-form/src/app/app.module';
+import { CreateIncidentRequestFormAppModule } from './@create-incident/request-form/src/app/app.module';
 
 
 @NgModule({
@@ -24,6 +26,7 @@ import { OracleDbRdnUTEnterInterfaceAppModuleAppModule } from './@oracle-db-rund
     RanfRequestFormAppModule,
     RanfUtCheckAppModule,
     CreateSRRequestFormAppModule,
+    CreateIncidentRequestFormAppModule,
     CreateRfcRequestFormAppModule,
     BillingRequestFormAppModule,
     PhoneForwardingRequestFormAppModule,
@@ -38,7 +41,8 @@ import { OracleDbRdnUTEnterInterfaceAppModuleAppModule } from './@oracle-db-rund
     VMCreateRequestFormv2AppModule,
     UniversalTapExecutionKfaDeploymentRequestFormAppModule,
     OracleDbRdnRequestFormAppModule,
-    OracleDbRdnUTEnterInterfaceAppModuleAppModule
+    OracleDbRdnUTEnterInterfaceAppModuleAppModule,
+    CreateProblemRequestFormAppModule
   ]
 })
 export class UseCasesFormsAppModule { }

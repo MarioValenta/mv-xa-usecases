@@ -78,8 +78,14 @@ import * as Oracle_DB_Rundown_UT_Enter_Interface_Validation from '../../../@orac
 import * as UTE_KFA_Deployment_Payload from '../../../@universal-tap-execution/kfa-deployment-request-form/mocks/Payload.json';
 import * as UTE_KFA_Deployment_ConfigPayload from '../../../@universal-tap-execution/kfa-deployment-request-form/mocks/ConfigPayload.json';
 import * as UTE_KFA_Deployment_Validation from '../../../@universal-tap-execution/kfa-deployment-request-form/mocks/Validation.json';
-
-// TODO: add new imports for every project (request-form, user-tasks)
+// Create Problem
+import * as CreateProblem_Payload from '../../../@create-problem/request-form/mocks/Payload.json';
+import * as CreateProblem_ConfigPayload from '../../../@create-problem/request-form/mocks/ConfigPayload.json';
+import * as CreateProblem_Validation from '../../../@create-problem/request-form/mocks/Validation.json';
+// Create Incident
+import * as CreateIncident_Payload from '../../../@create-incident/request-form/mocks/Payload.json';
+import * as CreateIncident_ConfigPayload from '../../../@create-incident/request-form/mocks/ConfigPayload.json';
+import * as CreateIncident_Validation from '../../../@create-incident/request-form/mocks/Validation.json';
 
 @Component({
   selector: 'app-html-forms',
@@ -94,7 +100,12 @@ export class AppHtmlFormsComponent {
   destroy$ = new Subject();
 
   CreateSR_Context: RequestContext = this.BuildRequestContext({ payload: CreateSR_Payload, configPayload: CreateSR_ConfigPayload, validation: CreateSR_Validation });
+  CreateIncident_Context: RequestContext = this.BuildRequestContext({ payload: CreateIncident_Payload, configPayload: CreateIncident_ConfigPayload, validation: CreateIncident_Validation });
   CreateRFC_Context: RequestContext = this.BuildRequestContext({ payload: CreateRFC_Payload, configPayload: CreateRFC_ConfigPayload, validation: CreateRFC_Validation });
+  CreateProblem_Context: RequestContext = this.BuildRequestContext({ payload: CreateProblem_Payload, configPayload: CreateProblem_ConfigPayload, validation: CreateProblem_Validation });
+  CreateF5VirtualServer_RF_Context: RequestContext = this.BuildRequestContext({ payload: CreateF5VirtualServer_RF_Payload, configPayload: CreateF5VirtualServer_RF_ConfigPayload, validation: CreateF5VirtualServer_RF_Validation });
+  CreateF5VirtualServer_UT_Validate_Context: TaskContext = this.BuildCeTaskContext({ payload: CreateF5VirtualServer_UT_Validate_Payload, configPayload: CreateF5VirtualServer_UT_Validate_ConfigPayload, validation: CreateF5VirtualServer_UT_Validate_Validation });
+  Create_Oracle_DB_Context: RequestContext = this.BuildRequestContext({ payload: Create_Oracle_DB_Payload, configPayload: Create_Oracle_DB_ConfigPayload, validation: Create_Oracle_DB_Validation });
   RANF_RF_Context: RequestContext = this.BuildRequestContext({ payload: CreateRANF_Payload, configPayload: CreateRANF_ConfigPayload, validation: CreateRANF_Validation });
   RANF_RF_UT_Check_Context: TaskContext = this.BuildCeTaskContext({ payload: CreateRANF_UT_Check_Payload, configPayload: CreateRANF_UT_Check_ConfigPayload, validation: CreateRANF_UT_Check_Validation });
   Billing_Context: RequestContext = this.BuildRequestContext({ payload: Billing_Payload, configPayload: Billing_ConfigPayload, validation: Billing_Validation });
@@ -105,9 +116,6 @@ export class AppHtmlFormsComponent {
   Patchautomation_Remove_Context: RequestContext = this.BuildRequestContext({ payload: Patchautomation_Remove_Payload, configPayload: Patchautomation_Remove_ConfigPayload, validation: Patchautomation_Remove_Validation });
   VMCreate_v1_Context: RequestContext = this.BuildRequestContext({ payload: VMCreate_v1_Payload, configPayload: VMCreate_v1_ConfigPayload, validation: VMCreate_v1_Validation });
   VMCreate_v2_Context: RequestContext = this.BuildRequestContext({ payload: VMCreate_v2_Payload, configPayload: VMCreate_v2_ConfigPayload, validation: VMCreate_v2_Validation });
-  CreateF5VirtualServer_RF_Context: RequestContext = this.BuildRequestContext({ payload: CreateF5VirtualServer_RF_Payload, configPayload: CreateF5VirtualServer_RF_ConfigPayload, validation: CreateF5VirtualServer_RF_Validation });
-  CreateF5VirtualServer_UT_Validate_Context: TaskContext = this.BuildCeTaskContext({ payload: CreateF5VirtualServer_UT_Validate_Payload, configPayload: CreateF5VirtualServer_UT_Validate_ConfigPayload, validation: CreateF5VirtualServer_UT_Validate_Validation });
-  Create_Oracle_DB_Context: RequestContext = this.BuildRequestContext({ payload: Create_Oracle_DB_Payload, configPayload: Create_Oracle_DB_ConfigPayload, validation: Create_Oracle_DB_Validation });
   Oracle_DB_Rundown_RF_Context: RequestContext = this.BuildRequestContext({ payload: Oracle_DB_Rundown_RF_Payload, configPayload: Oracle_DB_Rundown_RF_ConfigPayload, validation: Oracle_DB_Rundown_RF_Validation });
   Oracle_DB_Rundown_UT_Enter_Interface_Context: TaskContext = this.BuildCeTaskContext({ payload: Oracle_DB_Rundown_UT_Enter_Interface_Payload, configPayload: Oracle_DB_Rundown_UT_Enter_Interface_ConfigPayload, validation: Oracle_DB_Rundown_UT_Enter_Interface_Validation });
   Universal_Tap_Execution_KFA_Deploy_Context: RequestContext = this.BuildRequestContext({ payload: UTE_KFA_Deployment_Payload, configPayload: UTE_KFA_Deployment_ConfigPayload, validation: UTE_KFA_Deployment_Validation });
