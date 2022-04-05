@@ -1,10 +1,12 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FeedbackRequestPayload, ICERequest, ICERequestContext } from '@xa/lib-ui-common';
+import { XANotifyService } from '@xa/ui';
 import { getFlatpickrSettings } from 'projects/shared.functions';
 import { FlatpickrOptions } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.module';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, tap } from 'rxjs/operators';
+
 import { DataService } from './data.service';
 
 @Component({
@@ -12,17 +14,18 @@ import { DataService } from './data.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements ICERequest, OnInit, OnDestroy {
+export class AppComponent implements ICERequest, OnInit, OnDestroy, AfterViewInit {
 
   @Input() public Context!: ICERequestContext;
 
   title = 'KFA-Deployment';
   form!: FormGroup;
+  startOptions: FlatpickrOptions = getFlatpickrSettings();
+  jsonData: any = {};
   destroy$ = new Subject();
 
-  constructor(private fb: FormBuilder, private dataService: DataService) { }
+  constructor(private fb: FormBuilder, private dataService: DataService, private xaNotifyService: XANotifyService) { }
 
-  startOptions: FlatpickrOptions = getFlatpickrSettings();
 
   ngOnInit() {
 
@@ -36,13 +39,21 @@ export class AppComponent implements ICERequest, OnInit, OnDestroy {
     this.Context.OnFeedback(() => this.feedback());
 
     if (this.Context.Payload) {
-      this.form.patchValue(this.Context.Payload);
+      this.jsonData = Object.assign(this.jsonData, this.Context.Payload);
     }
 
-    this.dataService.getCatalogDbData(`api/universaltapexecution/getusecaseinfosfromcatdb/${this.form.get(['catDbData'])!.value['nameOfUseCase']}/${this.form.get('customer')!.value}`).subscribe(values => {
-      this.form.get('catDbData')!.patchValue(values);
-      console.log('catDbData: ', values);
-    });
+    this.dataService.getCatalogDbData(`api/universaltapexecution/getusecaseinfosfromcatdb/${this.getCatDBConfigData('nameOfUseCase')}`)
+      .pipe(tap(value => { }))
+      .subscribe(
+        values => {
+          this.jsonData = Object.assign(this.jsonData, values);
+          this.form.get('isCatDbDataLoaded')?.patchValue(true);
+          this.xaNotifyService.clear();
+          this.xaNotifyService.success('CatDB data loaded!', { timeout: 2500, pauseOnHover: false });
+        })
+  }
+
+  ngAfterViewInit(): void {
   }
 
   ngOnDestroy() {
@@ -50,14 +61,10 @@ export class AppComponent implements ICERequest, OnInit, OnDestroy {
   }
 
   private buildForm() {
-
     this.form = this.fb.group({
       startdate: ['', Validators.required],
-      customer: ['', Validators.required],
-      catDbConfig: ['', Validators.required],
-      catDbData: ['', Validators.required]
+      isCatDbDataLoaded: [false, Validators.requiredTrue]
     });
-
   }
 
   feedback(): FeedbackRequestPayload {
@@ -70,14 +77,29 @@ export class AppComponent implements ICERequest, OnInit, OnDestroy {
     } else {
       console.error('Form is not valid', this.form);
     }
-    const model = this.form.value;
+
+
+    const formData = this.form.getRawValue();
+    // delete isCatDbDataLoaded from the formGroup JSON
+    delete formData['isCatDbDataLoaded'];
+    const model = Object.assign(this.jsonData, formData);
+    console.log(model);
+
     return {
       value: model,
-      identifier: `${this.title}-${model.Startdate}`
+      identifier: `${this.title}-${model.startdate}`
     };
   }
 
   dateSelected(event: any) {
+  }
+
+  getCatDBConfigData(valueKey: string): string | null {
+    if (this.Context.Payload) {
+      return this.Context.Payload[valueKey];
+    } else {
+      return null;
+    }
   }
 
 }

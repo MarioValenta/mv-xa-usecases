@@ -6,10 +6,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShowErrorsModule } from '@xa/show-errors';
 import { XAUIModule } from '@xa/ui';
 import { windowFactory, XASERVICE_TOKEN } from 'projects/shared.functions';
+import {
+  JsonValuesAsSimpleTableModule,
+} from 'projects/shared/json-values-as-simple-table/json-values-as-simple-table.module';
 import { Ng2FlatpickrModule } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.module';
+import { XAToastDefaults } from 'projects/shared/toast-config';
 import { SharedModule } from 'projects/xa-portal-dev/src/app/shared/shared.module';
-import { environment } from '../environments/environment';
 
+import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -23,6 +27,7 @@ import { AppComponent } from './app.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     Ng2FlatpickrModule,
+    JsonValuesAsSimpleTableModule,
     environment.production ? [] : SharedModule,
   ],
   exports: [AppComponent],
@@ -30,7 +35,11 @@ import { AppComponent } from './app.component';
     {
       provide: XASERVICE_TOKEN,
       useFactory: windowFactory
-    }
+    },
+    {
+      provide: 'XANotifyToastConfig',
+      useValue: XAToastDefaults
+    },
   ]
 })
 

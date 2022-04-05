@@ -26,7 +26,31 @@
     </ng2-flatpickr>
     <show-errors [control]="this.form.get('startdate')"></show-errors>
   </div>
+
+
+  <h2 class="ui dividing header">
+    <i class="paperclip icon"></i>
+    Cat DB data
+  </h2>
+  <div *ngIf="form.get('isCatDbDataLoaded')!.value; else loading" class="field">
+    <general-information title="loaded CatDB data" [infoData]="jsonData"></general-information>
+  </div>
 </form>
+
 <pre>{{form.getRawValue() | json }}</pre>
+<pre>{{jsonData | json }}</pre>
 <!-- <pre *if-dev>{{form.value | json }}</pre>
 <pre *if-dev>{{form.getRawValue() | json }}</pre> -->
+<xa-notify></xa-notify>
+
+
+<ng-template #loading>
+  <div class="ui segment" style="height: 150px;">
+    <div style="padding-top: 10px">
+      <div class="ui active inverted dimmer">
+        <div class="ui text loader">loading data from the CatDB ...</div>
+      </div>
+      <p></p>
+    </div>
+  </div>
+</ng-template>
