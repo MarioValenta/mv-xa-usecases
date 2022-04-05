@@ -16,6 +16,7 @@ import { UniversalTapExecutionKfaDeploymentRequestFormAppModule } from 'projects
 import { VMCreateRequestFormv2AppModule } from 'projects/@vmcreate/request-form-v2/src/app/app.module';
 import { VMCreateRequestFormAppModule } from 'projects/@vmcreate/request-form/src/app/app.module';
 import { OracleDbRdnRequestFormAppModule } from './@oracle-db-rundown/request-form/src/app/app.module';
+import { OracleDbRdnUTEnterInterfaceAppModuleAppModule } from './@oracle-db-rundown/ut-enter-interface/src/app/app.module';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { OracleDbRdnRequestFormAppModule } from './@oracle-db-rundown/request-fo
     CreateOracleDatabaseRequestFormAppModule,
     VMCreateRequestFormv2AppModule,
     UniversalTapExecutionKfaDeploymentRequestFormAppModule,
-    OracleDbRdnRequestFormAppModule
+    OracleDbRdnRequestFormAppModule,
+    OracleDbRdnUTEnterInterfaceAppModuleAppModule
   ]
 })
 export class UseCasesFormsAppModule { }

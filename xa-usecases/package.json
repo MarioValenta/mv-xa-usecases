@@ -24,6 +24,7 @@
     "build:prod:@ranf/ut-check": "ng build --project @ranf/ut-check --configuration production --single-bundle",
     "build:prod:@storage-extension/request-form": "ng build --project @storage-extension/request-form --configuration production --single-bundle",
     "build:prod:@oracle-db-rundown/request-form": "ng build --project @oracle-db-rundown/request-form --configuration production --single-bundle",
+    "build:prod:@oracle-db-rundown/ut-enter-interface": "ng build --project @oracle-db-rundown/ut-enter-interface --configuration production --single-bundle",
     "build:prod:@patchautomation-ch/request-form": "ng build --project @patchautomation/request-form --configuration production-ch --single-bundle",
     "build:prod:@patchautomation-at/request-form": "ng build --project @patchautomation/request-form --configuration production-at --single-bundle",
     "build:prod:@patchautomation-remove/request-form": "ng build --project @patchautomation-remove/request-form --configuration production --single-bundle",

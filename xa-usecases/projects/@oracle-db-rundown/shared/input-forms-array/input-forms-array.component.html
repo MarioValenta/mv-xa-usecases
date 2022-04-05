@@ -1,0 +1,49 @@
+<div class="ui container form" [formGroup]="form" style="padding: 20px 10px">
+
+<h2 class="ui dividing header">
+  <i [class]="headingIcon + ' icon'"></i>
+  {{ headingText }}
+</h2>
+
+<table class="ui table compact">
+  <thead>
+    <tr>
+      <th>{{ tableHeadDescription }}</th>
+      <th class="td_actions right aligned">
+        <i class="large add icon" (click)="addRow()"></i>
+      </th>
+    </tr>
+  </thead>
+  <tbody  *ngIf="formArrayData">
+    <tr
+      [formArrayName]="formArrayName"
+      *ngFor="let rowItem of formArrayData.controls; let i = index"
+    >
+      <td [formGroupName]="i">
+        <div *ngFor="let fields of this.formArrayFieldRows.rows" class="two fields">
+          <div
+            *ngFor="let field of fields.fields"
+            [class]="field.required ? 'required field' : 'field'"
+          >
+            <label>{{ field.label }}:</label>
+            <div *ngIf="field.type === 'text'">
+              <input
+                type="text"
+                [formControlName]="field.formControlName"
+                [placeholder]="field.placeholder"
+              />
+            </div>
+            <div *ngIf="field.type === 'xa-select'">TODO implement UI</div>
+            <show-errors
+              [control]="rowItem.get(field.formControlName)"
+            ></show-errors>
+          </div>
+        </div>
+      </td>
+      <td class="right aligned">
+        <i class="trash alternate outline icon" (click)="deleteRow(i)"></i>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
