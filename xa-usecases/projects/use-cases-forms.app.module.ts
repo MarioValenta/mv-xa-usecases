@@ -16,6 +16,7 @@ import { VMCreateRequestFormAppModule } from 'projects/@vmcreate/request-form/sr
 import { CreateOracleDatabaseRequestFormAppModule } from 'projects/@create-oracle-database/request-form/src/app/app.module';
 import { VMCreateRequestFormv2AppModule } from 'projects/@vmcreate/request-form-v2/src/app/app.module';
 import { UniversalTapExecutionKfaDeploymentRequestFormAppModule } from 'projects/@universal-tap-execution/kfa-deployment-request-form/src/app/app.module';
+import { CreateProblemRequestFormAppModule } from './@create-problem/request-form/src/app/app.module';
 import { CreateIncidentRequestFormAppModule } from './@create-incident/request-form/src/app/app.module';
 
 
@@ -37,7 +38,8 @@ import { CreateIncidentRequestFormAppModule } from './@create-incident/request-f
     CreateF5VirtualServerUTValidateAppModule,
     CreateOracleDatabaseRequestFormAppModule,
     VMCreateRequestFormv2AppModule,
-    UniversalTapExecutionKfaDeploymentRequestFormAppModule
+    UniversalTapExecutionKfaDeploymentRequestFormAppModule,
+    CreateProblemRequestFormAppModule
   ]
 })
 export class UseCasesFormsAppModule { }
