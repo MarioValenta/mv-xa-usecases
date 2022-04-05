@@ -1,0 +1,33 @@
+<div class="ui container form" [formGroup]="form" style="padding: 20px 10px">
+  <general-information
+    [infoData]="this.Context.Payload.info"
+  ></general-information>
+
+
+
+  <div class="field" style="padding-top:30px">
+    <div class="ui message">
+      <div class="header">
+        Information
+      </div>
+      <p>
+        Please enter information about mounted volumes related to database
+        {{ Context.Payload.info.servicename }} on host
+        {{ Context.Payload.info.hostname }}
+      </p>
+    </div>
+  </div>
+
+  <input-form-array
+    headingText="Storage"
+    headingIcon="hdd outline"
+    tableHeadDescription="you can add storage via the plus button"
+    [formArrayFieldRows]="formArrayFieldRows"
+    [formArrayName]="OUTPUT_VARIABLE_NAME"
+    [newFormGroup]="newFormGroup()"
+  ></input-form-array>
+
+  <pre *if-dev class="field">
+    <p>{{this.form.getRawValue() | json}}</p>
+  </pre>
+</div>

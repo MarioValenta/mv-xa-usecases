@@ -19,6 +19,7 @@ import { OracleDbRdnRequestFormAppModule } from './@oracle-db-rundown/request-fo
 import { OracleDbRdnUTEnterInterfaceAppModuleAppModule } from './@oracle-db-rundown/ut-enter-interface/src/app/app.module';
 import { CreateProblemRequestFormAppModule } from './@create-problem/request-form/src/app/app.module';
 import { CreateIncidentRequestFormAppModule } from './@create-incident/request-form/src/app/app.module';
+import { OracleDbRdnUTEnterStorageAppModuleAppModule } from './@oracle-db-rundown/ut-enter-storage/src/app/app.module';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { CreateIncidentRequestFormAppModule } from './@create-incident/request-f
     UniversalTapExecutionKfaDeploymentRequestFormAppModule,
     OracleDbRdnRequestFormAppModule,
     OracleDbRdnUTEnterInterfaceAppModuleAppModule,
+    OracleDbRdnUTEnterStorageAppModuleAppModule,
     CreateProblemRequestFormAppModule
   ]
 })

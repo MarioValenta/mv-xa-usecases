@@ -2134,6 +2134,104 @@
           }
         }
       }
+    },
+    "@oracle-db-rundown/ut-enter-storage": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@oracle-db-rundown/ut-enter-storage",
+      "sourceRoot": "projects/@oracle-db-rundown/ut-enter-storage/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@oracle-db-rundown/ut-enter-storage",
+            "index": "projects/@oracle-db-rundown/ut-enter-storage/src/index.html",
+            "main": "projects/@oracle-db-rundown/ut-enter-storage/src/main.ts",
+            "polyfills": "projects/@oracle-db-rundown/ut-enter-storage/src/polyfills.ts",
+            "tsConfig": "projects/@oracle-db-rundown/ut-enter-storage/tsconfig.app.json",
+            "assets": [
+              "projects/@oracle-db-rundown/ut-enter-storage/src/favicon.ico",
+              "projects/@oracle-db-rundown/ut-enter-storage/src/assets"
+            ],
+            "styles": [
+              "projects/@oracle-db-rundown/ut-enter-storage/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/@oracle-db-rundown/ut-enter-storage/src/environments/environment.ts",
+                  "with": "projects/@oracle-db-rundown/ut-enter-storage/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@oracle-db-rundown/ut-enter-storage:build:production"
+            },
+            "development": {
+              "browserTarget": "@oracle-db-rundown/ut-enter-storage:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "@oracle-db-rundown/ut-enter-storage:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@oracle-db-rundown/ut-enter-storage/src/test.ts",
+            "polyfills": "projects/@oracle-db-rundown/ut-enter-storage/src/polyfills.ts",
+            "tsConfig": "projects/@oracle-db-rundown/ut-enter-storage/tsconfig.spec.json",
+            "karmaConfig": "projects/@oracle-db-rundown/ut-enter-storage/karma.conf.js",
+            "assets": [
+              "projects/@oracle-db-rundown/ut-enter-storage/src/favicon.ico",
+              "projects/@oracle-db-rundown/ut-enter-storage/src/assets"
+            ],
+            "styles": [
+              "projects/@oracle-db-rundown/ut-enter-storage/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
     }
   },
   "defaultProject": "xa-portal-dev"
