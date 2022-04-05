@@ -75,7 +75,10 @@ import * as CreateProblem_Payload from '../../../@create-problem/request-form/mo
 import * as CreateProblem_ConfigPayload from '../../../@create-problem/request-form/mocks/ConfigPayload.json';
 import * as CreateProblem_Validation from '../../../@create-problem/request-form/mocks/Validation.json';
 
-// TODO: add new imports for every project (request-form, user-tasks)
+// Create Incident
+import * as CreateIncident_Payload from '../../../@create-incident/mocks/Payload.json';
+import * as CreateIncident_ConfigPayload from '../../../@create-incident/mocks/ConfigPayload.json';
+import * as CreateIncident_Validation from '../../../@create-incident/mocks/Validation.json';
 
 @Component({
   selector: 'app-html-forms',
@@ -90,6 +93,7 @@ export class AppHtmlFormsComponent {
   destroy$ = new Subject();
 
   CreateSR_Context: RequestContext = this.BuildRequestContext({ payload: CreateSR_Payload, configPayload: CreateSR_ConfigPayload, validation: CreateSR_Validation });
+  CreateIncident_Context: RequestContext = this.BuildRequestContext({ payload: CreateIncident_Payload, configPayload: CreateIncident_ConfigPayload, validation: CreateIncident_Validation });
   CreateRFC_Context: RequestContext = this.BuildRequestContext({ payload: CreateRFC_Payload, configPayload: CreateRFC_ConfigPayload, validation: CreateRFC_Validation });
   RANF_RF_Context: RequestContext = this.BuildRequestContext({ payload: CreateRANF_Payload, configPayload: CreateRANF_ConfigPayload, validation: CreateRANF_Validation });
   RANF_RF_UT_Check_Context: TaskContext = this.BuildCeTaskContext({ payload: CreateRANF_UT_Check_Payload, configPayload: CreateRANF_UT_Check_ConfigPayload, validation: CreateRANF_UT_Check_Validation });

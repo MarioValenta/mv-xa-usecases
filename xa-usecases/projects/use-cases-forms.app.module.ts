@@ -17,6 +17,7 @@ import { CreateOracleDatabaseRequestFormAppModule } from 'projects/@create-oracl
 import { VMCreateRequestFormv2AppModule } from 'projects/@vmcreate/request-form-v2/src/app/app.module';
 import { UniversalTapExecutionKfaDeploymentRequestFormAppModule } from 'projects/@universal-tap-execution/kfa-deployment-request-form/src/app/app.module';
 import { CreateProblemRequestFormAppModule } from './@create-problem/request-form/src/app/app.module';
+import { CreateIncidentRequestFormAppModule } from './@create-incident/request-form/src/app/app.module';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { CreateProblemRequestFormAppModule } from './@create-problem/request-for
     RanfRequestFormAppModule,
     RanfUtCheckAppModule,
     CreateSRRequestFormAppModule,
+    CreateIncidentRequestFormAppModule,
     CreateRfcRequestFormAppModule,
     BillingRequestFormAppModule,
     PhoneForwardingRequestFormAppModule,
