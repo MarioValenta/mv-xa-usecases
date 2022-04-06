@@ -1,0 +1,14 @@
+{
+  "DBVersion": "11.2.0",
+  "DatacenterSite": "T-Center",
+  "ServiceSupportTime": "Office Time",
+  "ServiceOperationWBS": "I.12345678.00.01",
+  "ChangeImplementationWBS": "I.12345678.00.01",
+  "AdminLANDomain": "test.benni.at",
+  "CustomerLANDomain": "test.bennii.at",
+  "ServiceSupportTimeDetails": "MO 00-04:55, MO 05:15-24, TU-SU 00-24",
+  "DNSServer1": "212.31.94.20",
+  "DNSServer2": "212.31.94.21",
+  "NTPServer1": "212.31.94.112",
+  "NTPServer2": "212.31.94.113"
+}

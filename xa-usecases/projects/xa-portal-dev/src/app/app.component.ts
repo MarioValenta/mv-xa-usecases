@@ -66,6 +66,10 @@ import * as CreateF5VirtualServer_UT_Validate_Validation from '../../../@create-
 import * as Create_Oracle_DB_Payload from '../../../@create-oracle-database/request-form/mocks/Payload.json';
 import * as Create_Oracle_DB_ConfigPayload from '../../../@create-oracle-database/request-form/mocks/ConfigPayload.json';
 import * as Create_Oracle_DB_Validation from '../../../@create-oracle-database/request-form/mocks/Validation.json';
+// Create Oracle VM
+import * as Create_Oracle_VM_Payload from '../../../@create-oracle-vm/request-form/mocks/Payload.json';
+import * as Create_Oracle_VM_ConfigPayload from '../../../@create-oracle-vm/request-form/mocks/ConfigPayload.json';
+import * as Create_Oracle_VM_Validation from '../../../@create-oracle-vm/request-form/mocks/Validation.json';
 // Oracle DB Rundown request-form
 import * as Oracle_DB_Rundown_RF_Payload from '../../../@oracle-db-rundown/request-form/mocks/Payload.json';
 import * as Oracle_DB_Rundown_RF_ConfigPayload from '../../../@oracle-db-rundown/request-form/mocks/ConfigPayload.json';
@@ -118,6 +122,7 @@ export class AppHtmlFormsComponent {
   CreateF5VirtualServer_RF_Context: RequestContext = this.BuildRequestContext({ payload: CreateF5VirtualServer_RF_Payload, configPayload: CreateF5VirtualServer_RF_ConfigPayload, validation: CreateF5VirtualServer_RF_Validation });
   CreateF5VirtualServer_UT_Validate_Context: TaskContext = this.BuildCeTaskContext({ payload: CreateF5VirtualServer_UT_Validate_Payload, configPayload: CreateF5VirtualServer_UT_Validate_ConfigPayload, validation: CreateF5VirtualServer_UT_Validate_Validation });
   Create_Oracle_DB_Context: RequestContext = this.BuildRequestContext({ payload: Create_Oracle_DB_Payload, configPayload: Create_Oracle_DB_ConfigPayload, validation: Create_Oracle_DB_Validation });
+  Create_Oracle_VM_Context: RequestContext = this.BuildRequestContext({ payload: Create_Oracle_VM_Payload, configPayload: Create_Oracle_VM_ConfigPayload, validation: Create_Oracle_VM_Validation });
   RANF_RF_Context: RequestContext = this.BuildRequestContext({ payload: CreateRANF_Payload, configPayload: CreateRANF_ConfigPayload, validation: CreateRANF_Validation });
   RANF_RF_UT_Check_Context: TaskContext = this.BuildCeTaskContext({ payload: CreateRANF_UT_Check_Payload, configPayload: CreateRANF_UT_Check_ConfigPayload, validation: CreateRANF_UT_Check_Validation });
   Billing_Context: RequestContext = this.BuildRequestContext({ payload: Billing_Payload, configPayload: Billing_ConfigPayload, validation: Billing_Validation });

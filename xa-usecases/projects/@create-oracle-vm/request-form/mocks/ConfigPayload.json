@@ -1,0 +1,109 @@
+{
+  "variablesToBeStoredInCamunda": [
+      "LANSettings",
+      "CheckStatus",
+      "VMOptions",
+      "platformapprove",
+      "sm9approve",
+      "Customer",
+      "Hostname",
+      "Environment",
+      "ServiceOperationWBS",
+      "ServiceSupportTimeDetails",
+      "DBVersion"
+  ],
+  "Placeholders": {
+      "Customer": "Select Customer",
+      "Environment": "Select Environment",
+      "ServiceSupportTimeDetails": "Select the Service Support Time ...",
+      "DBVersion": "Select Database Version",
+      "Hostname": "enter Hostname",
+      "VCPUm": "select VCPUm",
+      "VRAMm": "select VRAMm",
+      "NumberOfDBsM": "select number of databases on this VM",
+      "ChangeImplementationWBS": "enter Change Implementation WBS",
+      "ServiceOperationWBS": "enter Service Operation WBS",
+      "TSMvLAN": "select TSM Backup LAN ...",
+      "AdminvLAN": "select Admin LAN ...",
+      "AdminLANDomain": "enter Admin LAN Domain ...",
+      "CustomerLAN": "select Customer LAN ...",
+      "CustomerLANDomain": "enter Customer LAN Domain ...",
+      "NASLAN": "select NAS LAN vID ...",
+      "DNSServer1": "enter IP of DNS Server 1 ...",
+      "DNSServer2": "enter IP of DNS Server 2 ...",
+      "NTPServer1": "enter IP of NTP Server 1 ...",
+      "NTPServer2": "enter IP of NTP Server 2 ..."
+  },
+  "rangeOptions": {
+      "cpuRangeOptions": {
+          "step": 1,
+          "pips": {
+              "mode": "values",
+              "density": 1,
+              "values": [
+                  1,
+                  32
+              ],
+              "stepped": true
+          },
+          "range": {
+              "min": 1,
+              "max": 32
+          },
+          "behaviour": "snap",
+          "connect": [
+              true,
+              false
+          ]
+      },
+      "memoryRangeOptions": {
+          "step": 4,
+          "padding": [
+              0,
+              0
+          ],
+          "pips": {
+              "mode": "values",
+              "density": 2,
+              "values": [
+                  8,
+                  16,
+                  32,
+                  64,
+                  128,
+                  256
+              ]
+          },
+          "range": {
+              "min": 8,
+              "max": 256
+          },
+          "behaviour": "snap",
+          "connect": [
+              true,
+              false
+          ]
+      },
+      "dbRangeOptions": {
+          "step": 1,
+          "pips": {
+              "mode": "values",
+              "density": 1,
+              "values": [
+                  0,
+                  99
+              ],
+              "stepped": true
+          },
+          "range": {
+              "min": 0,
+              "max": 99
+          },
+          "behaviour": "snap",
+          "connect": [
+              true,
+              false
+          ]
+      }
+  }
+}

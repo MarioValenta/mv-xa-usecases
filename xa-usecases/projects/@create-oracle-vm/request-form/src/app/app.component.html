@@ -1,0 +1,331 @@
+<form [formGroup]="form" class="ui container form" style="padding:20px 10px">
+
+
+    <h2 class="ui dividing header padding-top-30">
+        <i class="clipboard outline icon"></i>Basic Settings
+    </h2>
+
+    <div class="ten wide field" [class.required]="isFormElementRequired('Customer')">
+        <label>Customer</label>
+        <xa-select formControlName="Customer" [placeholder]="this.getPlaceholderFromConfigPayload('Customer')" [options]="Customers$ | async"
+            [search]="true" [loading]="!(Customers$ | async)" viewValue="label" optionValue="CUSTOMERNICKNAME"
+            (change)="CustomerSelected()" [clearable]="true" #customerDropDown>
+        </xa-select>
+        <show-errors [control]="this.form.get('Customer')"></show-errors>
+    </div>
+
+    <div class="ten wide field" [class.required]="isFormElementRequired('Environment')">
+        <label>Environment</label>
+        <xa-select formControlName="Environment" [placeholder]="this.getPlaceholderFromConfigPayload('Environment')" [options]="Environments$ | async"
+            [search]="true" [loading]="!(Environments$ | async)" [clearable]="true">
+        </xa-select>
+        <show-errors [control]="this.form.get('Environment')"></show-errors>
+    </div>
+
+    <div class="inline fields" [class.required]="isFormElementRequired('ServiceSupportTime')">
+        <div class="ten wide field">
+            <label for="ServiceSupportTime">Service Support Time</label>
+            <div class="field">
+                <xa-radiobox formControlName="ServiceSupportTime" group="ServiceSupportTime" value="Full Time">Full Time
+                </xa-radiobox>
+            </div>
+            <div class="field">
+                <xa-radiobox formControlName="ServiceSupportTime" group="ServiceSupportTime" value="Office Time">Office
+                    Time</xa-radiobox>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="this.form.get('ServiceSupportTime').value" class="ten wide field"
+        [class.required]="isFormElementRequired('ServiceSupportTimeDetails')">
+        <label>Service Support Time Details</label>
+        <xa-select formControlName="ServiceSupportTimeDetails" [placeholder]="this.getPlaceholderFromConfigPayload('ServiceSupportTimeDetails')"
+            [options]="ServiceSupportTimeDetails$ | async" [search]="true"
+            [loading]="!(ServiceSupportTimeDetails$ | async)" [clearable]="true" viewValue="timeframe"
+            optionValue="timeframe">
+        </xa-select>
+
+        <show-errors [control]="this.form.get('ServiceSupportTimeDetails')"></show-errors>
+    </div>
+
+    <div class="ten wide field" [class.required]="isFormElementRequired('DBVersion')">
+        <label>DB Version</label>
+        <xa-select formControlName="DBVersion" [placeholder]="this.getPlaceholderFromConfigPayload('DBVersion')" [options]="DBVersion$ | async"
+            [search]="true" [loading]="!(DBVersion$ | async)" [clearable]="true">
+        </xa-select>
+        <show-errors [control]="this.form.get('DBVersion')"></show-errors>
+    </div>
+
+    <div class="ten wide field" [class.required]="isFormElementRequired('Hostname')">
+        <label>Hostname</label>
+        <input type="text" formControlName="Hostname" [placeholder]="this.getPlaceholderFromConfigPayload('Hostname')">
+        <show-errors [control]="this.form.get('Hostname')"></show-errors>
+    </div>
+
+    <h2 class="ui dividing header padding-top-30">
+        <span><i class="cloud icon"></i>VM Settings</span>
+    </h2>
+    <div formGroupName="VMOptions">
+        <div class="fields">
+            <div class="three wide field center-text">
+                <div class="ui statistic">
+                    <div class="value">
+                        {{form.get('VMOptions.VCPU')?.value}}
+                    </div>
+                    <div class="label">
+                        vCPU(s)
+                    </div>
+                </div>
+            </div>
+            <div class="ten wide field" [class.required]="isFormElementRequired('VMOptions.VCPU')">
+                <nouislider [formControl]="form.get('VMOptions.VCPU')" [config]="cpuRangeOptions"
+                    (update)="UpdateView()"></nouislider>
+            </div>
+        </div>
+
+        <div class="fields">
+            <div class="three wide field center-text">
+                <div class="ui statistic">
+                    <div class="value">
+                        {{form.get('VMOptions.VRAM')?.value}}GB
+                    </div>
+                    <div class="label">
+                        RAM
+                    </div>
+                </div>
+            </div>
+            <div class="ten wide field" [class.required]="isFormElementRequired('VMOptions.VRAM')">
+                <nouislider [formControl]="form.get('VMOptions.VRAM')" [config]="memoryRangeOptions"
+                    (update)="UpdateView()"></nouislider>
+            </div>
+        </div>
+
+        <div class="fields">
+            <div class="three wide field center-text">
+                <div class="ui statistic">
+                    <div class="value">
+                        <!-- <span contenteditable="true" (change)="UpdateNumberOfDBs($event)">{{form.get('NumberOfDBs')?.value}}</span> -->
+                        {{form.get('VMOptions.NumberOfDBs')?.value}}
+                    </div>
+                    <div class="label">
+                        # number of databases
+                    </div>
+                </div>
+            </div>
+            <div class="ten wide field" [class.required]="isFormElementRequired('VMOptions.NumberOfDBs')">
+                <nouislider [formControl]="form.get('VMOptions.NumberOfDBs')" [config]="dbRangeOptions"
+                    (update)="UpdateView()">
+                </nouislider>
+            </div>
+        </div>
+        <show-errors [control]="this.form.get('VMOptions.NumberOfDBs')"></show-errors>
+
+        <div class="three fields">
+            <div class="four wide field" [class.required]="isFormElementRequired('VCPUm')">
+                <label># VCPU(s) (manually)</label>
+                <input type="number" formControlName="VCPUm" [placeholder]="this.getPlaceholderFromConfigPayload('VCPUm')" [step]="cpuRangeOptions.step"
+                    [min]="cpuRangeOptions.range.min" [max]="cpuRangeOptions.range.max" (change)="UpdateVCPU()">
+                <show-errors [control]="this.form.get('VMOptions.VCPUm')"></show-errors>
+            </div>
+
+            <div class="four wide field" [class.required]="isFormElementRequired('VRAMm')">
+                <label>RAM in GB (manually)</label>
+                <input type="number" formControlName="VRAMm" [placeholder]="this.getPlaceholderFromConfigPayload('VRAMm')" [step]="memoryRangeOptions.step"
+                    [min]="memoryRangeOptions.range.min" [max]="memoryRangeOptions.range.max" (change)="UpdateVRAM()">
+                <show-errors [control]="this.form.get('VMOptions.VRAMm')"></show-errors>
+            </div>
+
+            <div class="four wide field" [class.required]="isFormElementRequired('NumberOfDBsM')">
+                <label># number of databases (manually)</label>
+                <input type="number" formControlName="NumberOfDBsM" [placeholder]="this.getPlaceholderFromConfigPayload('NumberOfDBsM')"
+                    [min]="this.dbRangeOptions.range.min" [value]="form.get('VMOptions.NumberOfDBs')?.value"
+                    [step]="this.dbRangeOptions.step" [max]="this.dbRangeOptions.range.max"
+                    (change)="UpdateNumberOfDBs()">
+                <show-errors [control]="this.form.get('VMOptions.NumberOfDBsM')"></show-errors>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="ui dividing header padding-top-30">
+        <span><i class="settings icon"></i>other Settings</span>
+    </h2>
+
+    <div class="two fields">
+        <div class="ten wide field" [class.required]="isFormElementRequired('ChangeImplementationWBS')">
+            <label>Change Implementation WBS</label>
+            <input type="text" formControlName="ChangeImplementationWBS" [placeholder]="this.getPlaceholderFromConfigPayload('ChangeImplementationWBS')">
+            <show-errors [control]="this.form.get('ChangeImplementationWBS')"></show-errors>
+        </div>
+    </div>
+
+    <div class="two fields">
+        <div class="ten wide field" [class.required]="isFormElementRequired('ServiceOperationWBS')">
+            <label>Service Operation WBS</label>
+            <input type="text" formControlName="ServiceOperationWBS" [placeholder]="this.getPlaceholderFromConfigPayload('ServiceOperationWBS')">
+            <show-errors [control]="this.form.get('ServiceOperationWBS')"></show-errors>
+        </div>
+    </div>
+
+    <div class="inline fields">
+        <div class="field" [class.required]="isFormElementRequired('DatacenterSite')">
+            <label for="DatacenterSite">Data Center Site</label>
+        </div>
+        <div class="field">
+            <xa-radiobox formControlName="DatacenterSite" group="DatacenterSite" value="T-Center">T-Center</xa-radiobox>
+        </div>
+        <div class="field">
+            <xa-radiobox formControlName="DatacenterSite" group="DatacenterSite" value="ODC">ODC</xa-radiobox>
+        </div>
+        <div class="field">
+            <xa-radiobox formControlName="DatacenterSite" group="DatacenterSite" value="tbd by implementor">tbd by
+                implementor</xa-radiobox>
+        </div>
+    </div>
+
+    <h2 class="ui dividing header padding-top-30">
+        <span><i class="settings icon"></i>LAN Settings</span>
+    </h2>
+    <div formGroupName="LANSettings" style="margin-bottom: 14px;">
+        <div class="fields">
+            <div class="three wide field">
+                <div class="inline fields">
+                    <!-- [class.required]="isFormElementRequired('LANSettings.TSMLAN')" -->
+                    <div class="field required">
+                        <label for="TSMLAN">TSM Backup LAN (for Database Backup)</label>
+
+                        <div class="field" style="padding-left: 14px;">
+                            <div class="ui radio checkbox">
+                                <input type="radio" formControlName="TSMLAN" value="yes" />
+                                <label>yes</label>
+                            </div>
+                        </div>
+
+                        <div *ngIf="this.form.get('Environment').value !== 'Production' &&
+                        this.form.get('Environment').value !== 'PROD'" class="field" style="padding-left: 14px;">
+                            <div class="ui radio checkbox">
+                                <input type="radio" formControlName="TSMLAN" value="no" />
+                                <label>no</label>
+                            </div>
+                        </div>
+                        <show-errors [control]="this.form.get('LANSettings.TSMLAN')"></show-errors>
+                    </div>
+                </div>
+            </div>
+
+            <!-- [class.required]="isFormElementRequired('LANSettings.TSMvLAN')" -->
+            <div *ngIf="this.form.get('LANSettings.TSMLAN').value === 'yes'" class="seven wide field required"
+                style="padding-right: 0px;">
+                <xa-select [search]="true" formControlName="TSMvLAN" [placeholder]="this.getPlaceholderFromConfigPayload('TSMvLAN')"
+                    [options]="TsmvLANs$ | async" viewValue="label_extended" optionValue="ID"
+                    [loading]="!(TsmvLANs$ | async)" [clearable]="true">
+                </xa-select>
+                <show-errors [control]="this.form.get('LANSettings.TSMvLAN')"></show-errors>
+            </div>
+        </div>
+
+        <div class="fields">
+            <div class="three wide field">
+                <div class="inline fields">
+                    <!-- [class.required]="isFormElementRequired('LANSettings.AdminLAN')" -->
+                    <div class="field required">
+                        <label for="TSMLAN">Admin LAN</label>
+
+
+                        <!-- <div class="field" style="padding-left: 14px;">
+                            <div *ngIf="this.form.get('Customer').value !== 'TMA'" class="ui radio checkbox">
+                                <input type="radio" formControlName="AdminLAN" value="yes" />
+                                <label>yes</label>
+                            </div>
+                        </div> -->
+
+
+                        <!-- *ngIf="this.form.get('Customer').value === 'TMA'" -->
+                        <div class="field" style="padding-left: 14px;">
+                            <div class="ui radio checkbox">
+                                <input type="radio" formControlName="AdminLAN" value="no" />
+                                <label>no</label>
+                            </div>
+                        </div>
+                        <show-errors [control]="this.form.get('LANSettings.AdminLAN')"></show-errors>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- [class.required]="isFormElementRequired('LANSettings.AdminvLAN')" -->
+            <div *ngIf="this.form.get('LANSettings.AdminLAN').value === 'yes'" class="seven wide field required"
+                style="padding-right: 0px;">
+                <xa-select [search]="true" formControlName="AdminvLAN" [placeholder]="this.getPlaceholderFromConfigPayload('AdminvLAN')"
+                    [options]="AdminvLANs$ | async" viewValue="label_extended" optionValue="ID"
+                    [loading]="!(AdminvLANs$ | async)" [clearable]="true">
+                </xa-select>
+                <show-errors [control]="this.form.get('LANSettings.AdminvLAN')"></show-errors>
+            </div>
+        </div>
+
+        <!-- [class.required]="isFormElementRequired('LANSettings.AdminLANDomain')" -->
+        <div class="ten wide field required">
+            <label>Admin LAN Domain</label>
+            <input type="text" formControlName="AdminLANDomain" [placeholder]="this.getPlaceholderFromConfigPayload('AdminLANDomain')">
+            <show-errors [control]="this.form.get('LANSettings.AdminLANDomain')"></show-errors>
+        </div>
+
+
+        <!-- [class.required]="isFormElementRequired('LANSettings.CustomerLAN')" -->
+        <div class="ten wide field required">
+            <label>Customer LAN</label>
+            <xa-select [search]="true" formControlName="CustomerLAN" [placeholder]="this.getPlaceholderFromConfigPayload('CustomerLAN')"
+                [options]="CustomerLANs$ | async" viewValue="label_extended" optionValue="ID"
+                [loading]="!(CustomerLANs$ | async)" [clearable]="true">
+            </xa-select>
+            <show-errors [control]="this.form.get('LANSettings.CustomerLAN')"></show-errors>
+        </div>
+
+        <!-- [class.required]="isFormElementRequired('LANSettings.CustomerLANDomain')" -->
+        <div class="ten wide field">
+            <label>Customer LAN Domain</label>
+            <input type="text" formControlName="CustomerLANDomain" [placeholder]="this.getPlaceholderFromConfigPayload('CustomerLANDomain')">
+            <show-errors [control]="this.form.get('LANSettings.CustomerLANDomain')"></show-errors>
+        </div>
+
+        <!-- [class.required]="isFormElementRequired('LANSettings.NASLAN')" -->
+        <div class="ten wide field required">
+            <label>NAS LAN</label>
+            <xa-select [search]="true" formControlName="NASLAN" [placeholder]="this.getPlaceholderFromConfigPayload('NASLAN')"
+                [options]="NASLANs$ | async" viewValue="label_extended" optionValue="ID" [loading]="!(NASLANs$ | async)"
+                [clearable]="true">
+            </xa-select>
+            <show-errors [control]="this.form.get('LANSettings.NASLAN')"></show-errors>
+        </div>
+    </div>
+
+    <div class="ten wide field padding-top-10" [class.required]="isFormElementRequired('DNSServer1')">
+        <label>DNS Server 1</label>
+        <input type="text" formControlName="DNSServer1" [placeholder]="this.getPlaceholderFromConfigPayload('DNSServer1')">
+        <show-errors [control]="this.form.get('DNSServer1')"></show-errors>
+    </div>
+    <div class="ten wide field" [class.required]="isFormElementRequired('DNSServer2')">
+        <label>DNS Server 2</label>
+        <input type="text" formControlName="DNSServer2" [placeholder]="this.getPlaceholderFromConfigPayload('DNSServer2')">
+        <show-errors [control]="this.form.get('DNSServer2')"></show-errors>
+    </div>
+    <div class="ten wide field" [class.required]="isFormElementRequired('NTPServer1')">
+        <label>NTP Server 1</label>
+        <input type="text" formControlName="NTPServer1" [placeholder]="this.getPlaceholderFromConfigPayload('NTPServer1')">
+        <show-errors [control]="this.form.get('NTPServer1')"></show-errors>
+    </div>
+    <div class="ten wide field" [class.required]="isFormElementRequired('NTPServer2')">
+        <label>NTP Server 2</label>
+        <input type="text" formControlName="NTPServer2" [placeholder]="this.getPlaceholderFromConfigPayload('NTPServer2')">
+        <show-errors [control]="this.form.get('NTPServer2')"></show-errors>
+    </div>
+
+    <div class="field" [class.required]="isFormElementRequired('Agree')">
+        <xa-checkbox formControlName="Agree">I confirm that all provided data are correct! </xa-checkbox>
+        <show-errors [control]="this.form.get('Agree')"></show-errors>
+    </div>
+
+    <pre *if-dev>{{form.value | json}}</pre>
+    <pre *if-dev>{{form.getRawValue() | json}}</pre>
+
+</form>

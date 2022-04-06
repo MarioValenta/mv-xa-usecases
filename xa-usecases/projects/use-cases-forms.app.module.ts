@@ -22,6 +22,7 @@ import { CreateIncidentRequestFormAppModule } from './@create-incident/request-f
 import { OracleDbRdnUTEnterStorageAppModuleAppModule } from './@oracle-db-rundown/ut-enter-storage/src/app/app.module';
 import { OracleDbRdnUTSelectInterfaceAppModuleAppModule } from './@oracle-db-rundown/ut-select-interface/src/app/app.module';
 import { OracleDbRdnUTSelectStorageAppModuleAppModule } from './@oracle-db-rundown/ut-select-storage/src/app/app.module';
+import { CreateOracleVMRequestFormAppModule } from './@create-oracle-vm/request-form/src/app/app.module';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { OracleDbRdnUTSelectStorageAppModuleAppModule } from './@oracle-db-rundo
     OracleDbRdnUTEnterStorageAppModuleAppModule,
     OracleDbRdnUTSelectInterfaceAppModuleAppModule,
     OracleDbRdnUTSelectStorageAppModuleAppModule,
-    CreateProblemRequestFormAppModule
+    CreateProblemRequestFormAppModule,
+    CreateOracleVMRequestFormAppModule
   ]
 })
 export class UseCasesFormsAppModule { }

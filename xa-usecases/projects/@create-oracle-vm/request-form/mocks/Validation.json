@@ -1,0 +1,214 @@
+{
+  "requestForm": [
+    {
+      "varName": "Customer",
+      "required": true,
+      "type": "list",
+      "possibleValuesUrl": "api/validation/oraclevm/customer"
+    },
+    {
+      "varName": "Environment",
+      "required": true,
+      "type": "list",
+      "possibleValuesUrl": "api/validation/oraclevm/environments"
+    },
+    {
+      "varName": "ServiceSupportTime",
+      "required": true,
+      "type": "list"
+    },
+    {
+      "varName": "ServiceSupportTimeDetails",
+      "required": true,
+      "type": "list",
+      "possibleValuesUrl": "api/validation/oraclevm/ServiceSupportTimeDetails?servicesupporttime=${ServiceSupportTime}"
+    },
+    {
+      "varName": "DBVersion",
+      "required": true,
+      "type": "list",
+      "possibleValuesUrl": "api/validation/oraclevm/dbversions"
+    },
+    {
+      "varName": "Hostname",
+      "required": true,
+      "type": "text",
+      "format": {
+        "regexPattern": "^[a-z][a-z0-9]+$",
+        "errorMessage": "Hostname in wrong format!"
+      }
+    },
+    {
+      "varName": "VMOptions",
+      "required": true,
+      "type": "jObject",
+      "fields": [
+        {
+          "varName": "VRAM",
+          "required": true,
+          "type": "number",
+          "min": 8,
+          "max": 256
+        },
+        {
+          "varName": "VCPU",
+          "required": true,
+          "type": "number",
+          "min": 1,
+          "max": 32
+        },
+        {
+          "varName": "VRAMm",
+          "required": true,
+          "type": "number",
+          "min": 8,
+          "max": 256
+        },
+        {
+          "varName": "VCPUm",
+          "required": true,
+          "type": "number",
+          "min": 1,
+          "max": 32
+        },
+        {
+          "varName": "NumberOfDBs",
+          "required": true,
+          "type": "number",
+          "min": 0,
+          "max": 99
+        },
+        {
+          "varName": "NumberOfDBsM",
+          "required": true,
+          "type": "number",
+          "min": 0,
+          "max": 99
+        }
+      ]
+    },
+    {
+      "varName": "ChangeImplementationWBS",
+      "required": true,
+      "type": "text",
+      "format": {
+        "regexPattern": "^[A-Z]\\.\\d{8}\\.\\d{2}(?:\\.\\d{2})?(?:\\.\\d{2})?$",
+        "errorMessage": "Cost center in wrong format! e.g. I.12345678.00.01 or I.12345678.00.01.01"
+      }
+    },
+    {
+      "varName": "ServiceOperationWBS",
+      "required": true,
+      "type": "text",
+      "format": {
+        "regexPattern": "^[A-Z]\\.\\d{8}\\.\\d{2}(?:\\.\\d{2})?(?:\\.\\d{2})?$",
+        "errorMessage": "Cost center in wrong format! e.g. I.12345678.00.01 or I.12345678.00.01.01"
+      }
+    },
+    {
+      "varName": "DatacenterSite",
+      "required": true,
+      "type": "list"
+    },
+    {
+      "varName": "LANSettings",
+      "required": true,
+      "type": "jObject",
+      "fields": [
+        {
+          "varName": "TSMLAN",
+          "required": false,
+          "type": "boolean",
+          "dependencies": {
+            "yes": [
+              {
+                "varName": "TSMvLAN",
+                "required": true,
+                "type": "list",
+                "possibleValuesUrl": "api/validation/oraclevm/lan?customer=${Customer}&lantype=3"
+              }
+            ]
+          }
+        },
+        {
+          "varName": "AdminLAN",
+          "required": false,
+          "type": "boolean",
+          "dependencies": {
+            "yes": [
+              {
+                "varName": "AdminvLAN",
+                "required": false,
+                "type": "list",
+                "possibleValuesUrl": "api/validation/oraclevm/lan?customer=${Customer}&lantype=2"
+              },
+              {
+                "varName": "AdminLANDomain",
+                "required": false,
+                "type": "text"
+              }
+            ]
+          }
+        },
+        {
+          "varName": "CustomerLAN",
+          "required": true,
+          "type": "list",
+          "possibleValuesUrl": "api/validation/oraclevm/lan?customer=${Customer}&lantype=1"
+        },
+        {
+          "varName": "CustomerLANDomain",
+          "required": false,
+          "type": "text"
+        },
+        {
+          "varName": "NASLAN",
+          "required": true,
+          "type": "list",
+          "possibleValuesUrl": "api/validation/oraclevm/lan?customer=${Customer}&lantype=4"
+        }
+      ]
+    },
+    {
+      "varName": "DNSServer1",
+      "required": true,
+      "type": "text",
+      "format": {
+        "regexPattern": "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$",
+        "errorMessage": "DNS-Server in wrong format! IPv4-format needed!"
+      }
+    },
+    {
+      "varName": "DNSServer2",
+      "required": true,
+      "type": "text",
+      "format": {
+        "regexPattern": "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$",
+        "errorMessage": "DNS-Server in wrong format! IPv4-format needed!"
+      }
+    },
+    {
+      "varName": "NTPServer1",
+      "required": true,
+      "type": "text",
+      "format": {
+        "regexPattern": "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$",
+        "errorMessage": "NTP-Server in wrong format! IPv4-format needed!"
+      }
+    },
+    {
+      "varName": "NTPServer2",
+      "required": true,
+      "type": "text",
+      "format": {
+        "regexPattern": "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$",
+        "errorMessage": "NTP-Server in wrong format! IPv4-format needed!"
+      }
+    },
+    {
+      "varName": "Agree",
+      "requiredTrue": true,
+      "type": "boolean"
+    }
+  ]
+}
