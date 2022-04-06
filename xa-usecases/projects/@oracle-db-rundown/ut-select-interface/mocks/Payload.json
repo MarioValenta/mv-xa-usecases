@@ -1,0 +1,74 @@
+{
+  "info" :
+
+  {
+    "servicename": "DORA1A",
+    "serviceid": "A13040596",
+    "customer": "INTERN",
+    "supportedBy": "MIS.INT.HU.TSA.DB.ORACLE",
+    "requestId": "1563d0d4-8fd2-11ec-adbb-2385ae435631",
+    "requestor": "Patil Rohit",
+    "hostname": "test-host"
+  },
+
+
+  "mountTable" :
+
+  [
+    {
+      "Mountpoint": "/u02/app/oracle/oradata/DORA1",
+      "Device": "172.29.254.226:/tsa_oradora1a_dbf1",
+      "Filesystem": "nfs",
+      "SizeGB": "540.00"
+    },
+    {
+      "Mountpoint": "/u02/app/oracle/oratemp/DORA1",
+      "Device": "172.29.254.226:/tsa_oradora1a_tmp1",
+      "Filesystem": "nfs",
+      "SizeGB": "10.00"
+    },
+    {
+      "Mountpoint": "/u01/app/oracle/oradata/DORA1",
+      "Device": "172.29.254.226:/tsa_oradora1a_log1",
+      "Filesystem": "nfs",
+      "SizeGB": "10.00"
+    },
+    {
+      "Mountpoint": "/u01/app/oracle/diag",
+      "Device": "172.29.254.226:/tsa_utoradb01_diag1",
+      "Filesystem": "nfs",
+      "SizeGB": "30.00"
+    },
+    {
+      "Mountpoint": "/u01/app/oracle/fast_recovery_area/DORA1",
+      "Device": "172.29.254.226:/tsa_oradora1a_fra1",
+      "Filesystem": "nfs",
+      "SizeGB": "60.46"
+    }
+  ],
+
+
+  "interfaceTable" :
+  [
+    {
+      "Interface": "eth0",
+      "IP": "100.64.16.228",
+      "IPv6": "fe80::221:f6ff:fe63:d7af"
+    },
+    {
+      "Interface": "eth1",
+      "IP": "172.29.254.196",
+      "IPv6": "fe80::221:f6ff:fee7:c718"
+    },
+    {
+      "Interface": "eth2",
+      "IP": "172.29.254.227",
+      "IPv6": "fe80::221:f6ff:fe73:421f"
+    },
+    {
+      "Interface": "eth3",
+      "IP": "",
+      "IPv6": "fe80::221:f6ff:fe58:7ac4"
+    }
+  ]
+}

@@ -2232,6 +2232,104 @@
           }
         }
       }
+    },
+    "@oracle-db-rundown/ut-select-interface": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@oracle-db-rundown/ut-select-interface",
+      "sourceRoot": "projects/@oracle-db-rundown/ut-select-interface/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@oracle-db-rundown/ut-select-interface",
+            "index": "projects/@oracle-db-rundown/ut-select-interface/src/index.html",
+            "main": "projects/@oracle-db-rundown/ut-select-interface/src/main.ts",
+            "polyfills": "projects/@oracle-db-rundown/ut-select-interface/src/polyfills.ts",
+            "tsConfig": "projects/@oracle-db-rundown/ut-select-interface/tsconfig.app.json",
+            "assets": [
+              "projects/@oracle-db-rundown/ut-select-interface/src/favicon.ico",
+              "projects/@oracle-db-rundown/ut-select-interface/src/assets"
+            ],
+            "styles": [
+              "projects/@oracle-db-rundown/ut-select-interface/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/@oracle-db-rundown/ut-select-interface/src/environments/environment.ts",
+                  "with": "projects/@oracle-db-rundown/ut-select-interface/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@oracle-db-rundown/ut-select-interface:build:production"
+            },
+            "development": {
+              "browserTarget": "@oracle-db-rundown/ut-select-interface:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "@oracle-db-rundown/ut-select-interface:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@oracle-db-rundown/ut-select-interface/src/test.ts",
+            "polyfills": "projects/@oracle-db-rundown/ut-select-interface/src/polyfills.ts",
+            "tsConfig": "projects/@oracle-db-rundown/ut-select-interface/tsconfig.spec.json",
+            "karmaConfig": "projects/@oracle-db-rundown/ut-select-interface/karma.conf.js",
+            "assets": [
+              "projects/@oracle-db-rundown/ut-select-interface/src/favicon.ico",
+              "projects/@oracle-db-rundown/ut-select-interface/src/assets"
+            ],
+            "styles": [
+              "projects/@oracle-db-rundown/ut-select-interface/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
     }
   },
   "defaultProject": "xa-portal-dev"

@@ -1,0 +1,62 @@
+<form [formGroup]="form" class="ui container form">
+  <h2 class="ui dividing header" style="padding-top: 30px">
+    <i class="trash icon"></i>
+    DB Server Rundown {{ Context.Payload.info.customer }} -
+    {{ Context.Payload.info.servicename }}
+  </h2>
+
+  <general-information [infoData]="Context.Payload.info"></general-information>
+
+  <div class="field" style="padding-top: 30px">
+    <div class="ui message">
+      <div class="header">Information</div>
+      <p>
+        Please select the interfaces that can be removed from below list.
+        <br />
+        <b>ONLY</b> select interfaces you <b>KNOW</b> that are no longer needed.
+        <br />
+        If unsure consult the responsible application-team, SC-OPM or SDM.
+      </p>
+    </div>
+  </div>
+
+  <h2 class="ui dividing header" style="padding-top: 30px">
+    <i class="server icon"></i>
+    Network Interface
+  </h2>
+
+  <table class="ui compact table">
+    <thead>
+      <tr>
+        <th>Remove</th>
+        <th>Interface</th>
+        <th>IP</th>
+        <th>IPv6</th>
+      </tr>
+    </thead>
+    <tbody [formArrayName]="INPUT_DATA_KEY">
+      <tr
+        *ngFor="let control of formArray.controls; let index = index"
+        [formGroupName]="index"
+        xaOnInit
+      >
+        <td class="field">
+          <xa-checkbox formControlName="remove"> </xa-checkbox>
+        </td>
+        <td class="field">
+          {{ formArray.controls[index].get("Interface")!.value }}
+        </td>
+        <td class="field">
+          {{ formArray.controls[index].get("IP")!.value }}
+        </td>
+        <td class="field">
+          {{ formArray.controls[index].get("IPv6")!.value }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <pre *if-dev class="field">
+    <p>{{this.form.getRawValue() | json}}</p>
+  </pre>
+</form>

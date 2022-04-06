@@ -20,6 +20,7 @@ import { OracleDbRdnUTEnterInterfaceAppModuleAppModule } from './@oracle-db-rund
 import { CreateProblemRequestFormAppModule } from './@create-problem/request-form/src/app/app.module';
 import { CreateIncidentRequestFormAppModule } from './@create-incident/request-form/src/app/app.module';
 import { OracleDbRdnUTEnterStorageAppModuleAppModule } from './@oracle-db-rundown/ut-enter-storage/src/app/app.module';
+import { OracleDbRdnUTSelectInterfaceAppModuleAppModule } from './@oracle-db-rundown/ut-select-interface/src/app/app.module';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { OracleDbRdnUTEnterStorageAppModuleAppModule } from './@oracle-db-rundow
     OracleDbRdnRequestFormAppModule,
     OracleDbRdnUTEnterInterfaceAppModuleAppModule,
     OracleDbRdnUTEnterStorageAppModuleAppModule,
+    OracleDbRdnUTSelectInterfaceAppModuleAppModule,
     CreateProblemRequestFormAppModule
   ]
 })
