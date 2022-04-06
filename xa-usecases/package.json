@@ -28,6 +28,7 @@
     "build:prod:@oracle-db-rundown/ut-enter-interface": "ng build --project @oracle-db-rundown/ut-enter-interface --configuration production --single-bundle",
     "build:prod:@oracle-db-rundown/ut-enter-storage": "ng build --project @oracle-db-rundown/ut-enter-storage --configuration production --single-bundle",
     "build:prod:@oracle-db-rundown/ut-select-interface": "ng build --project @oracle-db-rundown/ut-select-interface --configuration production --single-bundle",
+    "build:prod:@oracle-db-rundown/ut-select-storage": "ng build --project @oracle-db-rundown/ut-select-storage --configuration production --single-bundle",
     "build:prod:@patchautomation-ch/request-form": "ng build --project @patchautomation/request-form --configuration production-ch --single-bundle",
     "build:prod:@patchautomation-at/request-form": "ng build --project @patchautomation/request-form --configuration production-at --single-bundle",
     "build:prod:@patchautomation-remove/request-form": "ng build --project @patchautomation-remove/request-form --configuration production --single-bundle",

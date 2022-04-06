@@ -21,6 +21,7 @@ import { CreateProblemRequestFormAppModule } from './@create-problem/request-for
 import { CreateIncidentRequestFormAppModule } from './@create-incident/request-form/src/app/app.module';
 import { OracleDbRdnUTEnterStorageAppModuleAppModule } from './@oracle-db-rundown/ut-enter-storage/src/app/app.module';
 import { OracleDbRdnUTSelectInterfaceAppModuleAppModule } from './@oracle-db-rundown/ut-select-interface/src/app/app.module';
+import { OracleDbRdnUTSelectStorageAppModuleAppModule } from './@oracle-db-rundown/ut-select-storage/src/app/app.module';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { OracleDbRdnUTSelectInterfaceAppModuleAppModule } from './@oracle-db-run
     OracleDbRdnUTEnterInterfaceAppModuleAppModule,
     OracleDbRdnUTEnterStorageAppModuleAppModule,
     OracleDbRdnUTSelectInterfaceAppModuleAppModule,
+    OracleDbRdnUTSelectStorageAppModuleAppModule,
     CreateProblemRequestFormAppModule
   ]
 })

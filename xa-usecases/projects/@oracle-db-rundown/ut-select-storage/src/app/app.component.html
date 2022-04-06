@@ -1,0 +1,78 @@
+<form [formGroup]="form" class="ui container form">
+  <h2 class="ui dividing header" style="padding-top: 30px">
+    <i class="trash icon"></i>
+    DB Server Rundown {{ Context.Payload.info.customer }} -
+    {{ Context.Payload.info.servicename }}
+  </h2>
+
+  <general-information [infoData]="Context.Payload.info"></general-information>
+
+  <div class="field" style="padding-top: 30px">
+    <div class="ui message">
+      <div class="header">Information</div>
+      <p>
+        Please select the volumes or qtrees that can be removed from below list.
+        <br />
+        <b>ONLY</b> select volumes you <b>KNOW</b> that are no longer needed.
+        <br />
+        If unsure consult the responsible application-team, SC-OPM or SDM.
+      </p>
+    </div>
+  </div>
+
+  <h2 class="ui dividing header" style="padding-top: 30px">
+    <i class="hdd outline icon"></i>
+    Storage
+  </h2>
+
+  <h5>Partitions</h5>
+  <table class="ui compact table">
+    <thead>
+      <tr>
+        <th>Delete Volumes</th>
+        <th>Delete Qtree</th>
+        <th>Delete Export</th>
+        <th>Mountpoint</th>
+        <th>Filesystem</th>
+        <th>SizeGB</th>
+        <th>Device</th>
+      </tr>
+    </thead>
+    <tbody [formArrayName]="INPUT_DATA_KEY">
+      <tr
+        *ngFor="let control of formArray.controls; let index = index"
+        [formGroupName]="index"
+        xaOnInit
+        [subscribeOn]="
+          observeChanges(form.get(INPUT_DATA_KEY)!['controls'][index])
+        "
+      >
+        <td class="field">
+          <xa-checkbox formControlName="delvolumes"> </xa-checkbox>
+        </td>
+        <td class="field">
+          <xa-checkbox formControlName="delqtree"> </xa-checkbox>
+        </td>
+        <td class="field">
+          <xa-checkbox formControlName="delexport"> </xa-checkbox>
+        </td>
+        <td class="field">
+          {{ formArray.controls[index].get("Mountpoint")!.value }}
+        </td>
+        <td class="field">
+          {{ formArray.controls[index].get("Filesystem")!.value }}
+        </td>
+        <td class="field">
+          {{ formArray.controls[index].get("SizeGB")!.value }}
+        </td>
+        <td class="field">
+          {{ formArray.controls[index].get("Device")!.value }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <pre *if-dev class="field">
+    <p>{{this.form.getRawValue() | json}}</p>
+  </pre>
+</form>

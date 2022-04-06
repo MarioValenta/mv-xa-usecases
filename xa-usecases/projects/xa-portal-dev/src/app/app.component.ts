@@ -74,7 +74,7 @@ import * as Oracle_DB_Rundown_RF_Validation from '../../../@oracle-db-rundown/re
 import * as Oracle_DB_Rundown_UT_Enter_Interface_Payload from '../../../@oracle-db-rundown/ut-enter-interface/mocks/Payload.json';
 import * as Oracle_DB_Rundown_UT_Enter_Interface_ConfigPayload from '../../../@oracle-db-rundown/ut-enter-interface/mocks/ConfigPayload.json';
 import * as Oracle_DB_Rundown_UT_Enter_Interface_Validation from '../../../@oracle-db-rundown/ut-enter-interface/mocks/Validation.json';
-// Oracle DB Rundown ut-enter-interface
+// Oracle DB Rundown ut-enter-storage
 import * as Oracle_DB_Rundown_UT_Enter_Storage_Payload from '../../../@oracle-db-rundown/ut-enter-storage/mocks/Payload.json';
 import * as Oracle_DB_Rundown_UT_Enter_Storage_ConfigPayload from '../../../@oracle-db-rundown/ut-enter-storage/mocks/ConfigPayload.json';
 import * as Oracle_DB_Rundown_UT_Enter_Storage_Validation from '../../../@oracle-db-rundown/ut-enter-storage/mocks/Validation.json';
@@ -82,6 +82,10 @@ import * as Oracle_DB_Rundown_UT_Enter_Storage_Validation from '../../../@oracle
 import * as Oracle_DB_Rundown_UT_Select_Interface_Payload from '../../../@oracle-db-rundown/ut-select-interface/mocks/Payload.json';
 import * as Oracle_DB_Rundown_UT_Select_Interface_ConfigPayload from '../../../@oracle-db-rundown/ut-select-interface/mocks/ConfigPayload.json';
 import * as Oracle_DB_Rundown_UT_Select_Interface_Validation from '../../../@oracle-db-rundown/ut-select-interface/mocks/Validation.json';
+// Oracle DB Rundown ut-select-storage
+import * as Oracle_DB_Rundown_UT_Select_Storage_Payload from '../../../@oracle-db-rundown/ut-select-storage/mocks/Payload.json';
+import * as Oracle_DB_Rundown_UT_Select_Storage_ConfigPayload from '../../../@oracle-db-rundown/ut-select-storage/mocks/ConfigPayload.json';
+import * as Oracle_DB_Rundown_UT_Select_Storage_Validation from '../../../@oracle-db-rundown/ut-select-storage/mocks/Validation.json';
 // Universal Tap Execution KFA Deploy Context
 import * as UTE_KFA_Deployment_Payload from '../../../@universal-tap-execution/kfa-deployment-request-form/mocks/Payload.json';
 import * as UTE_KFA_Deployment_ConfigPayload from '../../../@universal-tap-execution/kfa-deployment-request-form/mocks/ConfigPayload.json';
@@ -128,6 +132,7 @@ export class AppHtmlFormsComponent {
   Oracle_DB_Rundown_UT_Enter_Interface_Context: TaskContext = this.BuildCeTaskContext({ payload: Oracle_DB_Rundown_UT_Enter_Interface_Payload, configPayload: Oracle_DB_Rundown_UT_Enter_Interface_ConfigPayload, validation: Oracle_DB_Rundown_UT_Enter_Interface_Validation });
   Oracle_DB_Rundown_UT_Enter_Storage_Context: TaskContext = this.BuildCeTaskContext({ payload: Oracle_DB_Rundown_UT_Enter_Storage_Payload, configPayload: Oracle_DB_Rundown_UT_Enter_Storage_ConfigPayload, validation: Oracle_DB_Rundown_UT_Enter_Storage_Validation });
   Oracle_DB_Rundown_UT_Select_Interface_Context: TaskContext = this.BuildCeTaskContext({ payload: Oracle_DB_Rundown_UT_Select_Interface_Payload, configPayload: Oracle_DB_Rundown_UT_Select_Interface_ConfigPayload, validation: Oracle_DB_Rundown_UT_Select_Interface_Validation });
+  Oracle_DB_Rundown_UT_Select_Storage_Context: TaskContext = this.BuildCeTaskContext({ payload: Oracle_DB_Rundown_UT_Select_Storage_Payload, configPayload: Oracle_DB_Rundown_UT_Select_Storage_ConfigPayload, validation: Oracle_DB_Rundown_UT_Select_Storage_Validation });
   Universal_Tap_Execution_KFA_Deploy_Context: RequestContext = this.BuildRequestContext({ payload: UTE_KFA_Deployment_Payload, configPayload: UTE_KFA_Deployment_ConfigPayload, validation: UTE_KFA_Deployment_Validation });
 
   constructor(
