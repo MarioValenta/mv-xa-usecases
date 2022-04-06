@@ -1,0 +1,317 @@
+{
+    "VolumesToKeepLonger ": "test,bla",
+   
+    "Partitions": [
+        {
+            "Device": "10.40.1.223:/ips_sap_908_ol1_sapdata1/sapdata/sapdata1",
+            "SizeGB": "80.00",
+            "export": true,
+            "delqtree": true,
+            "Filesystem": "nfs",
+            "Mountpoint": "/oracle/OL1/sapdata1",
+            "delvolumes": true
+        }
+    ],
+    "Relations": [
+        {
+            "id": "A01954203",
+            "id0": "",
+            "id1": "A01954203",
+            "id2": "",
+            "id3": "",
+            "id4": "",
+            "name": "OL1_000",
+            "type": "SAP_CLIENT",
+            "SVCID": "A01954203",
+            "class": "APP_SAP_SYSTEM",
+            "dummy": "",
+            "status": "RUNDOWN",
+            "support": "SAP.AO.AT.ALL.SAP-BASIS",
+            "predicate": "runsOn",
+            "environment": "DEV",
+            "nonDeletable": false
+        }
+    ],
+    "HOST": {
+        "Partitions": [
+            {
+                "Mountpoint": "/oracle/OL1",
+                "Device": "10.40.1.223:/ips_sap_908_ol1_db_sapmnt/db/sid",
+                "Filesystem": "nfs",
+                "SizeGB": "24.80"
+            },
+            {
+                "Mountpoint": "/usr/sap/OL1",
+                "Device": "10.40.1.223:/ips_sap_908_ol1_db_sapmnt/sapmnt/usrsap",
+                "Filesystem": "nfs",
+                "SizeGB": "24.80"
+            },
+            {
+                "Mountpoint": "/sapmnt/OL1",
+                "Device": "10.40.1.223:/ips_sap_908_ol1_db_sapmnt/sapmnt/sapmnt",
+                "Filesystem": "nfs",
+                "SizeGB": "24.80"
+            },
+            {
+                "Mountpoint": "/oracle/OL1/origlogA",
+                "Device": "10.40.1.223:/ips_sap_908_ol1_origlog/origlog/saplogA",
+                "Filesystem": "nfs",
+                "SizeGB": "10.00"
+            },
+            {
+                "Mountpoint": "/oracle/OL1/origlogB",
+                "Device": "10.40.1.223:/ips_sap_908_ol1_origlog/origlog/saplogB",
+                "Filesystem": "nfs",
+                "SizeGB": "10.00"
+            },
+            {
+                "Mountpoint": "/oracle/OL1/sapdata1",
+                "Device": "10.40.1.223:/ips_sap_908_ol1_sapdata1/sapdata/sapdata1",
+                "Filesystem": "nfs",
+                "SizeGB": "80.00"
+            },
+            {
+                "Mountpoint": "/oracle/OL1/sapdata2",
+                "Device": "10.40.1.223:/ips_sap_908_ol1_sapdata1/sapdata/sapdata2",
+                "Filesystem": "nfs",
+                "SizeGB": "80.00"
+            },
+            {
+                "Mountpoint": "/oracle/OL1/sapdata3",
+                "Device": "10.40.1.223:/ips_sap_908_ol1_sapdata1/sapdata/sapdata3",
+                "Filesystem": "nfs",
+                "SizeGB": "80.00"
+            },
+            {
+                "Mountpoint": "/oracle/OL1/sapdata4",
+                "Device": "10.40.1.223:/ips_sap_908_ol1_sapdata1/sapdata/sapdata4",
+                "Filesystem": "nfs",
+                "SizeGB": "80.00"
+            }
+        ],
+        "results": {
+            "rows": [
+                {
+                    "alsoUsedByHosts": [
+                        {
+                            "hstatus": "EXPERIMENTAL",
+                            "henvironment": "TEST",
+                            "hostname": "ipsviey02001",
+                            "hostid": "H12703921"
+                        },
+                        {
+                            "henvironment": "TEST",
+                            "hostname": "ipsviey02002",
+                            "hostid": "H12703935",
+                            "hstatus": "EXPERIMENTAL"
+                        },
+                        {
+                            "hstatus": "EXPERIMENTAL",
+                            "henvironment": "TEST",
+                            "hostname": "ipsviey01005",
+                            "hostid": "H12703864"
+                        },
+                        {
+                            "hostid": "H12703646",
+                            "hostname": "ipsviey01003",
+                            "henvironment": "TEST",
+                            "hstatus": "RUNDOWN"
+                        }
+                    ],
+                    "usedByAnotherHost": true,
+                    "stornasid": "NAS02057943",
+                    "stornasvfiler": "tsaviexnv27_908",
+                    "stornasname": "ips_sap_908_saparch",
+                    "stornasprotocol": "NFS",
+                    "usedByAnotherActiveHost": false,
+                    "stornasquality": "FC",
+                    "stornascapacity": "1791.00",
+                    "stornasphyfiler": "shdvieenl01"
+                },
+                {
+                    "stornasvfiler": "tsaviexnv27_908",
+                    "stornasid": "NAS02058009",
+                    "usedByAnotherHost": false,
+                    "alsoUsedByHosts": [],
+                    "stornasquality": "FC",
+                    "usedByAnotherActiveHost": false,
+                    "stornasprotocol": "NFS",
+                    "stornasname": "ips_sap_908_ol1_origlog",
+                    "stornascapacity": "10.00",
+                    "stornasphyfiler": "shdvieenl02"
+                },
+                {
+                    "stornasname": "ips_sap_908_ol1_sapdata1",
+                    "stornasprotocol": "NFS",
+                    "stornasquality": "FC",
+                    "usedByAnotherActiveHost": false,
+                    "stornasphyfiler": "shdvieenl01",
+                    "stornascapacity": "100.00",
+                    "usedByAnotherHost": false,
+                    "alsoUsedByHosts": [],
+                    "stornasid": "NAS02058214",
+                    "stornasvfiler": "tsaviexnv27_908"
+                },
+                {
+                    "stornasvfiler": "tsaviexnv27_908",
+                    "stornasid": "NAS02058263",
+                    "alsoUsedByHosts": [],
+                    "usedByAnotherHost": false,
+                    "usedByAnotherActiveHost": false,
+                    "stornasquality": "FC",
+                    "stornasprotocol": "NFS",
+                    "stornasname": "ips_sap_908_ol1_db_sapmnt",
+                    "stornasphyfiler": "shdvieenl01",
+                    "stornascapacity": "31.00"
+                },
+                {
+                    "alsoUsedByHosts": [
+                        {
+                            "hostname": "ipsviey01001",
+                            "henvironment": "ADMIN",
+                            "hostid": "H01939615",
+                            "hstatus": "EXPERIMENTAL"
+                        },
+                        {
+                            "hstatus": "EXPERIMENTAL",
+                            "hostname": "ipsviey02001",
+                            "henvironment": "TEST",
+                            "hostid": "H12703921"
+                        },
+                        {
+                            "hostname": "ipsviey02002",
+                            "henvironment": "TEST",
+                            "hostid": "H12703935",
+                            "hstatus": "EXPERIMENTAL"
+                        },
+                        {
+                            "hostname": "ipsviey01003",
+                            "hostid": "H12703646",
+                            "henvironment": "TEST",
+                            "hstatus": "RUNDOWN"
+                        },
+                        {
+                            "hstatus": "EXPERIMENTAL",
+                            "hostname": "ipsviey01005",
+                            "hostid": "H12703864",
+                            "henvironment": "TEST"
+                        }
+                    ],
+                    "usedByAnotherHost": true,
+                    "stornasid": "NAS02058392",
+                    "stornasvfiler": "tsaviexnv27_908",
+                    "stornasphyfiler": "shdvieenl01",
+                    "stornascapacity": "113.00",
+                    "stornasprotocol": "NFS",
+                    "stornasname": "ips_sap_908_shared",
+                    "usedByAnotherActiveHost": false,
+                    "stornasquality": "FC"
+                },
+                {
+                    "stornasid": "NAS02058417",
+                    "stornasvfiler": "tsaviexnv27_908",
+                    "alsoUsedByHosts": [
+                        {
+                            "hostname": "ipsviey02001",
+                            "henvironment": "TEST",
+                            "hostid": "H12703921",
+                            "hstatus": "EXPERIMENTAL"
+                        },
+                        {
+                            "hstatus": "EXPERIMENTAL",
+                            "hostname": "ipsviey02002",
+                            "henvironment": "TEST",
+                            "hostid": "H12703935"
+                        },
+                        {
+                            "hstatus": "RUNDOWN",
+                            "hostname": "ipsviey01003",
+                            "hostid": "H12703646",
+                            "henvironment": "TEST"
+                        },
+                        {
+                            "hstatus": "EXPERIMENTAL",
+                            "hostname": "ipsviey01005",
+                            "hostid": "H12703864",
+                            "henvironment": "TEST"
+                        }
+                    ],
+                    "usedByAnotherHost": true,
+                    "stornasname": "ips_sap_908_archivepool",
+                    "stornasprotocol": "NFS",
+                    "usedByAnotherActiveHost": false,
+                    "stornasquality": "FC",
+                    "stornasphyfiler": "shdvieenl01",
+                    "stornascapacity": "85.00"
+                }
+            ],
+            "totalCount": 6
+        }
+    },
+    "SVC": [
+        {
+            "SVCID": "A01954196",
+            "SVCNAME": "OL1",
+            "SVCSTATUS": "RUNDOWN",
+            "SVCSUP": "SAP.AO.AT.ALL.SAP-BASIS"
+        },
+        {
+            "SVCID": "A01954201",
+            "SVCNAME": "IPSOL1CI03_OL1_03",
+            "SVCSTATUS": "RUNDOWN",
+            "SVCSUP": "SAP.AO.AT.ALL.SAP-BASIS"
+        },
+        {
+            "SVCID": "A01954203",
+            "SVCNAME": "OL1_000",
+            "SVCSTATUS": "RUNDOWN",
+            "SVCSUP": "SAP.AO.AT.ALL.SAP-BASIS"
+        }
+    ],
+    "info": {
+        "hostname": "v-gina-test1",
+        "hostid": "H01974845",
+        "customer": "KRAGES",
+        "supportedBy": "MIS.EUS.AT.CLC.ALL.MAVS",
+        "sla": "KRAGES_INCIDENT-NOSLA_NON-TSA",
+        "wbs": "V.00301001.10.01",
+        "os": "LINUX|OTHER|64",
+        "criticality": "NONE",
+        "esxcluster": "owadmzcluster",
+        "esxteam": "not relevant",
+        "requestId": "c09c0676-7ddd-11ec-9ca4-e3e8d06adb80",
+        "requestor": "Ibraim Hatice"
+    },
+    "interfaces": [
+        {
+            "IFDHCP": null,
+            "IFDNS": "ipsviey01002.ipc.dsh.at",
+            "IFID": "IF01939633",
+            "IFIP": "100.64.4.12",
+            "IFIPVERSION": "4",
+            "IFLANTYPE": "ADMIN",
+            "IFNAME": "eth0",
+            "IFVLAN": "VLAN906"
+        },
+        {
+            "IFDHCP": null,
+            "IFDNS": null,
+            "IFID": "IF01939635",
+            "IFIP": "10.40.1.12",
+            "IFIPVERSION": "4",
+            "IFLANTYPE": "CLIENT",
+            "IFNAME": "eth2",
+            "IFVLAN": "VLAN907"
+        },
+        {
+            "IFDHCP": null,
+            "IFDNS": null,
+            "IFID": "IF01939634",
+            "IFIP": "10.40.1.132",
+            "IFIPVERSION": "4",
+            "IFLANTYPE": "NAS",
+            "IFNAME": "eth1",
+            "IFVLAN": "VLAN908"
+        }
+    ]
+}

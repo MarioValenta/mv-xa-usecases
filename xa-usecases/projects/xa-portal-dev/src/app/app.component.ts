@@ -107,9 +107,13 @@ import * as Server_Rundown_Payload from '../../../@server-rundown/request-form/m
 import * as Server_Rundown_ConfigPayload from '../../../@server-rundown/request-form/mocks/ConfigPayload.json';
 import * as Server_Rundown_Validation from '../../../@server-rundown/request-form/mocks/Validation.json';
 // Server Rundown ut-nas-offline
-import * as Server_Rundown_UT_NAS_Offline_Payload from '../../../@server-rundown/request-form/mocks/Payload.json';
-import * as Server_Rundown_UT_NAS_Offline_ConfigPayload from '../../../@server-rundown/request-form/mocks/ConfigPayload.json';
-import * as Server_Rundown_UT_NAS_Offline_Validation from '../../../@server-rundown/request-form/mocks/Validation.json';
+import * as Server_Rundown_UT_NAS_Offline_Payload from '../../../@server-rundown/ut-nas-offline/mocks/Payload.json';
+import * as Server_Rundown_UT_NAS_Offline_ConfigPayload from '../../../@server-rundown/ut-nas-offline/mocks/ConfigPayload.json';
+import * as Server_Rundown_UT_NAS_Offline_Validation from '../../../@server-rundown/ut-nas-offline/mocks/Validation.json';
+// Server Rundown ut-select-storage
+import * as Server_Rundown_UT_Select_Storage_Payload from '../../../@server-rundown/ut-select-storage/mocks/Payload.json';
+import * as Server_Rundown_UT_Select_Storage_ConfigPayload from '../../../@server-rundown/ut-select-storage/mocks/ConfigPayload.json';
+import * as Server_Rundown_UT_Select_Storage_Validation from '../../../@server-rundown/ut-select-storage/mocks/Validation.json';
 
 @Component({
   selector: 'app-html-forms',
@@ -149,6 +153,7 @@ export class AppHtmlFormsComponent {
   Universal_Tap_Execution_KFA_Deploy_Context: RequestContext = this.BuildRequestContext({ payload: UTE_KFA_Deployment_Payload, configPayload: UTE_KFA_Deployment_ConfigPayload, validation: UTE_KFA_Deployment_Validation });
   Server_Rundown_Context: RequestContext = this.BuildRequestContext({ payload: Server_Rundown_Payload, configPayload: Server_Rundown_ConfigPayload, validation: Server_Rundown_Validation });
   Server_Rundown_UT_NAS_Offline_Context: TaskContext = this.BuildCeTaskContext({ payload: Server_Rundown_UT_NAS_Offline_Payload, configPayload: Server_Rundown_UT_NAS_Offline_ConfigPayload, validation: Server_Rundown_UT_NAS_Offline_Validation });
+  Server_Rundown_UT_Select_Storage_Context: TaskContext = this.BuildCeTaskContext({ payload: Server_Rundown_UT_Select_Storage_Payload, configPayload: Server_Rundown_UT_Select_Storage_ConfigPayload, validation: Server_Rundown_UT_Select_Storage_Validation });
 
   constructor(
     private initialize: AppInitializeService,
