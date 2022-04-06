@@ -24,6 +24,7 @@ import { OracleDbRdnUTSelectInterfaceAppModuleAppModule } from './@oracle-db-run
 import { OracleDbRdnUTSelectStorageAppModuleAppModule } from './@oracle-db-rundown/ut-select-storage/src/app/app.module';
 import { CreateOracleVMRequestFormAppModule } from './@create-oracle-vm/request-form/src/app/app.module';
 import { ServerRundownRequestFormAppModule } from './@server-rundown/request-form/src/app/app.module';
+import { ServerRundownUTNasOfflineAppModule } from './@server-rundown/ut-nas-offline/src/app/app.module';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { ServerRundownRequestFormAppModule } from './@server-rundown/request-for
     OracleDbRdnUTSelectStorageAppModuleAppModule,
     CreateProblemRequestFormAppModule,
     CreateOracleVMRequestFormAppModule,
-    ServerRundownRequestFormAppModule
+    ServerRundownRequestFormAppModule,
+    ServerRundownUTNasOfflineAppModule
   ]
 })
 export class UseCasesFormsAppModule { }

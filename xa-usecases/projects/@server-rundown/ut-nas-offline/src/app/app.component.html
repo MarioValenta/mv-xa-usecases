@@ -1,0 +1,94 @@
+<form [formGroup]="form" class="ui container form">
+
+  <h2 class="ui dividing header" style="padding-top:30px">
+      <i class="trash icon"></i>
+      ServerRundown {{this.info.customer}} - {{this.info.hostname}}
+  </h2>
+
+  <h2 class="ui dividing header" style="padding-top:20px">
+      <i class="paperclip icon"></i>
+      General Information
+  </h2>
+
+  <div class="ui message">
+      <div style="padding-top: 10px">
+          <div>Hostname: {{this.info.hostname}} ({{this.info.hostid}})</div>
+          <div>Customer: {{this.info.customer}}</div>
+          <div>supportedBy: {{this.info.supportedBy}}</div>
+          <div>SLA: {{this.info.sla}}</div>
+          <div>WBS: {{this.info.wbs}}</div>
+          <div>OS: {{this.info.os}}</div>
+          <div>
+              <hr>
+          </div>
+          <div>ESXi Cluster: {{this.info.esxcluster}}</div>
+          <div>ESXi support: {{this.info.esxteam}}</div>
+          <div>
+              <hr>
+          </div>
+          <div>Order-ID: {{this.info.requestId}}</div>
+          <div><b>Requestor: {{this.info.requestor}}</b></div>
+      </div>
+  </div>
+  <div class="ui message">
+      <div class="header">
+          Review the following list of partitions/volumes and decide whether they can safely be removed.
+          <br>
+          Any partition that is used by any other system than the one currently in rundown MUST NOT be removed.
+          Be sure to follow the defined rules for data removal (such as taking them offline for a defined time, keep
+          waiting time before final deletion,...)
+          <br>
+          When in any doubt, contact the appropriate application team, SC-OPM or SDM for written approval.
+          Do not remove any volume you are not sure about.
+      </div>
+  </div>
+
+  <div class="ui message">
+      <div class="header">
+          Keep volumes for a grace period of 10 days after taking them offline.
+      </div>
+  </div>
+
+
+  <div class="ui message" *ngIf="this.VolumestoKeepLonger != null">
+      <div class="header">
+          Special Request:
+      </div>
+
+      <div class="fields">
+          <div class="field" style="padding-top:10px">
+              The following volumes must be kept for </div>
+          <div class="one wide field">
+              <input value="{{this.daystokeep}}" readonly> </div>
+          <div class="field" style="padding-top:10px">
+              days after taking offline.
+          </div>
+      </div>
+
+      <div class="field">
+          <textarea rows="2" value=" {{this.Context.Payload.VolumestoKeepLonger}}"readonly></textarea>
+      </div>
+
+      <div class="field">
+          If you have doubts, please contact requestor.
+      </div>
+  </div>
+
+  <h2 class="ui dividing header" style="padding-top:30px">
+      <i class="cog icon"></i>
+      Storage
+  </h2>
+
+  <h5>Mounted Partitions</h5>
+  <partitions-table formControlName="Partitions"></partitions-table>
+
+  <h5>Host-Interfaces</h5>
+  <interface-table formControlName="interfaces"></interface-table>
+
+  <div class="field" style="padding-top: 20px">
+      <xa-checkbox formControlName="nasdone">Request succesfully processed</xa-checkbox>
+  </div>
+</form>
+
+<pre *if-dev>{{this.form.value | json}}</pre>
+<pre *if-dev>{{this.form.status | json}}</pre>
