@@ -1,0 +1,61 @@
+import {
+  CUSTOM_ELEMENTS_SCHEMA,
+  Injector,
+  NgModule,
+  NO_ERRORS_SCHEMA,
+} from '@angular/core';
+import { createCustomElement } from '@angular/elements';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InfoMailShareModule, XAServices } from '@xa/lib-ui-common';
+import { ShowErrorsModule } from '@xa/show-errors';
+import { XAUIModule } from '@xa/ui';
+import { ValidationService } from '@xa/validation';
+import { NouisliderModule } from 'ng2-nouislider';
+import { XAToastDefaults } from 'projects/shared/toast-config';
+import { environment } from '../environments/environment';
+import { SharedModule } from 'projects/xa-portal-dev/src/app/shared/shared.module';
+import { AppComponent } from './app.component';
+import { PlaceholderPipe } from './pure-pipes/placeholder.pipe';
+import { RequiredPipe } from './pure-pipes/required.pipe';
+import { windowFactory, XASERVICE_TOKEN } from 'projects/shared.functions';
+
+@NgModule({
+  declarations: [
+    AppComponent, 
+    PlaceholderPipe, 
+    RequiredPipe],
+  imports: [
+    BrowserModule,
+    XAUIModule.forRoot(),
+    ShowErrorsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    NouisliderModule,
+    FormsModule,
+    environment.production ? [] : SharedModule,
+    InfoMailShareModule,
+  ],
+  providers: [
+    {
+      provide: XASERVICE_TOKEN,
+      useFactory: windowFactory
+    },
+    {
+      provide: 'XANotifyToastConfig',
+      useValue: XAToastDefaults,
+    },
+  ],
+  exports: [AppComponent],
+  entryComponents: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+})
+export class IdpaProxyRequestFormAppModule {
+  constructor(private injector: Injector) {}
+
+  ngDoBootstrap() {
+    const ce = createCustomElement(AppComponent, { injector: this.injector });
+    customElements.define('<idpa-proxy-request-form>', ce);
+  }
+}

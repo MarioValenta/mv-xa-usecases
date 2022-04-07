@@ -1,0 +1,16 @@
+{
+  "ParameterUrl": "https://api-portal-ucdev.xanet.at/api/vmcreate/appliance/IDBAPROXY_UCDEV/parameters",
+
+  "variablesToBeStoredInCamunda": [],
+  "variablesNotToBeCloned": [],
+  "placeholders": {
+    
+    "ESXCluster": "select Cluster ...",
+    
+    "Hostname": "enter Hostname",
+   
+    "FQDN": "enter Fully Qualified Domain Name ..."
+   
+  }
+ 
+}

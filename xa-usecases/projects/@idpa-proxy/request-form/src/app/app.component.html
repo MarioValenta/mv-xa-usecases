@@ -1,0 +1,62 @@
+<form [formGroup]="form" class="ui container form" style="padding: 20px 10px">
+  <h2 class="ui dividing header">
+    <i class="settings icon"></i>
+    <div class="content">
+      <span> Settings </span>
+      <div class="sub header">Specify the idpa proxy settings.</div>
+    </div>
+  </h2>
+  <div
+    class="field"
+    [class.required]="
+      this.getValidationService | required: FORM_KEY_ESX_CLUSTER
+    "
+  >
+    <!-- Hostname -->
+    <div
+      class="field"
+      [class.required]="this.getValidationService | required: FORM_KEY_HOSTNAME"
+    >
+      <label>Hostname</label>
+      <input
+        [formControlName]="FORM_KEY_HOSTNAME"
+        [placeholder]="this.Context | placeholder: FORM_KEY_HOSTNAME"
+      />
+      <show-errors [control]="this.form.get(FORM_KEY_HOSTNAME)"></show-errors>
+    </div>
+
+    <!-- FQDN -->
+    <div
+      class="field"
+      [class.required]="this.getValidationService | required: FORM_KEY_FQDN"
+    >
+      <label>FQDN</label>
+      <input
+        type="text"
+        [formControlName]="FORM_KEY_FQDN"
+        [placeholder]="this.Context | placeholder: FORM_KEY_FQDN"
+      />
+      <show-errors [control]="this.form.get(FORM_KEY_FQDN)"></show-errors>
+    </div>
+
+    <!-- Location -->
+    <label>Cluster / Location</label>
+    <xa-select
+      [formControlName]="FORM_KEY_ESX_CLUSTER"
+      [placeholder]="this.Context | placeholder: FORM_KEY_ESX_CLUSTER"
+      [options]="ESXClusters$ | async"
+      [search]="true"
+      [clearable]="true"
+      [loading]="!(ESXClusters$ | async)"
+    >
+    </xa-select>
+    <show-errors [control]="this.form.get(FORM_KEY_ESX_CLUSTER)"></show-errors>
+  </div>
+</form>
+
+
+<pre>
+  <p>{{ form.getRawValue() | json }}</p>
+</pre>
+ 
+
