@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FeedbackRequestPayload, ICERequest, ICERequestContext } from '@xa/lib-ui-common';
 import { XANotifyService } from '@xa/ui';
@@ -14,14 +14,14 @@ import { DataService } from './data.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements ICERequest, OnInit, OnDestroy, AfterViewInit {
+export class AppComponent implements ICERequest, OnInit, OnDestroy {
 
   @Input() public Context!: ICERequestContext;
 
   title = 'KFA-Deployment';
   form!: FormGroup;
   startOptions: FlatpickrOptions = getFlatpickrSettings();
-  jsonData: any = {};
+  catDBData: any = {};
   destroy$ = new Subject();
 
   constructor(private fb: FormBuilder, private dataService: DataService, private xaNotifyService: XANotifyService) { }
@@ -39,27 +39,35 @@ export class AppComponent implements ICERequest, OnInit, OnDestroy, AfterViewIni
     this.Context.OnFeedback(() => this.feedback());
 
     if (this.Context.Payload) {
-      this.jsonData = Object.assign(this.jsonData, this.Context.Payload);
+      //this.jsonData = Object.assign(this.jsonData, this.Context.Payload);
+      this.addDataToForm(this.Context.Payload);
     }
 
     this.dataService.getCatalogDbData(`api/universaltapexecution/getusecaseinfosfromcatdb/${this.getCatDBConfigData('nameOfUseCase')}`)
-      .pipe(tap(value => { }))
+      .pipe(tap(value => {this.xaNotifyService.info('loading data from the CatDB!', { timeout: 2500, pauseOnHover: false });}))
       .subscribe(
-        values => {
-          this.jsonData = Object.assign(this.jsonData, values);
+        (values: any) => {
+          this.catDBData = Object.assign({}, values);
+          this.addDataToForm(this.catDBData);
           this.form.get('isCatDbDataLoaded')?.patchValue(true);
           this.xaNotifyService.clear();
           this.xaNotifyService.success('CatDB data loaded!', { timeout: 2500, pauseOnHover: false });
         })
   }
 
-  ngAfterViewInit(): void {
-  }
-
   ngOnDestroy() {
     this.destroy$.next();
   }
 
+  addDataToForm(jsonData: any): void {
+    Object.entries(jsonData).forEach(([key, value]) => {
+      if (!this.form.get(key)) {
+        this.form.addControl(key, this.fb.control(value));
+      } else {
+        this.form.get(key)?.patchValue(value);
+      }
+    });
+  }
   private buildForm() {
     this.form = this.fb.group({
       startdate: ['', Validators.required],
@@ -82,12 +90,12 @@ export class AppComponent implements ICERequest, OnInit, OnDestroy, AfterViewIni
     const formData = this.form.getRawValue();
     // delete isCatDbDataLoaded from the formGroup JSON
     delete formData['isCatDbDataLoaded'];
-    const model = Object.assign(this.jsonData, formData);
-    console.log(model);
+    //const model = Object.assign(this.jsonData, formData);
+    console.log(formData);
 
     return {
-      value: model,
-      identifier: `${this.title}-${model.startdate}`
+      value: formData.getRawValue(),
+      identifier: `${this.title}-${formData.get('startdate').value}`
     };
   }
 

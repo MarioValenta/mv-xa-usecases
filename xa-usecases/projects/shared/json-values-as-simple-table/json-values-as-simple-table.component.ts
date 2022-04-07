@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'general-information',
+  selector: 'json-values-simple-table',
   templateUrl: './json-values-as-simple-table.component.html',
   styleUrls: ['./json-values-as-simple-table.component.css']
 })

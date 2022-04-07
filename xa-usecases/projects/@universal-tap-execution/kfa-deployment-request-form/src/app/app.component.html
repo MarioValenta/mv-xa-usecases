@@ -11,12 +11,10 @@
   <div class="ui segment">
     <label class="ui ribbon label">Todo: Description</label>
     <ul>
+      <li><b>Daten aus der CatDB überschreiben die Daten aus dem Payload und ggf. auch in dem Form, wenn User schneller ist als die Daten aus dem Endpoint laden.</b></li>
       <li>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy </li>
       <li>eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</li>
       <li> At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata</li>
-      <li> sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-        dolor sit amet..</li>
-      <li>Right click inside the grid opens the context menu.</li>
     </ul>
   </div>
 
@@ -33,12 +31,11 @@
     Cat DB data
   </h2>
   <div *ngIf="form.get('isCatDbDataLoaded')!.value; else loading" class="field">
-    <general-information title="loaded CatDB data" [infoData]="jsonData"></general-information>
+    <json-values-simple-table title="loaded CatDB data" [infoData]="catDBData"></json-values-simple-table>
   </div>
 </form>
 
 <pre>{{form.getRawValue() | json }}</pre>
-<pre>{{jsonData | json }}</pre>
 <!-- <pre *if-dev>{{form.value | json }}</pre>
 <pre *if-dev>{{form.getRawValue() | json }}</pre> -->
 <xa-notify></xa-notify>
