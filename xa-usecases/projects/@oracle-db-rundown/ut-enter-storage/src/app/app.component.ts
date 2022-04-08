@@ -9,11 +9,16 @@ import { TaskContextFormsBaseClass } from 'projects/base-usecase-classes/task-co
   styleUrls: ['./app.component.css']
 })
 export class OracleDbRdnUTEnterStorageAppComponent extends TaskContextFormsBaseClass implements AfterViewInit {
-  title = 'oracle-db-rdn-ut-enter-storage';
 
+  title = 'oracle-db-rdn-ut-enter-storage';
   OUTPUT_VARIABLE_NAME: string = 'selectedMountList';
+
   constructor(private fb: FormBuilder) {
     super('oracle-db-rdn-ut-enter-storage');
+  }
+
+  buildForm(): void {
+    console.debug(this.title, ': buildForm()');
 
     this.form = this.fb.group({
       [this.OUTPUT_VARIABLE_NAME]: this.fb.array([])
@@ -22,20 +27,12 @@ export class OracleDbRdnUTEnterStorageAppComponent extends TaskContextFormsBaseC
 
   ngAfterViewInit(): void {
     this.Context.Valid = true;
-    this.form.statusChanges.subscribe(res => this.Context.Valid = res);
   }
 
   formArrayFieldRows: IFormArrayConfigDTO = {
     rows: [
       {
         fields: [
-          {
-            type: 'text',
-            required: true,
-            formControlName: 'Mountpoint',
-            label: 'Mountpoint',
-            placeholder: 'enter the mountpoint'
-          },
           {
             type: 'text',
             required: true,
@@ -46,16 +43,9 @@ export class OracleDbRdnUTEnterStorageAppComponent extends TaskContextFormsBaseC
           {
             type: 'text',
             required: true,
-            formControlName: 'Filesystem',
-            label: 'Filesystem',
-            placeholder: 'enter the filesystem'
-          },
-          {
-            type: 'text',
-            required: true,
-            formControlName: 'SizeGB',
-            label: 'SizeGB',
-            placeholder: 'enter the size in GB'
+            formControlName: 'Mountpoint',
+            label: 'Mountpoint',
+            placeholder: 'enter the mountpoint'
           }
         ]
       }
@@ -64,14 +54,11 @@ export class OracleDbRdnUTEnterStorageAppComponent extends TaskContextFormsBaseC
 
   newFormGroup(): FormGroup {
     return this.fb.group({
-      Mountpoint: ['', Validators.required],
       Device: ['', Validators.required],
-      Filesystem: ['', Validators.required],
-      SizeGB: ['', Validators.required],
+      Mountpoint: ['', Validators.required],
       delvolumes: ['NA', Validators.required],
       delqtree: ['NA', Validators.required],
       delexport: ['NA', Validators.required]
-
     });
   }
 

@@ -14,7 +14,7 @@ export abstract class TaskContextFormsBaseClass extends FormsBaseClass implement
   }
 
   onSubmit(): SubmitTaskPayload {
-    console.log('onSubmit', + this.title);
+    console.log('onSubmit', this.title);
 
     if (this.form.valid) {
       console.debug(this.form.value);

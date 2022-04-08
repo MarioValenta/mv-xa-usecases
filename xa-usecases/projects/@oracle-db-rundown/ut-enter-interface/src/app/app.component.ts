@@ -15,6 +15,11 @@ export class OracleDbRdnUTEnterInterfaceAppComponent extends TaskContextFormsBas
 
   constructor(private fb: FormBuilder) {
     super('oracle-db-rdn-ut-enter-interface');
+  }
+
+  buildForm(): void {
+    console.debug(this.title, ': buildForm()');
+
     this.form = this.fb.group({
       [this.OUTPUT_VARIABLE_NAME]: this.fb.array([])
     });
@@ -22,7 +27,6 @@ export class OracleDbRdnUTEnterInterfaceAppComponent extends TaskContextFormsBas
 
   ngAfterViewInit(): void {
     this.Context.Valid = true;
-    this.form.statusChanges.subscribe(res => this.Context.Valid = res);
   }
 
   formArrayFieldRows: IFormArrayConfigDTO = {

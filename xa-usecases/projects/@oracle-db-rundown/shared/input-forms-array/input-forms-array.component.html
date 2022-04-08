@@ -20,7 +20,7 @@
       *ngFor="let rowItem of formArrayData.controls; let i = index"
     >
       <td [formGroupName]="i">
-        <div *ngFor="let fields of this.formArrayFieldRows.rows" class="two fields">
+        <div *ngFor="let fields of this.formArrayFieldRows.rows" [ngClass]="numberToWord(fields.fields.length)">
           <div
             *ngFor="let field of fields.fields"
             [class]="field.required ? 'required field' : 'field'"
