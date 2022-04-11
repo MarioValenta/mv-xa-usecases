@@ -42,9 +42,7 @@ export class AppComponent {
   buildForm() {
     this.form = this.fb.group({
       Hostname: [''],
-      FQDN: [''],
-      ESXCluster: [''],
-     
+      ESXCluster: [''],  
     });
   }
 

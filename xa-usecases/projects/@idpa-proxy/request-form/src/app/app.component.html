@@ -25,20 +25,6 @@
       <show-errors [control]="this.form.get(FORM_KEY_HOSTNAME)"></show-errors>
     </div>
 
-    <!-- FQDN -->
-    <div
-      class="field"
-      [class.required]="this.getValidationService | required: FORM_KEY_FQDN"
-    >
-      <label>FQDN</label>
-      <input
-        type="text"
-        [formControlName]="FORM_KEY_FQDN"
-        [placeholder]="this.Context | placeholder: FORM_KEY_FQDN"
-      />
-      <show-errors [control]="this.form.get(FORM_KEY_FQDN)"></show-errors>
-    </div>
-
     <!-- Location -->
     <label>Cluster / Location</label>
     <xa-select
