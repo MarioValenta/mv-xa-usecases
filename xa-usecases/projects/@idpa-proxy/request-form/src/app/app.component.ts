@@ -42,7 +42,8 @@ export class AppComponent {
   buildForm() {
     this.form = this.fb.group({
       Hostname: [''],
-      ESXCluster: [''],  
+      ESXCluster: [''],
+      FQDN: [''], 
     });
   }
 
@@ -127,6 +128,7 @@ export class AppComponent {
 
         switchMap((hname) => {
           if (hname) {
+            this.form.get('FQDN')?.patchValue(this.form.get('Hostname')?.value +'.'+ this.form.get('DNSDomain')?.value)
             return (this.IsHostnameAvailable$ =
               this.dataService.getHostnameAvailability(hname));
           }
