@@ -36,7 +36,7 @@
     "build:prod:@patchautomation-at/request-form": "ng build --project @patchautomation/request-form --configuration production-at --single-bundle",
     "build:prod:@patchautomation-remove/request-form": "ng build --project @patchautomation-remove/request-form --configuration production --single-bundle",
     "build:prod:@vmcreate/request-form": "ng build --project @vmcreate/request-form --configuration production --single-bundle",
-     "build:prod:@vmcreate/request-form-v2": "ng build --project @vmcreate/request-form-v2 --configuration production --single-bundle",
+    "build:prod:@vmcreate/request-form-v2": "ng build --project @vmcreate/request-form-v2 --configuration production --single-bundle",
     "build:prod:@universal-tap-execution/kfa-deployment-request-form": "ng build --project @universal-tap-execution/kfa-deployment-request-form --configuration production --single-bundle",
     "build:prod:@server-rundown/request-form": "ng build --project @server-rundown/request-form --configuration production --single-bundle",
     "build:prod:@server-rundown/ut-nas-offline": "ng build --project @server-rundown/ut-nas-offline --configuration production --single-bundle",

@@ -208,6 +208,8 @@ export class AppHtmlFormsComponent {
     });
 
     this.ui.Footer.SubmitButton.Clicked(() => {
+      console.log('CLICKED REQUEST');
+
       this.ui.Footer.SubmitButton.Loading(true);
       this.ui.Footer.SubmitButton.Enabled = false;
       context.Submit();
@@ -243,6 +245,8 @@ export class AppHtmlFormsComponent {
     });
 
     this.ui.Footer.SubmitButton.Clicked(() => {
+      console.log('CLICKED TASK');
+
       this.ui.Footer.SubmitButton.Loading(true);
       this.ui.Footer.SubmitButton.Enabled = false;
       context.Submit();
@@ -252,6 +256,7 @@ export class AppHtmlFormsComponent {
     context.onSubmitedSubject$.pipe(
       takeUntil(this.destroy$)
     ).subscribe(result => {
+      console.log('value:', result);
       if (context.Valid) {
         // this.modalDialogService.OpenFeedbackRequestForm(result);
         this.ui.Footer.SubmitButton.Loading(false);

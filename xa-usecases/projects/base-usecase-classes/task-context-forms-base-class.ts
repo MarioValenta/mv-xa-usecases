@@ -1,12 +1,11 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
-import { ICETask, ICETaskContext } from '@xa/lib-ui-common';
-import { takeUntil } from 'rxjs/operators';
+import { Component, Inject, Input } from '@angular/core';
+import { ICETask, ICETaskContext, SubmitTaskPayload } from '@xa/lib-ui-common';
 import { FormsBaseClass } from './forms-base-class';
 
 @Component({
   template: ''
 })
-export class TaskContextFormsBaseClass extends FormsBaseClass implements OnInit, ICETask {
+export abstract class TaskContextFormsBaseClass extends FormsBaseClass implements ICETask {
 
   @Input() Context!: ICETaskContext;
 
@@ -14,16 +13,9 @@ export class TaskContextFormsBaseClass extends FormsBaseClass implements OnInit,
     super(title);
   }
 
-  ngOnInit(): void {
-    this.form.statusChanges.pipe(
-      takeUntil(this.destroy$),
-    ).subscribe(status => this.Context.Valid = status);
+  onSubmit(): SubmitTaskPayload {
+    console.log('onSubmit', + this.title);
 
-    this.Context.OnSubmit(() => this.onSubmitTask());
-    this.Context.OnFeedback(() => this.feedback());
-  }
-
-  onSubmitTask() {
     if (this.form.valid) {
       console.debug(this.form.value);
     } else {
