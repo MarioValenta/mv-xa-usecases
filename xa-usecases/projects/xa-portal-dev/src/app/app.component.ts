@@ -208,7 +208,7 @@ export class AppHtmlFormsComponent {
     });
 
     this.ui.Footer.SubmitButton.Clicked(() => {
-      console.log('CLICKED REQUEST');
+      console.log('Submitted REQUEST');
 
       this.ui.Footer.SubmitButton.Loading(true);
       this.ui.Footer.SubmitButton.Enabled = false;
@@ -222,7 +222,7 @@ export class AppHtmlFormsComponent {
         // this.modalDialogService.OpenFeedbackRequestForm(result);
         this.ui.Footer.SubmitButton.Loading(false);
         this.ui.Footer.SubmitButton.Enabled = true;
-        console.log('value:', result.value);
+        console.log('value:', result);
       }
     });
 
@@ -245,7 +245,7 @@ export class AppHtmlFormsComponent {
     });
 
     this.ui.Footer.SubmitButton.Clicked(() => {
-      console.log('CLICKED TASK');
+      console.log('Submitted TASK');
 
       this.ui.Footer.SubmitButton.Loading(true);
       this.ui.Footer.SubmitButton.Enabled = false;
@@ -256,12 +256,11 @@ export class AppHtmlFormsComponent {
     context.onSubmitedSubject$.pipe(
       takeUntil(this.destroy$)
     ).subscribe(result => {
-      console.log('value:', result);
       if (context.Valid) {
         // this.modalDialogService.OpenFeedbackRequestForm(result);
         this.ui.Footer.SubmitButton.Loading(false);
         this.ui.Footer.SubmitButton.Enabled = true;
-        console.log('value:', result.value);
+        console.log('value:', result);
       }
     });
 
@@ -282,7 +281,7 @@ export class AppHtmlFormsComponent {
         this.ui.Footer.SaveButton.Loading(false);
         this.ui.Footer.SaveButton.Enabled = true;
 
-        console.log('value:', result.value);
+        console.log('value:', result);
       }
 
     });

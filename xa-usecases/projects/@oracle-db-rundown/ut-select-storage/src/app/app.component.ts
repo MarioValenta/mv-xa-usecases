@@ -1,8 +1,7 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { FeedbackRequestPayload, ICETask, ICETaskContext } from '@xa/lib-ui-common';
-import { Subject } from 'rxjs';
-import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
+import { TaskContextFormsBaseClass } from 'projects/base-usecase-classes/task-context-forms-base-class';
+import { distinctUntilChanged, map } from 'rxjs/operators';
 import { HostPartitionOptions } from './models/hostpartitions.model';
 
 
@@ -10,42 +9,33 @@ import { HostPartitionOptions } from './models/hostpartitions.model';
   selector: 'oracle-db-rdn-ut-select-storage',
   templateUrl: './app.component.html'
 })
-export class AppComponent implements ICETask, OnInit, OnDestroy {
+export class AppComponent extends TaskContextFormsBaseClass {
 
-  @Input() Context!: ICETaskContext;
-
+  title = 'oracle-db-rdn-ut-select-storage';
   INPUT_DATA_KEY = 'mountTable';
   OUTPUT_DATA_KEY = 'selectedMountList';
 
-  form: FormGroup;
-  destroy$ = new Subject<any>();
-
-
   constructor(private fb: FormBuilder) {
+    super('oracle-db-rdn-ut-select-storage');
+  }
+
+  buildForm(): void {
+    console.debug(this.title, ': buildForm()');
+
     this.form = this.fb.group({
       [this.INPUT_DATA_KEY]: this.fb.array([]),
       [this.OUTPUT_DATA_KEY]: [[]]
     });
   }
 
-  ngOnInit() {
-
-    this.form.statusChanges.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(status => this.Context.Valid = status);
+  setFormDataFromPayload() {
+    console.debug(this.title, ': setFormDataFromPayload()');
 
     if (this.Context.Payload) {
       this.Context.Payload[this.INPUT_DATA_KEY].forEach((element: HostPartitionOptions | undefined) => {
         this.formArray.push(this.buildRow(element));
       });
     }
-
-    this.Context.OnSubmit(() => this.Submit());
-    this.Context.OnFeedback(() => this.Feedback());
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next();
   }
 
   get formArray() {
@@ -88,7 +78,8 @@ export class AppComponent implements ICETask, OnInit, OnDestroy {
       }));
   }
 
-  Submit() {
+  onSubmit() {
+    console.debug(this.title, ': onSubmit()');
 
     // only submit entries that were selected to be deleted by the user
     if (this.form.get(this.INPUT_DATA_KEY)!.value) {
@@ -108,11 +99,6 @@ export class AppComponent implements ICETask, OnInit, OnDestroy {
       value: model,
       runtimeData: model
     };
-  }
-
-  Feedback(): FeedbackRequestPayload {
-
-    return this.form.value;
   }
 
 }

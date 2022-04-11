@@ -21,6 +21,7 @@ export abstract class FormsBaseClass implements OnInit, OnDestroy {
     }
   }
 
+  setValidationService?(): void;
   abstract buildForm(): void;
   checkFormValuesChanges?(): void;
   abstract onSubmit(): any;
@@ -30,6 +31,7 @@ export abstract class FormsBaseClass implements OnInit, OnDestroy {
     console.debug(this.title, 'onInit()');
 
     this.buildForm();
+    this.setValidationService && this.setValidationService();
     this.checkFormValuesChanges && this.checkFormValuesChanges();
     this.setFormStatusChangeListener();
     this.setContextCallbacks();
