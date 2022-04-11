@@ -1,0 +1,422 @@
+{
+	"requestForm": [
+		{
+			"varName": "SAPCustomer",
+			"required": true,
+			"type": "list",
+			"possibleValuesUrl": "api/validation/sapstartup/sapCustomer"
+		},
+		{
+			"varName": "SAPCustomerShortname",
+			"required": true,
+			"type": "list",
+			"possibleValuesUrl": "api/validation/sapstartup/sapCustomerShortname?customer=${SAPCustomer}"
+		},
+		{
+			"varName": "SAPOperatingSystem",
+			"required": true,
+			"type": "text",
+			"format": {
+				"regexPattern": "\\blinux\\b|\\bwindows\\b",
+				"errorMessage": "The SAP Operating System must either be 'linux' or 'windows'."
+			},
+			"dependencies": {
+				"windows": [
+					{
+						"varName": "LicenseType",
+						"required": true,
+						"type": "text",
+						"format": {
+							"regexPattern": "\\bSPLA\\b|\\bKMS\\b",
+							"errorMessage": "The License Type must either be 'SPLA' or 'KMS'."
+						}
+					},
+					{
+						"varName": "LicenseValue",
+						"required": true,
+						"type": "text"
+					}
+				]
+			}
+		},
+		{
+			"varName": "SAPDatabaseType",
+			"required": true,
+			"type": "list",
+			"possibleValuesUrl": "api/validation/sapstartup/sapDatabaseType?os=${SAPOperatingSystem}",
+			"dependencies": {
+				"hana": [
+					{
+						"varName": "HANAInstanceNr",
+						"required": true,
+						"type": "number",
+						"min": 0,
+						"max": 99
+					},
+					{
+						"varName": "HANAMemorySize",
+						"required": true,
+						"type": "number",
+						"min": 128,
+						"max": 1536
+					},
+					{
+						"type": "external",
+						"externalValidatorFields": [
+							"HANAMemorySize"
+						],
+						"externalValidatorUrl": "/api/validation/sapstartupexternals"
+					},
+					{
+						"varName": "HANA_SID",
+						"required": true,
+						"type": "text",
+						"minLength": 3,
+						"maxLength": 3
+					}
+				]
+			}
+		},
+		{
+			"varName": "UseSLA",
+			"required": true,
+			"type": "boolean",
+			"dependencies": {
+				"yes": [
+					{
+						"varName": "SLA",
+						"required": true,
+						"type": "list",
+						"possibleValuesUrl": "api/validation/sapstartup/sla?customer=${SAPCustomer}"
+					}
+				]
+			}
+		},
+		{
+			"varName": "DBSizeGB",
+			"required": true,
+			"type": "number"
+		},
+		{
+			"varName": "WBS",
+			"required": true,
+			"type": "text"
+		},
+		{
+			"varName": "Bestshore",
+			"required": true,
+			"type": "text",
+			"format": {
+				"regexPattern": "\\byes\\b|\\bno\\b",
+				"errorMessage": "The Bestshore must either be 'yes' or 'no'."
+			}
+		},
+		{
+			"varName": "DomainCustomerLan",
+			"required": true,
+			"type": "text"
+		},
+		{
+			"varName": "CommentCMDB",
+			"required": false,
+			"type": "text"
+		},
+		{
+			"varName": "DomainUAN",
+			"required": true,
+			"type": "text"
+		},
+		{
+			"varName": "Environment",
+			"required": true,
+			"type": "list",
+			"possibleValuesUrl": "api/validation/sapstartup/environment"
+		},
+		{
+			"varName": "Criticality",
+			"required": true,
+			"type": "list",
+			"possibleValuesUrl": "api/validation/sapstartup/criticality"
+		},
+		{
+			"varName": "ServiceTime",
+			"required": true,
+			"type": "list",
+			"possibleValuesUrl": "api/validation/sapstartup/serviceTime?depValue=${AssignmentGroup}"
+		},
+		{
+			"varName": "AttendedOperationTime",
+			"required": true,
+			"type": "list",
+			"possibleValuesUrl": "api/validation/sapstartup/serviceTime?depValue=${AssignmentGroup}"
+		},
+		{
+			"varName": "HostServiceTime",
+			"required": true,
+			"type": "list",
+			"possibleValuesUrl": "api/validation/sapstartup/serviceTime?depValue=${HostAssignmentGroup}"
+		},
+		{
+			"varName": "SAPSystemType",
+			"required": true,
+			"type": "text",
+			"format": {
+				"regexPattern": "\\bABAP\\b|\\bJava\\b",
+				"errorMessage": "SAP System Type must either be 'ABAP' or 'Java'."
+			}
+		},
+		{
+			"varName": "SAPInstanceNr",
+			"required": true,
+			"type": "number",
+			"min": 0,
+			"max": 99
+		},
+		{
+			"varName": "SAPCentralServicesInstanceNr",
+			"required": true,
+			"type": "number",
+			"min": 0,
+			"max": 99
+		},
+		{
+			"type": "external",
+			"externalValidatorFields": [
+				"DBSizeGB",
+				"SAPDatabaseType",
+				"HANAMemorySize"
+			],
+			"externalValidatorUrl": "/api/validation/sapstartupexternals"
+		},
+		{
+			"type": "external",
+			"externalValidatorFields": [
+				"SAPClients"
+			],
+			"externalValidatorUrl": "/api/validation/sapstartupexternals"
+		},
+		{
+			"varName": "SAPClients",
+			"required": true,
+			"type": "text"
+		},
+		{
+			"varName": "Version",
+			"required": true,
+			"type": "list",
+			"possibleValuesUrl": "api/validation/sapstartup/version?os=${SAPOperatingSystem}&dbType=${SAPDatabaseType}"
+		},
+		{
+			"varName": "Hostname",
+			"required": true,
+			"type": "text"
+		},
+		{
+			"type": "external",
+			"externalValidatorFields": [
+				"Hostname"
+			],
+			"externalValidatorUrl": "/api/validation/sapstartupexternals"
+		},
+		{
+			"type": "external",
+			"externalValidatorFields": [
+				"Hostname",
+				"Hosts"
+			],
+			"externalValidatorUrl": "/api/validation/sapstartupexternals"
+		},
+		{
+			"varName": "Domain",
+			"required": false,
+			"type": "text"
+		},
+		{
+			"varName": "Timezone",
+			"required": false,
+			"type": "list",
+			"possibleValuesUrl": "api/validation/sapstartup/timezone"
+		},
+		{
+			"varName": "PatchMode",
+			"required": false,
+			"type": "list",
+			"possibleValuesUrl": "api/validation/sapstartup/patchMode"
+		},
+		{
+			"varName": "PayPerUse",
+			"required": true,
+			"requiredTrue": false,
+			"type": "boolean"
+		},
+		{
+			"varName": "LimitsUnit",
+			"required": true,
+			"type": "text",
+			"format": {
+				"regexPattern": "\\bSAPS\\b",
+				"errorMessage": "LimitsUnit must be 'SAPS'"
+			}
+		},
+		{
+			"varName": "SAPServices",
+			"required": true,
+			"type": "text"
+		},
+		{
+			"varName": "NASVolumes",
+			"required": false,
+			"type": "text"
+		},
+		{
+			"varName": "Hosts",
+			"required": true,
+			"type": "text"
+		},
+		{
+			"varName": "DataCenter",
+			"required": true,
+			"type": "text",
+			"format": {
+				"regexPattern": "\\btc\\b|\\bodc\\b",
+				"errorMessage": "Data Center must either be 'tc' or 'odc'."
+			}
+		},
+		{
+			"varName": "DRLevel",
+			"required": true,
+			"type": "text",
+			"format": {
+				"regexPattern": "\\bfull\\b|\\bdefault\\b",
+				"errorMessage": "DR Level must either be 'full' or 'default'."
+			}
+		},
+		{
+			"varName": "VCenter",
+			"required": true,
+			"type": "list",
+			"possibleValuesUrl": "api/validation/sapstartup/vCenter"
+		},
+		{
+			"varName": "DSIBlock",
+			"required": true,
+			"type": "list",
+			"possibleValuesUrl": "api/validation/sapstartup/dsiBlock?chooseManually=${ChooseDSIBlockManually}&dbType=${SAPDatabaseType}&environment=${Environment}&dataCenter=${DataCenter}&vCenter=${VCenter}"
+		},
+		{
+			"varName": "SAPNetworkZone",
+			"required": true,
+			"type": "list",
+			"possibleValuesUrl": "api/validation/sapstartup/sapNetworkZone?customer=${SAPCustomer}"
+		},
+		{
+			"varName": "CustomerLAN",
+			"required": true,
+			"type": "list",
+			"possibleValuesUrl": "api/validation/sapstartup/cust?customer=${SAPCustomer}&networkZoneDescription=${SAPNetworkZone}"
+		},
+		{
+			"varName": "NAS_LAN",
+			"required": true,
+			"type": "list",
+			"possibleValuesUrl": "api/validation/sapstartup/nas?customer=${SAPCustomer}&networkZoneDescription=${SAPNetworkZone}"
+		},
+		{
+			"varName": "SharedNASIP",
+			"required": true,
+			"type": "list",
+			"possibleValuesUrl": "api/validation/sapstartup/sharedNASIP?customer=${SAPCustomer}&networkZoneDescription=${SAPNetworkZone}"
+		},
+		{
+			"varName": "ChooseDSIBlockManually",
+			"required": false,
+			"requiredTrue": false,
+			"type": "boolean"
+		},
+		{
+			"type": "external",
+			"externalValidatorFields": [
+				"SAPInstanceNr",
+				"SAPCentralServicesInstanceNr",
+				"HANAInstanceNr"
+			],
+			"externalValidatorUrl": "/api/validation/notequal"
+		},
+		{
+			"type": "external",
+			"externalValidatorFields": [
+				"SID",
+				"HANA_SID"
+			],
+			"externalValidatorUrl": "/api/validation/notequal"
+		},
+		{
+			"varName": "SID",
+			"required": true,
+			"type": "text",
+			"minLength": 3,
+			"maxLength": 3
+		},
+		{
+			"type": "external",
+			"externalValidatorFields": [
+				"SID"
+			],
+			"externalValidatorUrl": "/api/validation/sapstartupexternals"
+		},
+		{
+			"type": "external",
+			"externalValidatorFields": [
+				"HANA_SID",
+				"SAPDatabaseType"
+			],
+			"externalValidatorUrl": "/api/validation/sapstartupexternals"
+		},
+		{
+			"type": "external",
+			"externalValidatorFields": [
+				"SAPDatabaseType",
+				"VCPU"
+			],
+			"externalValidatorUrl": "/api/validation/sapstartupexternals"
+		},
+		{
+			"type": "external",
+			"externalValidatorFields": [
+				"UpperLimit",
+				"SAPDatabaseType"
+			],
+			"externalValidatorUrl": "/api/validation/sapstartupexternals"
+		},
+		{
+			"type": "external",
+			"externalValidatorFields": [
+				"LowerLimit",
+				"SAPDatabaseType",
+				"PayPerUse"
+			],
+			"externalValidatorUrl": "/api/validation/sapstartupexternals"
+		},
+		{
+			"type": "external",
+			"externalValidatorFields": [
+				"VRAM",
+				"SAPDatabaseType",
+				"DBSizeGB"
+			],
+			"externalValidatorUrl": "/api/validation/sapstartupexternals"
+		},
+		{
+			"varName": "AssignmentGroup",
+			"required": true,
+			"type": "list",
+			"possibleValuesUrl": "api/validation/sapstartup/assignmentGroup?bestshore=${Bestshore}&os=${SAPOperatingSystem}"
+		},
+		{
+			"varName": "HostAssignmentGroup",
+			"required": true,
+			"type": "list",
+			"possibleValuesUrl": "api/validation/sapstartup/hostAssignmentGroup?os=${SAPOperatingSystem}"
+		}
+	]
+}

@@ -2820,6 +2820,104 @@
           }
         }
       }
+    },
+    "@sap-startup/request-form": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@sap-startup/request-form",
+      "sourceRoot": "projects/@sap-startup/request-form/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@sap-startup/request-form",
+            "index": "projects/@sap-startup/request-form/src/index.html",
+            "main": "projects/@sap-startup/request-form/src/main.ts",
+            "polyfills": "projects/@sap-startup/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@sap-startup/request-form/tsconfig.app.json",
+            "assets": [
+              "projects/@sap-startup/request-form/src/favicon.ico",
+              "projects/@sap-startup/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@sap-startup/request-form/src/styles.css"
+            ],
+            "scripts": [],
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "3mb",
+                "maximumError": "4mb"
+              },
+              {
+                "type": "anyComponentStyle",
+                "maximumWarning": "2kb",
+                "maximumError": "4kb"
+              }
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/@sap-startup/request-form/src/environments/environment.ts",
+                  "with": "projects/@sap-startup/request-form/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@sap-startup/request-form:build:production"
+            },
+            "development": {
+              "browserTarget": "@sap-startup/request-form:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "@sap-startup/request-form:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@sap-startup/request-form/src/test.ts",
+            "polyfills": "projects/@sap-startup/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@sap-startup/request-form/tsconfig.spec.json",
+            "karmaConfig": "projects/@sap-startup/request-form/karma.conf.js",
+            "assets": [
+              "projects/@sap-startup/request-form/src/favicon.ico",
+              "projects/@sap-startup/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@sap-startup/request-form/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
     }
   },
   "defaultProject": "xa-portal-dev"

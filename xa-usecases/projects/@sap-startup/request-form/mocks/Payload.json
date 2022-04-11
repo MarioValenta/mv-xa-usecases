@@ -1,0 +1,19 @@
+{
+	"Timezone": "(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna",
+	"UseCaseType": "SAPNextCI",
+	"SAPOperatingSystem": "linux",
+	"UseSLA": false,
+	"SAPSystemType": "ABAP",
+    "SAPInstanceNr": "00",
+    "SAPCentralServicesInstanceNr": "01",
+    "HANAInstanceNr": "02",
+	"SAPClients": "000",
+	"DataCenter": "tc",
+	"VCenter": "SHDVI2ZEV01",
+	"ChooseDSIBlockManually": false,
+	"LicenseType": "SPLA",
+	"PayPerUse": true,
+	"VRAM": 8,
+	"VCPU": 2,
+	"LimitsUnit": "SAPS"
+}

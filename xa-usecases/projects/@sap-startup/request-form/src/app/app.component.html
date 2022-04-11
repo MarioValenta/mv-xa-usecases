@@ -1,0 +1,668 @@
+<form [formGroup]="form" class="ui container form" style="padding:20px 10px">
+
+  <span>Process Description: </span>
+  <a target="_blank" [href]="processDescriptionLink">click here</a>
+
+  <!-- Section: Basic Settings -->
+  <h2 class="ui dividing header padding-top-30">
+    <i class="clipboard outline icon"></i>
+    Basic Settings
+  </h2>
+
+  <div class="three fields">
+    <!-- SAP Customers -->
+    <div class="field" [class.required]="isFormElementRequired(FORM_KEY_SAP_CUSTOMER)">
+      <label>Customer</label>
+      <xa-select [search]="true" [formControlName]="FORM_KEY_SAP_CUSTOMER" placeholder="Select Customer"
+        [options]="sapCustomers$ | async" [loading]="!(sapCustomers$ | async)">
+      </xa-select>
+      <show-errors [control]="this.form.get(FORM_KEY_SAP_CUSTOMER)"></show-errors>
+    </div>
+
+    <!-- SAP OS -->
+    <div class="field" [class.required]="isFormElementRequired(FORM_KEY_SAP_OPERATING_SYSTEM)">
+      <label>Operating System</label>
+      <xa-radiobox [formControlName]="FORM_KEY_SAP_OPERATING_SYSTEM" [group]="FORM_KEY_SAP_OPERATING_SYSTEM"
+        value="linux">
+        Linux
+      </xa-radiobox>
+      <br />
+      <xa-radiobox [formControlName]="FORM_KEY_SAP_OPERATING_SYSTEM" [group]="FORM_KEY_SAP_OPERATING_SYSTEM"
+        value="windows">
+        Windows
+      </xa-radiobox>
+      <show-errors [control]="this.form.get(FORM_KEY_SAP_OPERATING_SYSTEM)"></show-errors>
+    </div>
+
+    <!-- SAP supported DB types -->
+    <div class="field" [class.required]="isFormElementRequired(FORM_KEY_SAP_DATABASE_TYPE)">
+      <label>
+        Database Type&nbsp;
+        <div class="ui mini inline loader" [class.active]="isLoadingSapDBTypes$ | async"></div>
+      </label>
+      <ng-container *ngFor="let sapDBType of sapDBTypes$ | async">
+        <xa-radiobox [formControlName]="FORM_KEY_SAP_DATABASE_TYPE" [group]="FORM_KEY_SAP_DATABASE_TYPE"
+          [value]="sapDBType">
+          {{ sapDBType }}
+        </xa-radiobox>
+        <br />
+      </ng-container>
+      <show-errors [control]="this.form.get(FORM_KEY_SAP_DATABASE_TYPE)"></show-errors>
+    </div>
+  </div>
+
+  <!-- Section: General, SLA -->
+  <h2 class="ui dividing header padding-top-30">
+    <i class="edit outline icon"></i>
+    General, SLA
+  </h2>
+
+  <div class="ui grid">
+    <div class="row">
+      <div class="four wide column">
+        <!-- WBS -->
+        <div class="field" [class.required]="isFormElementRequired(FORM_KEY_WBS)">
+          <label for="wbs">
+            WBS
+            <div class="ui mini inline loader" [class.active]="isLoadingWBS$ | async"></div>
+          </label>
+          <input type="text" id="wbs" [formControlName]="FORM_KEY_WBS">
+          <show-errors [control]="this.form.get(FORM_KEY_WBS)"></show-errors>
+        </div>
+
+        <!-- Comment (CMDB) -->
+        <div class="field" [class.required]="isFormElementRequired(FORM_KEY_COMMENT_CMDB)">
+          <label for="commentCMDB">
+            Comment (CMDB)
+          </label>
+          <input type="text" id="commentCMDB" [formControlName]="FORM_KEY_COMMENT_CMDB" placeholder="Enter Comment">
+          <show-errors [control]="this.form.get(FORM_KEY_COMMENT_CMDB)"></show-errors>
+        </div>
+      </div>
+      <div class="four wide column">
+        <!-- bestshore -->
+        <div class="field" [class.required]="isFormElementRequired(FORM_KEY_BESTSHORE)">
+          <label>
+            Bestshore (adapt only with sap team)
+            <div class="ui mini inline loader" [class.active]="isLoadingBestshore$ | async"></div>
+          </label>
+          <!-- use list due to bug that radio boxes will not be updated correctly sometimes,
+               if the value of the checkbox was changed manually by clicking and then updating the value of the checkbox model programmatically -->
+          <xa-select [search]="false" [formControlName]="FORM_KEY_BESTSHORE" placeholder="Select Bestshore"
+            [options]="['yes', 'no']">
+          </xa-select>
+          <show-errors [control]="this.form.get(FORM_KEY_BESTSHORE)"></show-errors>
+        </div>
+      </div>
+      <div class="four wide column">
+        <!-- Environment -->
+        <div class="field" [class.required]="isFormElementRequired(FORM_KEY_ENVIRONMENT)">
+          <label>Environment</label>
+          <xa-select [search]="true" [formControlName]="FORM_KEY_ENVIRONMENT" placeholder="Select Environment"
+            [options]="environments$ | async" [loading]="!(environments$ | async)">
+          </xa-select>
+          <!--          <show-errors [control]="this.form.get(FORM_KEY_ENVIRONMENT)"></show-errors>-->
+        </div>
+
+        <!-- Criticality -->
+        <div class="field" [class.required]="isFormElementRequired(FORM_KEY_CRITICALITY)">
+          <label>Criticality</label>
+          <xa-select [search]="true" [formControlName]="FORM_KEY_CRITICALITY" placeholder="Select Criticality"
+            [options]="criticality$ | async" [loading]="!(criticality$ | async)">
+          </xa-select>
+          <show-errors [control]="this.form.get(FORM_KEY_CRITICALITY)"></show-errors>
+        </div>
+      </div>
+      <div class="four wide column">
+        <!-- Domain Customer Lan -->
+        <div class="field" [class.required]="isFormElementRequired(FORM_KEY_DOMAIN_CUSTOMER_LAN)">
+          <label for="domainCustomerLAN">
+            Domain Customer Lan
+            <div class="ui mini inline loader" [class.active]="isLoadingDomainCustomerLAN$ | async"></div>
+          </label>
+          <input type="text" id="domainCustomerLAN" [formControlName]="FORM_KEY_DOMAIN_CUSTOMER_LAN">
+          <show-errors [control]="this.form.get(FORM_KEY_DOMAIN_CUSTOMER_LAN)"></show-errors>
+        </div>
+
+        <!-- Domain UAN -->
+        <div class="field" [class.required]="isFormElementRequired(FORM_KEY_DOMAIN_UAN)">
+          <label for="domainUAN">
+            Domain UAN
+            <div class="ui mini inline loader" [class.active]="isLoadingDomainUAN$ | async"></div>
+          </label>
+          <input type="text" id="domainUAN" [formControlName]="FORM_KEY_DOMAIN_UAN">
+          <show-errors [control]="this.form.get(FORM_KEY_DOMAIN_UAN)"></show-errors>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br />
+
+  <div class="fields">
+    <!-- Service Time -->
+    <div class="five wide field" [class.required]="isFormElementRequired(FORM_KEY_SERVICE_TIME)">
+      <label>
+        Application Service Time
+        <div class="ui mini inline loader" [class.active]="(isLoadingServiceTimes$ || isLoadingServiceTime$) | async">
+        </div>
+      </label>
+      <xa-select [search]="true" [formControlName]="FORM_KEY_SERVICE_TIME" placeholder="Select Service Time"
+        [options]="serviceTimes$ | async" [loading]="!(serviceTimes$ | async)">
+      </xa-select>
+      <show-errors [control]="this.form.get(FORM_KEY_SERVICE_TIME)"></show-errors>
+    </div>
+
+    <!-- Attended Operation Time -->
+    <div class="five wide field" [class.required]="isFormElementRequired(FORM_KEY_ATTENDED_OPERATION_TIME)">
+      <label>
+        Attended Operation Time
+        <div class="ui mini inline loader"
+          [class.active]="(isLoadingAttendedOperationTimes$ || isLoadingAttendedOperationTime$) | async"></div>
+      </label>
+      <xa-select [search]="true" [formControlName]="FORM_KEY_ATTENDED_OPERATION_TIME"
+        placeholder="Select Operation Time" [options]="attendedOperationTimes$ | async"
+        [loading]="!(attendedOperationTimes$ | async)">
+      </xa-select>
+      <show-errors [control]="this.form.get(FORM_KEY_ATTENDED_OPERATION_TIME)"></show-errors>
+    </div>
+
+    <!-- Host Service Time -->
+    <div class="six wide field" [class.required]="isFormElementRequired(FORM_KEY_HOST_SERVICE_TIME)">
+      <label>
+        Host Service Time
+        <div class="ui mini inline loader" [class.active]="isLoadingHostServiceTimes$ | async"></div>
+      </label>
+      <xa-select [search]="true" [formControlName]="FORM_KEY_HOST_SERVICE_TIME" placeholder="Select Host Service Time"
+        [options]="hostServiceTimes$ | async" [loading]="!(hostServiceTimes$ | async)">
+      </xa-select>
+      <show-errors [control]="this.form.get(FORM_KEY_HOST_SERVICE_TIME)"></show-errors>
+    </div>
+  </div>
+
+  <div class="fields">
+    <!-- Use SLA -->
+    <div class="three wide field" [class.required]="isFormElementRequired(FORM_KEY_USE_SLA)">
+      <xa-checkbox [formControlName]="FORM_KEY_USE_SLA">Use SLA</xa-checkbox>
+      <show-errors [control]="this.form.get(FORM_KEY_USE_SLA)"></show-errors>
+    </div>
+
+    <!-- SLA Selection -->
+    <div *ngIf="form.get(FORM_KEY_USE_SLA).value" class="thirteen wide field"
+      [class.required]="isFormElementRequired(FORM_KEY_SLA)">
+      <label>
+        SLA
+        <div class="ui mini inline loader" [class.active]="isLoadingSLAs$ | async"></div>
+      </label>
+      <xa-select [search]="true" [formControlName]="FORM_KEY_SLA" placeholder="Select SLA" [options]="slas$ | async"
+        [loading]="!(slas$ | async)" viewValue="cmdbDescription" optionValue="cmdbKey">
+      </xa-select>
+      <show-errors [control]="this.form.get(FORM_KEY_SLA)"></show-errors>
+    </div>
+  </div>
+
+
+  <!-- Section: SAP -->
+  <h2 class="ui dividing header padding-top-30">
+    <i class="clipboard outline icon"></i>
+    SAP
+  </h2>
+  <p><strong>If you request more than 1 TB database size (HANA: more than 128 GB), you have to clarify/forecast with the
+      infrastructure teams first!</strong></p>
+
+  <div class="ui grid">
+    <div class="row">
+      <div class="three wide column">
+        <!-- SAP System Type -->
+        <div class="field" [class.required]="isFormElementRequired(FORM_KEY_SAP_SYSTEM_TYPE)">
+          <label>SAP System Type</label>
+          <xa-radiobox [formControlName]="FORM_KEY_SAP_SYSTEM_TYPE" [group]="FORM_KEY_SAP_SYSTEM_TYPE" value="ABAP">
+            ABAP
+          </xa-radiobox>
+          <br />
+          <xa-radiobox [formControlName]="FORM_KEY_SAP_SYSTEM_TYPE" [group]="FORM_KEY_SAP_SYSTEM_TYPE" value="Java">
+            Java
+          </xa-radiobox>
+          <show-errors [control]="this.form.get(FORM_KEY_SAP_SYSTEM_TYPE)"></show-errors>
+        </div>
+      </div>
+      <div class="three wide column">
+        <!-- SID -->
+        <div class="field" [class.required]="isFormElementRequired(FORM_KEY_SID)">
+          <label for="SID">
+            SID
+          </label>
+          <input type="text" id="SID" [formControlName]="FORM_KEY_SID" placeholder="Enter SID">
+          <show-errors [control]="this.form.get(FORM_KEY_SID)"></show-errors>
+        </div>
+
+        <!-- HANA SID -->
+        <div *ngIf="isDBTypeHana()" class="field" [class.required]="isFormElementRequired(FORM_KEY_HANA_SID)">
+          <label for="hanaSID">
+            HANA SID
+          </label>
+          <input type="text" id="hanaSID" [formControlName]="FORM_KEY_HANA_SID" placeholder="Enter HANA SID">
+          <show-errors [control]="this.form.get(FORM_KEY_HANA_SID)"></show-errors>
+        </div>
+      </div>
+      <div class="three wide column">
+        <!-- SAPInstanceNr -->
+        <div class="field" [class.required]="isFormElementRequired(FORM_KEY_SAP_INSTANCE_NR)">
+          <label for="sapInstanceNr">
+            SAP Instance Nr
+          </label>
+          <input type="number" id="sapInstanceNr" [formControlName]="FORM_KEY_SAP_INSTANCE_NR"
+            placeholder="Enter Instance Nr">
+          <show-errors [control]="this.form.get(FORM_KEY_SAP_INSTANCE_NR)"></show-errors>
+        </div>
+
+        <!-- SAP Central Services Instance Nr -->
+        <div class="field" [class.required]="isFormElementRequired(FORM_KEY_SAP_CENTRAL_SERVICES_INSTANCE_NR)">
+          <label for="sapCentralServicesInstanceNr">
+            SAP Central Services Instance Nr
+          </label>
+          <input type="number" id="sapCentralServicesInstanceNr"
+            [formControlName]="FORM_KEY_SAP_CENTRAL_SERVICES_INSTANCE_NR" placeholder="Enter Instance Nr">
+          <show-errors [control]="this.form.get(FORM_KEY_SAP_CENTRAL_SERVICES_INSTANCE_NR)"></show-errors>
+        </div>
+
+        <!-- HANA Instance Nr -->
+        <div *ngIf="isDBTypeHana()" class="field" [class.required]="isFormElementRequired(FORM_KEY_HANA_INSTANCE_NR)">
+          <label for="hanaInstanceNr">
+            HANA Instance Nr
+          </label>
+          <input type="number" id="hanaInstanceNr" [formControlName]="FORM_KEY_HANA_INSTANCE_NR"
+            placeholder="Enter Instance Nr">
+          <show-errors [control]="this.form.get(FORM_KEY_HANA_INSTANCE_NR)"></show-errors>
+        </div>
+      </div>
+      <div class="three wide column">
+        <!-- DB Size (GB) -->
+        <div class="field" [class.required]="isFormElementRequired(FORM_KEY_DB_SIZE_GB)">
+          <label for="dbSizeGB">
+            Database Size (GB)
+          </label>
+          <input type="number" id="dbSizeGB" [formControlName]="FORM_KEY_DB_SIZE_GB" placeholder="Enter DB Size">
+          <show-errors [control]="this.form.get(FORM_KEY_DB_SIZE_GB)"></show-errors>
+        </div>
+
+        <!-- HANA Memory Size -->
+        <div *ngIf="isDBTypeHana()" class="field" [class.required]="isFormElementRequired(FORM_KEY_HANA_MEMORY_SIZE)">
+          <label for="hanaMemorySize">
+            HANA Memory Size/global allocation limit (GB)<br />
+            <i>(RAM = global allocation limit + 64 GB)</i>
+          </label>
+          <input type="number" id="hanaMemorySize" step="64" [formControlName]="FORM_KEY_HANA_MEMORY_SIZE"
+            placeholder="Enter Memory Size">
+          <show-errors [control]="this.form.get(FORM_KEY_HANA_MEMORY_SIZE)"></show-errors>
+        </div>
+      </div>
+      <div class="four wide column">
+        <!-- SAPClients -->
+        <div *ngIf="form.get(FORM_KEY_SAP_SYSTEM_TYPE).value !== 'Java'" class="field"
+          [class.required]="isFormElementRequired(FORM_KEY_SAP_CLIENTS)">
+          <label for="clients">
+            SAP Clients (e.g. 000,100,...)
+          </label>
+          <textarea id="clients" rows="3" [formControlName]="FORM_KEY_SAP_CLIENTS"
+            placeholder="Enter Clients"></textarea>
+          <show-errors [control]="this.form.get(FORM_KEY_SAP_CLIENTS)"></show-errors>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Section: Infrastructure -->
+  <h2 class="ui dividing header padding-top-30">
+    <i class="server icon"></i>
+    Infrastructure
+  </h2>
+
+  <!-- 1. row -->
+  <div class="fields">
+    <!-- Datacenter -->
+    <div class="two wide field" [class.required]="isFormElementRequired(FORM_KEY_DATA_CENTER)">
+      <label>Datacenter</label>
+      <xa-radiobox [formControlName]="FORM_KEY_DATA_CENTER" [group]="FORM_KEY_DATA_CENTER" value="tc">
+        T-Center
+      </xa-radiobox>
+      <br />
+      <xa-radiobox [formControlName]="FORM_KEY_DATA_CENTER" [group]="FORM_KEY_DATA_CENTER" value="odc">
+        ODC
+      </xa-radiobox>
+      <show-errors [control]="this.form.get(FORM_KEY_DATA_CENTER)"></show-errors>
+    </div>
+
+    <!-- DR Level -->
+    <div *ngIf="!isDBTypeHana()" class="three wide field" [class.required]="isFormElementRequired(FORM_KEY_DR_LEVEL)">
+      <label>DR Level</label>
+      <xa-radiobox [formControlName]="FORM_KEY_DR_LEVEL" [group]="FORM_KEY_DR_LEVEL" value="default">
+        default
+      </xa-radiobox>
+      <br />
+
+      <xa-radiobox [formControlName]="FORM_KEY_DR_LEVEL" [group]="FORM_KEY_DR_LEVEL" value="full">
+        full (metrocluster)
+      </xa-radiobox>
+      <show-errors [control]="this.form.get(FORM_KEY_DR_LEVEL)"></show-errors>
+    </div>
+
+    <!-- VCenter -->
+    <div *ngIf="(vCenters$ | async)?.length !== 1" class="three wide field"
+      [class.required]="isFormElementRequired(FORM_KEY_V_CENTER)">
+      <label>
+        VCenter
+      </label>
+      <xa-select [search]="true" [formControlName]="FORM_KEY_V_CENTER" placeholder="Select VCenter"
+        [options]="vCenters$ | async" [loading]="!(vCenters$ | async)">
+      </xa-select>
+      <show-errors [control]="this.form.get(FORM_KEY_V_CENTER)"></show-errors>
+    </div>
+
+    <!-- DSI Block -->
+    <div class="three wide field" [class.required]="isFormElementRequired(FORM_KEY_DSI_BLOCK)">
+      <label>
+        DSI Block
+        <div class="ui mini inline loader" [class.active]="(isLoadingDSIBlocks$ || isLoadingDefaultDSIBlock$) | async">
+        </div>
+      </label>
+      <xa-select [search]="true" [formControlName]="FORM_KEY_DSI_BLOCK" placeholder="Select DSI Block"
+        [options]="dsiBlocks$ | async" [loading]="!(dsiBlocks$ | async)">
+      </xa-select>
+      <show-errors [control]="this.form.get(FORM_KEY_DSI_BLOCK)"></show-errors>
+    </div>
+    <!-- Choose DSI Block Manually -->
+    <div class="five wide field" [class.required]="isFormElementRequired(FORM_KEY_CHOOSE_DSI_BLOCK_MANUALLY)">
+      <label>Choose DSI Block manually</label>
+      <xa-checkbox [formControlName]="FORM_KEY_CHOOSE_DSI_BLOCK_MANUALLY">
+        <span style="color: red">
+          <b>Attention:</b>
+          This may only be done in consultation with infrastructure teams, otherwise use the suggested block!
+        </span>
+      </xa-checkbox>
+      <show-errors [control]="this.form.get(FORM_KEY_CHOOSE_DSI_BLOCK_MANUALLY)"></show-errors>
+      <br />
+
+    </div>
+  </div>
+
+  <!-- 2. row -->
+  <div class="fields">
+    <!-- SAP Network Zone -->
+    <div class="five wide field" [class.required]="isFormElementRequired(FORM_KEY_SAP_NETWORK_ZONE)">
+      <label for="sapNetworkZone">SAP Network Zone</label>
+      <xa-select id="sapNetworkZone" [search]="true" [formControlName]="FORM_KEY_SAP_NETWORK_ZONE"
+        placeholder="Select Network Zone" [options]="sapNetworkZones$ | async" [loading]="!(sapNetworkZones$ | async)"
+        viewValue="desc" optionValue="desc">
+      </xa-select>
+      <show-errors [control]="this.form.get(FORM_KEY_SAP_NETWORK_ZONE)"></show-errors>
+    </div>
+
+    <!-- Customer LAN -->
+    <div class="four wide field" [class.required]="isFormElementRequired(FORM_KEY_CUSTOMER_LAN)">
+      <label for="customerLAN">
+        Customer LAN
+        <div class="ui mini inline loader" [class.active]="isLoadingNetworkZoneDescriptions$ | async"></div>
+      </label>
+      <input type="text" id="customerLAN" [formControlName]="FORM_KEY_CUSTOMER_LAN" placeholder="Customer LAN">
+      <show-errors [control]="this.form.get(FORM_KEY_CUSTOMER_LAN)"></show-errors>
+    </div>
+
+    <!-- NAS LAN -->
+    <div class="four wide field" [class.required]="isFormElementRequired(FORM_KEY_NAS_LAN)">
+      <label for="nasLAN">
+        NAS LAN
+        <div class="ui mini inline loader" [class.active]="isLoadingNetworkZoneDescriptions$ | async"></div>
+      </label>
+      <input type="text" id="nasLAN" [formControlName]="FORM_KEY_NAS_LAN" placeholder="NAS LAN">
+      <show-errors [control]="this.form.get(FORM_KEY_NAS_LAN)"></show-errors>
+    </div>
+
+    <!-- Shared NAS IP -->
+    <div class="three wide field" [class.required]="isFormElementRequired(FORM_KEY_SHARED_NAS_IP)">
+      <label for="sharedNASIP">
+        Shared NAS IP
+      </label>
+      <input type="text" id="sharedNASIP" [formControlName]="FORM_KEY_SHARED_NAS_IP">
+      <show-errors [control]="this.form.get(FORM_KEY_SHARED_NAS_IP)"></show-errors>
+    </div>
+  </div>
+  <!-- Customer specific IPs -->
+  <div class="field" [class.required]="isFormElementRequired(FORM_KEY_CUSTOMER_SPECIFIC_IPS)">
+    <label>Customer Specific IP</label>
+    <textarea [formControlName]="FORM_KEY_CUSTOMER_SPECIFIC_IPS" rows="1"
+      placeholder="Fill only if IP-Addresses are managed by Customer" style="resize: none;">
+  </textarea>
+    <show-errors [control]="this.form.get(FORM_KEY_CUSTOMER_SPECIFIC_IPS)"></show-errors>
+  </div>
+
+  <!-- Section: Operating System -->
+  <h2 class="ui dividing header padding-top-30">
+    <i class="question circle outline icon"></i>
+    Operating System
+  </h2>
+
+  <!-- 1. row -->
+  <div class="fields">
+    <!-- OS Version -->
+    <div class="five wide field" [class.required]="isFormElementRequired(FORM_KEY_VERSION)">
+      <label for="version">Version</label>
+      <xa-select id="version" [search]="true" [formControlName]="FORM_KEY_VERSION" placeholder="Select Version"
+        [options]="versions$ | async" [loading]="!(versions$ | async)">
+      </xa-select>
+      <show-errors [control]="this.form.get(FORM_KEY_VERSION)"></show-errors>
+    </div>
+
+    <!-- Hostname -->
+    <div class="five wide field" [class.required]="isFormElementRequired(FORM_KEY_HOSTNAME)">
+      <label for="hostname">
+        Hostname (filled after <i>Form completed</i> pressed)
+      </label>
+      <input type="text" id="hostname" [formControlName]="FORM_KEY_HOSTNAME">
+      <show-errors [control]="this.form.get(FORM_KEY_HOSTNAME)"></show-errors>
+    </div>
+
+    <!-- Domain -->
+    <div *ngIf="form.get(FORM_KEY_SAP_OPERATING_SYSTEM).value === 'windows'" class="six wide field"
+      [class.required]="isFormElementRequired(FORM_KEY_DOMAIN)">
+      <label for="domain">
+        Windows Domain
+      </label>
+      <input type="text" id="domain" [formControlName]="FORM_KEY_DOMAIN">
+      <show-errors [control]="this.form.get(FORM_KEY_DOMAIN)"></show-errors>
+    </div>
+  </div>
+
+  <!-- 2. row -->
+  <div class="fields" *ngIf="form.get(FORM_KEY_SAP_OPERATING_SYSTEM).value === 'windows'">
+    <div class="four wide field" [class.required]="isFormElementRequired(FORM_KEY_LICENSE_TYPE)">
+      <label for="licenseType">License Type</label>
+      <xa-select id="licenseType" [formControlName]="FORM_KEY_LICENSE_TYPE" placeholder="LicenseType"
+        [options]="['SPLA', 'KMS']">
+      </xa-select>
+    </div>
+    <div class="twelve wide field" [class.required]="isFormElementRequired(FORM_KEY_LICENSE_VALUE)">
+      <label *ngIf="form.get(FORM_KEY_LICENSE_TYPE).value === 'SPLA'" for="licenseValue">License Key</label>
+      <label *ngIf="form.get(FORM_KEY_LICENSE_TYPE).value === 'KMS'" for="licenseValue">KMS Server IP</label>
+      <input id="licenseValue" type="text" [formControlName]="FORM_KEY_LICENSE_VALUE">
+    </div>
+  </div>
+
+
+  <!-- 3. row -->
+  <div class="two fields">
+    <!-- Timezone -->
+    <div class="ten wide field" [class.required]="isFormElementRequired(FORM_KEY_TIMEZONE)">
+      <label for="timezone">Timezone</label>
+      <xa-select id="timezone" [search]="true" [formControlName]="FORM_KEY_TIMEZONE" placeholder="Select Timezone"
+        [options]="timezones$ | async" [loading]="!(timezones$ | async)">
+      </xa-select>
+      <show-errors [control]="this.form.get(FORM_KEY_TIMEZONE)"></show-errors>
+    </div>
+
+    <!-- Patch Mode -->
+    <div class="field">
+      <div class="field" [class.required]="isFormElementRequired(FORM_KEY_PATCH_MODE)">
+        <label for="patchmode">
+          Patch Mode
+        </label>
+        <xa-select id="patchmode" [search]="true" [formControlName]="FORM_KEY_PATCH_MODE"
+          placeholder="Select Patch Mode" [options]="patchModes$ | async" [loading]="!(patchModes$ | async)"
+          viewValue="cmdbDescription" optionValue="cmdbKey">
+        </xa-select>
+        <show-errors [control]="this.form.get(FORM_KEY_PATCH_MODE)"></show-errors>
+      </div>
+
+      <!-- Patch Time -->
+      <div class="field" [class.required]="isFormElementRequired(FORM_KEY_PATCH_TIME)">
+        <label for="patchtime">
+          Patch Time
+        </label>
+        <xa-select id="patchtime" [search]="true" [formControlName]="FORM_KEY_PATCH_TIME"
+          placeholder="Select Patch Time" [options]="patchTimes$ | async" [loading]="!(patchTimes$ | async)"
+          [clearable]="true">
+        </xa-select>
+        <show-errors [control]="this.form.get(FORM_KEY_PATCH_TIME)"></show-errors>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="field">
+    <!-- Section: VM Settings -->
+    <h2 class="ui dividing header padding-top-30">
+      <i class="cloud icon"></i>
+      VM Settings
+      <ng-container *ngIf="!isDBTypeHana()">
+        <xa-checkbox class="normal-checkbox-size" style="float:right;padding-right:10px;"
+          [formControlName]="FORM_KEY_PAY_PER_USE">Pay-Per-Use
+        </xa-checkbox>
+      </ng-container>
+    </h2>
+    <p><strong>If you request more than 128 GB RAM, or more than 8 vCPU‘s, you have to clarify/forecast with the
+        infrastructure teams first!</strong></p>
+  </div>
+  <!-- Sliders -->
+
+  <!-- VCPU(s) -->
+  <div *ngIf="!isDBTypeHana()" class="fields">
+    <div class="three wide field center-text">
+      <div class="ui statistic">
+        <div class="value">
+          {{form.get(FORM_KEY_VCPU)?.value}}
+        </div>
+        <div class="label">
+          vCPU(s)
+        </div>
+      </div>
+    </div>
+    <div class="ten wide field" [class.required]="isFormElementRequired(FORM_KEY_VCPU)">
+      <nouislider [formControl]="form.get(FORM_KEY_VCPU)" [config]="cpuRangeOptions"></nouislider>
+    </div>
+  </div>
+
+  <!-- RAM -->
+  <div class="fields">
+    <div class="three wide field center-text">
+      <div class="ui statistic">
+        <div class="value">
+          {{ form.get(FORM_KEY_VRAM)?.value }}GB
+        </div>
+        <div class="label">
+          RAM
+        </div>
+      </div>
+    </div>
+    <div *ngIf="isDBTypeHana()" class="ten wide field" [class.required]="isFormElementRequired(FORM_KEY_VRAM)">
+      <!-- disabled="true" leads to a warning, but otherwise the slider can still be moved -->
+      <nouislider [formControl]="form.get(FORM_KEY_VRAM)" [config]="memoryRangeOptionsHana" disabled="true">
+      </nouislider>
+    </div>
+    <div *ngIf="!isDBTypeHana()" class="ten wide field" [class.required]="isFormElementRequired(FORM_KEY_VRAM)">
+      <nouislider [formControl]="form.get(FORM_KEY_VRAM)" [config]="memoryRangeOptionsNonHana"></nouislider>
+    </div>
+  </div>
+
+  <!-- Manual selections of VCPU(s), RAM and Number of Databases -->
+  <div *ngIf="!isDBTypeHana()" class="three fields">
+    <!-- VCPU(s) -->
+    <div class="field" [class.required]="isFormElementRequired(FORM_KEY_LIMITS_UNIT)">
+      <label for="limitUnit">
+        Limits Unit
+      </label>
+      <input type="text" id="limitUnit" [formControlName]="FORM_KEY_LIMITS_UNIT">
+      <show-errors [control]="this.form.get(FORM_KEY_LIMITS_UNIT)"></show-errors>
+    </div>
+
+    <div *ngIf="form.get(FORM_KEY_PAY_PER_USE).value && !isDBTypeHana()" class="required field">
+      <label for="lowerLimit">
+        Lower Limit
+      </label>
+      <input type="number" id="lowerLimit" [formControlName]="FORM_KEY_LOWER_LIMIT" placeholder="Select Lower Limit">
+      <show-errors [control]="this.form.get(FORM_KEY_LOWER_LIMIT)"></show-errors>
+    </div>
+
+    <div *ngIf="!isDBTypeHana()" class="required field">
+      <label for="upperLimit">
+        Upper Limit
+      </label>
+      <input type="number" id="upperLimit" [formControlName]="FORM_KEY_UPPER_LIMIT" placeholder="Select Upper Limit">
+      <show-errors [control]="this.form.get(FORM_KEY_UPPER_LIMIT)"></show-errors>
+    </div>
+  </div>
+  <!--  </div>-->
+
+  <!-- Section: Generated Lists-->
+  <h2 class="ui dividing header padding-top-30"></h2>
+  <button class="ui primary button" (click)="this.setTemplateData()" [disabled]="!isVMSettingsValid()">
+    Form completed
+    <div class="ui mini inline loader"
+      [class.active]="(isLoadingSAPServices$ || isLoadingNASVolumes$ || isLoadingHosts$) | async"></div>
+  </button>
+
+  <div
+    *ngIf="form.get(FORM_KEY_SAP_SERVICES).value || form.get(FORM_KEY_NAS_VOLUMES).value || form.get(FORM_KEY_HOSTS).value">
+    <h2 class="ui dividing header padding-top-30">
+      <i class="table icon"></i>
+      Generated Lists
+    </h2>
+
+    <span style="color: red">
+      Change the following lists only, if you know what you are doing!
+    </span>
+
+    <div *ngIf="form.get(FORM_KEY_SAP_SERVICES).value">
+      <h3 class="ui dividing header padding-top-30" [class.required]="isFormElementRequired(FORM_KEY_SAP_SERVICES)">
+        SAP Services
+        <div class="ui mini inline loader" [class.active]="isLoadingSAPServices$ | async"></div>
+      </h3>
+      <xa-grid [value]="sapServices$ | async" [editable]="true" [columnDefs]="columnDefsSAPService"
+        (gridChanged)="this.updateGridSAPData($event)"></xa-grid>
+    </div>
+
+    <div *ngIf="form.get(FORM_KEY_NAS_VOLUMES).value" [class.required]="isFormElementRequired(FORM_KEY_NAS_VOLUMES)">
+      <h3 class="ui dividing header padding-top-30">
+        NAS Volumes
+        <div class="ui mini inline loader" [class.active]="isLoadingNASVolumes$ | async"></div>
+      </h3>
+      <xa-grid [value]="nasVolumes$ | async" [editable]="true" [columnDefs]="columnDefsNASVolumes"
+        (gridChanged)="this.updateGridNASData($event)"></xa-grid>
+    </div>
+
+    <div *ngIf="form.get(FORM_KEY_HOSTS).value" [class.required]="isFormElementRequired(FORM_KEY_HOSTS)">
+      <h3 class="ui dividing header padding-top-30">
+        Hosts (VMs)
+        <div class="ui mini inline loader" [class.active]="isLoadingHosts$ | async"></div>
+      </h3>
+      <xa-grid [value]="hosts$ | async" [editable]="false" [columnDefs]="columnDefsHosts"
+        (gridChanged)="this.updateGridHostData($event)"></xa-grid>
+    </div>
+  </div>
+
+</form>
+
+<xa-notify></xa-notify>
+
+
+<pre *if-dev> {{ form.getRawValue() | json }} </pre>

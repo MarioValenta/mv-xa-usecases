@@ -26,6 +26,7 @@ import { CreateOracleVMRequestFormAppModule } from './@create-oracle-vm/request-
 import { ServerRundownRequestFormAppModule } from './@server-rundown/request-form/src/app/app.module';
 import { ServerRundownUTNasOfflineAppModule } from './@server-rundown/ut-nas-offline/src/app/app.module';
 import { ServerRundownUTSelectStorageAppModule } from './@server-rundown/ut-select-storage/src/app/app.module';
+import { SapStartupRequestFormAppModule } from './@sap-startup/request-form/src/app/app.module';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { ServerRundownUTSelectStorageAppModule } from './@server-rundown/ut-sele
     CreateOracleVMRequestFormAppModule,
     ServerRundownRequestFormAppModule,
     ServerRundownUTNasOfflineAppModule,
-    ServerRundownUTSelectStorageAppModule
+    ServerRundownUTSelectStorageAppModule,
+    SapStartupRequestFormAppModule
   ]
 })
 export class UseCasesFormsAppModule { }
