@@ -1,0 +1,13 @@
+<ag-grid-angular #agGrid
+                 id="myGrid"
+                 style="width: 100%" [style.height]="_editable ? '200px' : 'autoHeight'"
+                 class="ag-theme-balham" (gridReady)="onGridReady($event)"
+                 [columnDefs]="_columnDefs"
+                 [rowData]="rowData"
+                 [rowSelection]="rowSelection"
+                 [editType]="this._editType"
+                 [domLayout]="!_editable ? 'autoHeight' : ''"
+                 [getContextMenuItems]="getContextMenuItems"
+                 (cellValueChanged)="onCellValueChanged($event)"
+                 (rowValueChanged)="rowValueChanged($event)">
+</ag-grid-angular>

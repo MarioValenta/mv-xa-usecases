@@ -114,6 +114,10 @@ import * as Server_Rundown_UT_NAS_Offline_Validation from '../../../@server-rund
 import * as Server_Rundown_UT_Select_Storage_Payload from '../../../@server-rundown/ut-select-storage/mocks/Payload.json';
 import * as Server_Rundown_UT_Select_Storage_ConfigPayload from '../../../@server-rundown/ut-select-storage/mocks/ConfigPayload.json';
 import * as Server_Rundown_UT_Select_Storage_Validation from '../../../@server-rundown/ut-select-storage/mocks/Validation.json';
+// SAP-Startup
+import * as SAP_Startup_Payload from '../../../@sap-startup/request-form/mocks/Payload.json';
+import * as SAP_Startup_ConfigPayload from '../../../@sap-startup/request-form/mocks/ConfigPayload.json';
+import * as SAP_Startup_Validation from '../../../@sap-startup/request-form/mocks/Validation.json';
 
 @Component({
   selector: 'app-html-forms',
@@ -154,6 +158,7 @@ export class AppHtmlFormsComponent {
   Server_Rundown_Context: RequestContext = this.BuildRequestContext({ payload: Server_Rundown_Payload, configPayload: Server_Rundown_ConfigPayload, validation: Server_Rundown_Validation });
   Server_Rundown_UT_NAS_Offline_Context: TaskContext = this.BuildCeTaskContext({ payload: Server_Rundown_UT_NAS_Offline_Payload, configPayload: Server_Rundown_UT_NAS_Offline_ConfigPayload, validation: Server_Rundown_UT_NAS_Offline_Validation });
   Server_Rundown_UT_Select_Storage_Context: TaskContext = this.BuildCeTaskContext({ payload: Server_Rundown_UT_Select_Storage_Payload, configPayload: Server_Rundown_UT_Select_Storage_ConfigPayload, validation: Server_Rundown_UT_Select_Storage_Validation });
+  SAP_Startup_Context: RequestContext = this.BuildRequestContext({ payload: SAP_Startup_Payload, configPayload: SAP_Startup_ConfigPayload, validation: SAP_Startup_Validation });
 
   constructor(
     private initialize: AppInitializeService,
