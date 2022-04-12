@@ -7,14 +7,14 @@ import { ProdFeatureStatus, DevFeatureStatus } from './FeatureManager';
 @Injectable()
 export class AppConfigService {
 
-  private appConfig: IAppConfig;
+  private appConfig!: IAppConfig;
 
   constructor(private http: HttpClient) { }
 
   loadAppConfig() {
     return this.http.get('/assets/data/appconfig.json')
       .toPromise()
-      .then((data: IAppConfig) => {
+      .then((data: any) => {
         this.appConfig = data;
       });
   }

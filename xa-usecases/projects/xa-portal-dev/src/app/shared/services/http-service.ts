@@ -41,7 +41,7 @@ export class HttpService implements IHttpService {
         return url;
     }
 
-    prepareRequest(url: string, options: HttpOptions) {
+    prepareRequest(url: string, options: HttpOptions | undefined) {
 
         if (!options) {
             options = {};
