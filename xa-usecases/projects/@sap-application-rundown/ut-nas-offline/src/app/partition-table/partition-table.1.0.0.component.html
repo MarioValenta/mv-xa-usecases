@@ -1,0 +1,43 @@
+<table class="ui compact table" [formGroup]="form">
+      <thead>
+            <tr>
+                  <th>Delete Volumes</th>
+                  <th>Delete Qtree</th>
+                  <th>Delete Export</th>
+                  <th>Mountpoint</th>
+                  <th>Filesystem</th>
+                  <th>SizeGB</th>
+                  <th>Device</th>
+            </tr>
+      </thead>
+      <tbody formArrayName="Entries">
+
+            <tr *ngFor="let control of this.form.get('Entries')['controls']; let index=index" [formGroupName]="index" xaOnInit
+                  [subscribeOn]="observeChanges(this.form.get('Entries')['controls'][index])">
+
+                  <td class="field">
+                        <xa-checkbox formControlName="delvolumes" [clickable]="false" [checked]="this.formArray.controls[index].get('delvolumes').value"></xa-checkbox>
+                  </td>
+                  <td class="field">
+                        <xa-checkbox formControlName="delqtree" [clickable]="false" [checked]="this.formArray.controls[index].get('delqtree').value"></xa-checkbox>
+                  </td>
+                  <td class="field">
+                        <xa-checkbox formControlName="export" [clickable]="false" [checked]="this.formArray.controls[index].get('export').value"></xa-checkbox>
+                  </td>
+                  <td class="field">
+                        {{this.formArray.controls[index].get('Mountpoint').value}}
+                  </td>
+                  <td class="field">
+                        {{this.formArray.controls[index].get('Filesystem').value}}
+                  </td>
+                  <td class="field">
+                        {{this.formArray.controls[index].get('SizeGB').value}}
+                  </td>
+                  <td class="field">
+                        {{this.formArray.controls[index].get('Device').value}}
+                  </td>
+            </tr>
+      </tbody>
+
+
+</table>
