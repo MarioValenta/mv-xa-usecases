@@ -1,0 +1,178 @@
+<form [formGroup]="form" class="ui container form" style="padding:20px 10px">
+
+  <!-- header -->
+  <h2 class="ui dividing header">
+    <!-- header icon -->
+    <i class="desktop icon"></i>
+    <div class="content">
+      <!-- header title -->
+      <span> SAP Host Selection </span>
+      <!-- header subtitle -->
+      <div class="sub header">Select a SAP Host for the rundown. To include the deletion in cmdb of linked CIs, select
+        them in the "Relations" table.</div>
+    </div>
+  </h2>
+
+  <div style="padding-bottom: 20px">
+    Documentation: <a href="https://t-share.t-systems.at/dat/s/sapnext/Shared%20Documents/Camunda/SAPRundown.docx"
+      target="_blank">
+      SAPRundown.docx</a>
+  </div>
+
+  <!-- search for host -->
+  <ci-table [Context]="this.Context" [searchButtonText]="searchButtonText" [showTable]="false"
+    (modalSelected)="updateCIInfos($event)">
+  </ci-table>
+  <span *ngIf="!selectedCI.HostID" style="color: red">Please select a host for the rundown.</span>
+
+  <!-- infos about selected host and its relations (recursively up to 5 level) -->
+  <!-- only shown if a host is selected -->
+  <div *ngIf="selectedCI.HostID">
+
+    <!-- infos about the selected host -->
+    <h5>Selected Host</h5>
+    <infotable [info]="selectedCI"></infotable>
+
+    <!-- info text, if host cannot be rundown -->
+    <h5 *ngIf="(hasNonDeletableRelations$ | async) && !(isLoadingRelations$ | async)" style="color: red">
+      The host "{{ selectedCI.HostID }}" cannot be run down due to dependent relations!
+    </h5>
+
+    <!-- relations of the selected host (recursively up to 5 level) -->
+    <h5>
+      Relations &nbsp;
+      <!-- loader, visible until the relations are fully loaded -->
+      <div class="ui mini inline loader" [class.active]="isLoadingRelations$ | async"></div>
+    </h5>
+
+    <!-- show relations table with Delete column (incl. checkboxes) -->
+    <ng-container *ngIf="form.get(FORM_KEY_RELATIONS_VALID).value">
+      <!-- hint of relations table usage -->
+      <span>
+        <u>IMPORTANT:</u> All selected Hosts/Services and their relations will be deleted in cmdb.
+      </span>
+      <ag-grid-angular #agGrid style="width: 100%" class="ag-theme-balham" (gridReady)="onGridReady(agGridTable)"
+        (gridSizeChanged)="onGridSizeChanged(agGridTable)" [columnDefs]="relationFields"
+        [rowData]="relationEntries$ | async" [rowSelection]="'multiple'"
+        [suppressCellSelection]="true" (rowSelected)="rowSelected($event, agGridTable)">
+      </ag-grid-angular>
+    </ng-container>
+
+    <!-- show relations table without Delete column (excl. checkboxes) -->
+    <div *ngIf="!form.get(FORM_KEY_RELATIONS_VALID).value"
+      [style.display]="(isLoadingRelations$ | async) ? 'none' : 'block'">
+      <ag-grid-angular #agGridWithoutDelete style="width: 100%" class="ag-theme-balham"
+        (gridReady)="onGridReady(agGridWithoutDeleteTable)"
+        (gridSizeChanged)="onGridSizeChanged(agGridWithoutDeleteTable)" [columnDefs]="relationFieldsWithoutDelete"
+        [rowData]="relationEntries$ | async" [suppressCellSelection]="true">
+      </ag-grid-angular>
+    </div>
+  </div>
+
+  <ng-container *ngIf="form.get(FORM_KEY_RELATIONS_VALID).value">
+    <br />
+    <button class="primary ui button" (click)="selectAllRows(agGridTable)">Select All</button>
+    <button class="primary ui button" (click)="deselectAllRows(agGridTable)">Deselect All</button>
+  </ng-container>
+
+  <div [style.display]="form.get(FORM_KEY_RELATIONS_VALID).value ? 'block' : 'none'">
+    <!-- date selection, when the rundown should be performed -->
+    <div class="three wide required field" style="padding-top: 30px">
+      <label for="datepicker">Rundown Start Date</label>
+      <input type="text" id="datepicker" placeholder="Select Date" [formControlName]="FORM_KEY_RUNDOWN_DATE" />
+    </div>
+    <show-errors [control]="this.form.get(FORM_KEY_RUNDOWN_DATE)"></show-errors>
+  </div>
+
+  <ng-container *ngIf="form.get(FORM_KEY_RELATIONS_VALID).value">
+    <!-- hint about default deletion period -->
+    <div class="field">
+      <p>VMs will be taken offline and kept for a grace period of {{ daysToKeepDefault }} days by default before
+        deletion.</p>
+    </div>
+
+    <!-- hint about data export before the rundown -->
+    <div class="required field" style="padding-top: 20px">
+      <label>Acknowledgement regarding final data export</label>
+      <div class="field">
+        <p>
+          I understand, that <b>BEFORE</b> submitting this request for rundown, I have to have a final data export if
+          required.
+          (This workflow does <b>NOT</b> create a final data export - you need to have it <b>BEFORE</b> submitting this
+          request.)
+        </p>
+      </div>
+
+      <!-- selection, if a backup was already made, or if no backup is needed -->
+      <div class="field">
+        <div class="grouped fields">
+          <div class="field">
+            <xa-radiobox [formControlName]="FORM_KEY_BACKUP" [group]="FORM_KEY_BACKUP" value="AlreadyExistingBackup">
+              A final data export has been created and is in my possession.
+            </xa-radiobox>
+          </div>
+          <div class="field">
+            <xa-radiobox [formControlName]="FORM_KEY_BACKUP" [group]="FORM_KEY_BACKUP" value="DontKeepOtherReason">
+              No final data export is needed for the following reason:
+            </xa-radiobox>
+          </div>
+        </div>
+        <!-- reason why a backup is not needed -->
+        <div class="field" *ngIf="this.form.get(FORM_KEY_BACKUP).value == 'DontKeepOtherReason'">
+          <label>
+            <input type="text" [formControlName]="FORM_KEY_REASON" placeholder="state reason here">
+          </label>
+        </div>
+        <show-errors [control]="this.form.get(FORM_KEY_REASON)"></show-errors>
+      </div>
+    </div>
+    <div class="field">
+      <p>
+        <i>
+          If you cannot check one of those two boxes do <b>NOT</b> submit this request, but create an RfC for a final
+          data export first.
+        </i>
+      </p>
+    </div>
+
+    <!-- info about deletion grace period -->
+    <div class="field" style="padding-top: 20px">
+      <label for="volumesToKeepLonger">NAS data deletion grace period</label>
+      <p>Volumes associated with the server run down are taken offline and kept for a grace period of {{
+        daysToKeepDefault }} days by default. </p>
+      <p>If you want specific NAS-volumes to be kept for longer that {{ daysToKeepDefault }} days, specify here, which
+        NAS volumes to keep longer:</p>
+      <div class="field">
+        <textarea id="volumesToKeepLonger" rows="2" placeholder="e.g. tma_updeploy01_data1n, tma_updeploy01_data2n"
+          [formControlName]="FORM_KEY_VOLUMES_TO_KEEP_LONGER"></textarea>
+      </div>
+
+      <!-- selection of deletion grace period -->
+      <div class="fields">
+        <div class="field" style="padding-top: 10px">
+          <p>NAS volumes specified above shall be kept for </p>
+        </div>
+        <div class="field" style="width: 80px">
+          <label>
+            <input type="number" [formControlName]="FORM_KEY_DAYS_TO_KEEP">
+          </label>
+        </div>
+
+        <div class="field" style="padding-top: 10px">
+          <p>days after NAS volumes are taken offline (min: {{ daysToKeepMin }} days).</p>
+        </div>
+      </div>
+      <show-errors [control]="this.form.get(FORM_KEY_DAYS_TO_KEEP)"></show-errors>
+    </div>
+
+    <div class="field" style="padding-top: 20px">
+      <label for="volumesToKeepLonger">Reason for Rundown / Comments for SAP-Team:</label>
+
+      <div class="field">
+        <textarea rows="2" [formControlName]="FORM_KEY_COMMENTS"></textarea>
+      </div>
+    </div>
+
+  </ng-container>
+</form>
+<xa-notify></xa-notify>

@@ -1,0 +1,22 @@
+{
+  "searchcomponent": {
+    "top": "50px",
+    "width": "75%",
+    "myStyle": {
+      "height": "400px"
+    }
+  },
+  "searchModal": {
+    "searchButtonText": "Select Host for Rundown",
+    "addButtonText": "Select"
+  },
+  "daysToKeep": {
+    "default": "10",
+    "min": "10",
+    "max": "100"
+  },
+  "allowedPlatforms": [
+    "SRV_X86_VM",
+    "SRV_APPLIANCE_VM"
+  ]
+}
