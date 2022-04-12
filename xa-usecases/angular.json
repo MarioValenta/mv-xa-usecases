@@ -3310,6 +3310,104 @@
           }
         }
       }
+    },
+    "@patchautomation-process-report/request-form": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@patchautomation-process-report/request-form",
+      "sourceRoot": "projects/@patchautomation-process-report/request-form/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@patchautomation-process-report/request-form",
+            "index": "projects/@patchautomation-process-report/request-form/src/index.html",
+            "main": "projects/@patchautomation-process-report/request-form/src/main.ts",
+            "polyfills": "projects/@patchautomation-process-report/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@patchautomation-process-report/request-form/tsconfig.app.json",
+            "assets": [
+              "projects/@patchautomation-process-report/request-form/src/favicon.ico",
+              "projects/@patchautomation-process-report/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@patchautomation-process-report/request-form/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/@patchautomation-process-report/request-form/src/environments/environment.ts",
+                  "with": "projects/@patchautomation-process-report/request-form/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@patchautomation-process-report/request-form:build:production"
+            },
+            "development": {
+              "browserTarget": "@patchautomation-process-report/request-form:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "@patchautomation-process-report/request-form:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@patchautomation-process-report/request-form/src/test.ts",
+            "polyfills": "projects/@patchautomation-process-report/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@patchautomation-process-report/request-form/tsconfig.spec.json",
+            "karmaConfig": "projects/@patchautomation-process-report/request-form/karma.conf.js",
+            "assets": [
+              "projects/@patchautomation-process-report/request-form/src/favicon.ico",
+              "projects/@patchautomation-process-report/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@patchautomation-process-report/request-form/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
     }
   },
   "defaultProject": "xa-portal-dev"

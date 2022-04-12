@@ -1,0 +1,28 @@
+{
+  "requestForm": [
+    {
+      "varName": "Customer",
+      "type": "text",
+      "required": true
+    },
+    {
+      "varName": "CountryCode",
+      "type": "text",
+      "required": true
+    },
+    {
+      "varName": "Period",
+      "type": "text",
+      "required": true
+    },
+    {
+      "varName": "ContactInfo",
+      "type": "text",
+      "required": true,
+      "format": {
+        "regexPattern": "^(([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)(\\s*,\\s*|\\s*$))*$",
+        "errorMessage": "Please provide correctly formatted email addresses (comma [,] separated). "
+      }
+    }
+  ]
+}

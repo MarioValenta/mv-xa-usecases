@@ -1,0 +1,58 @@
+<form [formGroup]="form" class="ui container form" style="padding:20px 10px">
+  <div class="field" [class.required]="isFormElementRequired('CountryCode')">
+    <label for="CountryCode">Countrycode</label>
+    <div class="inline fields" style="padding-top: 5px;">
+
+      <div class="field">
+        <div class="ui radio checkbox">
+          <input type="radio" formControlName="CountryCode" value="ALPINE">
+          <label>ALPINE</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="ui radio checkbox">
+          <input type="radio" formControlName="CountryCode" value="AT">
+          <label>AT</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="ui radio checkbox">
+          <input type="radio" formControlName="CountryCode" value="CH">
+          <label>CH</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="required field" [class.required]="isFormElementRequired('Customer')">
+    <label>Customer</label>
+    <xa-select [search]="true" formControlName="Customer" placeholder="Select Customer" placeholder="Select a customer"
+      [options]="Customer$ | async" [loading]="!(Customer$ | async)" [clearable]="true" viewValue="label"
+      optionValue="sm9name">
+    </xa-select>
+  </div>
+
+
+  <div class="field" [class.required]="isFormElementRequired('Period')">
+    <div class="required field">
+      <label>Period:</label>
+      <ng2-flatpickr #periodPicker [config]="PeriodOptions" formControlName="Period" placeholder="Select Period...">
+      </ng2-flatpickr>
+    </div>
+  </div>
+
+  <div class="field" [class.required]="isFormElementRequired('ContactInfo')">
+    <label>Info Contacts</label>
+    <p>Specify here a comma separated list of valid t-systems.com mail addresses that shall be informed about the
+      result. Make sure that you enter the email adresses correctly, as there is no technical check.
+    </p>
+    <input type="text" formControlName="ContactInfo">
+    <show-errors [control]="this.form.get('ContactInfo')"></show-errors>
+
+  </div>
+
+</form>
+
+<pre *if-dev>{{this.form.getRawValue() | json }}</pre>

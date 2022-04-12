@@ -50,6 +50,10 @@ import * as Patchautomation_Validation from '../../../@patchautomation/request-f
 import * as Patchautomation_Remove_Payload from '../../../@patchautomation-remove/request-form/mocks/Payload.json';
 import * as Patchautomation_Remove_ConfigPayload from '../../../@patchautomation-remove/request-form/mocks/ConfigPayload.json';
 import * as Patchautomation_Remove_Validation from '../../../@patchautomation-remove/request-form/mocks/Validation.json';
+// Patchautomation Process Report
+import * as Patchautomation_Process_Report_Payload from '../../../@patchautomation-process-report/request-form/mocks/Payload.json';
+import * as Patchautomation_Process_Report_ConfigPayload from '../../../@patchautomation-process-report/request-form/mocks/ConfigPayload.json';
+import * as Patchautomation_Process_Report_Validation from '../../../@patchautomation-process-report/request-form/mocks/Validation.json';
 // VM Create request-form-v1
 import * as VMCreate_v1_Payload from '../../../@vmcreate/request-form/mocks/Payload.json';
 import * as VMCreate_v1_ConfigPayload from '../../../@vmcreate/request-form/mocks/ConfigPayload.json';
@@ -180,6 +184,8 @@ export class AppHtmlFormsComponent {
   SAP_Application_Rundown_Context: RequestContext = this.BuildRequestContext({ payload: SAP_Application_Rundown_Payload, configPayload: SAP_Application_Rundown_ConfigPayload, validation: SAP_Application_Rundown_Validation });
   SAP_Application_Rundown_UT_NAS_Offline_Context: TaskContext = this.BuildCeTaskContext({ payload: SAP_Application_Rundown_UT_NAS_Offline_Payload, configPayload: SAP_Application_Rundown_UT_NAS_Offline_ConfigPayload, validation: SAP_Application_Rundown_UT_NAS_Offline_Validation });
   SAP_Application_Rundown_UT_Select_Storage_Context: TaskContext = this.BuildCeTaskContext({ payload: SAP_Application_Rundown_UT_Select_Storage_Payload, configPayload: SAP_Application_Rundown_UT_Select_Storage_ConfigPayload, validation: SAP_Application_Rundown_UT_Select_Storage_Validation });
+  Patchautomation_Process_Report_Context: RequestContext = this.BuildRequestContext({ payload: Patchautomation_Process_Report_Payload, configPayload: Patchautomation_Process_Report_ConfigPayload, validation: Patchautomation_Process_Report_Validation });
+
 
   constructor(
     private initialize: AppInitializeService,
