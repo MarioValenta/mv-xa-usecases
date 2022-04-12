@@ -32,6 +32,7 @@ import { SapApplicationRundownUTNasOfflineAppModule } from './@sap-application-r
 import { SapApplicationRundownUTSelectStorageAppModule } from './@sap-application-rundown/ut-select-storage/src/app/app.module';
 import { TestRequestRequestFormAppModule } from './@test-request/request-form/src/app/app.module';
 import { PatchautomationProcessReportRequestFormAppModule } from './@patchautomation-process-report/request-form/src/app/app.module';
+import { VMCpuRamExtensionRequestFormAppModule } from './@vm-cpu-ram-extension/request-form/src/app/app.module';
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import { PatchautomationProcessReportRequestFormAppModule } from './@patchautoma
     SapApplicationRundownUTNasOfflineAppModule,
     SapApplicationRundownUTSelectStorageAppModule,
     TestRequestRequestFormAppModule,
-    PatchautomationProcessReportRequestFormAppModule
+    PatchautomationProcessReportRequestFormAppModule,
+    VMCpuRamExtensionRequestFormAppModule
   ]
 })
 export class UseCasesFormsAppModule { }

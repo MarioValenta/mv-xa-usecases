@@ -3408,6 +3408,104 @@
           }
         }
       }
+    },
+    "@vm-cpu-ram-extension/request-form": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@vm-cpu-ram-extension/request-form",
+      "sourceRoot": "projects/@vm-cpu-ram-extension/request-form/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@vm-cpu-ram-extension/request-form",
+            "index": "projects/@vm-cpu-ram-extension/request-form/src/index.html",
+            "main": "projects/@vm-cpu-ram-extension/request-form/src/main.ts",
+            "polyfills": "projects/@vm-cpu-ram-extension/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@vm-cpu-ram-extension/request-form/tsconfig.app.json",
+            "assets": [
+              "projects/@vm-cpu-ram-extension/request-form/src/favicon.ico",
+              "projects/@vm-cpu-ram-extension/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@vm-cpu-ram-extension/request-form/src/styles.css"
+            ],
+            "scripts": [],
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "3mb",
+                "maximumError": "4mb"
+              },
+              {
+                "type": "anyComponentStyle",
+                "maximumWarning": "2kb",
+                "maximumError": "4kb"
+              }
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/@vm-cpu-ram-extension/request-form/src/environments/environment.ts",
+                  "with": "projects/@vm-cpu-ram-extension/request-form/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@vm-cpu-ram-extension/request-form:build:production"
+            },
+            "development": {
+              "browserTarget": "@vm-cpu-ram-extension/request-form:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "@vm-cpu-ram-extension/request-form:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@vm-cpu-ram-extension/request-form/src/test.ts",
+            "polyfills": "projects/@vm-cpu-ram-extension/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@vm-cpu-ram-extension/request-form/tsconfig.spec.json",
+            "karmaConfig": "projects/@vm-cpu-ram-extension/request-form/karma.conf.js",
+            "assets": [
+              "projects/@vm-cpu-ram-extension/request-form/src/favicon.ico",
+              "projects/@vm-cpu-ram-extension/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@vm-cpu-ram-extension/request-form/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
     }
   },
   "defaultProject": "xa-portal-dev"
