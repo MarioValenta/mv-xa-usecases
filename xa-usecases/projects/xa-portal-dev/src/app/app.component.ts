@@ -6,6 +6,10 @@ import { filter, takeUntil } from 'rxjs/operators';
 import { AppInitializeService } from './app-initialize.service';
 import { TaskContext } from './user-tasks/user-task-zone.component';
 
+// Test_Request
+import * as Test_Request_Payload from '../../../@test-request/request-form/mocks/Payload.json';
+import * as Test_Request_ConfigPayload from '../../../@test-request/request-form/mocks/ConfigPayload.json';
+import * as Test_Request_Validation from '../../../@test-request/request-form/mocks/Validation.json';
 // Create SR
 import * as CreateSR_Payload from '../../../@create-sr/request-form/mocks/Payload.json';
 import * as CreateSR_ConfigPayload from '../../../@create-sr/request-form/mocks/ConfigPayload.json';
@@ -131,6 +135,7 @@ import * as SAP_Application_Rundown_UT_Select_Storage_Payload from '../../../@sa
 import * as SAP_Application_Rundown_UT_Select_Storage_ConfigPayload from '../../../@sap-application-rundown/ut-nas-offline/mocks/ConfigPayload.json';
 import * as SAP_Application_Rundown_UT_Select_Storage_Validation from '../../../@sap-application-rundown/ut-nas-offline/mocks/Validation.json';
 
+
 @Component({
   selector: 'app-html-forms',
   templateUrl: './app.component.html',
@@ -143,6 +148,7 @@ export class AppHtmlFormsComponent {
   notFound = false;
   destroy$ = new Subject();
 
+  Test_Request_Context: RequestContext = this.BuildRequestContext({ payload: Test_Request_Payload, configPayload: Test_Request_ConfigPayload, validation: Test_Request_Validation });
   CreateSR_Context: RequestContext = this.BuildRequestContext({ payload: CreateSR_Payload, configPayload: CreateSR_ConfigPayload, validation: CreateSR_Validation });
   CreateIncident_Context: RequestContext = this.BuildRequestContext({ payload: CreateIncident_Payload, configPayload: CreateIncident_ConfigPayload, validation: CreateIncident_Validation });
   CreateRFC_Context: RequestContext = this.BuildRequestContext({ payload: CreateRFC_Payload, configPayload: CreateRFC_ConfigPayload, validation: CreateRFC_Validation });

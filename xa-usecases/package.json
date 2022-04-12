@@ -45,6 +45,7 @@
     "build:prod:@sap-application-rundown/request-form": "ng build --project @sap-application-rundown/request-form --configuration production --single-bundle",
     "build:prod:@sap-application-rundown/ut-nas-offline": "ng build --project @sap-application-rundown/ut-nas-offline --configuration production --single-bundle",
     "build:prod:@sap-application-rundown/ut-select-storage": "ng build --project @sap-application-rundown/ut-select-storage --configuration production --single-bundle",
+    "build:prod:@test-request/request-form": "ng build --project @test-request/request-form --configuration production --single-bundle",
     "test:@billing/request-form": "ng test --project @billing/request-form",
     "test:@create-rfc/request-form": "ng test --project @create-rfc/request-form",
     "test:@create-sr/request-form": "ng test --project @create-sr/request-form",

@@ -30,6 +30,7 @@ import { SapStartupRequestFormAppModule } from './@sap-startup/request-form/src/
 import { SapApplicationRundownRequestFormAppModule } from './@sap-application-rundown/request-form/src/app/app.module';
 import { SapApplicationRundownUTNasOfflineAppModule } from './@sap-application-rundown/ut-nas-offline/src/app/app.module';
 import { SapApplicationRundownUTSelectStorageAppModule } from './@sap-application-rundown/ut-select-storage/src/app/app.module';
+import { TestRequestRequestFormAppModule } from './@test-request/request-form/src/app/app.module';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { SapApplicationRundownUTSelectStorageAppModule } from './@sap-applicatio
     SapStartupRequestFormAppModule,
     SapApplicationRundownRequestFormAppModule,
     SapApplicationRundownUTNasOfflineAppModule,
-    SapApplicationRundownUTSelectStorageAppModule
+    SapApplicationRundownUTSelectStorageAppModule,
+    TestRequestRequestFormAppModule
   ]
 })
 export class UseCasesFormsAppModule { }
