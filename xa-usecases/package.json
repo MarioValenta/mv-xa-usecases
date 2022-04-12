@@ -79,6 +79,7 @@
     "file-saver": "^2.0.5",
     "flatpickr": "^4.6.11",
     "lightpick": "^1.6.2",
+    "ng2-flatpickr": "^9.0.0",
     "ng2-nouislider": "^1.8.3",
     "ngx-build-plus": "^12.2.0",
     "nouislider": "^15.5.1",
