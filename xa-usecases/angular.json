@@ -3114,6 +3114,104 @@
           }
         }
       }
+    },
+    "@sap-application-rundown/ut-select-storage": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@sap-application-rundown/ut-select-storage",
+      "sourceRoot": "projects/@sap-application-rundown/ut-select-storage/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@sap-application-rundown/ut-select-storage",
+            "index": "projects/@sap-application-rundown/ut-select-storage/src/index.html",
+            "main": "projects/@sap-application-rundown/ut-select-storage/src/main.ts",
+            "polyfills": "projects/@sap-application-rundown/ut-select-storage/src/polyfills.ts",
+            "tsConfig": "projects/@sap-application-rundown/ut-select-storage/tsconfig.app.json",
+            "assets": [
+              "projects/@sap-application-rundown/ut-select-storage/src/favicon.ico",
+              "projects/@sap-application-rundown/ut-select-storage/src/assets"
+            ],
+            "styles": [
+              "projects/@sap-application-rundown/ut-select-storage/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/@sap-application-rundown/ut-select-storage/src/environments/environment.ts",
+                  "with": "projects/@sap-application-rundown/ut-select-storage/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@sap-application-rundown/ut-select-storage:build:production"
+            },
+            "development": {
+              "browserTarget": "@sap-application-rundown/ut-select-storage:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "@sap-application-rundown/ut-select-storage:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@sap-application-rundown/ut-select-storage/src/test.ts",
+            "polyfills": "projects/@sap-application-rundown/ut-select-storage/src/polyfills.ts",
+            "tsConfig": "projects/@sap-application-rundown/ut-select-storage/tsconfig.spec.json",
+            "karmaConfig": "projects/@sap-application-rundown/ut-select-storage/karma.conf.js",
+            "assets": [
+              "projects/@sap-application-rundown/ut-select-storage/src/favicon.ico",
+              "projects/@sap-application-rundown/ut-select-storage/src/assets"
+            ],
+            "styles": [
+              "projects/@sap-application-rundown/ut-select-storage/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
     }
   },
   "defaultProject": "xa-portal-dev"

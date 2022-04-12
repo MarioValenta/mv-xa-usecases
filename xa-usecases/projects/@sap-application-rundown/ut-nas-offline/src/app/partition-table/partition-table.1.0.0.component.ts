@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter, forwardRef, OnInit, ChangeDetec
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { takeUntil, distinctUntilChanged, map } from 'rxjs/operators';
 import { Subject, BehaviorSubject } from 'rxjs';
-import { HostPartitionOptions } from '../models/hostpartitions.model';
+import { HostPartitionOptions } from 'projects/@sap-application-rundown/shared/models/hostpartitions.model';
 
 
 @Component({

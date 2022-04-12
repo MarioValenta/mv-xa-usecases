@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter, forwardRef, OnInit, ChangeDetec
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
 import { Subject, BehaviorSubject } from 'rxjs';
-import { HostInterfaces } from '../models/interfaces.model';
+import { HostInterfaces } from 'projects/@sap-application-rundown/shared/models/interfaces.model';
 
 
 @Component({

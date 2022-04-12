@@ -12,9 +12,9 @@ import Lightpick from 'lightpick';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { HostInfoModel } from './model/host-info.model';
-import { RelationInfoFlatModel } from './model/relation-info-flat.model';
-import { RelationsModel } from './model/relations.model';
+import { HostInfoModel } from '../../../shared/models/host-info.model';
+import { RelationInfoFlatModel } from '../../../shared/models/relation-info-flat.model';
+import { RelationsModel } from '../../../shared/models/relations.model';
 import { DataService } from './service/data.service';
 
 

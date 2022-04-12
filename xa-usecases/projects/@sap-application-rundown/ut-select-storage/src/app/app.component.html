@@ -1,0 +1,166 @@
+<form [formGroup]="form" class="ui container form">
+
+  <h2 class="ui dividing header" style="padding-top:30px">
+    <i class="trash icon"></i>
+    Server Rundown {{this.info.customer}} - {{this.info.hostname}}
+  </h2>
+
+  <h2 class="ui dividing header">
+    <i class="paperclip icon"></i>
+    General Information
+  </h2>
+
+  <div class="ui message">
+    <div style="padding-top: 10px">
+      <div>Hostname: {{this.info.hostname}} ({{this.info.hostid}})</div>
+      <div>Customer: {{this.info.customer}}</div>
+      <div>supportedBy: {{this.info.supportedBy}}</div>
+      <div>SLA: {{this.info.sla}}</div>
+      <div>WBS: {{this.info.wbs}}</div>
+      <div>OS: {{this.info.os}}</div>
+      <div>
+        <hr>
+      </div>
+      <div>ESXi Cluster: {{this.info.esxcluster}}</div>
+      <div>ESXi support: {{this.info.esxteam}}</div>
+      <div>
+        <hr>
+      </div>
+      <div>Order-ID: {{this.info.requestId}}</div>
+      <div><b>Requestor: {{this.info.requestor}}</b></div>
+      <div><b>Comments: {{this.comments}}</b></div>
+      <div>
+        <hr>
+      </div>
+      <div style="padding-bottom: 20px">
+        Documentation: <a href="https://t-share.t-systems.at/dat/s/sapnext/Shared%20Documents/Camunda/SAPRundown.docx"
+          target="_blank">
+          SAPRundown.docx</a>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="ui dividing header" style="padding-top:30px">
+    <i class="cog icon"></i>
+    Services
+  </h2>
+  <table class="ui compact table">
+    <thead>
+      <tr>
+        <th>ServiceName</th>
+        <th>ServiceID</th>
+        <th>Status</th>
+        <th>supportedBy</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let svc of this.svc; let i=index">
+
+        <td class="field">
+          {{svc.SVCNAME}}
+        </td>
+        <td class="field">
+          {{svc.SVCID}}
+        </td>
+        <td class="field">
+          {{svc.SVCSTATUS}}
+        </td>
+        <td>
+          {{svc.SVCSUP}}
+        </td>
+
+      </tr>
+    </tbody>
+
+  </table>
+
+
+  <div class="field" style="padding-top:30px">
+    <div class="ui message">
+      <div class="header">
+        Please select the volumes or qtrees that can be removed from below list.
+        <br>
+        ONLY select volumes you KNOW that are no longer needed.
+        <br>
+        If unsure consult the responsible application-team, SC-OPM or SDM.
+      </div>
+    </div>
+  </div>
+
+  <h2 class="ui dividing header" style="padding-top:30px">
+    <i class="cog icon"></i>
+    Storage
+  </h2>
+
+  <h5>Partitions</h5>
+  <table class="ui compact table">
+    <thead>
+      <tr>
+        <th>Delete Volumes</th>
+        <th>Delete Qtree</th>
+        <th>Delete Export</th>
+        <th>Mountpoint</th>
+        <th>Filesystem</th>
+        <th>SizeGB</th>
+        <th>Device</th>
+        <th>UsedByAnotherHost</th>
+      </tr>
+    </thead>
+    <tbody formArrayName="Partitions">
+
+      <tr *ngFor="let control of formArray.controls; let index=index" [formGroupName]="index" xaOnInit
+        [subscribeOn]="observeChanges(this.form.get('Partitions')['controls'][index])">
+
+        <td class="field">
+          <xa-checkbox formControlName="delvolumes"
+            [clickable]="!(this.formArray.controls[index].get('Device').value === 'VMDK' || this.formArray.controls[index].get('Device').value.startsWith('/dev'))">
+          </xa-checkbox>
+        </td>
+
+        <td class="field">
+          <xa-checkbox formControlName="delqtree"
+            [clickable]="!(this.formArray.controls[index].get('Device').value === 'VMDK' || this.formArray.controls[index].get('Device').value.startsWith('/dev'))">
+          </xa-checkbox>
+        </td>
+        <td class="field">
+          <xa-checkbox formControlName="export"
+            [clickable]="!(this.formArray.controls[index].get('Device').value === 'VMDK' || this.formArray.controls[index].get('Device').value.startsWith('/dev'))">
+          </xa-checkbox>
+        </td>
+        <td class="field" [ngClass]="{redClass: getColor(this.formArray.controls[index].get('Device').value)}">
+          {{this.formArray.controls[index].get('Mountpoint').value}}
+        </td>
+        <td class="field" [ngClass]="{redClass: getColor(this.formArray.controls[index].get('Device').value)}">
+          {{this.formArray.controls[index].get('Filesystem').value}}
+        </td>
+        <td class="field" [ngClass]="{redClass: getColor(this.formArray.controls[index].get('Device').value)}">
+          {{this.formArray.controls[index].get('SizeGB').value}}
+        </td>
+        <td [ngClass]="{redClass: getColor(this.formArray.controls[index].get('Device').value)}">
+          {{this.formArray.controls[index].get('Device').value}}
+        </td>
+
+        <td [ngClass]="{redClass: getColor(this.formArray.controls[index].get('Device').value)}">
+
+          <div class="field" *ngFor="let y of this.arrofstornastrue">
+
+            <div *ngFor="let x of this.stornasbyalsousedhosts">
+
+
+              <div class="field" *ngIf="!(this.formArray.controls[index].get('Device').value.indexOf(y) === -1)">
+
+                {{x[y]}}
+
+              </div>
+            </div>
+          </div>
+
+        </td>
+
+      </tr>
+    </tbody>
+
+  </table>
+
+</form>

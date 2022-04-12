@@ -6,11 +6,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AllCellEditors, AllCellRenderers, XAGridHelperModule } from '@xa/grid';
-import { XAServices } from '@xa/lib-ui-common';
 import { SearchModule } from '@xa/search';
 import { ShowErrorsModule } from '@xa/show-errors';
 import { XAModalService, XAUIModule } from '@xa/ui';
 import { AgGridModule } from 'ag-grid-angular';
+import { windowFactory, XASERVICE_TOKEN } from 'projects/shared.functions';
 import { XAToastDefaults } from 'projects/shared/toast-config';
 import { SharedModule } from 'projects/xa-portal-dev/src/app/shared/shared.module';
 
@@ -20,8 +20,6 @@ import { CiTableDataService } from './ci-table/ci-table.data.service';
 import { InfoTableComponent } from './infotable-component/infotable.component';
 import { SearchCisModalComponent } from './modals/search-cis-dialog/search-cis.component';
 import { SearchCIModalService } from './modals/searchCI-modal.service';
-import { DataService } from './service/data.service';
-import { XASERVICE_TOKEN, windowFactory } from 'projects/shared.functions';
 
 @NgModule({
   declarations: [
