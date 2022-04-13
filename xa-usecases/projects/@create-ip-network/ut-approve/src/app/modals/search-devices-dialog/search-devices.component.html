@@ -1,0 +1,38 @@
+<div class="ui message">
+    <i class="close icon" (click)="No()"></i>
+    <form [formGroup]="modalForm" class="ui form" style="padding:20px 10px">
+
+        <h3 class="ui dividing header">
+            Add Devices
+        </h3>
+
+        <search-component style="height: 300px" selectionMode="multiple" (selectionChanged)='onSelection($event)' [filter]="filter"
+        [fields]="SearchFields" [search]="searchFunction"></search-component>
+
+        <div class="field" style="padding-top: 10px">
+            <button class="ui right floated button" (click)="AddSelectedDevices()">Add selected Device</button>
+        </div>
+
+
+        <div class="field" style="padding-top: 20px">
+            <ag-grid-angular style="width: 100%; height: 200px;" class="ag-theme-balham"
+                (gridReady)="onGridReady($event)" [columnDefs]="columnDefs" [rowData]="rowdata"
+                rowSelection="multiple" (rowValueChanged)="onRowValueChanged($event)"
+                (rowDataUpdated)="rowDataUpdated($event)">
+            </ag-grid-angular>
+        </div>
+
+        <div class="field" style="padding-top: 10px">
+            <button class="ui right floated button" (click)="DeleteSelectedDevices()">Delete selected Device</button>
+        </div>
+
+        <div class="field">
+            <div class="actions">
+                <button class="ui green button" (click)="Yes()" xaAutofocus [disabled]="!modalForm.valid">OK</button>
+                <button class="ui red button" (click)="No()">Cancel</button>
+
+            </div>
+        </div>
+    </form>
+
+</div>

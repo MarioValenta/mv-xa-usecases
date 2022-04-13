@@ -35,6 +35,7 @@ import { PatchautomationProcessReportRequestFormAppModule } from './@patchautoma
 import { VMCpuRamExtensionRequestFormAppModule } from './@vm-cpu-ram-extension/request-form/src/app/app.module';
 import { CreateSnapshotRequestFormAppModule } from './@create-snapshot/request-form/src/app/app.module';
 import { CreateIpNetworkRequestFormAppModule } from './@create-ip-network/request-form/src/app/app.module';
+import { CreateIPNetworkUTApproveAppModule } from './@create-ip-network/ut-approve/src/app/app.module';
 
 
 @NgModule({
@@ -74,7 +75,8 @@ import { CreateIpNetworkRequestFormAppModule } from './@create-ip-network/reques
     PatchautomationProcessReportRequestFormAppModule,
     VMCpuRamExtensionRequestFormAppModule,
     CreateSnapshotRequestFormAppModule,
-    CreateIpNetworkRequestFormAppModule
+    CreateIpNetworkRequestFormAppModule,
+    CreateIPNetworkUTApproveAppModule
   ]
 })
 export class UseCasesFormsAppModule { }

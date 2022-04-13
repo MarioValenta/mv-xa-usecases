@@ -1,0 +1,120 @@
+<div [formGroup]="form">
+      <div class="ui one cards" formArrayName="Entries">
+            <div *ngFor="let control of formArray['controls']; let index=index" [formGroupName]="index" xaOnInit
+                  [subscribeOn]="observeChanges(formArray['controls'][index])" class="ui horizontal card">
+                  <div class="content">
+
+                        <div class="ui medium labels">
+                              <div *ngIf="this.formArray['controls'][index].get('IPQuantity').value > 0"
+                                    class="right floated ui label" data-tooltip="IP Quantity" data-variation="mini">
+                                    {{this.formArray['controls'][index].get('IPQuantity').value}}</div>
+                              <div class="right floated ui label">
+                                    {{this.formArray['controls'][index].get('IPAuthority').value}}</div>
+                        </div>
+                        <div class="header">
+                              {{this.formArray['controls'][index].get('NetworkType').value}} /
+                              {{this.formArray['controls'][index].get('IPType').value}}
+                        </div>
+
+                        <div class="description">
+                              <div class="ui column grid">
+                                    <div class="eleven wide column">
+                                          <div class="ui column grid">
+                                                <div class="five wide column">
+                                                      <div class="description">
+                                                            <b>Provider Independent IP: </b>
+                                                      </div>
+
+                                                      <div class="description" style="padding-top: 10px">
+                                                            <b>Range:</b>
+                                                      </div>
+                                                      <div class="description" style="padding-top: 10px">
+                                                            <b>Network Name: </b>
+                                                      </div>
+                                                </div>
+                                                <div class="ten wide column">
+                                                      <div>
+                                                            <xa-checkbox formControlName="ProviderIndependent" value="this.formArray['controls'][index].get('ProviderIndependent).value'"
+                                                                  [clickable]="false">
+                                                            </xa-checkbox>
+                                                      </div>
+
+                                                      <div *ngIf="this.formArray['controls'][index].get('IPNetwork').value"
+                                                            style="padding-top: 10px">
+                                                            <b>{{this.formArray.controls[index].get('IPNetwork').value}}</b>
+                                                      </div>
+                                                      <div>
+                                                            <div *ngIf="!this.formArray['controls'][index].get('IPNetwork').value"
+                                                                  style="padding-top: 10px">
+                                                                  <br>
+                                                            </div>
+                                                      </div>
+
+                                                      <div class="field" style="padding-top: 5px">
+                                                            <input type="text" formControlName="IPComment"
+                                                                  value="{{this.formArray['controls'][index].get('IPComment').value}}">
+                                                           <show-errors
+                                                                  [control]="this.formArray['controls'][index].get('IPComment')">
+                                                            </show-errors>
+                                                      </div>
+                                                </div>
+                                          </div>
+                                    </div>
+
+
+                                    <div class="five wide column" style="padding-top: 20px">
+
+                                          <div class="field">
+                                                <xa-select [options]="dta.AffectedCategory" [clearable]="true"
+                                                      name="Affected Category" formControlName="AffectedCategory">
+                                                </xa-select>
+                                          </div>
+                                          <div class="field">
+                                                <div class="ui bottom attached button" (click)="AddDevice(index)">
+                                                      Add/Edit Device
+                                                </div>
+                                          </div>
+                                    </div>
+                              </div>
+
+                              <div class="description" style="padding-top: 15px">
+                                    <table class="ui small table"
+                                          *ngIf="this.formArray['controls'][index].get('AffectedDevices').value.length > 0">
+                                          <thead>
+                                                <tr>
+                                                      <th class="center aligned">HostID</th>
+                                                      <th class="center aligned">HostName</th>
+                                                      <th class="center aligned">SupportGroup</th>
+                                                      <th class="center aligned">Customer</th>
+                                                </tr>
+                                          </thead>
+                                          <tbody>
+                                                <tr class="center aligned"
+                                                      *ngFor="let control of this.formArray['controls'][index].get('AffectedDevices').value">
+                                                      <td class="center aligned">
+                                                            {{control.HostID}}
+                                                      </td>
+                                                      <td class="center aligned">
+                                                            {{control.HostName}}
+                                                      </td>
+                                                      <td class="center aligned">
+                                                            {{control.SupportGroup}}
+                                                      </td>
+                                                      <td class="center aligned">
+                                                            {{control.Customer}}
+                                                      </td>
+                                                </tr>
+                                          </tbody>
+                                    </table>
+                              </div>
+
+                        </div>
+                  </div>
+            </div>
+
+      </div>
+</div>
+
+
+<pre *if-dev>{{this.form.value | json}}</pre>
+<pre *if-dev>{{this.form.status | json}}</pre>

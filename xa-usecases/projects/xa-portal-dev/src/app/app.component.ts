@@ -146,10 +146,14 @@ import * as VM_CPU_RAM_Extension_Validation from '../../../@vm-cpu-ram-extension
 import * as Create_Snapshot_Payload from '../../../@create-snapshot/request-form/mocks/Payload.json';
 import * as Create_Snapshot_ConfigPayload from '../../../@create-snapshot/request-form/mocks/ConfigPayload.json';
 import * as Create_Snapshot_Validation from '../../../@create-snapshot/request-form/mocks/Validation.json';
-// Create IP Network
+// Create IP Network RF
 import * as Create_IP_Network_RF_Payload from '../../../@create-ip-network/request-form/mocks/Payload.json';
 import * as Create_IP_Network_RF_ConfigPayload from '../../../@create-ip-network/request-form/mocks/ConfigPayload.json';
 import * as Create_IP_Network_RF_Validation from '../../../@create-ip-network/request-form/mocks/Validation.json';
+// Create IP Network UT Approve
+import * as Create_IP_Network_UT_Approve_Payload from '../../../@create-ip-network/ut-approve/mocks/Payload.json';
+import * as Create_IP_Network_UT_Approve_ConfigPayload from '../../../@create-ip-network/ut-approve/mocks/ConfigPayload.json';
+import * as Create_IP_Network_UT_Approve_Validation from '../../../@create-ip-network/ut-approve/mocks/Validation.json';
 
 
 @Component({
@@ -200,6 +204,7 @@ export class AppHtmlFormsComponent {
   VM_CPU_RAM_Extension_Context: RequestContext = this.BuildRequestContext({ payload: VM_CPU_RAM_Extension_Payload, configPayload: VM_CPU_RAM_Extension_ConfigPayload, validation: VM_CPU_RAM_Extension_Validation });
   Create_Snaphsot_Context: RequestContext = this.BuildRequestContext({ payload: Create_Snapshot_Payload, configPayload: Create_Snapshot_ConfigPayload, validation: Create_Snapshot_Validation });
   Create_IP_Network_RF_Context: RequestContext = this.BuildRequestContext({ payload: Create_IP_Network_RF_Payload, configPayload: Create_IP_Network_RF_ConfigPayload, validation: Create_IP_Network_RF_Validation });
+  Create_IP_Network_UT_Approve_Context: TaskContext = this.BuildCeTaskContext({ payload: Create_IP_Network_UT_Approve_Payload, configPayload: Create_IP_Network_UT_Approve_ConfigPayload, validation: Create_IP_Network_UT_Approve_Validation });
 
 
   constructor(
