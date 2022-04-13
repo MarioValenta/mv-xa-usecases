@@ -1,0 +1,125 @@
+<form [formGroup]="form" class="ui container form" style="padding:20px 10px">
+    <div class="ui message">
+        <h2 class="ui dividing header">
+            <i class="info icon"></i>
+            <div class="content">
+                <span> Information </span>
+                <div class="sub header"> This request allows to schedule a VM snapshot (without memory) for a defined
+                    point in time and will inform the
+                    requestor plus any info-contacts specified below of the result by email.</div>
+            </div>
+        </h2>
+        <ul class="list">
+            Please be aware of the following points:
+            <li>The process is executed <b>completely automated</b>, no human checks will be performed.</li>
+            <li>If everything goes smoothly, the snapshot is created within 10-60 min after the indicated startdate and
+                the
+                specified contact person (e.g. customer) and you as the requestor will be notifed. If human interaction
+                is
+                necessary, it can take up to three hours for the contact person/requestor to be informed about the
+                snapshot
+                status (success / failure).</li>
+            <li>The process does <b>NOT shut down applications</b> just trigger a VM snapshot.</li>
+            <li>It is the <b>responsibility of the requestor</b> to ensure <b> data consistency</b> at the time of
+                snapshot.</li>
+            <li>Snapshots will be <b>removed after 7 days</b> automatically.</li>
+            <li> VMs with CMDB Category <b>"NO_SNAPSHOT"</b> are not eligible for this request.</li>
+            <li> <b>Restores</b> of snapshots have to be requested via <b>SM9</b>.</li>
+        </ul>
+        Any actions on a system that assume a snapshot to be taken should only be performed after postive confirmation
+        by email has been received (see info-contacts below).
+
+        In case of <b>failure</b> of the automated snapshot, manual remediation by VM Management Team will be triggered.
+        Should manual
+        remediation not be possible, a failure notice will be sent to you and your contact person.
+    </div>
+
+    <div class="required field" [class.required]="isFormElementRequired('Agree')">
+        <div class="ui checkbox">
+            <input type="checkbox" formControlName="Agree">
+            <label>I have read and understood the purpose and limitations of this workflow as described above.</label>
+        </div>
+    </div>
+    <h2 class="ui dividing header">
+        <i class="desktop icon"></i>
+        <div class="content">
+            <span> Host Selection </span>
+            <div class="sub header">Select Host by providing at least one of the following critieria.</div>
+        </div>
+    </h2>
+
+    <search-component style="height: 500px" (selectionChanged)='onSearchChanged($event)' selectionMode="single"
+        [filter]="filter" [fields]="SearchFields" [search]="searchFunction"></search-component>
+
+    <h5>Selected Host</h5>
+    <infotable [info]="info"></infotable>
+
+    <div class="ui negative message" *ngIf="this.form.get('NoSnapshot').value === null">
+        <div class="header">
+            Sorry
+        </div>
+        <p>For this host the category "No-Snapshot" is set in CMDB, indicating that VM-Snapshot of this system should
+            not be used, therefore you can not order a snapshot for this system.</p>
+    </div>
+    <div class="two fields" style="padding-top: 20px;">
+        <div class="field" [class.required]="isFormElementRequired('Startdate')" >
+            <label>Desired Snapshot Date/Time:</label>
+            <ng2-flatpickr formControlName="Startdate" [config]="startOptions" placeholder="Select Date...">
+            </ng2-flatpickr>
+            <show-errors [control]="this.form.get('Startdate')"></show-errors>
+        </div>
+
+
+        <div class="field" [class.required]="isFormElementRequired('withMemoryValue')">
+
+            <label for="withMemoryValue">Execute with Memory</label>
+            <div class="field">
+                <div class="ui radio checkbox">
+                    <input type="radio" formControlName="withMemoryValue" [value]="true" checked="checked">
+                    <label>yes</label>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui radio checkbox">
+                    <input type="radio" formControlName="withMemoryValue" [value]="false">
+                    <label>no</label>
+                </div>
+            </div>
+            <show-errors [control]="this.form.get('withMemoryValue')"></show-errors>
+        </div>
+
+    </div>
+
+    <div class="field" [class.required]="isFormElementRequired('ContactInfo')">
+        <label>Info Contacts</label>
+        <p>Specify here a comma separated list of valid t-systems.com mail addresses that shall be informed about
+            the
+            result of the snapshot. Make sure that you enter the email adresses correctly, as there is no technical
+            check.
+        </p>
+        <input type="text" formControlName="ContactInfo">
+        <show-errors [control]="this.form.get('ContactInfo')"></show-errors>
+
+    </div>
+
+
+    <div class="required field" [class.required]="isFormElementRequired('Confirm')">
+        <div class="ui checkbox">
+            <input type="checkbox" formControlName="Confirm">
+            <label>I confirm that all provided data are correct!</label>
+        </div>
+    </div>
+</form>
+
+<pre *if-dev>
+  <div class="ui two column divided grid">
+    <div class="row">
+      <div class="column">
+        <p>   {{ form.getRawValue() | json }}</p>
+      </div>
+      <div class="column">
+        <p>  {{ form.value | json }}</p>
+      </div>
+    </div>
+    </div>
+</pre>

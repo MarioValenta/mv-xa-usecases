@@ -142,6 +142,10 @@ import * as SAP_Application_Rundown_UT_Select_Storage_Validation from '../../../
 import * as VM_CPU_RAM_Extension_Payload from '../../../@vm-cpu-ram-extension/request-form/mocks/Payload.json';
 import * as VM_CPU_RAM_Extension_ConfigPayload from '../../../@vm-cpu-ram-extension/request-form/mocks/ConfigPayload.json';
 import * as VM_CPU_RAM_Extension_Validation from '../../../@vm-cpu-ram-extension/request-form/mocks/Validation.json';
+// Create Snapshot
+import * as Create_Snapshot_Payload from '../../../@create-snapshot/request-form/mocks/Payload.json';
+import * as Create_Snapshot_ConfigPayload from '../../../@create-snapshot/request-form/mocks/ConfigPayload.json';
+import * as Create_Snapshot_Validation from '../../../@create-snapshot/request-form/mocks/Validation.json';
 
 
 @Component({
@@ -190,6 +194,7 @@ export class AppHtmlFormsComponent {
   SAP_Application_Rundown_UT_Select_Storage_Context: TaskContext = this.BuildCeTaskContext({ payload: SAP_Application_Rundown_UT_Select_Storage_Payload, configPayload: SAP_Application_Rundown_UT_Select_Storage_ConfigPayload, validation: SAP_Application_Rundown_UT_Select_Storage_Validation });
   Patchautomation_Process_Report_Context: RequestContext = this.BuildRequestContext({ payload: Patchautomation_Process_Report_Payload, configPayload: Patchautomation_Process_Report_ConfigPayload, validation: Patchautomation_Process_Report_Validation });
   VM_CPU_RAM_Extension_Context: RequestContext = this.BuildRequestContext({ payload: VM_CPU_RAM_Extension_Payload, configPayload: VM_CPU_RAM_Extension_ConfigPayload, validation: VM_CPU_RAM_Extension_Validation });
+  Create_Snaphsot_Context: RequestContext = this.BuildRequestContext({ payload: Create_Snapshot_Payload, configPayload: Create_Snapshot_ConfigPayload, validation: Create_Snapshot_Validation });
 
 
   constructor(
