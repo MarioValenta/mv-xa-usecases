@@ -146,6 +146,10 @@ import * as VM_CPU_RAM_Extension_Validation from '../../../@vm-cpu-ram-extension
 import * as Create_Snapshot_Payload from '../../../@create-snapshot/request-form/mocks/Payload.json';
 import * as Create_Snapshot_ConfigPayload from '../../../@create-snapshot/request-form/mocks/ConfigPayload.json';
 import * as Create_Snapshot_Validation from '../../../@create-snapshot/request-form/mocks/Validation.json';
+// Create IP Network
+import * as Create_IP_Network_RF_Payload from '../../../@create-ip-network/request-form/mocks/Payload.json';
+import * as Create_IP_Network_RF_ConfigPayload from '../../../@create-ip-network/request-form/mocks/ConfigPayload.json';
+import * as Create_IP_Network_RF_Validation from '../../../@create-ip-network/request-form/mocks/Validation.json';
 
 
 @Component({
@@ -195,6 +199,7 @@ export class AppHtmlFormsComponent {
   Patchautomation_Process_Report_Context: RequestContext = this.BuildRequestContext({ payload: Patchautomation_Process_Report_Payload, configPayload: Patchautomation_Process_Report_ConfigPayload, validation: Patchautomation_Process_Report_Validation });
   VM_CPU_RAM_Extension_Context: RequestContext = this.BuildRequestContext({ payload: VM_CPU_RAM_Extension_Payload, configPayload: VM_CPU_RAM_Extension_ConfigPayload, validation: VM_CPU_RAM_Extension_Validation });
   Create_Snaphsot_Context: RequestContext = this.BuildRequestContext({ payload: Create_Snapshot_Payload, configPayload: Create_Snapshot_ConfigPayload, validation: Create_Snapshot_Validation });
+  Create_IP_Network_RF_Context: RequestContext = this.BuildRequestContext({ payload: Create_IP_Network_RF_Payload, configPayload: Create_IP_Network_RF_ConfigPayload, validation: Create_IP_Network_RF_Validation });
 
 
   constructor(

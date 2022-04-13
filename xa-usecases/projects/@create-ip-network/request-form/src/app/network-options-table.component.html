@@ -1,0 +1,74 @@
+<div [formGroup]="form" class="ui container form">
+
+
+  <div class="ui center aligned segment">
+
+    <div class="ui one cards" formArrayName="Entries" style="padding: 25px 25px">
+
+      <div *ngFor="let control of formArray['controls']; let index=index" [formGroupName]="index" xaOnInit
+        [subscribeOn]="observeChanges(formArray['controls'][index])" class="ui horizontal card">
+        <div class="content">
+
+          <div class="five fields">
+            <div class="field">
+              <label>Networktype</label>
+              <xa-select class="mini" [options]="dta.NetworkType" formControlName="NetworkType"></xa-select>
+            </div>
+
+            <div class="field">
+              <label>Protocol</label>
+              <xa-select [options]="dta.IPType" formControlName="IPType"></xa-select>
+            </div>
+
+            <div class="field">
+              <label>IP address managed by...</label>
+              <xa-select [options]="dta.IPAuthority" formControlName="IPAuthority"></xa-select>
+            </div>
+            <div class="field">
+              <label>Quantity</label>
+              <input (keypress)="keyPress($event)" placeholder="Quantity" name="IPQuantity"
+                formControlName="IPQuantity">
+              <show-errors [control]="formArray['controls'][index]['controls']['IPQuantity']"></show-errors>
+            </div>
+
+            <div class="field" style="padding-top: 30px">
+              <xa-checkbox formControlName="ProviderIndependent"> Provider Independent IP</xa-checkbox>
+              <show-errors [control]="formArray['controls'][index]['controls']['ProviderIndependent']"></show-errors>
+            </div> 
+
+          </div>
+
+          <div class="fields">
+
+            <div class="six wide field">
+              <label>Range</label>
+              <input type="text" name="IPNetwork" formControlName="IPNetwork">
+              <show-errors [control]="formArray['controls'][index]['controls']['IPNetwork']"></show-errors>
+            </div>
+
+            <div class="ten wide required field">
+              <label>Network Name</label>
+              <input type="text" name="IPComment" formControlName="IPComment">
+              <show-errors [control]="formArray['controls'][index]['controls']['IPComment']"></show-errors>
+            </div>
+          </div>
+
+          <div class="field" *ngIf="formArray.controls.length > 1">
+            <a (click)="RemoveNetwork(index)">
+              <i class="right floated red trash alternate outline icon"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="ui divider">
+
+    </div>
+    <div class="ui green labeled icon button" (click)="AddNetwork()">
+      <i class="add icon"></i>
+      Add new Network
+    </div>
+  </div>
+
+</div>
