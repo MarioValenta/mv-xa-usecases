@@ -166,6 +166,10 @@ import * as Create_IP_Network_UT_Configure_Switching_Category_Validation from '.
 import * as Create_IP_Network_UT_Confirm_Completeness_Payload from '../../../@create-ip-network/ut-confirmation-completeness/mocks/Payload.json';
 import * as Create_IP_Network_UT_Confirm_Completeness_ConfigPayload from '../../../@create-ip-network/ut-confirmation-completeness/mocks/ConfigPayload.json';
 import * as Create_IP_Network_UT_Confirm_Completeness_Validation from '../../../@create-ip-network/ut-confirmation-completeness/mocks/Validation.json';
+// Create IP Network UT Create Network Config
+import * as Create_IP_Network_UT_Create_Network_Config_Payload from '../../../@create-ip-network/ut-create-network-config/mocks/Payload.json';
+import * as Create_IP_Network_UT_Create_Network_Config_ConfigPayload from '../../../@create-ip-network/ut-create-network-config/mocks/ConfigPayload.json';
+import * as Create_IP_Network_UT_Create_Network_Config_Validation from '../../../@create-ip-network/ut-create-network-config/mocks/Validation.json';
 
 @Component({
   selector: 'app-html-forms',
@@ -219,7 +223,7 @@ export class AppHtmlFormsComponent {
   Create_IP_Network_UT_Cofigure_Network_Devices_Context: TaskContext = this.BuildCeTaskContext({ payload: Create_IP_Network_UT_Configure_Network_Devices_Payload, configPayload: Create_IP_Network_UT_Configure_Network_Devices_ConfigPayload, validation: Create_IP_Network_UT_Configure_Network_Devices_Validation });
   Create_IP_Network_UT_Cofigure_Switching_Category_Context: TaskContext = this.BuildCeTaskContext({ payload: Create_IP_Network_UT_Configure_Switching_Category_Payload, configPayload: Create_IP_Network_UT_Configure_Switching_Category_ConfigPayload, validation: Create_IP_Network_UT_Configure_Switching_Category_Validation });
   Create_IP_Network_UT_Confirm_Completeness_Context: TaskContext = this.BuildCeTaskContext({ payload: Create_IP_Network_UT_Confirm_Completeness_Payload, configPayload: Create_IP_Network_UT_Confirm_Completeness_ConfigPayload, validation: Create_IP_Network_UT_Confirm_Completeness_Validation });
-
+  Create_IP_Network_UT_Create_Network_Config_Context: TaskContext = this.BuildCeTaskContext({ payload: Create_IP_Network_UT_Create_Network_Config_Payload, configPayload: Create_IP_Network_UT_Create_Network_Config_ConfigPayload, validation: Create_IP_Network_UT_Create_Network_Config_Validation });
 
   constructor(
     private initialize: AppInitializeService,

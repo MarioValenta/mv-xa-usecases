@@ -39,6 +39,7 @@ import { CreateIPNetworkUTApproveAppModule } from './@create-ip-network/ut-appro
 import { CreateIPNetworkUTConfigureNetworkDevicesAppModule } from './@create-ip-network/ut-configure-network-devices/src/app/app.module';
 import { CreateIPNetworkUTConfigureSwitchingCategoryAppModule } from './@create-ip-network/ut-configure-switching-category/src/app/app.module';
 import { CreateIPNetworkUTConfirmationCompletenessAppModule } from './@create-ip-network/ut-confirmation-completeness/src/app/app.module';
+import { CreateIPNetworkUTCreateNetworkConfigAppModule } from './@create-ip-network/ut-create-network-config/src/app/app.module';
 
 
 @NgModule({
@@ -82,7 +83,8 @@ import { CreateIPNetworkUTConfirmationCompletenessAppModule } from './@create-ip
     CreateIPNetworkUTApproveAppModule,
     CreateIPNetworkUTConfigureNetworkDevicesAppModule,
     CreateIPNetworkUTConfigureSwitchingCategoryAppModule,
-    CreateIPNetworkUTConfirmationCompletenessAppModule
+    CreateIPNetworkUTConfirmationCompletenessAppModule,
+    CreateIPNetworkUTCreateNetworkConfigAppModule
   ]
 })
 export class UseCasesFormsAppModule { }
