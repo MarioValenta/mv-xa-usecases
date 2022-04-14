@@ -52,6 +52,7 @@
     "build:prod:@create-ip-network/request-form": "ng build --project @create-ip-network/request-form --configuration production --single-bundle",
     "build:prod:@create-ip-network/ut-approve": "ng build --project @create-ip-network/ut-approve --configuration production --single-bundle",
     "build:prod:@create-ip-network/ut-configure-network-devices": "ng build --project @create-ip-network/ut-configure-network-devices --configuration production --single-bundle",
+    "build:prod:@create-ip-network/ut-configure-switching-category": "ng build --project @create-ip-network/ut-configure-switching-category --configuration production --single-bundle",
     "test:@billing/request-form": "ng test --project @billing/request-form",
     "test:@create-rfc/request-form": "ng test --project @create-rfc/request-form",
     "test:@create-sr/request-form": "ng test --project @create-sr/request-form",

@@ -158,6 +158,10 @@ import * as Create_IP_Network_UT_Approve_Validation from '../../../@create-ip-ne
 import * as Create_IP_Network_UT_Configure_Network_Devices_Payload from '../../../@create-ip-network/ut-configure-network-devices/mocks/Payload.json';
 import * as Create_IP_Network_UT_Configure_Network_Devices_ConfigPayload from '../../../@create-ip-network/ut-configure-network-devices/mocks/ConfigPayload.json';
 import * as Create_IP_Network_UT_Configure_Network_Devices_Validation from '../../../@create-ip-network/ut-configure-network-devices/mocks/Validation.json';
+// Create IP Network UT Configure Switching Category
+import * as Create_IP_Network_UT_Configure_Switching_Category_Payload from '../../../@create-ip-network/ut-configure-switching-category/mocks/Payload.json';
+import * as Create_IP_Network_UT_Configure_Switching_Category_ConfigPayload from '../../../@create-ip-network/ut-configure-switching-category/mocks/ConfigPayload.json';
+import * as Create_IP_Network_UT_Configure_Switching_Category_Validation from '../../../@create-ip-network/ut-configure-switching-category/mocks/Validation.json';
 
 
 @Component({
@@ -210,6 +214,7 @@ export class AppHtmlFormsComponent {
   Create_IP_Network_RF_Context: RequestContext = this.BuildRequestContext({ payload: Create_IP_Network_RF_Payload, configPayload: Create_IP_Network_RF_ConfigPayload, validation: Create_IP_Network_RF_Validation });
   Create_IP_Network_UT_Approve_Context: TaskContext = this.BuildCeTaskContext({ payload: Create_IP_Network_UT_Approve_Payload, configPayload: Create_IP_Network_UT_Approve_ConfigPayload, validation: Create_IP_Network_UT_Approve_Validation });
   Create_IP_Network_UT_Cofigure_Network_Devices_Context: TaskContext = this.BuildCeTaskContext({ payload: Create_IP_Network_UT_Configure_Network_Devices_Payload, configPayload: Create_IP_Network_UT_Configure_Network_Devices_ConfigPayload, validation: Create_IP_Network_UT_Configure_Network_Devices_Validation });
+  Create_IP_Network_UT_Cofigure_Switching_Category_Context: TaskContext = this.BuildCeTaskContext({ payload: Create_IP_Network_UT_Configure_Switching_Category_Payload, configPayload: Create_IP_Network_UT_Configure_Switching_Category_ConfigPayload, validation: Create_IP_Network_UT_Configure_Switching_Category_Validation });
 
 
   constructor(

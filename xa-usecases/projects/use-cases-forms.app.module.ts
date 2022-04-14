@@ -37,6 +37,7 @@ import { CreateSnapshotRequestFormAppModule } from './@create-snapshot/request-f
 import { CreateIPNetworkRequestFormAppModule } from './@create-ip-network/request-form/src/app/app.module';
 import { CreateIPNetworkUTApproveAppModule } from './@create-ip-network/ut-approve/src/app/app.module';
 import { CreateIPNetworkUTConfigureNetworkDevicesAppModule } from './@create-ip-network/ut-configure-network-devices/src/app/app.module';
+import { CreateIPNetworkUTConfigureSwitchingCategoryAppModule } from './@create-ip-network/ut-configure-switching-category/src/app/app.module';
 
 
 @NgModule({
@@ -78,7 +79,8 @@ import { CreateIPNetworkUTConfigureNetworkDevicesAppModule } from './@create-ip-
     CreateSnapshotRequestFormAppModule,
     CreateIPNetworkRequestFormAppModule,
     CreateIPNetworkUTApproveAppModule,
-    CreateIPNetworkUTConfigureNetworkDevicesAppModule
+    CreateIPNetworkUTConfigureNetworkDevicesAppModule,
+    CreateIPNetworkUTConfigureSwitchingCategoryAppModule
   ]
 })
 export class UseCasesFormsAppModule { }
