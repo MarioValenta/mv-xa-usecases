@@ -3,7 +3,6 @@ import { createCustomElement } from '@angular/elements';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { XAServices } from '@xa/lib-ui-common';
 import { XAUIModule } from '@xa/ui';
 
 import { AppComponent } from './app.component';

@@ -1,7 +1,8 @@
-import { Component, ViewChild, OnInit, EventEmitter, Output, Input } from '@angular/core';
-import { GridApi, ColDef } from 'ag-grid-community';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ICERequestContext } from '@xa/lib-ui-common';
+import { ColDef, GridApi } from 'ag-grid-community';
+
 import { SearchCIModalService } from '../modals/searchCI-modal.service';
-import { ICERequestContext, XAServices } from '@xa/lib-ui-common';
 import { CiTableDataService } from './ci-table.data.service';
 
 @Component({
