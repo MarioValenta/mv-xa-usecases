@@ -3,47 +3,39 @@ import { createCustomElement } from '@angular/elements';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SearchModule } from '@xa/search';
-import { ShowErrorsModule } from '@xa/show-errors';
 import { XAUIModule } from '@xa/ui';
-import { windowFactory, XASERVICE_TOKEN } from 'projects/shared.functions';
 
 import { AppComponent } from './app.component';
-import { NetworkOptionsTableComponent } from './network-options-table.component';
+import { ConfigureNetworkDevicesTableComponent_1_0_0 } from './configurenetworkdevices-table.1.0.0.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NetworkOptionsTableComponent
+    ConfigureNetworkDevicesTableComponent_1_0_0
   ],
   imports: [
     BrowserModule,
     XAUIModule.forRoot(),
     ReactiveFormsModule,
-    BrowserAnimationsModule,
-    SearchModule,
-    ShowErrorsModule
+    BrowserAnimationsModule
   ],
   exports: [
-    AppComponent
-  ],
-  providers: [
-    {
-      provide: XASERVICE_TOKEN,
-      useFactory: windowFactory
-    }
-  ],
+    AppComponent],
+  providers: [],
   entryComponents: [
-    AppComponent
-],
+    AppComponent,
+    ConfigureNetworkDevicesTableComponent_1_0_0
+  ],
   bootstrap: []
 })
-export class CreateIPNetworkRequestFormAppModule {
+export class CreateIPNetworkUTConfigureNetworkDevicesAppModule {
+
   constructor(private injector: Injector) { }
 
   ngDoBootstrap() {
     const ce = createCustomElement(AppComponent, { injector: this.injector });
-    customElements.define('create-ip-network-request-form', ce);
+    customElements.define('create-ip-network-ut-configure-network-devices', ce);
   }
+
 }

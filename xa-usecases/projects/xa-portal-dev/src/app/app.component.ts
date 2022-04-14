@@ -154,6 +154,10 @@ import * as Create_IP_Network_RF_Validation from '../../../@create-ip-network/re
 import * as Create_IP_Network_UT_Approve_Payload from '../../../@create-ip-network/ut-approve/mocks/Payload.json';
 import * as Create_IP_Network_UT_Approve_ConfigPayload from '../../../@create-ip-network/ut-approve/mocks/ConfigPayload.json';
 import * as Create_IP_Network_UT_Approve_Validation from '../../../@create-ip-network/ut-approve/mocks/Validation.json';
+// Create IP Network UT Configure Network Devices
+import * as Create_IP_Network_UT_Configure_Network_Devices_Payload from '../../../@create-ip-network/ut-configure-network-devices/mocks/Payload.json';
+import * as Create_IP_Network_UT_Configure_Network_Devices_ConfigPayload from '../../../@create-ip-network/ut-configure-network-devices/mocks/ConfigPayload.json';
+import * as Create_IP_Network_UT_Configure_Network_Devices_Validation from '../../../@create-ip-network/ut-configure-network-devices/mocks/Validation.json';
 
 
 @Component({
@@ -205,6 +209,7 @@ export class AppHtmlFormsComponent {
   Create_Snaphsot_Context: RequestContext = this.BuildRequestContext({ payload: Create_Snapshot_Payload, configPayload: Create_Snapshot_ConfigPayload, validation: Create_Snapshot_Validation });
   Create_IP_Network_RF_Context: RequestContext = this.BuildRequestContext({ payload: Create_IP_Network_RF_Payload, configPayload: Create_IP_Network_RF_ConfigPayload, validation: Create_IP_Network_RF_Validation });
   Create_IP_Network_UT_Approve_Context: TaskContext = this.BuildCeTaskContext({ payload: Create_IP_Network_UT_Approve_Payload, configPayload: Create_IP_Network_UT_Approve_ConfigPayload, validation: Create_IP_Network_UT_Approve_Validation });
+  Create_IP_Network_UT_Cofigure_Network_Devices_Context: TaskContext = this.BuildCeTaskContext({ payload: Create_IP_Network_UT_Configure_Network_Devices_Payload, configPayload: Create_IP_Network_UT_Configure_Network_Devices_ConfigPayload, validation: Create_IP_Network_UT_Configure_Network_Devices_Validation });
 
 
   constructor(
