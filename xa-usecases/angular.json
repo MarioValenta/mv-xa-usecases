@@ -3996,6 +3996,104 @@
           }
         }
       }
+    },
+    "@create-ip-network/ut-confirmation-completeness": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@create-ip-network/ut-confirmation-completeness",
+      "sourceRoot": "projects/@create-ip-network/ut-confirmation-completeness/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@create-ip-network/ut-confirmation-completeness",
+            "index": "projects/@create-ip-network/ut-confirmation-completeness/src/index.html",
+            "main": "projects/@create-ip-network/ut-confirmation-completeness/src/main.ts",
+            "polyfills": "projects/@create-ip-network/ut-confirmation-completeness/src/polyfills.ts",
+            "tsConfig": "projects/@create-ip-network/ut-confirmation-completeness/tsconfig.app.json",
+            "assets": [
+              "projects/@create-ip-network/ut-confirmation-completeness/src/favicon.ico",
+              "projects/@create-ip-network/ut-confirmation-completeness/src/assets"
+            ],
+            "styles": [
+              "projects/@create-ip-network/ut-confirmation-completeness/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/@create-ip-network/ut-confirmation-completeness/src/environments/environment.ts",
+                  "with": "projects/@create-ip-network/ut-confirmation-completeness/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@create-ip-network/ut-confirmation-completeness:build:production"
+            },
+            "development": {
+              "browserTarget": "@create-ip-network/ut-confirmation-completeness:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "@create-ip-network/ut-confirmation-completeness:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@create-ip-network/ut-confirmation-completeness/src/test.ts",
+            "polyfills": "projects/@create-ip-network/ut-confirmation-completeness/src/polyfills.ts",
+            "tsConfig": "projects/@create-ip-network/ut-confirmation-completeness/tsconfig.spec.json",
+            "karmaConfig": "projects/@create-ip-network/ut-confirmation-completeness/karma.conf.js",
+            "assets": [
+              "projects/@create-ip-network/ut-confirmation-completeness/src/favicon.ico",
+              "projects/@create-ip-network/ut-confirmation-completeness/src/assets"
+            ],
+            "styles": [
+              "projects/@create-ip-network/ut-confirmation-completeness/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
     }
   },
   "defaultProject": "xa-portal-dev"
