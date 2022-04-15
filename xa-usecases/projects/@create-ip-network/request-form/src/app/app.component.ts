@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FeedbackRequestPayload, ICERequest, ICERequestContext } from '@xa/lib-ui-common';
+import { CustomValidators } from 'projects/shared/customvalidator';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { CustomValidators } from './customvalidator';
 import { DataService } from './data.service';
 
 @Component({

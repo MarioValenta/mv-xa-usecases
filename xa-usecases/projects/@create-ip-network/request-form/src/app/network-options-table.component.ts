@@ -2,8 +2,8 @@ import { Component, Input, Output, EventEmitter, forwardRef, OnInit, ChangeDetec
 import { NG_VALUE_ACCESSOR, ControlValueAccessor, FormGroup, FormBuilder, Validators, FormArray, AbstractControl } from '@angular/forms';
 import { takeUntil, distinctUntilChanged, map } from 'rxjs/operators';
 import { Subject, Subscription, BehaviorSubject } from 'rxjs';
-import { CustomValidators } from './customvalidator';
 import { NetworkOptions } from './models/network-options.model';
+import { CustomValidators } from 'projects/shared/customvalidator';
 
 
 @Component({
