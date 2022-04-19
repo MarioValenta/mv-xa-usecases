@@ -21,7 +21,7 @@ export class DataService {
 
   // Get Clusters - if specific infrastructure selection option is checked
   public getClusters(vCenter: string) {
-    return this.xaservices.Http!.Get<Array<string>>(`api/vmcreate/clusters/${vCenter}`).pipe(
+    return this.xaservices.Http!.Get<Array<string>>(`api/vmcreate/clusters/${vCenter}/?scope=all`).pipe(
       share()
     );
   }

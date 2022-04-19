@@ -1,5 +1,5 @@
 {
-  "ParameterUrl": "https://api-portal-ucdev.xanet.at/api/vmcreate/appliance/IDBAPROXY_UCDEV/parameters",
+  "ParameterUrl": "https://api-portal-ucdev.xanet.at/api/vmcreate/appliance/IDPAPROXY/parameters",
 
   "variablesToBeStoredInCamunda": [],
   "variablesNotToBeCloned": [],
