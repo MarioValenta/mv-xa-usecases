@@ -40,6 +40,7 @@ import { CreateIPNetworkUTConfigureNetworkDevicesAppModule } from './@create-ip-
 import { CreateIPNetworkUTConfigureSwitchingCategoryAppModule } from './@create-ip-network/ut-configure-switching-category/src/app/app.module';
 import { CreateIPNetworkUTConfirmationCompletenessAppModule } from './@create-ip-network/ut-confirmation-completeness/src/app/app.module';
 import { CreateIPNetworkUTCreateNetworkConfigAppModule } from './@create-ip-network/ut-create-network-config/src/app/app.module';
+import { TestUserTaskProcessRequestFormAppModule } from './@test-user-task-process/request-form/src/app/app.module';
 
 
 @NgModule({
@@ -84,7 +85,8 @@ import { CreateIPNetworkUTCreateNetworkConfigAppModule } from './@create-ip-netw
     CreateIPNetworkUTConfigureNetworkDevicesAppModule,
     CreateIPNetworkUTConfigureSwitchingCategoryAppModule,
     CreateIPNetworkUTConfirmationCompletenessAppModule,
-    CreateIPNetworkUTCreateNetworkConfigAppModule
+    CreateIPNetworkUTCreateNetworkConfigAppModule,
+    TestUserTaskProcessRequestFormAppModule
   ]
 })
 export class UseCasesFormsAppModule { }
