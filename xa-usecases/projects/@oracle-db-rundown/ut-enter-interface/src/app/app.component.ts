@@ -1,14 +1,14 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IFormArrayConfigDTO } from 'projects/@oracle-db-rundown/shared/input-forms-array/dto/i-form-array-config-dto';
-import { TaskContextFormsBaseClass } from 'projects/base-usecase-classes/task-context-forms-base-class';
+import { TaskContextBaseComponent } from 'projects/usecase-base-class/task-context-base.component';
 
 @Component({
   selector: 'oracle-db-rdn-ut-enter-interface',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class OracleDbRdnUTEnterInterfaceAppComponent extends TaskContextFormsBaseClass implements AfterViewInit {
+export class OracleDbRdnUTEnterInterfaceAppComponent extends TaskContextBaseComponent implements AfterViewInit {
 
   title = 'oracle-db-rdn-ut-enter-interface';
   OUTPUT_VARIABLE_NAME: string = 'selectedInterfaceList';

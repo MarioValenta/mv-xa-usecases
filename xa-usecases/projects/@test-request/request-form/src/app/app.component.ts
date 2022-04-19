@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
-import { RequestContextFormsBaseClass } from 'projects/base-usecase-classes/request-context-forms-base-class';
+import { RequestContextBaseComponent } from 'projects/usecase-base-class/request-context-base.component';
 
 
 @Component({
@@ -9,7 +9,7 @@ import { RequestContextFormsBaseClass } from 'projects/base-usecase-classes/requ
   styleUrls: ['./app.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent extends RequestContextFormsBaseClass {
+export class AppComponent extends RequestContextBaseComponent {
 
   title = 'test-request-request-form';
 

@@ -1,14 +1,14 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ICERequest } from '@xa/lib-ui-common';
-import { RequestContextFormsBaseClass } from 'projects/base-usecase-classes/request-context-forms-base-class';
+import { RequestContextBaseComponent } from 'projects/usecase-base-class/request-context-base.component';
 
 @Component({
   selector: 'test-user-task-process-request-form',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent extends RequestContextFormsBaseClass implements ICERequest {
+export class AppComponent extends RequestContextBaseComponent implements ICERequest {
 
   constructor(private fb: FormBuilder, private cref: ChangeDetectorRef) {
     super();

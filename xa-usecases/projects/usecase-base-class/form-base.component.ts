@@ -7,7 +7,7 @@ import { takeUntil } from 'rxjs/operators';
 @Component({
   template: ''
 })
-export abstract class FormsBaseClass implements OnInit, OnDestroy {
+export abstract class FormBaseComponent implements OnInit, OnDestroy {
 
   @Input() Context!: ICERequestContext | ICETaskContext;
 

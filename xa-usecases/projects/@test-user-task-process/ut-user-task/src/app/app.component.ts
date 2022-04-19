@@ -1,14 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ICETask } from '@xa/lib-ui-common';
-import { TaskContextFormsBaseClass } from 'projects/base-usecase-classes/task-context-forms-base-class';
+import { TaskContextBaseComponent } from 'projects/usecase-base-class/task-context-base.component';
 
 @Component({
   selector: 'test-user-task-ut-user-task',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent extends TaskContextFormsBaseClass  implements ICETask, OnInit, OnDestroy {
+export class AppComponent extends TaskContextBaseComponent  implements ICETask, OnInit, OnDestroy {
 
   title = 'Test User Task';
 

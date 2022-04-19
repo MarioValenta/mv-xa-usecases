@@ -1,12 +1,12 @@
 import { Component, Inject, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ApproveTaskPayload, ICETask, ICETaskContext, RejectTaskPayload, SubmitTaskPayload } from '@xa/lib-ui-common';
-import { FormsBaseClass } from './forms-base-class';
+import { FormBaseComponent } from './form-base.component';
 
 @Component({
   template: ''
 })
-export abstract class TaskContextFormsBaseClass extends FormsBaseClass implements ICETask {
+export abstract class TaskContextBaseComponent extends FormBaseComponent implements ICETask {
 
   @Input() Context!: ICETaskContext;
   rejectedFormKey: string = 'Aborted';

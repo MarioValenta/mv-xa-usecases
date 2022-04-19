@@ -1,11 +1,11 @@
 import { Component, Inject, Input } from '@angular/core';
 import { ICERequest, ICERequestContext } from '@xa/lib-ui-common';
-import { FormsBaseClass } from './forms-base-class';
+import { FormBaseComponent } from './form-base.component';
 
 @Component({
   template: ''
 })
-export abstract class RequestContextFormsBaseClass extends FormsBaseClass implements ICERequest {
+export abstract class RequestContextBaseComponent extends FormBaseComponent implements ICERequest {
 
   @Input() Context!: ICERequestContext;
   requestFormIdentifier: string = 'EMPTY';

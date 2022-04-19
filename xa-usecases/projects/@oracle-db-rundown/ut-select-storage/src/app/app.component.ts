@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { TaskContextFormsBaseClass } from 'projects/base-usecase-classes/task-context-forms-base-class';
+import { TaskContextBaseComponent } from 'projects/usecase-base-class/task-context-base.component';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 import { HostPartitionOptions } from './models/hostpartitions.model';
 
@@ -9,7 +9,7 @@ import { HostPartitionOptions } from './models/hostpartitions.model';
   selector: 'oracle-db-rdn-ut-select-storage',
   templateUrl: './app.component.html'
 })
-export class AppComponent extends TaskContextFormsBaseClass {
+export class AppComponent extends TaskContextBaseComponent {
 
   title = 'oracle-db-rdn-ut-select-storage';
   INPUT_DATA_KEY = 'mountTable';

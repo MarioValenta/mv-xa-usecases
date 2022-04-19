@@ -6,7 +6,7 @@ import { XANotifyService } from '@xa/ui';
 import { XANotify } from '@xa/ui/lib/components/xa-notify/interfaces/XANotify.interface';
 import { ValidationService } from '@xa/validation';
 import Lightpick from 'lightpick';
-import { RequestContextFormsBaseClass } from 'projects/base-usecase-classes/request-context-forms-base-class';
+import { RequestContextBaseComponent } from 'projects/usecase-base-class/request-context-base.component';
 import { XASERVICE_TOKEN } from 'projects/shared.functions';
 import { Observable, Subject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
@@ -20,7 +20,7 @@ import { DataService } from './data-service.service';
   styleUrls: ['./app.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent extends RequestContextFormsBaseClass implements ICERequest {
+export class AppComponent extends RequestContextBaseComponent implements ICERequest {
 
   title: string = 'oracle-db-rdn-request-form';
   serviceID!: string;
