@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ApproveTaskPayload, ICETask, RejectTaskPayload } from '@xa/lib-ui-common';
+import { ICETask } from '@xa/lib-ui-common';
 import { TaskContextFormsBaseClass } from 'projects/base-usecase-classes/task-context-forms-base-class';
 
 @Component({
@@ -27,43 +27,8 @@ export class AppComponent extends TaskContextFormsBaseClass  implements ICETask,
     });
   }
 
-  setContextCallbacks(): void {
-    console.debug(this.title, 'setContextCallbacks()');
-
-    this.Context.OnApprove(() => this.onApprove());
-    this.Context.OnReject(() => this.onReject());
-    this.Context.OnFeedback(() => this.feedback());
-  }
-
   customOnInit(): void {
     this.Context.Valid = true;
-  }
-
-  onApprove(): ApproveTaskPayload {
-
-    if (this.form.valid) {
-      console.debug(this.form.value);
-    } else {
-      console.error('Form is not valid', this.form);
-    }
-
-    const model = this.form.value;
-
-    return {
-      value: model,
-      runtimeData: model
-    };
-  }
-
-  onReject(): RejectTaskPayload {
-
-    this.form.get('Aborted')!.setValue(true);
-    console.log(this.form.value);
-    return {
-      resultName: 'Aborted',
-      reasonName: 'ApprovalComment',
-      resultValue: this.form.get('Aborted')!.value
-    };
   }
 
 }
