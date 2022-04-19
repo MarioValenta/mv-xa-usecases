@@ -14,6 +14,10 @@ import * as Test_Request_Validation from '../../../@test-request/request-form/mo
 import * as Test_User_Task_Process_Payload from '../../../@test-user-task-process/request-form/mocks/Payload.json';
 import * as Test_User_Task_Process_ConfigPayload from '../../../@test-user-task-process/request-form/mocks/ConfigPayload.json';
 import * as Test_User_Task_Process_Validation from '../../../@test-user-task-process/request-form/mocks/Validation.json';
+// Test User Task Process
+import * as Test_User_Task_Process_UT_User_Task_Payload from '../../../@test-user-task-process/ut-user-task/mocks/Payload.json';
+import * as Test_User_Task_Process_UT_User_Task_ConfigPayload from '../../../@test-user-task-process/ut-user-task/mocks/ConfigPayload.json';
+import * as Test_User_Task_Process_UT_User_Task_Validation from '../../../@test-user-task-process/ut-user-task/mocks/Validation.json';
 // Create SR
 import * as CreateSR_Payload from '../../../@create-sr/request-form/mocks/Payload.json';
 import * as CreateSR_ConfigPayload from '../../../@create-sr/request-form/mocks/ConfigPayload.json';
@@ -230,6 +234,7 @@ export class AppHtmlFormsComponent {
   Create_IP_Network_UT_Confirm_Completeness_Context: TaskContext = this.BuildCeTaskContext({ payload: Create_IP_Network_UT_Confirm_Completeness_Payload, configPayload: Create_IP_Network_UT_Confirm_Completeness_ConfigPayload, validation: Create_IP_Network_UT_Confirm_Completeness_Validation });
   Create_IP_Network_UT_Create_Network_Config_Context: TaskContext = this.BuildCeTaskContext({ payload: Create_IP_Network_UT_Create_Network_Config_Payload, configPayload: Create_IP_Network_UT_Create_Network_Config_ConfigPayload, validation: Create_IP_Network_UT_Create_Network_Config_Validation });
   Test_User_Task_Process_Context: RequestContext = this.BuildRequestContext({ payload: Test_User_Task_Process_Payload, configPayload: Test_User_Task_Process_ConfigPayload, validation: Test_User_Task_Process_Validation });
+  Test_User_Task_Process_UT_User_Task_Context: TaskContext = this.BuildCeTaskContext({ payload: Test_User_Task_Process_UT_User_Task_Payload, configPayload: Test_User_Task_Process_UT_User_Task_ConfigPayload, validation: Test_User_Task_Process_UT_User_Task_Validation });
 
   constructor(
     private initialize: AppInitializeService,

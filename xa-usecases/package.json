@@ -47,6 +47,7 @@
     "build:prod:@sap-application-rundown/ut-select-storage": "ng build --project @sap-application-rundown/ut-select-storage --configuration production --single-bundle",
     "build:prod:@test-request/request-form": "ng build --project @test-request/request-form --configuration production --single-bundle",
     "build:prod:@test-user-task-process/request-form": "ng build --project @test-user-task-process/request-form --configuration production --single-bundle",
+    "build:prod:@test-user-task-process/ut-user-task": "ng build --project @test-user-task-process/ut-user-task --configuration production --single-bundle",
     "build:prod:@patchautomation-process-report/request-form": "ng build --project @patchautomation-process-report/request-form --configuration production --single-bundle",
     "build:prod:@vm-cpu-ram-extension/request-form": "ng build --project @vm-cpu-ram-extension/request-form --configuration production --single-bundle",
     "build:prod:@create-snapshot/request-form": "ng build --project @create-snapshot/request-form --configuration production --single-bundle",
