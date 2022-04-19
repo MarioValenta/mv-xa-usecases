@@ -15,7 +15,7 @@ export abstract class RequestContextFormsBaseClass extends FormsBaseClass implem
   }
 
   onSubmit() {
-    console.log('OnSubmit');
+    console.debug(this.title, 'onSubmit()');
 
     if (this.form.valid) {
       console.debug(this.form.value);
