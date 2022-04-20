@@ -26,6 +26,7 @@ import { CreateOracleVMRequestFormAppModule } from './@create-oracle-vm/request-
 import { ServerRundownRequestFormAppModule } from './@server-rundown/request-form/src/app/app.module';
 import { ServerRundownUTNasOfflineAppModule } from './@server-rundown/ut-nas-offline/src/app/app.module';
 import { ServerRundownUTSelectStorageAppModule } from './@server-rundown/ut-select-storage/src/app/app.module';
+import { IdpaProxyRequestFormAppModule } from 'projects/@idpa-proxy/request-form/src/app/app.module';
 import { SapStartupRequestFormAppModule } from './@sap-startup/request-form/src/app/app.module';
 import { SapApplicationRundownRequestFormAppModule } from './@sap-application-rundown/request-form/src/app/app.module';
 import { SapApplicationRundownUTNasOfflineAppModule } from './@sap-application-rundown/ut-nas-offline/src/app/app.module';
@@ -73,6 +74,7 @@ import { TestUserTaskUTUserTaskAppModule } from './@test-user-task-process/ut-us
     ServerRundownRequestFormAppModule,
     ServerRundownUTNasOfflineAppModule,
     ServerRundownUTSelectStorageAppModule,
+    IdpaProxyRequestFormAppModule,
     SapStartupRequestFormAppModule,
     SapApplicationRundownRequestFormAppModule,
     SapApplicationRundownUTNasOfflineAppModule,

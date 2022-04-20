@@ -130,6 +130,10 @@ import * as Server_Rundown_UT_NAS_Offline_Validation from '../../../@server-rund
 import * as Server_Rundown_UT_Select_Storage_Payload from '../../../@server-rundown/ut-select-storage/mocks/Payload.json';
 import * as Server_Rundown_UT_Select_Storage_ConfigPayload from '../../../@server-rundown/ut-select-storage/mocks/ConfigPayload.json';
 import * as Server_Rundown_UT_Select_Storage_Validation from '../../../@server-rundown/ut-select-storage/mocks/Validation.json';
+// IDPA Proxy Context
+import * as Idpa_Proxy_Payload from '../../../@idpa-proxy/request-form/mocks/Payload.json';
+import * as Idpa_Proxy_ConfigPayload from '../../../@idpa-proxy/request-form/mocks/ConfigPayload.json';
+import * as Idpa_Proxy_Validation from '../../../@idpa-proxy/request-form/mocks/Validation.json';
 // SAP-Startup
 import * as SAP_Startup_Payload from '../../../@sap-startup/request-form/mocks/Payload.json';
 import * as SAP_Startup_ConfigPayload from '../../../@sap-startup/request-form/mocks/ConfigPayload.json';
@@ -180,6 +184,8 @@ import * as Create_IP_Network_UT_Create_Network_Config_ConfigPayload from '../..
 import * as Create_IP_Network_UT_Create_Network_Config_Validation from '../../../@create-ip-network/ut-create-network-config/mocks/Validation.json';
 
 
+// TODO: add new imports for every project (request-form, user-tasks)
+// TODO: Needs to be adjusted for every UseCase form
 @Component({
   selector: 'app-html-forms',
   templateUrl: './app.component.html',
@@ -220,6 +226,7 @@ export class AppHtmlFormsComponent {
   Server_Rundown_Context: RequestContext = this.BuildRequestContext({ payload: Server_Rundown_Payload, configPayload: Server_Rundown_ConfigPayload, validation: Server_Rundown_Validation });
   Server_Rundown_UT_NAS_Offline_Context: TaskContext = this.BuildCeTaskContext({ payload: Server_Rundown_UT_NAS_Offline_Payload, configPayload: Server_Rundown_UT_NAS_Offline_ConfigPayload, validation: Server_Rundown_UT_NAS_Offline_Validation });
   Server_Rundown_UT_Select_Storage_Context: TaskContext = this.BuildCeTaskContext({ payload: Server_Rundown_UT_Select_Storage_Payload, configPayload: Server_Rundown_UT_Select_Storage_ConfigPayload, validation: Server_Rundown_UT_Select_Storage_Validation });
+  Idpa_Proxy_Context: RequestContext = this.BuildRequestContext({ payload: Idpa_Proxy_Payload, configPayload: Idpa_Proxy_ConfigPayload, validation: Idpa_Proxy_Validation });
   SAP_Startup_Context: RequestContext = this.BuildRequestContext({ payload: SAP_Startup_Payload, configPayload: SAP_Startup_ConfigPayload, validation: SAP_Startup_Validation });
   SAP_Application_Rundown_Context: RequestContext = this.BuildRequestContext({ payload: SAP_Application_Rundown_Payload, configPayload: SAP_Application_Rundown_ConfigPayload, validation: SAP_Application_Rundown_Validation });
   SAP_Application_Rundown_UT_NAS_Offline_Context: TaskContext = this.BuildCeTaskContext({ payload: SAP_Application_Rundown_UT_NAS_Offline_Payload, configPayload: SAP_Application_Rundown_UT_NAS_Offline_ConfigPayload, validation: SAP_Application_Rundown_UT_NAS_Offline_Validation });

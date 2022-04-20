@@ -123,9 +123,7 @@
               "projects/xa-portal-dev/src/favicon.ico",
               "projects/xa-portal-dev/src/assets"
             ],
-            "styles": [
-              "projects/xa-portal-dev/src/styles.scss"
-            ],
+            "styles": ["projects/xa-portal-dev/src/styles.scss"],
             "scripts": []
           }
         }
@@ -154,9 +152,7 @@
               "projects/@create-sr/request-form/src/favicon.ico",
               "projects/@create-sr/request-form/src/assets"
             ],
-            "styles": [
-              "projects/@create-sr/request-form/src/styles.css"
-            ],
+            "styles": ["projects/@create-sr/request-form/src/styles.css"],
             "scripts": [],
             "budgets": [
               {
@@ -234,9 +230,7 @@
               "projects/@create-sr/request-form/src/favicon.ico",
               "projects/@create-sr/request-form/src/assets"
             ],
-            "styles": [
-              "projects/@create-sr/request-form/src/styles.css"
-            ],
+            "styles": ["projects/@create-sr/request-form/src/styles.css"],
             "scripts": []
           }
         }
@@ -265,9 +259,7 @@
               "projects/@ranf/request-form/src/favicon.ico",
               "projects/@ranf/request-form/src/assets"
             ],
-            "styles": [
-              "projects/@ranf/request-form/src/styles.css"
-            ],
+            "styles": ["projects/@ranf/request-form/src/styles.css"],
             "scripts": [],
             "budgets": [
               {
@@ -332,9 +324,7 @@
               "projects/@ranf/request-form/src/favicon.ico",
               "projects/@ranf/request-form/src/assets"
             ],
-            "styles": [
-              "projects/@ranf/request-form/src/styles.css"
-            ],
+            "styles": ["projects/@ranf/request-form/src/styles.css"],
             "scripts": []
           }
         }
@@ -363,9 +353,7 @@
               "projects/@ranf/ut-check/src/favicon.ico",
               "projects/@ranf/ut-check/src/assets"
             ],
-            "styles": [
-              "projects/@ranf/ut-check/src/styles.css"
-            ],
+            "styles": ["projects/@ranf/ut-check/src/styles.css"],
             "scripts": [],
             "budgets": [
               {
@@ -430,9 +418,7 @@
               "projects/@ranf/ut-check/src/favicon.ico",
               "projects/@ranf/ut-check/src/assets"
             ],
-            "styles": [
-              "projects/@ranf/ut-check/src/styles.css"
-            ],
+            "styles": ["projects/@ranf/ut-check/src/styles.css"],
             "scripts": []
           }
         }
@@ -529,9 +515,7 @@
               "projects/@billing/request-form/src/favicon.ico",
               "projects/@billing/request-form/src/assets"
             ],
-            "styles": [
-              "projects/@billing/request-form/src/styles.css"
-            ],
+            "styles": ["projects/@billing/request-form/src/styles.css"],
             "scripts": []
           }
         }
@@ -560,9 +544,7 @@
               "projects/@create-rfc/request-form/src/favicon.ico",
               "projects/@create-rfc/request-form/src/assets"
             ],
-            "styles": [
-              "projects/@create-rfc/request-form/src/styles.css"
-            ],
+            "styles": ["projects/@create-rfc/request-form/src/styles.css"],
             "scripts": [],
             "budgets": [
               {
@@ -637,9 +619,7 @@
               "projects/@create-rfc/request-form/src/favicon.ico",
               "projects/@create-rfc/request-form/src/assets"
             ],
-            "styles": [
-              "projects/@create-rfc/request-form/src/styles.css"
-            ],
+            "styles": ["projects/@create-rfc/request-form/src/styles.css"],
             "scripts": []
           }
         }
@@ -668,9 +648,7 @@
               "projects/@phoneforwarding/request-form/src/favicon.ico",
               "projects/@phoneforwarding/request-form/src/assets"
             ],
-            "styles": [
-              "projects/@phoneforwarding/request-form/src/styles.css"
-            ],
+            "styles": ["projects/@phoneforwarding/request-form/src/styles.css"],
             "scripts": []
           },
           "configurations": {
@@ -735,9 +713,7 @@
               "projects/@phoneforwarding/request-form/src/favicon.ico",
               "projects/@phoneforwarding/request-form/src/assets"
             ],
-            "styles": [
-              "projects/@phoneforwarding/request-form/src/styles.css"
-            ],
+            "styles": ["projects/@phoneforwarding/request-form/src/styles.css"],
             "scripts": []
           }
         }
@@ -962,9 +938,7 @@
               "projects/@patchautomation/request-form/src/favicon.ico",
               "projects/@patchautomation/request-form/src/assets"
             ],
-            "styles": [
-              "projects/@patchautomation/request-form/src/styles.css"
-            ],
+            "styles": ["projects/@patchautomation/request-form/src/styles.css"],
             "scripts": [],
             "budgets": [
               {
@@ -1049,9 +1023,7 @@
               "projects/@patchautomation/request-form/src/favicon.ico",
               "projects/@patchautomation/request-form/src/assets"
             ],
-            "styles": [
-              "projects/@patchautomation/request-form/src/styles.css"
-            ],
+            "styles": ["projects/@patchautomation/request-form/src/styles.css"],
             "scripts": []
           }
         }
@@ -1178,9 +1150,7 @@
               "projects/@vmcreate/request-form/src/favicon.ico",
               "projects/@vmcreate/request-form/src/assets"
             ],
-            "styles": [
-              "projects/@vmcreate/request-form/src/styles.css"
-            ],
+            "styles": ["projects/@vmcreate/request-form/src/styles.css"],
             "scripts": [],
             "budgets": [
               {
@@ -1245,9 +1215,7 @@
               "projects/@vmcreate/request-form/src/favicon.ico",
               "projects/@vmcreate/request-form/src/assets"
             ],
-            "styles": [
-              "projects/@vmcreate/request-form/src/styles.css"
-            ],
+            "styles": ["projects/@vmcreate/request-form/src/styles.css"],
             "scripts": []
           }
         }
@@ -1570,9 +1538,7 @@
               "projects/@vmcreate/request-form-v2/src/favicon.ico",
               "projects/@vmcreate/request-form-v2/src/assets"
             ],
-            "styles": [
-              "projects/@vmcreate/request-form-v2/src/styles.css"
-            ],
+            "styles": ["projects/@vmcreate/request-form-v2/src/styles.css"],
             "scripts": [],
             "budgets": [
               {
@@ -1637,9 +1603,7 @@
               "projects/@vmcreate/request-form-v2/src/favicon.ico",
               "projects/@vmcreate/request-form-v2/src/assets"
             ],
-            "styles": [
-              "projects/@vmcreate/request-form-v2/src/styles.css"
-            ],
+            "styles": ["projects/@vmcreate/request-form-v2/src/styles.css"],
             "scripts": []
           }
         }
@@ -4383,6 +4347,106 @@
             ],
             "styles": [
               "projects/@test-user-task-process/ut-user-task/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "@idpa-proxy/request-form": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@idpa-proxy/request-form",
+      "sourceRoot": "projects/@idpa-proxy/request-form/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@idpa-proxy/request-form",
+            "index": "projects/@idpa-proxy/request-form/src/index.html",
+            "main": "projects/@idpa-proxy/request-form/src/main.ts",
+            "polyfills": "projects/@idpa-proxy/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@idpa-proxy/request-form/tsconfig.app.json",
+            "assets": [
+              "projects/@idpa-proxy/request-form/src/favicon.ico",
+              "projects/@idpa-proxy/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@idpa-proxy/request-form/src/styles.css"
+            ],
+            "scripts": [],
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "2mb",
+                "maximumError": "4mb"
+              },
+              {
+                "type": "anyComponentStyle",
+                "maximumWarning": "2kb",
+                "maximumError": "4kb"
+              }
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/@idpa-proxy/request-form/src/environments/environment.ts",
+                  "with": "projects/@idpa-proxy/request-form/src/environments/environment.prod.ts"
+                  
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "browserTarget": "@idpa-proxy/request-form:build:development",
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@idpa-proxy/request-form:build:production"
+            },
+            "development": {
+              "browserTarget": "@idpa-proxy/request-form:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "@idpa-proxy/request-form:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@idpa-proxy/request-form/src/test.ts",
+            "polyfills": "projects/@idpa-proxy/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@idpa-proxy/request-form/tsconfig.spec.json",
+            "karmaConfig": "projects/@idpa-proxy/request-form/karma.conf.js",
+            "assets": [
+              "projects/@idpa-proxy/request-form/src/favicon.ico",
+              "projects/@idpa-proxy/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@idpa-proxy/request-form/src/styles.css"
             ],
             "scripts": []
           }

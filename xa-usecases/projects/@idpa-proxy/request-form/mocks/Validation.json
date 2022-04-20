@@ -1,0 +1,15 @@
+{
+  "requestForm": [
+    {
+      "varName": "Hostname",
+      "required": true,
+      "type": "text"
+    },
+
+    {
+        "varName": "ESXCluster",
+        "required": true,
+        "type": "text"
+      }
+  ]
+}
