@@ -1,6 +1,5 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ICERequest } from '@xa/lib-ui-common';
 import { RequestContextBaseComponent } from 'projects/usecase-base-class/request-context-base.component';
 
 @Component({
@@ -8,7 +7,7 @@ import { RequestContextBaseComponent } from 'projects/usecase-base-class/request
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent extends RequestContextBaseComponent implements ICERequest {
+export class AppComponent extends RequestContextBaseComponent {
 
   constructor(private fb: FormBuilder, private cref: ChangeDetectorRef) {
     super();

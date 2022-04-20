@@ -1,6 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ICETask } from '@xa/lib-ui-common';
 import { TaskContextBaseComponent } from 'projects/usecase-base-class/task-context-base.component';
 
 @Component({
@@ -8,7 +7,7 @@ import { TaskContextBaseComponent } from 'projects/usecase-base-class/task-conte
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent extends TaskContextBaseComponent  implements ICETask, OnInit, OnDestroy {
+export class AppComponent extends TaskContextBaseComponent {
 
   title = 'Test User Task';
 
