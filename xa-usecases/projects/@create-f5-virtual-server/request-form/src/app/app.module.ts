@@ -7,7 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShowErrorsModule } from '@xa/show-errors';
 import { SharedModule } from 'projects/@create-f5-virtual-server/shared/shared-module';
-import { PipeModule } from 'projects/@create-f5-virtual-server/shared/pure-pipes/pipe.module';
+import { PipeModule } from 'projects/shared/pure-pipes/pipe.module';
 import { XASERVICE_TOKEN, windowFactory } from 'projects/shared.functions';
 
 @NgModule({

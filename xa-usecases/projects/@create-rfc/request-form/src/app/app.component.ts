@@ -2,7 +2,7 @@ import { Component, Input, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren
 import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FeedbackRequestPayload, ICERequest, ICERequestContext } from '@xa/lib-ui-common';
 import { ValidationService } from '@xa/validation';
-import { RequiredPipe } from 'projects/@create-rfc/shared/pure-pipes/required.pipe';
+import { RequiredPipe } from 'projects/shared/pure-pipes/required.pipe';
 import { getDate, getFlatpickrSettings } from 'projects/shared.functions';
 import { FlatpickrOptions, Ng2FlatpickrComponent } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.module';
 import { Subject } from 'rxjs';

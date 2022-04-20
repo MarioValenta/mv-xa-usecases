@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
 import { PlaceholderPipe } from './placeholder.pipe';
 import { RequiredPipe } from './required.pipe';
+import { SliderOptionPipe } from './slider-config.pipe';
 
 @NgModule({
   declarations: [
     RequiredPipe,
-    PlaceholderPipe
+    PlaceholderPipe,
+    SliderOptionPipe
   ],
   exports: [
     RequiredPipe,
-    PlaceholderPipe
+    PlaceholderPipe,
+    SliderOptionPipe
   ]
 })
 export class PipeModule {}

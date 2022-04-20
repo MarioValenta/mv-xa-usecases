@@ -18,10 +18,12 @@ export class RequiredPipe implements PipeTransform {
       this.isFormElementRequired(validationService, elementName);
   }
 
-  isFormElementRequired(validationService: ValidationService, elementName: string,): boolean {
+  isFormElementRequired(validationService: ValidationService, elementName: string): boolean {
     if (validationService instanceof ValidationService) {
       return (validationService && validationService.validatorConfigList.get(elementName)) ?
         (validationService.validatorConfigList.get(elementName).required || validationService.validatorConfigList.get(elementName).requiredTrue) : false;
+    } else {
+      return false;
     }
   }
 
@@ -48,10 +50,5 @@ export class RequiredPipe implements PipeTransform {
         'AssignmentGroups'),
       elementName);
   }
-
-
-
-
-
 
 }

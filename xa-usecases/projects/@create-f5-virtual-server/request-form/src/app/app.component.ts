@@ -6,7 +6,7 @@ import { Subject, of, Observable } from 'rxjs';
 import { DataService } from './data.service';
 import { ValidationService } from '@xa/validation';
 import { ValidatorConfig } from '@xa/validation/lib/Validation/ValidatorConfig';
-import { PlaceholderPipe } from 'projects/@create-f5-virtual-server/shared/pure-pipes/placeholder.pipe';
+import { PlaceholderPipe } from 'projects/shared/pure-pipes/placeholder.pipe';
 
 @Component({
   selector: 'create-f5-virtual-server-request-form',

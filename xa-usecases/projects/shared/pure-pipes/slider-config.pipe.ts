@@ -1,6 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { ICERequestContext } from '@xa/lib-ui-common';
-import * as DefaultSliderOptions from '../default-slider-options.json';
+import * as DefaultSliderOptions from '../../@vmcreate/request-form-v2/src/app/default-slider-options.json';
+// TODO update defaultSliderOptions import
 
 @Pipe({
   name: 'sliderOption'

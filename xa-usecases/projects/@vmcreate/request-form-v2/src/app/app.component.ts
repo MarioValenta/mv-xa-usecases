@@ -7,13 +7,13 @@ import { debounceTime, distinctUntilChanged, filter, map, shareReplay, switchMap
 import { DataService } from './data.service';
 import { VMDKStorage } from './vmdk-storage.model';
 import { ValidatorConfig } from '@xa/validation/lib/Validation/ValidatorConfig';
-import { SliderOptionPipe } from './pure-pipes/slider-config.pipe';
 import { ClusterCapacity } from './cluster-capacity.model';
 import { NouisliderComponent } from 'ng2-nouislider';
 import memoryRangeOptions from './default-slider-options.json';
 import cpuRangeOptions from './default-slider-options.json';
 import { XANotifyService } from '@xa/ui';
 import { environment } from '../environments/environment';
+import { SliderOptionPipe } from 'projects/shared/pure-pipes/slider-config.pipe';
 
 @Component({
   selector: 'vmcreate-request-form-v2',

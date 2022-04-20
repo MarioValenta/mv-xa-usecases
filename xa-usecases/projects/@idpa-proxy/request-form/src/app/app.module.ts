@@ -1,31 +1,24 @@
-import {
-  CUSTOM_ELEMENTS_SCHEMA,
-  Injector,
-  NgModule,
-  NO_ERRORS_SCHEMA,
-} from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Injector, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { createCustomElement } from '@angular/elements';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { InfoMailShareModule, XAServices } from '@xa/lib-ui-common';
+import { InfoMailShareModule } from '@xa/lib-ui-common';
 import { ShowErrorsModule } from '@xa/show-errors';
 import { XAUIModule } from '@xa/ui';
-import { ValidationService } from '@xa/validation';
 import { NouisliderModule } from 'ng2-nouislider';
-import { XAToastDefaults } from 'projects/shared/toast-config';
-import { environment } from '../environments/environment';
-import { SharedModule } from 'projects/xa-portal-dev/src/app/shared/shared.module';
-import { AppComponent } from './app.component';
-import { PlaceholderPipe } from './pure-pipes/placeholder.pipe';
-import { RequiredPipe } from './pure-pipes/required.pipe';
 import { windowFactory, XASERVICE_TOKEN } from 'projects/shared.functions';
+import { PipeModule } from 'projects/shared/pure-pipes/pipe.module';
+import { XAToastDefaults } from 'projects/shared/toast-config';
+import { SharedModule } from 'projects/xa-portal-dev/src/app/shared/shared.module';
+
+import { environment } from '../environments/environment';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
-    AppComponent, 
-    PlaceholderPipe, 
-    RequiredPipe],
+    AppComponent
+  ],
   imports: [
     BrowserModule,
     XAUIModule.forRoot(),
@@ -36,6 +29,7 @@ import { windowFactory, XASERVICE_TOKEN } from 'projects/shared.functions';
     FormsModule,
     environment.production ? [] : SharedModule,
     InfoMailShareModule,
+    PipeModule
   ],
   providers: [
     {

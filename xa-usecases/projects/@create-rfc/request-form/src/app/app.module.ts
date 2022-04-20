@@ -18,7 +18,7 @@ import {
 import {
   RequestForChangeSearchCisModalComponent,
 } from 'projects/@create-rfc/shared/modals/search-cis-dialog/request-for-change-search-cis.component';
-import { PipeModule } from 'projects/@create-rfc/shared/pure-pipes/pipe.module';
+import { PipeModule } from 'projects/shared/pure-pipes/pipe.module';
 import { windowFactory, XASERVICE_TOKEN } from 'projects/shared.functions';
 import { Ng2FlatpickrModule } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.module';
 import { XAToastDefaults } from 'projects/shared/toast-config';
