@@ -1,6 +1,7 @@
 import { Component, Inject, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FeedbackRequestPayload, ICERequestContext, ICETaskContext } from '@xa/lib-ui-common';
+import { IFormControlSettingsObject } from 'projects/shared/interfaces/iform-control-settings-object';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -72,5 +73,17 @@ export abstract class FormBaseComponent implements OnInit, OnDestroy {
 
   onFeedback(): FeedbackRequestPayload {
     return this.form.value;
+  }
+
+  buildFormControlObject(formControlName: string, formControlLabel?: string, formControlPlaceholder?: string): IFormControlSettingsObject {
+    if (formControlLabel && formControlPlaceholder) {
+      return {key: formControlName, label: formControlLabel, placeholder: formControlPlaceholder};
+    } else if (formControlLabel) {
+      return {key: formControlName, label: formControlLabel, placeholder: 'enter '+formControlLabel};
+    } else if (formControlPlaceholder) {
+      return {key: formControlName, label: formControlName, placeholder: formControlPlaceholder};
+    } else {
+      return {key: formControlName, label: '<EMTPY>', placeholder: '<EMTPY>'};
+    }
   }
 }
