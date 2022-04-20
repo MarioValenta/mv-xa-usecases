@@ -2785,6 +2785,1574 @@
         }
       }
     },
+    "@sap-startup/request-form": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@sap-startup/request-form",
+      "sourceRoot": "projects/@sap-startup/request-form/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@sap-startup/request-form",
+            "index": "projects/@sap-startup/request-form/src/index.html",
+            "main": "projects/@sap-startup/request-form/src/main.ts",
+            "polyfills": "projects/@sap-startup/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@sap-startup/request-form/tsconfig.app.json",
+            "assets": [
+              "projects/@sap-startup/request-form/src/favicon.ico",
+              "projects/@sap-startup/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@sap-startup/request-form/src/styles.css"
+            ],
+            "scripts": [],
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "3mb",
+                "maximumError": "4mb"
+              },
+              {
+                "type": "anyComponentStyle",
+                "maximumWarning": "2kb",
+                "maximumError": "4kb"
+              }
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/@sap-startup/request-form/src/environments/environment.ts",
+                  "with": "projects/@sap-startup/request-form/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@sap-startup/request-form:build:production"
+            },
+            "development": {
+              "browserTarget": "@sap-startup/request-form:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "@sap-startup/request-form:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@sap-startup/request-form/src/test.ts",
+            "polyfills": "projects/@sap-startup/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@sap-startup/request-form/tsconfig.spec.json",
+            "karmaConfig": "projects/@sap-startup/request-form/karma.conf.js",
+            "assets": [
+              "projects/@sap-startup/request-form/src/favicon.ico",
+              "projects/@sap-startup/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@sap-startup/request-form/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "@sap-application-rundown/request-form": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@sap-application-rundown/request-form",
+      "sourceRoot": "projects/@sap-application-rundown/request-form/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@sap-application-rundown/request-form",
+            "index": "projects/@sap-application-rundown/request-form/src/index.html",
+            "main": "projects/@sap-application-rundown/request-form/src/main.ts",
+            "polyfills": "projects/@sap-application-rundown/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@sap-application-rundown/request-form/tsconfig.app.json",
+            "assets": [
+              "projects/@sap-application-rundown/request-form/src/favicon.ico",
+              "projects/@sap-application-rundown/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@sap-application-rundown/request-form/src/styles.css"
+            ],
+            "scripts": [],
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "3mb",
+                "maximumError": "4mb"
+              },
+              {
+                "type": "anyComponentStyle",
+                "maximumWarning": "2kb",
+                "maximumError": "4kb"
+              }
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/@sap-application-rundown/request-form/src/environments/environment.ts",
+                  "with": "projects/@sap-application-rundown/request-form/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@sap-application-rundown/request-form:build:production"
+            },
+            "development": {
+              "browserTarget": "@sap-application-rundown/request-form:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "@sap-application-rundown/request-form:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@sap-application-rundown/request-form/src/test.ts",
+            "polyfills": "projects/@sap-application-rundown/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@sap-application-rundown/request-form/tsconfig.spec.json",
+            "karmaConfig": "projects/@sap-application-rundown/request-form/karma.conf.js",
+            "assets": [
+              "projects/@sap-application-rundown/request-form/src/favicon.ico",
+              "projects/@sap-application-rundown/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@sap-application-rundown/request-form/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "@sap-application-rundown/ut-nas-offline": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@sap-application-rundown/ut-nas-offline",
+      "sourceRoot": "projects/@sap-application-rundown/ut-nas-offline/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@sap-application-rundown/ut-nas-offline",
+            "index": "projects/@sap-application-rundown/ut-nas-offline/src/index.html",
+            "main": "projects/@sap-application-rundown/ut-nas-offline/src/main.ts",
+            "polyfills": "projects/@sap-application-rundown/ut-nas-offline/src/polyfills.ts",
+            "tsConfig": "projects/@sap-application-rundown/ut-nas-offline/tsconfig.app.json",
+            "assets": [
+              "projects/@sap-application-rundown/ut-nas-offline/src/favicon.ico",
+              "projects/@sap-application-rundown/ut-nas-offline/src/assets"
+            ],
+            "styles": [
+              "projects/@sap-application-rundown/ut-nas-offline/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/@sap-application-rundown/ut-nas-offline/src/environments/environment.ts",
+                  "with": "projects/@sap-application-rundown/ut-nas-offline/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@sap-application-rundown/ut-nas-offline:build:production"
+            },
+            "development": {
+              "browserTarget": "@sap-application-rundown/ut-nas-offline:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "@sap-application-rundown/ut-nas-offline:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@sap-application-rundown/ut-nas-offline/src/test.ts",
+            "polyfills": "projects/@sap-application-rundown/ut-nas-offline/src/polyfills.ts",
+            "tsConfig": "projects/@sap-application-rundown/ut-nas-offline/tsconfig.spec.json",
+            "karmaConfig": "projects/@sap-application-rundown/ut-nas-offline/karma.conf.js",
+            "assets": [
+              "projects/@sap-application-rundown/ut-nas-offline/src/favicon.ico",
+              "projects/@sap-application-rundown/ut-nas-offline/src/assets"
+            ],
+            "styles": [
+              "projects/@sap-application-rundown/ut-nas-offline/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "@sap-application-rundown/ut-select-storage": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@sap-application-rundown/ut-select-storage",
+      "sourceRoot": "projects/@sap-application-rundown/ut-select-storage/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@sap-application-rundown/ut-select-storage",
+            "index": "projects/@sap-application-rundown/ut-select-storage/src/index.html",
+            "main": "projects/@sap-application-rundown/ut-select-storage/src/main.ts",
+            "polyfills": "projects/@sap-application-rundown/ut-select-storage/src/polyfills.ts",
+            "tsConfig": "projects/@sap-application-rundown/ut-select-storage/tsconfig.app.json",
+            "assets": [
+              "projects/@sap-application-rundown/ut-select-storage/src/favicon.ico",
+              "projects/@sap-application-rundown/ut-select-storage/src/assets"
+            ],
+            "styles": [
+              "projects/@sap-application-rundown/ut-select-storage/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/@sap-application-rundown/ut-select-storage/src/environments/environment.ts",
+                  "with": "projects/@sap-application-rundown/ut-select-storage/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@sap-application-rundown/ut-select-storage:build:production"
+            },
+            "development": {
+              "browserTarget": "@sap-application-rundown/ut-select-storage:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "@sap-application-rundown/ut-select-storage:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@sap-application-rundown/ut-select-storage/src/test.ts",
+            "polyfills": "projects/@sap-application-rundown/ut-select-storage/src/polyfills.ts",
+            "tsConfig": "projects/@sap-application-rundown/ut-select-storage/tsconfig.spec.json",
+            "karmaConfig": "projects/@sap-application-rundown/ut-select-storage/karma.conf.js",
+            "assets": [
+              "projects/@sap-application-rundown/ut-select-storage/src/favicon.ico",
+              "projects/@sap-application-rundown/ut-select-storage/src/assets"
+            ],
+            "styles": [
+              "projects/@sap-application-rundown/ut-select-storage/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "@test-request/request-form": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@test-request/request-form",
+      "sourceRoot": "projects/@test-request/request-form/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@test-request/request-form",
+            "index": "projects/@test-request/request-form/src/index.html",
+            "main": "projects/@test-request/request-form/src/main.ts",
+            "polyfills": "projects/@test-request/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@test-request/request-form/tsconfig.app.json",
+            "assets": [
+              "projects/@test-request/request-form/src/favicon.ico",
+              "projects/@test-request/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@test-request/request-form/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/@test-request/request-form/src/environments/environment.ts",
+                  "with": "projects/@test-request/request-form/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@test-request/request-form:build:production"
+            },
+            "development": {
+              "browserTarget": "@test-request/request-form:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "@test-request/request-form:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@test-request/request-form/src/test.ts",
+            "polyfills": "projects/@test-request/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@test-request/request-form/tsconfig.spec.json",
+            "karmaConfig": "projects/@test-request/request-form/karma.conf.js",
+            "assets": [
+              "projects/@test-request/request-form/src/favicon.ico",
+              "projects/@test-request/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@test-request/request-form/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "@patchautomation-process-report/request-form": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@patchautomation-process-report/request-form",
+      "sourceRoot": "projects/@patchautomation-process-report/request-form/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@patchautomation-process-report/request-form",
+            "index": "projects/@patchautomation-process-report/request-form/src/index.html",
+            "main": "projects/@patchautomation-process-report/request-form/src/main.ts",
+            "polyfills": "projects/@patchautomation-process-report/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@patchautomation-process-report/request-form/tsconfig.app.json",
+            "assets": [
+              "projects/@patchautomation-process-report/request-form/src/favicon.ico",
+              "projects/@patchautomation-process-report/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@patchautomation-process-report/request-form/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/@patchautomation-process-report/request-form/src/environments/environment.ts",
+                  "with": "projects/@patchautomation-process-report/request-form/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@patchautomation-process-report/request-form:build:production"
+            },
+            "development": {
+              "browserTarget": "@patchautomation-process-report/request-form:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "@patchautomation-process-report/request-form:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@patchautomation-process-report/request-form/src/test.ts",
+            "polyfills": "projects/@patchautomation-process-report/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@patchautomation-process-report/request-form/tsconfig.spec.json",
+            "karmaConfig": "projects/@patchautomation-process-report/request-form/karma.conf.js",
+            "assets": [
+              "projects/@patchautomation-process-report/request-form/src/favicon.ico",
+              "projects/@patchautomation-process-report/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@patchautomation-process-report/request-form/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "@vm-cpu-ram-extension/request-form": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@vm-cpu-ram-extension/request-form",
+      "sourceRoot": "projects/@vm-cpu-ram-extension/request-form/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@vm-cpu-ram-extension/request-form",
+            "index": "projects/@vm-cpu-ram-extension/request-form/src/index.html",
+            "main": "projects/@vm-cpu-ram-extension/request-form/src/main.ts",
+            "polyfills": "projects/@vm-cpu-ram-extension/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@vm-cpu-ram-extension/request-form/tsconfig.app.json",
+            "assets": [
+              "projects/@vm-cpu-ram-extension/request-form/src/favicon.ico",
+              "projects/@vm-cpu-ram-extension/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@vm-cpu-ram-extension/request-form/src/styles.css"
+            ],
+            "scripts": [],
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "3mb",
+                "maximumError": "4mb"
+              },
+              {
+                "type": "anyComponentStyle",
+                "maximumWarning": "2kb",
+                "maximumError": "4kb"
+              }
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/@vm-cpu-ram-extension/request-form/src/environments/environment.ts",
+                  "with": "projects/@vm-cpu-ram-extension/request-form/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@vm-cpu-ram-extension/request-form:build:production"
+            },
+            "development": {
+              "browserTarget": "@vm-cpu-ram-extension/request-form:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "@vm-cpu-ram-extension/request-form:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@vm-cpu-ram-extension/request-form/src/test.ts",
+            "polyfills": "projects/@vm-cpu-ram-extension/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@vm-cpu-ram-extension/request-form/tsconfig.spec.json",
+            "karmaConfig": "projects/@vm-cpu-ram-extension/request-form/karma.conf.js",
+            "assets": [
+              "projects/@vm-cpu-ram-extension/request-form/src/favicon.ico",
+              "projects/@vm-cpu-ram-extension/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@vm-cpu-ram-extension/request-form/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "@create-snapshot/request-form": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@create-snapshot/request-form",
+      "sourceRoot": "projects/@create-snapshot/request-form/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@create-snapshot/request-form",
+            "index": "projects/@create-snapshot/request-form/src/index.html",
+            "main": "projects/@create-snapshot/request-form/src/main.ts",
+            "polyfills": "projects/@create-snapshot/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@create-snapshot/request-form/tsconfig.app.json",
+            "assets": [
+              "projects/@create-snapshot/request-form/src/favicon.ico",
+              "projects/@create-snapshot/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@create-snapshot/request-form/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "3mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/@create-snapshot/request-form/src/environments/environment.ts",
+                  "with": "projects/@create-snapshot/request-form/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@create-snapshot/request-form:build:production"
+            },
+            "development": {
+              "browserTarget": "@create-snapshot/request-form:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "@create-snapshot/request-form:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@create-snapshot/request-form/src/test.ts",
+            "polyfills": "projects/@create-snapshot/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@create-snapshot/request-form/tsconfig.spec.json",
+            "karmaConfig": "projects/@create-snapshot/request-form/karma.conf.js",
+            "assets": [
+              "projects/@create-snapshot/request-form/src/favicon.ico",
+              "projects/@create-snapshot/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@create-snapshot/request-form/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "@create-ip-network/request-form": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@create-ip-network/request-form",
+      "sourceRoot": "projects/@create-ip-network/request-form/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@create-ip-network/request-form",
+            "index": "projects/@create-ip-network/request-form/src/index.html",
+            "main": "projects/@create-ip-network/request-form/src/main.ts",
+            "polyfills": "projects/@create-ip-network/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@create-ip-network/request-form/tsconfig.app.json",
+            "assets": [
+              "projects/@create-ip-network/request-form/src/favicon.ico",
+              "projects/@create-ip-network/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@create-ip-network/request-form/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/@create-ip-network/request-form/src/environments/environment.ts",
+                  "with": "projects/@create-ip-network/request-form/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@create-ip-network/request-form:build:production"
+            },
+            "development": {
+              "browserTarget": "@create-ip-network/request-form:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "@create-ip-network/request-form:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@create-ip-network/request-form/src/test.ts",
+            "polyfills": "projects/@create-ip-network/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@create-ip-network/request-form/tsconfig.spec.json",
+            "karmaConfig": "projects/@create-ip-network/request-form/karma.conf.js",
+            "assets": [
+              "projects/@create-ip-network/request-form/src/favicon.ico",
+              "projects/@create-ip-network/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@create-ip-network/request-form/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "@create-ip-network/ut-approve": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@create-ip-network/ut-approve",
+      "sourceRoot": "projects/@create-ip-network/ut-approve/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@create-ip-network/ut-approve",
+            "index": "projects/@create-ip-network/ut-approve/src/index.html",
+            "main": "projects/@create-ip-network/ut-approve/src/main.ts",
+            "polyfills": "projects/@create-ip-network/ut-approve/src/polyfills.ts",
+            "tsConfig": "projects/@create-ip-network/ut-approve/tsconfig.app.json",
+            "assets": [
+              "projects/@create-ip-network/ut-approve/src/favicon.ico",
+              "projects/@create-ip-network/ut-approve/src/assets"
+            ],
+            "styles": [
+              "projects/@create-ip-network/ut-approve/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "3mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/@create-ip-network/ut-approve/src/environments/environment.ts",
+                  "with": "projects/@create-ip-network/ut-approve/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@create-ip-network/ut-approve:build:production"
+            },
+            "development": {
+              "browserTarget": "@create-ip-network/ut-approve:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "@create-ip-network/ut-approve:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@create-ip-network/ut-approve/src/test.ts",
+            "polyfills": "projects/@create-ip-network/ut-approve/src/polyfills.ts",
+            "tsConfig": "projects/@create-ip-network/ut-approve/tsconfig.spec.json",
+            "karmaConfig": "projects/@create-ip-network/ut-approve/karma.conf.js",
+            "assets": [
+              "projects/@create-ip-network/ut-approve/src/favicon.ico",
+              "projects/@create-ip-network/ut-approve/src/assets"
+            ],
+            "styles": [
+              "projects/@create-ip-network/ut-approve/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "@create-ip-network/ut-configure-network-devices": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@create-ip-network/ut-configure-network-devices",
+      "sourceRoot": "projects/@create-ip-network/ut-configure-network-devices/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@create-ip-network/ut-configure-network-devices",
+            "index": "projects/@create-ip-network/ut-configure-network-devices/src/index.html",
+            "main": "projects/@create-ip-network/ut-configure-network-devices/src/main.ts",
+            "polyfills": "projects/@create-ip-network/ut-configure-network-devices/src/polyfills.ts",
+            "tsConfig": "projects/@create-ip-network/ut-configure-network-devices/tsconfig.app.json",
+            "assets": [
+              "projects/@create-ip-network/ut-configure-network-devices/src/favicon.ico",
+              "projects/@create-ip-network/ut-configure-network-devices/src/assets"
+            ],
+            "styles": [
+              "projects/@create-ip-network/ut-configure-network-devices/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/@create-ip-network/ut-configure-network-devices/src/environments/environment.ts",
+                  "with": "projects/@create-ip-network/ut-configure-network-devices/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@create-ip-network/ut-configure-network-devices:build:production"
+            },
+            "development": {
+              "browserTarget": "@create-ip-network/ut-configure-network-devices:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "@create-ip-network/ut-configure-network-devices:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@create-ip-network/ut-configure-network-devices/src/test.ts",
+            "polyfills": "projects/@create-ip-network/ut-configure-network-devices/src/polyfills.ts",
+            "tsConfig": "projects/@create-ip-network/ut-configure-network-devices/tsconfig.spec.json",
+            "karmaConfig": "projects/@create-ip-network/ut-configure-network-devices/karma.conf.js",
+            "assets": [
+              "projects/@create-ip-network/ut-configure-network-devices/src/favicon.ico",
+              "projects/@create-ip-network/ut-configure-network-devices/src/assets"
+            ],
+            "styles": [
+              "projects/@create-ip-network/ut-configure-network-devices/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "@create-ip-network/ut-configure-switching-category": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@create-ip-network/ut-configure-switching-category",
+      "sourceRoot": "projects/@create-ip-network/ut-configure-switching-category/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@create-ip-network/ut-configure-switching-category",
+            "index": "projects/@create-ip-network/ut-configure-switching-category/src/index.html",
+            "main": "projects/@create-ip-network/ut-configure-switching-category/src/main.ts",
+            "polyfills": "projects/@create-ip-network/ut-configure-switching-category/src/polyfills.ts",
+            "tsConfig": "projects/@create-ip-network/ut-configure-switching-category/tsconfig.app.json",
+            "assets": [
+              "projects/@create-ip-network/ut-configure-switching-category/src/favicon.ico",
+              "projects/@create-ip-network/ut-configure-switching-category/src/assets"
+            ],
+            "styles": [
+              "projects/@create-ip-network/ut-configure-switching-category/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/@create-ip-network/ut-configure-switching-category/src/environments/environment.ts",
+                  "with": "projects/@create-ip-network/ut-configure-switching-category/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@create-ip-network/ut-configure-switching-category:build:production"
+            },
+            "development": {
+              "browserTarget": "@create-ip-network/ut-configure-switching-category:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "@create-ip-network/ut-configure-switching-category:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@create-ip-network/ut-configure-switching-category/src/test.ts",
+            "polyfills": "projects/@create-ip-network/ut-configure-switching-category/src/polyfills.ts",
+            "tsConfig": "projects/@create-ip-network/ut-configure-switching-category/tsconfig.spec.json",
+            "karmaConfig": "projects/@create-ip-network/ut-configure-switching-category/karma.conf.js",
+            "assets": [
+              "projects/@create-ip-network/ut-configure-switching-category/src/favicon.ico",
+              "projects/@create-ip-network/ut-configure-switching-category/src/assets"
+            ],
+            "styles": [
+              "projects/@create-ip-network/ut-configure-switching-category/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "@create-ip-network/ut-confirmation-completeness": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@create-ip-network/ut-confirmation-completeness",
+      "sourceRoot": "projects/@create-ip-network/ut-confirmation-completeness/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@create-ip-network/ut-confirmation-completeness",
+            "index": "projects/@create-ip-network/ut-confirmation-completeness/src/index.html",
+            "main": "projects/@create-ip-network/ut-confirmation-completeness/src/main.ts",
+            "polyfills": "projects/@create-ip-network/ut-confirmation-completeness/src/polyfills.ts",
+            "tsConfig": "projects/@create-ip-network/ut-confirmation-completeness/tsconfig.app.json",
+            "assets": [
+              "projects/@create-ip-network/ut-confirmation-completeness/src/favicon.ico",
+              "projects/@create-ip-network/ut-confirmation-completeness/src/assets"
+            ],
+            "styles": [
+              "projects/@create-ip-network/ut-confirmation-completeness/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/@create-ip-network/ut-confirmation-completeness/src/environments/environment.ts",
+                  "with": "projects/@create-ip-network/ut-confirmation-completeness/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@create-ip-network/ut-confirmation-completeness:build:production"
+            },
+            "development": {
+              "browserTarget": "@create-ip-network/ut-confirmation-completeness:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "@create-ip-network/ut-confirmation-completeness:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@create-ip-network/ut-confirmation-completeness/src/test.ts",
+            "polyfills": "projects/@create-ip-network/ut-confirmation-completeness/src/polyfills.ts",
+            "tsConfig": "projects/@create-ip-network/ut-confirmation-completeness/tsconfig.spec.json",
+            "karmaConfig": "projects/@create-ip-network/ut-confirmation-completeness/karma.conf.js",
+            "assets": [
+              "projects/@create-ip-network/ut-confirmation-completeness/src/favicon.ico",
+              "projects/@create-ip-network/ut-confirmation-completeness/src/assets"
+            ],
+            "styles": [
+              "projects/@create-ip-network/ut-confirmation-completeness/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "@create-ip-network/ut-create-network-config": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@create-ip-network/ut-create-network-config",
+      "sourceRoot": "projects/@create-ip-network/ut-create-network-config/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@create-ip-network/ut-create-network-config",
+            "index": "projects/@create-ip-network/ut-create-network-config/src/index.html",
+            "main": "projects/@create-ip-network/ut-create-network-config/src/main.ts",
+            "polyfills": "projects/@create-ip-network/ut-create-network-config/src/polyfills.ts",
+            "tsConfig": "projects/@create-ip-network/ut-create-network-config/tsconfig.app.json",
+            "assets": [
+              "projects/@create-ip-network/ut-create-network-config/src/favicon.ico",
+              "projects/@create-ip-network/ut-create-network-config/src/assets"
+            ],
+            "styles": [
+              "projects/@create-ip-network/ut-create-network-config/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/@create-ip-network/ut-create-network-config/src/environments/environment.ts",
+                  "with": "projects/@create-ip-network/ut-create-network-config/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@create-ip-network/ut-create-network-config:build:production"
+            },
+            "development": {
+              "browserTarget": "@create-ip-network/ut-create-network-config:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "@create-ip-network/ut-create-network-config:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@create-ip-network/ut-create-network-config/src/test.ts",
+            "polyfills": "projects/@create-ip-network/ut-create-network-config/src/polyfills.ts",
+            "tsConfig": "projects/@create-ip-network/ut-create-network-config/tsconfig.spec.json",
+            "karmaConfig": "projects/@create-ip-network/ut-create-network-config/karma.conf.js",
+            "assets": [
+              "projects/@create-ip-network/ut-create-network-config/src/favicon.ico",
+              "projects/@create-ip-network/ut-create-network-config/src/assets"
+            ],
+            "styles": [
+              "projects/@create-ip-network/ut-create-network-config/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "@test-user-task-process/request-form": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@test-user-task-process/request-form",
+      "sourceRoot": "projects/@test-user-task-process/request-form/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@test-user-task-process/request-form",
+            "index": "projects/@test-user-task-process/request-form/src/index.html",
+            "main": "projects/@test-user-task-process/request-form/src/main.ts",
+            "polyfills": "projects/@test-user-task-process/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@test-user-task-process/request-form/tsconfig.app.json",
+            "assets": [
+              "projects/@test-user-task-process/request-form/src/favicon.ico",
+              "projects/@test-user-task-process/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@test-user-task-process/request-form/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/@test-user-task-process/request-form/src/environments/environment.ts",
+                  "with": "projects/@test-user-task-process/request-form/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@test-user-task-process/request-form:build:production"
+            },
+            "development": {
+              "browserTarget": "@test-user-task-process/request-form:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "@test-user-task-process/request-form:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@test-user-task-process/request-form/src/test.ts",
+            "polyfills": "projects/@test-user-task-process/request-form/src/polyfills.ts",
+            "tsConfig": "projects/@test-user-task-process/request-form/tsconfig.spec.json",
+            "karmaConfig": "projects/@test-user-task-process/request-form/karma.conf.js",
+            "assets": [
+              "projects/@test-user-task-process/request-form/src/favicon.ico",
+              "projects/@test-user-task-process/request-form/src/assets"
+            ],
+            "styles": [
+              "projects/@test-user-task-process/request-form/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "@test-user-task-process/ut-user-task": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/@test-user-task-process/ut-user-task",
+      "sourceRoot": "projects/@test-user-task-process/ut-user-task/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/@test-user-task-process/ut-user-task",
+            "index": "projects/@test-user-task-process/ut-user-task/src/index.html",
+            "main": "projects/@test-user-task-process/ut-user-task/src/main.ts",
+            "polyfills": "projects/@test-user-task-process/ut-user-task/src/polyfills.ts",
+            "tsConfig": "projects/@test-user-task-process/ut-user-task/tsconfig.app.json",
+            "assets": [
+              "projects/@test-user-task-process/ut-user-task/src/favicon.ico",
+              "projects/@test-user-task-process/ut-user-task/src/assets"
+            ],
+            "styles": [
+              "projects/@test-user-task-process/ut-user-task/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/@test-user-task-process/ut-user-task/src/environments/environment.ts",
+                  "with": "projects/@test-user-task-process/ut-user-task/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "@test-user-task-process/ut-user-task:build:production"
+            },
+            "development": {
+              "browserTarget": "@test-user-task-process/ut-user-task:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "@test-user-task-process/ut-user-task:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/@test-user-task-process/ut-user-task/src/test.ts",
+            "polyfills": "projects/@test-user-task-process/ut-user-task/src/polyfills.ts",
+            "tsConfig": "projects/@test-user-task-process/ut-user-task/tsconfig.spec.json",
+            "karmaConfig": "projects/@test-user-task-process/ut-user-task/karma.conf.js",
+            "assets": [
+              "projects/@test-user-task-process/ut-user-task/src/favicon.ico",
+              "projects/@test-user-task-process/ut-user-task/src/assets"
+            ],
+            "styles": [
+              "projects/@test-user-task-process/ut-user-task/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
     "@idpa-proxy/request-form": {
       "projectType": "application",
       "schematics": {

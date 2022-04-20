@@ -1,0 +1,103 @@
+<div [formGroup]="form">
+      <div class="ui one cards" formArrayName="Entries">
+            <div *ngFor="let control of formArray['controls']; let index=index" [formGroupName]="index"
+                  class="ui horizontal card">
+                  <div class="content">
+
+                        <div class="ui medium labels">
+                              <div *ngIf="this.formArray['controls'][index].get('IPQuantity').value > 0"
+                                    class="right floated ui label" data-tooltip="IP Quantity" data-variation="mini">
+                                    {{this.formArray['controls'][index].get('IPQuantity').value}}</div>
+                              <div class="right floated ui label">
+                                    {{this.formArray['controls'][index].get('IPAuthority').value}}</div>
+                        </div>
+                        <div class="header">
+                              {{this.formArray['controls'][index].get('NetworkType').value}} /
+                              {{this.formArray['controls'][index].get('IPType').value}}
+                        </div>
+                        <div class="meta">
+                              <b>Network Name: </b> {{this.formArray['controls'][index].get('IPComment').value}}
+                        </div>
+
+                        <div class="description" style="padding-top: 5px">
+                              <div class="ui three column grid">
+                                    <div class="four wide column">
+                                          <div class="ui column grid">
+                                                <div class="twelve wide column">
+                                                      <div class="description" style="padding-top: 10px">
+                                                            <b>Provider Independent IP: </b>
+                                                      </div>
+
+                                                </div>
+                                                <div class="two wide column">
+                                                      <div style="padding-top: 10px">
+                                                            <xa-checkbox formControlName="ProviderIndependent"
+                                                                  [clickable]="false">
+                                                            </xa-checkbox>
+                                                      </div>
+
+                                                </div>
+                                          </div>
+                                    </div>
+                                    <div class="four wide column">
+                                          <div class="ui column grid">
+                                                <div class="six wide column">
+                                                      <div class="description" style="padding-top: 10px">
+                                                            <b>VLAN ID:</b>
+                                                      </div>
+                                                </div>
+                                                <div class="ten wide column">
+                                                      <div class="description">
+
+                                                            <div class="field">
+                                                                  <input type="text" (keypress)="keyPress($event)"
+                                                                        placeholder="1" formControlName="VLANID">
+                                                            </div>
+                                                            <show-errors
+                                                                  [control]="formArray['controls'][index]['controls']['VLANID']">
+                                                            </show-errors>
+                                                      </div>
+                                                </div>
+                                          </div>
+                                    </div>
+
+                                    <div class="eight wide column">
+                                          <div class="ui column grid">
+                                                <div class="three wide column">
+                                                      <div class="description" style="padding-top: 10px">
+                                                            <b>Range:</b>
+                                                      </div>
+
+                                                </div>
+
+
+                                                <div class="thirteen wide column">
+                                                      <div class="description">
+                                                            <div class="field"
+                                                                  *ngIf="this.formArray['controls'][index].get('NetworkType').value == 'Server-LAN' || this.formArray.controls[index].get('NetworkType').value == 'NAS-LAN' || this.formArray.controls[index].get('NetworkType').value == 'Transit-LAN' || (this.formArray.controls[index].get('NetworkType').value == 'DMZ' && this.formArray.controls[index].get('ProviderIndependent').value == true)">
+                                                                  <input type="text" readonly
+                                                                        value="{{this.formArray['controls'][index].get('IPNetwork').value}}">
+                                                            </div>
+                                                            <div class="field"
+                                                                  *ngIf="this.formArray['controls'][index].get('NetworkType').value == 'Admin-LAN' || (this.formArray.controls[index].get('NetworkType').value == 'DMZ' && this.formArray.controls[index].get('ProviderIndependent').value == false)">
+                                                                  <input type="text" formControlName="IPNetwork">
+                                                                  <show-errors
+                                                                        [control]="formArray['controls'][index]['controls']['IPNetwork']">
+                                                                  </show-errors>
+
+                                                            </div>
+
+                                                      </div>
+
+                                                </div>
+                                          </div>
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+      </div>
+</div>
+
+
+<pre *if-dev>{{this.form.value | json}}</pre>

@@ -1,0 +1,52 @@
+{
+    "requestForm": [
+        {
+          "varName": "Customer",
+          "type": "text",
+          "required": true
+        },
+        {
+            "varName": "Hostname",
+            "type": "text",
+            "required": true
+          },
+          {
+            "varName": "Hostid",
+            "type": "text",
+            "required": true
+          },
+          {
+            "varName": "NoSnapshot",
+            "type": "text",
+            "required": true
+          },
+          {
+            "varName": "Startdate",
+            "type": "text",
+            "required": true
+            
+          },
+          {
+            "varName": "ContactInfo",
+            "type": "text",
+            "required": true,
+            "format": {
+                "regexPattern": "^(([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)(\\s*,\\s*|\\s*$))*$",
+                "errorMessage": "Please provide correctly formatted email addresses (comma [,] separated). "
+            }
+          },
+          {
+            "varName": "Agree",
+            "type": "boolean",
+            "requiredTrue": true
+          },
+          {
+            "varName": "Confirm",
+            "type": "boolean",
+            "requiredTrue": true
+          }
+
+          
+
+    ]
+}

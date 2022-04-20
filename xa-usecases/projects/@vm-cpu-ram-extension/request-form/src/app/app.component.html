@@ -1,0 +1,199 @@
+<form [formGroup]="form" class="ui container form" style="padding:20px 10px">
+    <div class="ui message">
+        <h2 class="ui dividing header">
+            <i class="info icon"></i>
+            <div class="content">
+                <span> Information </span>
+            </div>
+        </h2>
+        <ul class="list">
+            The prerequisite for using this process is that SDM/SCOPMs have been informed in advance and that they have
+            aggreed to the extension.
+        </ul>
+    </div>
+    <div class="required field" [class.required]="isFormElementRequired('Agree')">
+        <div class="ui checkbox">
+            <input type="checkbox" formControlName="Agree">
+            <label>I confirm having the approval from SDM/SCOPMs.</label>
+        </div>
+    </div>
+
+    <h2 class="ui dividing header">
+        <i class="desktop icon"></i>
+        <div class="content">
+            <span> Host Selection </span>
+            <div class="sub header">Select Host by providing at least one of the following critieria.</div>
+        </div>
+    </h2>
+
+    <search-component style="height: 500px" (selectionChanged)='onSearchChanged($event)' selectionMode="single"
+        [filter]="filter" [fields]="SearchFields" [search]="searchFunction"></search-component>
+
+    <h5>Selected Host:</h5>
+    <infotable [info]="info"></infotable>
+
+
+
+
+    <h5>Current Settings:</h5>
+
+
+    <div class="ui segment">
+        <div class="ui clearing divider"></div>
+
+        <div class="field">
+
+
+            <b>CPU:</b> {{this.form.get('CPU').value}}
+
+
+
+            (cores per CPU:
+            {{this.form.get('coresPerCPU').value}} /
+
+            CPU sockets:
+            {{this.form.get('CPUSockets').value}})
+
+
+        </div>
+
+
+
+        <div class="field">
+
+            <b>CPU reservation (MHz):</b> {{this.form.get('CPUReservation').value}}
+
+        </div>
+        <div class="field">
+
+            <b>CPU limit (MHz):</b> {{this.form.get('CPULimit').value}}
+
+        </div>
+
+
+
+        <div class="field">
+
+            <b>RAM (GB):</b> {{this.form.get('RAM').value}}
+
+        </div>
+
+        <div class="ui clearing divider"></div>
+    </div>
+
+
+
+
+
+
+
+    <!-- <div class="ui negative message"
+        *ngIf="this.vcenter === null || this.vmname === null || this.vmhostid === null ||  this.memoryHotAddEnabled === null || this.cpuHotAddEnabled === null || this.vmtoolsStatus === null || this.os === null">
+
+
+        <div class="ui list">
+            <div class="header"> No extension possible: </div>
+            <div *ngFor="let element of this.InfoMessage" class="item">
+                {{element}}
+            </div>
+
+        </div>
+    </div>  -->
+
+
+
+    <h5>
+        <div style="padding-top: 20px; margin-bottom: 5px"> Please specify the needed extensions:</div>
+    </h5>
+
+    <div class="two fields">
+        <div class="field" [class.required]="isFormElementRequired('extendCPUby')">
+            <label>Extension of CPU by:</label>
+            <xa-select formControlName="extendCPUby"
+                placeholder="can only be extended by the same or multiple number as cores per CPU"
+                [options]="extensionSelection | async" [clearable]="true" [selected]="recalculateCPUExtension()">
+            </xa-select>
+            <show-errors [control]="form.controls.extendCPUby"></show-errors>
+            <ul *ngIf="this.form.get('extendCPUby').value >= 1 && this.form.get('CPULimit').value !== ' '">
+                <li style="color: orange;">
+                    Please increase also the CPU limit, if necessary</li>
+            </ul>
+
+        </div>
+
+
+        <div class="field" [class.required]="isFormElementRequired('CPUnew')">
+            <label>Extension of CPU to: (only for reference)</label>
+            <input type="text" formControlName="CPUnew" readonly="readonly">
+            <show-errors [control]="this.form.get('CPUnew')"></show-errors>
+        </div>
+    </div>
+
+    <div class="two fields">
+        <div class="field" [class.required]="isFormElementRequired('extendCPUReservationBy')">
+            <label>Extension of CPU reservation by (MHz):</label>
+            <input type="text" formControlName="extendCPUReservationBy" (input)="recalculateCPUreservation()">
+            <show-errors [control]="form.controls.extendCPUReservationBy"></show-errors>
+        </div>
+
+        <div class="field" [class.required]="isFormElementRequired('CPUReservationNew')">
+            <label>Extension of CPU reservation to (MHz): (only for reference)</label>
+            <input type="text" formControlName="CPUReservationNew" readonly="readonly">
+            <show-errors [control]="this.form.get('CPUReservationNew')"></show-errors>
+        </div>
+    </div>
+
+    <div class="fields">
+
+      
+        <div class="eight wide field" [class.required]="isFormElementRequired('extendCPULimitBy')">
+            <label>Extension of CPU limit by (MHz):</label>
+            <input type="text" formControlName="extendCPULimitBy" (input)="recalculateCPUlimitation()">
+        </div>
+
+        <div class="two wide field" style="padding-top: 30px;" [class.required]="isFormElementRequired('extendCPUbyChbx')">
+            <div class="ui checkbox">
+                <input type="checkbox" formControlName="extendCPUbyChbx">
+                <label><b>unlimited</b></label>
+            </div>
+        </div>
+
+        <div class="ten wide field" [class.required]="isFormElementRequired('CPULimitNew')">
+            <label>Extension of CPU limit to (MHz): (only for reference)</label>
+            <input type="text" formControlName="CPULimitNew" readonly="readonly">
+            <show-errors [control]="this.form.get('CPULimitNew')"></show-errors>
+        </div>
+        
+    </div>
+
+
+
+    <div class="two fields">
+        <div class="field" [class.required]="isFormElementRequired('extendRAMby')">
+            <label>Extension of RAM by (GB):</label>
+            <input type="text" formControlName="extendRAMby" (input)="recalculateRAMExtension()">
+            <show-errors [control]="form.controls.extendRAMby"></show-errors>
+        </div>
+
+        <div class="field" [class.required]="isFormElementRequired('RAMnew')">
+            <label>Extension of RAM to: (only for reference)</label>
+            <input type="text" formControlName="RAMnew" readonly="readonly">
+            <show-errors [control]="this.form.get('RAMnew')"></show-errors>
+        </div>
+    </div>
+
+
+
+    <div class="field" style="padding-top: 20px;" [class.required]="isFormElementRequired('ContactInfo')">
+        <label>Info Contacts</label>
+        <p>Specify here a comma separated list of valid mail addresses that shall be informed
+            about the result. Make sure that you enter the email adresses correctly, as there is no
+            technical
+            check.
+        </p>
+        <input type="text" formControlName="ContactInfo">
+        <show-errors [control]="this.form.get('ContactInfo')"></show-errors>
+
+    </div>
+
+</form>

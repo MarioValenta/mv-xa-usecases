@@ -1,20 +1,20 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { Injector, NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
 import { createCustomElement } from '@angular/elements';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InfoMailShareModule } from '@xa/lib-ui-common';
 import { ShowErrorsModule } from '@xa/show-errors';
-import { InfoMailShareModule, XAServices } from '@xa/lib-ui-common';
 import { XAModalService, XAUIModule } from '@xa/ui';
-import { environment } from '../environments/environment';
-import { SharedModule as DEVSharedModule } from 'projects/xa-portal-dev/src/app/shared/shared.module';
-import { InfoTableComponent } from './infotable-component/infotable.component';
-import { SharedModule } from 'projects/@create-nfs-volume/shared/shared-module';
-import { XAToastDefaults } from 'projects/shared/toast-config';
 import { NouisliderModule } from 'ng2-nouislider';
-import { XASERVICE_TOKEN, windowFactory } from 'projects/shared.functions';
+import { SharedModule } from 'projects/@create-nfs-volume/shared/shared-module';
+import { windowFactory, XASERVICE_TOKEN } from 'projects/shared.functions';
+import { XAToastDefaults } from 'projects/shared/toast-config';
+import { SharedModule as DEVSharedModule } from 'projects/xa-portal-dev/src/app/shared/shared.module';
+
+import { environment } from '../environments/environment';
+import { AppComponent } from './app.component';
+import { InfoTableComponent } from './infotable-component/infotable.component';
 
 @NgModule({
   declarations: [

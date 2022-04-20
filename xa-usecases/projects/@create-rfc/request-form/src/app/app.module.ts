@@ -1,25 +1,31 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, Injector } from '@angular/core';
-import { createCustomElement } from '@angular/elements';
-import { AppComponent } from './app.component';
-import { InfoMailShareModule, UiAttachmentsUploadModule, XAServices } from '@xa/lib-ui-common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
-import { XAUIModule, XAModalService } from '@xa/ui';
-import { AgGridModule } from 'ag-grid-angular';
-import { SearchModule } from '@xa/search';
-import { XAGridHelperModule } from '@xa/grid';
 import 'ag-grid-enterprise';
+
+import { Injector, NgModule } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { XAGridHelperModule } from '@xa/grid';
+import { InfoMailShareModule, UiAttachmentsUploadModule } from '@xa/lib-ui-common';
+import { SearchModule } from '@xa/search';
 import { ShowErrorsModule } from '@xa/show-errors';
-import { environment } from '../environments/environment';
-import { SharedModule } from 'projects/xa-portal-dev/src/app/shared/shared.module';
+import { XAModalService, XAUIModule } from '@xa/ui';
+import { AgGridModule } from 'ag-grid-angular';
 import { CiTableComponent } from 'projects/@create-rfc/shared/ci-table/ci-table.component';
-import { RequestForChangeSearchAppsModalComponent } from 'projects/@create-rfc/shared/modals/search-apps-dialog/request-for-change-search-apps.component';
-import { RequestForChangeSearchCisModalComponent } from 'projects/@create-rfc/shared/modals/search-cis-dialog/request-for-change-search-cis.component';
+import {
+  RequestForChangeSearchAppsModalComponent,
+} from 'projects/@create-rfc/shared/modals/search-apps-dialog/request-for-change-search-apps.component';
+import {
+  RequestForChangeSearchCisModalComponent,
+} from 'projects/@create-rfc/shared/modals/search-cis-dialog/request-for-change-search-cis.component';
 import { PipeModule } from 'projects/@create-rfc/shared/pure-pipes/pipe.module';
+import { windowFactory, XASERVICE_TOKEN } from 'projects/shared.functions';
 import { Ng2FlatpickrModule } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.module';
 import { XAToastDefaults } from 'projects/shared/toast-config';
-import { XASERVICE_TOKEN, windowFactory } from 'projects/shared.functions';
+import { SharedModule } from 'projects/xa-portal-dev/src/app/shared/shared.module';
+
+import { environment } from '../environments/environment';
+import { AppComponent } from './app.component';
 
 
 @NgModule({

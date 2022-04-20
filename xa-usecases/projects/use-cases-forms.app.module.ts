@@ -27,6 +27,23 @@ import { ServerRundownRequestFormAppModule } from './@server-rundown/request-for
 import { ServerRundownUTNasOfflineAppModule } from './@server-rundown/ut-nas-offline/src/app/app.module';
 import { ServerRundownUTSelectStorageAppModule } from './@server-rundown/ut-select-storage/src/app/app.module';
 import { IdpaProxyRequestFormAppModule } from 'projects/@idpa-proxy/request-form/src/app/app.module';
+import { SapStartupRequestFormAppModule } from './@sap-startup/request-form/src/app/app.module';
+import { SapApplicationRundownRequestFormAppModule } from './@sap-application-rundown/request-form/src/app/app.module';
+import { SapApplicationRundownUTNasOfflineAppModule } from './@sap-application-rundown/ut-nas-offline/src/app/app.module';
+import { SapApplicationRundownUTSelectStorageAppModule } from './@sap-application-rundown/ut-select-storage/src/app/app.module';
+import { TestRequestRequestFormAppModule } from './@test-request/request-form/src/app/app.module';
+import { PatchautomationProcessReportRequestFormAppModule } from './@patchautomation-process-report/request-form/src/app/app.module';
+import { VMCpuRamExtensionRequestFormAppModule } from './@vm-cpu-ram-extension/request-form/src/app/app.module';
+import { CreateSnapshotRequestFormAppModule } from './@create-snapshot/request-form/src/app/app.module';
+import { CreateIPNetworkRequestFormAppModule } from './@create-ip-network/request-form/src/app/app.module';
+import { CreateIPNetworkUTApproveAppModule } from './@create-ip-network/ut-approve/src/app/app.module';
+import { CreateIPNetworkUTConfigureNetworkDevicesAppModule } from './@create-ip-network/ut-configure-network-devices/src/app/app.module';
+import { CreateIPNetworkUTConfigureSwitchingCategoryAppModule } from './@create-ip-network/ut-configure-switching-category/src/app/app.module';
+import { CreateIPNetworkUTConfirmationCompletenessAppModule } from './@create-ip-network/ut-confirmation-completeness/src/app/app.module';
+import { CreateIPNetworkUTCreateNetworkConfigAppModule } from './@create-ip-network/ut-create-network-config/src/app/app.module';
+import { TestUserTaskProcessRequestFormAppModule } from './@test-user-task-process/request-form/src/app/app.module';
+import { TestUserTaskUTUserTaskAppModule } from './@test-user-task-process/ut-user-task/src/app/app.module';
+
 
 @NgModule({
   exports: [
@@ -57,7 +74,23 @@ import { IdpaProxyRequestFormAppModule } from 'projects/@idpa-proxy/request-form
     ServerRundownRequestFormAppModule,
     ServerRundownUTNasOfflineAppModule,
     ServerRundownUTSelectStorageAppModule,
-    IdpaProxyRequestFormAppModule
+    IdpaProxyRequestFormAppModule,
+    SapStartupRequestFormAppModule,
+    SapApplicationRundownRequestFormAppModule,
+    SapApplicationRundownUTNasOfflineAppModule,
+    SapApplicationRundownUTSelectStorageAppModule,
+    TestRequestRequestFormAppModule,
+    PatchautomationProcessReportRequestFormAppModule,
+    VMCpuRamExtensionRequestFormAppModule,
+    CreateSnapshotRequestFormAppModule,
+    CreateIPNetworkRequestFormAppModule,
+    CreateIPNetworkUTApproveAppModule,
+    CreateIPNetworkUTConfigureNetworkDevicesAppModule,
+    CreateIPNetworkUTConfigureSwitchingCategoryAppModule,
+    CreateIPNetworkUTConfirmationCompletenessAppModule,
+    CreateIPNetworkUTCreateNetworkConfigAppModule,
+    TestUserTaskProcessRequestFormAppModule,
+    TestUserTaskUTUserTaskAppModule
   ]
 })
 export class UseCasesFormsAppModule { }

@@ -26,6 +26,7 @@ export abstract class FormsBaseClass implements OnInit, OnDestroy {
   checkFormValuesChanges?(): void;
   abstract onSubmit(): any;
   customOnInit?(): void;
+  setTaskContextCallbacks?(): void;
 
   ngOnInit(): void {
     console.debug(this.title, 'onInit()');
@@ -34,16 +35,23 @@ export abstract class FormsBaseClass implements OnInit, OnDestroy {
     this.setValidationService && this.setValidationService();
     this.checkFormValuesChanges && this.checkFormValuesChanges();
     this.setFormStatusChangeListener();
-    this.setContextCallbacks();
+    this.setBasicContextCallbacks();
     this.setFormDataFromPayload();
     this.customOnInit && this.customOnInit();
   }
 
-  setContextCallbacks(): void {
-    console.debug(this.title, 'setContextCallbacks()');
+  ngOnDestroy() {
+    this.destroy$.next();
+  }
+
+  setBasicContextCallbacks(): void {
+    console.debug(this.title, 'setBasicContextCallbacks()');
 
     this.Context.OnSubmit(() => this.onSubmit());
-    this.Context.OnFeedback(() => this.feedback());
+    this.Context.OnFeedback(() => this.onFeedback());
+
+    // set the ICETaskContext callbacks like reject, approve only if function is implemented
+    this.setTaskContextCallbacks && this.setTaskContextCallbacks();
   }
 
   setFormStatusChangeListener(): void {
@@ -62,11 +70,7 @@ export abstract class FormsBaseClass implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy() {
-    this.destroy$.next();
-  }
-
-  feedback(): FeedbackRequestPayload {
+  onFeedback(): FeedbackRequestPayload {
     return this.form.value;
   }
 }

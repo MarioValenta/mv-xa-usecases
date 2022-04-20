@@ -1,0 +1,55 @@
+<form [formGroup]="form" class="ui container form" style="padding:20px 10px">
+
+  <h3 class="ui dividing header padding-top-30">
+    <i class="info icon"></i>General Information
+  </h3>
+
+  <div class="two fields">
+
+    <div class="required field">
+      <label>Customer</label>
+
+      <xa-select [search]="true" formControlName="Customer" placeholder="Select Customer" [options]="Customers$ | async"
+        [loading]="!(Customers$ | async)" viewValue="label" optionValue="CUSTOMERNICKNAME">
+      </xa-select>
+    </div>
+
+    <div class="required field">
+      <label>Network Description </label>
+      <input type="text" formControlName="Description">
+      <show-errors [control]="form.controls.Description"></show-errors>
+    </div>
+  </div>
+
+  <div class="two fields">
+    <div class="required field">
+      <label>Location</label>
+      <xa-select [search]="true" formControlName="Location" [options]="Locations$ | async" [loading]="!(Locations$ | async)" optionValue="label"
+      viewValue="label">
+      </xa-select>
+    </div>
+
+    <div class="required field">
+      <label>WBS </label>
+      <input type="text" formControlName="Wbs" placeholder="I.00301070.02.01">
+      <show-errors [control]="form.controls.Wbs"></show-errors>
+    </div>
+
+  </div>
+
+  <h3 class="ui dividing header padding-top-30">
+    <i class="sitemap icon"></i>Network Options
+  </h3>
+
+
+  <network-options-table formControlName="NetworkItems" (valid)="Onvalid($event)"></network-options-table>
+ 
+
+  <h3 class="ui dividing header padding-top-30">
+    <i class="edit outline icon"></i>Additional Information
+  </h3>
+  <div class="field">
+    <textarea rows="2" placeholder="Additional Information" formControlName="Comment"></textarea>
+  </div>
+
+</form>

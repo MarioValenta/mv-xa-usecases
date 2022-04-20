@@ -94,8 +94,8 @@ export class AppComponent implements ICERequest, OnInit, OnDestroy {
     console.log(formData);
 
     return {
-      value: formData.getRawValue(),
-      identifier: `${this.title}-${formData.get('startdate').value}`
+      value: formData,
+      identifier: `${this.title}-${formData['startdate']}`
     };
   }
 

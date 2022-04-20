@@ -1,0 +1,62 @@
+<form [formGroup]="form" class="ui container form" style="padding-top: 20px">
+
+  <div class="three fields">
+
+    <div class="field">
+      <label>Requestor Firstname</label>
+      <input type="text" formControlName="RequestorFirstName" readonly>
+    </div>
+    <div class="field">
+      <label>Requestor Lastname </label>
+      <input type="text" formControlName="RequestorLastName" readonly>
+    </div>
+    <div class="field">
+      <label>Requestor Email</label>
+      <input type="text" formControlName="RequestorEmail" readonly>
+    </div>
+  </div>
+
+
+  <div class="two fields">
+      <div class="field">
+        <label>Customer</label>
+        <input type="text" formControlName="Customer" readonly>
+      </div>
+
+      <div class="field">
+        <label>Network Description </label>
+        <input type="text" formControlName="Description" readonly>
+      </div>
+
+    </div>
+
+
+    <div class="two fields">
+      <div class="field">
+        <label>Location</label>
+        <input type="text" formControlName="Location" readonly>
+      </div>
+
+      <div class="field">
+        <label>WBS </label>
+        <input type="text" formControlName="Wbs" placeholder="I.00301070.02.01" readonly>
+
+      </div>
+
+    </div>
+
+
+  <div class="field">
+    <label>Requestor Comments</label>
+    <textarea rows="2" placeholder="Additional Information" formControlName="Comment" readonly></textarea>
+  </div>
+
+   <configurenetworkdevices-table [Context]="this.Context"></configurenetworkdevices-table>
+
+  <div class="field" style="padding-top: 20px">
+    <xa-checkbox formControlName="ConfiguredDevices">Device/s configured</xa-checkbox>
+  </div>
+
+</form>
+
+<pre *if-dev>{{this.form.value | json}}</pre>

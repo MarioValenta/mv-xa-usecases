@@ -1,0 +1,19 @@
+<div class="ui segment">
+  <div class="ui clearing divider"></div>
+
+  <div class="ui list">
+    
+    <div *ngFor="let element of info | keyvalue" class="item">
+      <div class="header"> {{element.key}}: </div>
+      {{element.value}}
+    </div>
+
+    <div *ngIf="numberOfProperties % 2 != 0" class="item">
+      &nbsp;
+    </div>
+
+  </div>
+
+
+  <div class="ui clearing divider"></div>
+</div>

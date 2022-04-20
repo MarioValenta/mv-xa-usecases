@@ -1,0 +1,36 @@
+{
+  "Comment": "TEST",
+  "Customer": "ACME",
+  "Description": "TEST",
+  "Location": "T-Center",
+  "NetworkItems": [
+    {
+      "AffectedCategory": "CAT01078530",
+      "AffectedDevices": [],
+      "IPAuthority": "TSA",
+      "IPComment": "TEST",
+      "IPNetwork": "10.10.10.0/24",
+      "IPQuantity": "2",
+      "IPType": "IPv4",
+      "NetworkType": "Admin-LAN",
+      "ProviderIndependent": false,
+      "VLANID": "1"
+    },
+    {
+      "AffectedCategory": "CAT01078530",
+      "AffectedDevices": [],
+      "IPAuthority": "TSA",
+      "IPComment": "TEST",
+      "IPNetwork": "10.10.10.0/24",
+      "IPQuantity": "",
+      "IPType": "IPv4",
+      "NetworkType": "Server-LAN",
+      "ProviderIndependent": false,
+      "VLANID": "2"
+    }
+  ],
+  "RequestorEmail": "matthias.grill@t-systems.com",
+  "RequestorFirstName": "Matthias",
+  "RequestorLastName": "Grill",
+  "Wbs": "I.12345678.00.01"
+}

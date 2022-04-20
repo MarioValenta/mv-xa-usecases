@@ -1,0 +1,47 @@
+<form [formGroup]="form" class="ui container form" style="padding:20px 10px">
+
+  <div class="field">
+    <label>optional Identifier</label>
+    <input type="text" formControlName="Identifier" placeholder="Identifier of the request">
+  </div>
+
+  <div class="required field">
+    <label>Request Name</label>
+    <input type="text" formControlName="Requestname" placeholder="Name of the request">
+  </div>
+
+  <table class="ui table compact">
+    <thead>
+      <tr class="head">
+        <th class="five wide field">Name</th>
+        <th class="five wide field">Value</th>
+        <th class="td_actions ">
+          <i class="large icons right floated action" (click)="addRow()">
+            <i class="th list icon"></i>
+            <i class="corner add icon"></i>
+          </i>
+        </th>
+      </tr>
+    </thead>
+    <tbody formArrayName="RowItems">
+      <tr *ngFor="let rows of formRowItems.controls; let i = index">
+        <ng-container [formGroupName]="i">
+          <td>
+            <div class="ui input">
+              <input type="text" formControlName="Name">
+            </div>
+          </td>
+          <td>
+            <div class="text">
+              <input type="text" formControlName="Value">
+            </div>
+          </td>
+          <td>
+            <i class="trash alternate outline icon" (click)="removeRow(i)"></i>
+          </td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+</form>
+<pre *if-dev>{{form.value | json }}</pre>

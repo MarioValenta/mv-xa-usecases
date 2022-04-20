@@ -1,0 +1,21 @@
+{
+  "Aborted": true,
+  "ApprovalComment": "test",
+  "Comment": null,
+  "Customer": "ACME",
+  "Description": "testest",
+  "Location": "T-Center",
+  "NetworkItems": [
+    {
+      "IPAuthority": "TSA",
+      "IPComment": "testestet",
+      "IPType": "IPv4",
+      "NetworkType": "DMZ",
+      "ProviderIndependent": false
+    }
+  ],
+  "RequestorEmail": "benedikt.kaiser@t-systems.com",
+  "RequestorFirstName": "Benedikt",
+  "RequestorLastName": "Kaiser",
+  "Wbs": "I.12345678.00.01"
+}

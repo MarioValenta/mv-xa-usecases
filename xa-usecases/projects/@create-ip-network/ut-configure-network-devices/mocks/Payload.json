@@ -1,0 +1,127 @@
+{
+  "Wbs": "I.12345678.00.01",
+  "Group": {
+    "Devices": {
+      "GDE.PEA.AT.ALL.X-AUTOMATION": {
+        "2": {
+          "IPType": "IPv4",
+          "VLANID": "2",
+          "IPComment": "TEST",
+          "IPNetwork": "10.10.10.0/24",
+          "IPQuantity": "2",
+          "IPAuthority": "TSA",
+          "NetworkType": "Admin-LAN",
+          "AffectedDevices": [
+            {
+              "HostID": "H13794017",
+              "Customer": "ACME",
+              "HostName": "acmetestlin",
+              "SupportGroup": "GDE.PEA.AT.ALL.X-AUTOMATION"
+            },
+            {
+              "HostID": "H13794018",
+              "Customer": "ACME",
+              "HostName": "acmetestwin",
+              "SupportGroup": "GDE.PEA.AT.ALL.X-AUTOMATION"
+            }
+          ],
+          "AffectedCategory": "CAT01078530",
+          "ProviderIndependent": false
+        }
+      },
+      "MIS.INT.AT.ALL.UNIX-SVC-4-IC": {
+        "2": {
+          "IPType": "IPv4",
+          "VLANID": "2",
+          "IPComment": "TEST",
+          "IPNetwork": "10.10.10.0/24",
+          "IPQuantity": "2",
+          "IPAuthority": "TSA",
+          "NetworkType": "Admin-LAN",
+          "AffectedDevices": [
+            {
+              "HostID": "H13419417",
+              "Customer": "ACME",
+              "HostName": "acmetesthost",
+              "SupportGroup": "MIS.INT.AT.ALL.UNIX-SVC-4-IC"
+            }
+          ],
+          "AffectedCategory": "CAT01078530",
+          "ProviderIndependent": false
+        }
+      }
+    },
+    "SupportGroup": [
+      "MIS.INT.AT.ALL.UNIX-SVC-4-IC",
+      "GDE.PEA.AT.ALL.X-AUTOMATION"
+    ]
+  },
+  "Comment": "TEST",
+  "devices": {
+    "2": {
+      "IPType": "IPv4",
+      "VLANID": "2",
+      "IPComment": "TEST",
+      "IPNetwork": "10.10.10.0/24",
+      "IPQuantity": "2",
+      "IPAuthority": "TSA",
+      "NetworkType": "Admin-LAN",
+      "AffectedDevices": [
+        {
+          "HostID": "H13794017",
+          "Customer": "ACME",
+          "HostName": "acmetestlin",
+          "SupportGroup": "GDE.PEA.AT.ALL.X-AUTOMATION"
+        },
+        {
+          "HostID": "H13794018",
+          "Customer": "ACME",
+          "HostName": "acmetestwin",
+          "SupportGroup": "GDE.PEA.AT.ALL.X-AUTOMATION"
+        }
+      ],
+      "AffectedCategory": "CAT01078530",
+      "ProviderIndependent": false
+    }
+  },
+  "Customer": "INTERN_SHARED",
+  "Location": "T-Center",
+  "Description": "TEST",
+  "NetworkItems": [
+    {
+      "IPType": "IPv4",
+      "VLANID": "2",
+      "IPComment": "TEST",
+      "IPNetwork": "10.10.10.0/24",
+      "IPQuantity": "2",
+      "IPAuthority": "TSA",
+      "NetworkType": "Admin-LAN",
+      "AffectedDevices": [
+        {
+          "HostID": "H13419417",
+          "Customer": "ACME",
+          "HostName": "acmetesthost",
+          "SupportGroup": "MIS.INT.AT.ALL.UNIX-SVC-4-IC"
+        },
+        {
+          "HostID": "H13794017",
+          "Customer": "ACME",
+          "HostName": "acmetestlin",
+          "SupportGroup": "GDE.PEA.AT.ALL.X-AUTOMATION"
+        },
+        {
+          "HostID": "H13794018",
+          "Customer": "ACME",
+          "HostName": "acmetestwin",
+          "SupportGroup": "GDE.PEA.AT.ALL.X-AUTOMATION"
+        }
+      ],
+      "AffectedCategory": "CAT01078530",
+      "ProviderIndependent": false
+    }
+  ],
+  "supportgroup": "GDE.PEA.AT.ALL.X-AUTOMATION",
+  "RequestorEmail": "matthias.grill@t-systems.com",
+  "RequestorLastName": "Grill",
+  "RequestorFirstName": "Matthias"
+}

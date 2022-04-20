@@ -1,0 +1,136 @@
+<form [formGroup]="form" class="ui container form" style="padding-top: 20px">
+
+
+  <h3 class="ui dividing header padding-top-30">
+      <i class="check icon"></i>IP-Network(s) are created now
+  </h3>
+  <div class="ui segment">
+      <p><b>Please check the following configurations.</b></p>
+  </div>
+
+
+
+  <div class="ui one cards">
+      <div *ngFor="let network of this.NetworkItems; let index= index" class="ui horizontal card">
+          <div class="content">
+
+              <div class="ui medium labels">
+                  <div *ngIf="network.IPQuantity > 0" class="right floated ui label" data-tooltip="IP Quantity"
+                      data-variation="mini">
+                      {{network.IPQuantity}}</div>
+                  <div class="right floated ui label">
+                      {{network.IPAuthority}}</div>
+              </div>
+              <div class="header">
+                  {{network.NetworkType}} /
+                  {{network.IPType}} /
+                  {{network.IPNetwork}}
+              </div>
+              <div class="meta">
+                  <b>Network Name: </b> {{network.IPComment}}
+              </div>
+
+              <div class="description">
+                  <div class="ui three column grid">
+                      <div class="column">
+                          <div class="ui column grid">
+                              <div class="ten wide column">
+                                  <div class="description" style="padding-top: 5px">
+                                      <b>Provider Independent IP: </b>
+                                  </div>
+
+                              </div>
+                              <div class="two wide column">
+                                  <div style="padding-top: 5px">
+                                      <xa-checkbox [clickable]="false" [checked]="network.ProviderIndependent">
+
+                                      </xa-checkbox>
+                                  </div>
+
+
+
+                              </div>
+                          </div>
+                      </div>
+                      <div class="column">
+                          <div class="ui column grid">
+                              <div class="six wide column" style="padding-left: 60px">
+                                  <div class="description" style="padding-top: 5px">
+                                      <b>VLAN ID:</b>
+                                  </div>
+                              </div>
+                              <div class="four wide column">
+                                  <div class="description" style="padding-top: 5px">
+                                      <b>{{network.VLANID}}</b>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="column">
+                          <div class="ui column grid">
+                              <div class="eight wide column">
+                                  <div class="description" style="padding-top: 5px">
+                                      <b>Affected Category:</b>
+                                  </div>
+                              </div>
+
+
+                              <div class="eight wide column" style="padding-top: 20px">
+                                  <div class="description">
+                                      <b>{{network.AffectedCategory}}</b>
+                                  </div>
+
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="description" style="padding-top: 20px" *ngIf="this.AffectedDevices.length > 0">
+
+                  <table class="ui small table">
+                      <thead>
+                          <tr class="center aligned">
+                              <th class="center aligned">HostID</th>
+                              <th class="center aligned">HostName</th>
+                              <th class="center aligned">SupportGroup</th>
+                              <th class="center aligned">Customer</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr class="center aligned" *ngFor="let device of this.AffectedDevices[index]; let i=index">
+                              <td class="center aligned">{{device.HostID}}</td>
+                              <td class="center aligned">{{device.HostName}}</td>
+                              <td class="center aligned">{{device.SupportGroup}}</td>
+                              <td class="center aligned">{{device.Customer}}</td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="ui segment">
+      <div class="field">
+          <div class="grouped fields">
+              <label> Confirm request creation: </label>
+              <div class="field">
+                  <xa-radiobox formControlName="Confirmation" group="Confirm" value="yes">Created as requested
+                  </xa-radiobox>
+              </div>
+              <div class="field">
+                  <xa-radiobox formControlName="Confirmation" group="Confirm" value="no">Not created as requested
+                  </xa-radiobox>
+              </div>
+          </div>
+      </div>
+
+      <div *ngIf="this.form.get('Confirmation').value == 'no'">
+          <label>Additional Information: </label>
+          <textarea rows="4" formControlName="Feedback" placeholder="e.g., *) Wrong Network-Type"></textarea>
+      </div>
+  </div>
+
+</form>
+
+<pre *if-dev>{{this.form.value | json}}</pre>

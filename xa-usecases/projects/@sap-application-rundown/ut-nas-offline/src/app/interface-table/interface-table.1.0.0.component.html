@@ -1,0 +1,36 @@
+<table class="ui compact table" [formGroup]="form">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>LAN-Type</th>
+            <th>VLAN</th>
+            <th>IP</th>
+            <th>DNS</th>
+
+
+        </tr>
+    </thead>
+    <tbody formArrayName="EntriesInterface">
+
+        <tr *ngFor="let control of formArray.controls; let index=index" [formGroupName]="index">
+
+            <td class="field">
+                {{this.formArray.controls[index].get('IFNAME').value}}
+            </td>
+            <td class="field">
+                {{this.formArray.controls[index].get('IFLANTYPE').value}}
+            </td>
+            <td class="field">
+                {{this.formArray.controls[index].get('IFVLAN').value}}
+            </td>
+            <td class="field">
+                {{this.formArray.controls[index].get('IFIP').value}}
+            </td>
+            <td class="field">
+                {{this.formArray.controls[index].get('IFDNS').value}}
+            </td>
+        </tr>
+    </tbody>
+
+
+</table>

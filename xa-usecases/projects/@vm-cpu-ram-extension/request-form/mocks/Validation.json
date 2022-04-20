@@ -1,0 +1,82 @@
+{
+  "requestForm": [
+    {
+      "varName": "hostid",
+      "required": true,
+      "type": "list",
+      "possibleValuesUrl": "api/vmcpuramextension/validatehostid/${CustomerName}"
+    },
+    {
+      "varName": "hostname",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "varName": "CustomerName",
+      "required": true,
+      "type": "list",
+      "possibleValuesUrl": "api/vmcpuramextension/validatecustomer"
+    },
+    {
+      "varName": "extendCPUby",
+      "type": "text",
+      "required": false,
+      "format": {
+        "regexPattern": "^[0-9]*$",
+        "errorMessage": "Only numbers are allowed. "
+      }
+    },
+    {
+      "varName": "extendRAMby",
+      "type": "text",
+      "required": false,
+      "format": {
+        "regexPattern": "^[0-9]*$",
+        "errorMessage": "Only numbers are allowed. "
+      }
+    },
+    {
+      "varName": "extendCPUReservationBy",
+      "type": "text",
+      "required": false,
+      "format": {
+        "regexPattern": "^[0-9]*$",
+        "errorMessage": "Only numbers are allowed. "
+      }
+    },
+    {
+      "varName": "extendCPULimitBy",
+      "type": "text",
+      "required": false,
+      "format": {
+        "regexPattern": "^[0-9]*$",
+        "errorMessage": "Only numbers are allowed. "
+      }
+    },
+    {
+      "required": false,
+      "type": "external",
+      "externalValidatorFields": [
+        "hostid",
+        "hostname",
+        "extendCPUby",
+        "extendRAMby"
+      ],
+      "externalValidatorUrl": "/api/vmcpuramextension/validateinput"
+    },
+    {
+      "varName": "ContactInfo",
+      "type": "text",
+      "required": false,
+      "format": {
+        "regexPattern": "^(([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)(\\s*,\\s*|\\s*$))*$",
+        "errorMessage": "Please provide correctly formatted email addresses (comma [,] separated). "
+      }
+    },
+    {
+      "varName": "Agree",
+      "type": "boolean",
+      "requiredTrue": true
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+<div class="ui message">
+    <i class="close icon" (click)="Cancel()"></i>
+    <h3 class="ui dividing header">
+        Add Host-CI(s)
+    </h3>
+<!-- add dynamic selectionMode -->
+    <search-component [ngStyle]="myStyle" [selectionMode]="selection" [fields]='SearchFields'
+        (selectionChanged)='onSearchChanged($event)' [search]="searchFunction"></search-component>
+    <div class="field">
+        <div class="actions" style="padding-top: 10px">
+            <button class="ui green button" (click)="AddCIs()" [disabled]="!rowSelection" >{{this.addButtonText}}</button><!-- add disabled property -->
+            <button class="ui red button" (click)="Cancel()">Cancel</button>
+        </div>
+    </div>
+</div>

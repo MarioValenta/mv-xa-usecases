@@ -1,10 +1,10 @@
 
 
-export const DevFeatureStatus = {
+export const DevFeatureStatus: { [key: string]: boolean }  = {
     ['cloneRequest']: true
   };
 
-export const ProdFeatureStatus = {
+export const ProdFeatureStatus: { [key: string]: boolean }  = {
     ['cloneRequest']: false
   };
 

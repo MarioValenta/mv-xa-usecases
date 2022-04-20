@@ -6,6 +6,18 @@ import { filter, takeUntil } from 'rxjs/operators';
 import { AppInitializeService } from './app-initialize.service';
 import { TaskContext } from './user-tasks/user-task-zone.component';
 
+// Test_Request
+import * as Test_Request_Payload from '../../../@test-request/request-form/mocks/Payload.json';
+import * as Test_Request_ConfigPayload from '../../../@test-request/request-form/mocks/ConfigPayload.json';
+import * as Test_Request_Validation from '../../../@test-request/request-form/mocks/Validation.json';
+// Test User Task Process
+import * as Test_User_Task_Process_Payload from '../../../@test-user-task-process/request-form/mocks/Payload.json';
+import * as Test_User_Task_Process_ConfigPayload from '../../../@test-user-task-process/request-form/mocks/ConfigPayload.json';
+import * as Test_User_Task_Process_Validation from '../../../@test-user-task-process/request-form/mocks/Validation.json';
+// Test User Task Process
+import * as Test_User_Task_Process_UT_User_Task_Payload from '../../../@test-user-task-process/ut-user-task/mocks/Payload.json';
+import * as Test_User_Task_Process_UT_User_Task_ConfigPayload from '../../../@test-user-task-process/ut-user-task/mocks/ConfigPayload.json';
+import * as Test_User_Task_Process_UT_User_Task_Validation from '../../../@test-user-task-process/ut-user-task/mocks/Validation.json';
 // Create SR
 import * as CreateSR_Payload from '../../../@create-sr/request-form/mocks/Payload.json';
 import * as CreateSR_ConfigPayload from '../../../@create-sr/request-form/mocks/ConfigPayload.json';
@@ -46,6 +58,10 @@ import * as Patchautomation_Validation from '../../../@patchautomation/request-f
 import * as Patchautomation_Remove_Payload from '../../../@patchautomation-remove/request-form/mocks/Payload.json';
 import * as Patchautomation_Remove_ConfigPayload from '../../../@patchautomation-remove/request-form/mocks/ConfigPayload.json';
 import * as Patchautomation_Remove_Validation from '../../../@patchautomation-remove/request-form/mocks/Validation.json';
+// Patchautomation Process Report
+import * as Patchautomation_Process_Report_Payload from '../../../@patchautomation-process-report/request-form/mocks/Payload.json';
+import * as Patchautomation_Process_Report_ConfigPayload from '../../../@patchautomation-process-report/request-form/mocks/ConfigPayload.json';
+import * as Patchautomation_Process_Report_Validation from '../../../@patchautomation-process-report/request-form/mocks/Validation.json';
 // VM Create request-form-v1
 import * as VMCreate_v1_Payload from '../../../@vmcreate/request-form/mocks/Payload.json';
 import * as VMCreate_v1_ConfigPayload from '../../../@vmcreate/request-form/mocks/ConfigPayload.json';
@@ -118,6 +134,55 @@ import * as Server_Rundown_UT_Select_Storage_Validation from '../../../@server-r
 import * as Idpa_Proxy_Payload from '../../../@idpa-proxy/request-form/mocks/Payload.json';
 import * as Idpa_Proxy_ConfigPayload from '../../../@idpa-proxy/request-form/mocks/ConfigPayload.json';
 import * as Idpa_Proxy_Validation from '../../../@idpa-proxy/request-form/mocks/Validation.json';
+// SAP-Startup
+import * as SAP_Startup_Payload from '../../../@sap-startup/request-form/mocks/Payload.json';
+import * as SAP_Startup_ConfigPayload from '../../../@sap-startup/request-form/mocks/ConfigPayload.json';
+import * as SAP_Startup_Validation from '../../../@sap-startup/request-form/mocks/Validation.json';
+// SAP Application Rundown
+import * as SAP_Application_Rundown_Payload from '../../../@sap-application-rundown/request-form/mocks/Payload.json';
+import * as SAP_Application_Rundown_ConfigPayload from '../../../@sap-application-rundown/request-form/mocks/ConfigPayload.json';
+import * as SAP_Application_Rundown_Validation from '../../../@sap-application-rundown/request-form/mocks/Validation.json';
+// SAP Application Rundown UT NAS Offline
+import * as SAP_Application_Rundown_UT_NAS_Offline_Payload from '../../../@sap-application-rundown/ut-nas-offline/mocks/Payload.json';
+import * as SAP_Application_Rundown_UT_NAS_Offline_ConfigPayload from '../../../@sap-application-rundown/ut-nas-offline/mocks/ConfigPayload.json';
+import * as SAP_Application_Rundown_UT_NAS_Offline_Validation from '../../../@sap-application-rundown/ut-nas-offline/mocks/Validation.json';
+// SAP Application Rundown UT Select Storage
+import * as SAP_Application_Rundown_UT_Select_Storage_Payload from '../../../@sap-application-rundown/ut-nas-offline/mocks/Payload.json';
+import * as SAP_Application_Rundown_UT_Select_Storage_ConfigPayload from '../../../@sap-application-rundown/ut-nas-offline/mocks/ConfigPayload.json';
+import * as SAP_Application_Rundown_UT_Select_Storage_Validation from '../../../@sap-application-rundown/ut-nas-offline/mocks/Validation.json';
+// VM CPU & RAM Extension
+import * as VM_CPU_RAM_Extension_Payload from '../../../@vm-cpu-ram-extension/request-form/mocks/Payload.json';
+import * as VM_CPU_RAM_Extension_ConfigPayload from '../../../@vm-cpu-ram-extension/request-form/mocks/ConfigPayload.json';
+import * as VM_CPU_RAM_Extension_Validation from '../../../@vm-cpu-ram-extension/request-form/mocks/Validation.json';
+// Create Snapshot
+import * as Create_Snapshot_Payload from '../../../@create-snapshot/request-form/mocks/Payload.json';
+import * as Create_Snapshot_ConfigPayload from '../../../@create-snapshot/request-form/mocks/ConfigPayload.json';
+import * as Create_Snapshot_Validation from '../../../@create-snapshot/request-form/mocks/Validation.json';
+// Create IP Network RF
+import * as Create_IP_Network_RF_Payload from '../../../@create-ip-network/request-form/mocks/Payload.json';
+import * as Create_IP_Network_RF_ConfigPayload from '../../../@create-ip-network/request-form/mocks/ConfigPayload.json';
+import * as Create_IP_Network_RF_Validation from '../../../@create-ip-network/request-form/mocks/Validation.json';
+// Create IP Network UT Approve
+import * as Create_IP_Network_UT_Approve_Payload from '../../../@create-ip-network/ut-approve/mocks/Payload.json';
+import * as Create_IP_Network_UT_Approve_ConfigPayload from '../../../@create-ip-network/ut-approve/mocks/ConfigPayload.json';
+import * as Create_IP_Network_UT_Approve_Validation from '../../../@create-ip-network/ut-approve/mocks/Validation.json';
+// Create IP Network UT Configure Network Devices
+import * as Create_IP_Network_UT_Configure_Network_Devices_Payload from '../../../@create-ip-network/ut-configure-network-devices/mocks/Payload.json';
+import * as Create_IP_Network_UT_Configure_Network_Devices_ConfigPayload from '../../../@create-ip-network/ut-configure-network-devices/mocks/ConfigPayload.json';
+import * as Create_IP_Network_UT_Configure_Network_Devices_Validation from '../../../@create-ip-network/ut-configure-network-devices/mocks/Validation.json';
+// Create IP Network UT Configure Switching Category
+import * as Create_IP_Network_UT_Configure_Switching_Category_Payload from '../../../@create-ip-network/ut-configure-switching-category/mocks/Payload.json';
+import * as Create_IP_Network_UT_Configure_Switching_Category_ConfigPayload from '../../../@create-ip-network/ut-configure-switching-category/mocks/ConfigPayload.json';
+import * as Create_IP_Network_UT_Configure_Switching_Category_Validation from '../../../@create-ip-network/ut-configure-switching-category/mocks/Validation.json';
+// Create IP Network UT Confirm Completeness
+import * as Create_IP_Network_UT_Confirm_Completeness_Payload from '../../../@create-ip-network/ut-confirmation-completeness/mocks/Payload.json';
+import * as Create_IP_Network_UT_Confirm_Completeness_ConfigPayload from '../../../@create-ip-network/ut-confirmation-completeness/mocks/ConfigPayload.json';
+import * as Create_IP_Network_UT_Confirm_Completeness_Validation from '../../../@create-ip-network/ut-confirmation-completeness/mocks/Validation.json';
+// Create IP Network UT Create Network Config
+import * as Create_IP_Network_UT_Create_Network_Config_Payload from '../../../@create-ip-network/ut-create-network-config/mocks/Payload.json';
+import * as Create_IP_Network_UT_Create_Network_Config_ConfigPayload from '../../../@create-ip-network/ut-create-network-config/mocks/ConfigPayload.json';
+import * as Create_IP_Network_UT_Create_Network_Config_Validation from '../../../@create-ip-network/ut-create-network-config/mocks/Validation.json';
+
 
 // TODO: add new imports for every project (request-form, user-tasks)
 // TODO: Needs to be adjusted for every UseCase form
@@ -133,6 +198,7 @@ export class AppHtmlFormsComponent {
   notFound = false;
   destroy$ = new Subject();
 
+  Test_Request_Context: RequestContext = this.BuildRequestContext({ payload: Test_Request_Payload, configPayload: Test_Request_ConfigPayload, validation: Test_Request_Validation });
   CreateSR_Context: RequestContext = this.BuildRequestContext({ payload: CreateSR_Payload, configPayload: CreateSR_ConfigPayload, validation: CreateSR_Validation });
   CreateIncident_Context: RequestContext = this.BuildRequestContext({ payload: CreateIncident_Payload, configPayload: CreateIncident_ConfigPayload, validation: CreateIncident_Validation });
   CreateRFC_Context: RequestContext = this.BuildRequestContext({ payload: CreateRFC_Payload, configPayload: CreateRFC_ConfigPayload, validation: CreateRFC_Validation });
@@ -161,7 +227,22 @@ export class AppHtmlFormsComponent {
   Server_Rundown_UT_NAS_Offline_Context: TaskContext = this.BuildCeTaskContext({ payload: Server_Rundown_UT_NAS_Offline_Payload, configPayload: Server_Rundown_UT_NAS_Offline_ConfigPayload, validation: Server_Rundown_UT_NAS_Offline_Validation });
   Server_Rundown_UT_Select_Storage_Context: TaskContext = this.BuildCeTaskContext({ payload: Server_Rundown_UT_Select_Storage_Payload, configPayload: Server_Rundown_UT_Select_Storage_ConfigPayload, validation: Server_Rundown_UT_Select_Storage_Validation });
   Idpa_Proxy_Context: RequestContext = this.BuildRequestContext({ payload: Idpa_Proxy_Payload, configPayload: Idpa_Proxy_ConfigPayload, validation: Idpa_Proxy_Validation });
-  
+  SAP_Startup_Context: RequestContext = this.BuildRequestContext({ payload: SAP_Startup_Payload, configPayload: SAP_Startup_ConfigPayload, validation: SAP_Startup_Validation });
+  SAP_Application_Rundown_Context: RequestContext = this.BuildRequestContext({ payload: SAP_Application_Rundown_Payload, configPayload: SAP_Application_Rundown_ConfigPayload, validation: SAP_Application_Rundown_Validation });
+  SAP_Application_Rundown_UT_NAS_Offline_Context: TaskContext = this.BuildCeTaskContext({ payload: SAP_Application_Rundown_UT_NAS_Offline_Payload, configPayload: SAP_Application_Rundown_UT_NAS_Offline_ConfigPayload, validation: SAP_Application_Rundown_UT_NAS_Offline_Validation });
+  SAP_Application_Rundown_UT_Select_Storage_Context: TaskContext = this.BuildCeTaskContext({ payload: SAP_Application_Rundown_UT_Select_Storage_Payload, configPayload: SAP_Application_Rundown_UT_Select_Storage_ConfigPayload, validation: SAP_Application_Rundown_UT_Select_Storage_Validation });
+  Patchautomation_Process_Report_Context: RequestContext = this.BuildRequestContext({ payload: Patchautomation_Process_Report_Payload, configPayload: Patchautomation_Process_Report_ConfigPayload, validation: Patchautomation_Process_Report_Validation });
+  VM_CPU_RAM_Extension_Context: RequestContext = this.BuildRequestContext({ payload: VM_CPU_RAM_Extension_Payload, configPayload: VM_CPU_RAM_Extension_ConfigPayload, validation: VM_CPU_RAM_Extension_Validation });
+  Create_Snaphsot_Context: RequestContext = this.BuildRequestContext({ payload: Create_Snapshot_Payload, configPayload: Create_Snapshot_ConfigPayload, validation: Create_Snapshot_Validation });
+  Create_IP_Network_RF_Context: RequestContext = this.BuildRequestContext({ payload: Create_IP_Network_RF_Payload, configPayload: Create_IP_Network_RF_ConfigPayload, validation: Create_IP_Network_RF_Validation });
+  Create_IP_Network_UT_Approve_Context: TaskContext = this.BuildCeTaskContext({ payload: Create_IP_Network_UT_Approve_Payload, configPayload: Create_IP_Network_UT_Approve_ConfigPayload, validation: Create_IP_Network_UT_Approve_Validation });
+  Create_IP_Network_UT_Cofigure_Network_Devices_Context: TaskContext = this.BuildCeTaskContext({ payload: Create_IP_Network_UT_Configure_Network_Devices_Payload, configPayload: Create_IP_Network_UT_Configure_Network_Devices_ConfigPayload, validation: Create_IP_Network_UT_Configure_Network_Devices_Validation });
+  Create_IP_Network_UT_Cofigure_Switching_Category_Context: TaskContext = this.BuildCeTaskContext({ payload: Create_IP_Network_UT_Configure_Switching_Category_Payload, configPayload: Create_IP_Network_UT_Configure_Switching_Category_ConfigPayload, validation: Create_IP_Network_UT_Configure_Switching_Category_Validation });
+  Create_IP_Network_UT_Confirm_Completeness_Context: TaskContext = this.BuildCeTaskContext({ payload: Create_IP_Network_UT_Confirm_Completeness_Payload, configPayload: Create_IP_Network_UT_Confirm_Completeness_ConfigPayload, validation: Create_IP_Network_UT_Confirm_Completeness_Validation });
+  Create_IP_Network_UT_Create_Network_Config_Context: TaskContext = this.BuildCeTaskContext({ payload: Create_IP_Network_UT_Create_Network_Config_Payload, configPayload: Create_IP_Network_UT_Create_Network_Config_ConfigPayload, validation: Create_IP_Network_UT_Create_Network_Config_Validation });
+  Test_User_Task_Process_Context: RequestContext = this.BuildRequestContext({ payload: Test_User_Task_Process_Payload, configPayload: Test_User_Task_Process_ConfigPayload, validation: Test_User_Task_Process_Validation });
+  Test_User_Task_Process_UT_User_Task_Context: TaskContext = this.BuildCeTaskContext({ payload: Test_User_Task_Process_UT_User_Task_Payload, configPayload: Test_User_Task_Process_UT_User_Task_ConfigPayload, validation: Test_User_Task_Process_UT_User_Task_Validation });
+
   constructor(
     private initialize: AppInitializeService,
     public ui: ContentUiService) {

@@ -45,7 +45,7 @@ export class RequestForChangeSearchAppsModalComponent implements OnInit {
       }
     },
     {
-      Name: 'SVCSUPAPP',
+      Name: 'SVCSUP',
       Label: 'SupportGroup',
       HideInput: true
     },
