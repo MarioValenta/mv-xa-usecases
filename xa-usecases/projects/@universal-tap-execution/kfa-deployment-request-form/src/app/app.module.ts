@@ -10,6 +10,7 @@ import {
   JsonValuesAsSimpleTableModule,
 } from 'projects/shared/json-values-as-simple-table/json-values-as-simple-table.module';
 import { Ng2FlatpickrModule } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.module';
+import { PipeModule } from 'projects/shared/pure-pipes/pipe.module';
 import { XAToastDefaults } from 'projects/shared/toast-config';
 import { SharedModule } from 'projects/xa-portal-dev/src/app/shared/shared.module';
 
@@ -29,6 +30,7 @@ import { AppComponent } from './app.component';
     Ng2FlatpickrModule,
     JsonValuesAsSimpleTableModule,
     environment.production ? [] : SharedModule,
+    PipeModule
   ],
   exports: [AppComponent],
   providers: [
@@ -39,7 +41,7 @@ import { AppComponent } from './app.component';
     {
       provide: 'XANotifyToastConfig',
       useValue: XAToastDefaults
-    },
+    }
   ]
 })
 

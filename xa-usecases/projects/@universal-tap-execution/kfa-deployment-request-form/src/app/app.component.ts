@@ -1,62 +1,65 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FeedbackRequestPayload, ICERequest, ICERequestContext } from '@xa/lib-ui-common';
+import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ICERequest } from '@xa/lib-ui-common';
 import { XANotifyService } from '@xa/ui';
+import { ValidationService } from '@xa/validation';
 import { getFlatpickrSettings } from 'projects/shared.functions';
+import { IFormControlSettingsObject } from 'projects/shared/interfaces/iform-control-settings-object';
 import { FlatpickrOptions } from 'projects/shared/ng2-flatpickr/ng2-flatpickr.module';
-import { Subject } from 'rxjs';
-import { takeUntil, tap } from 'rxjs/operators';
+import { RequestContextBaseComponent } from 'projects/usecase-base-class/request-context-base.component';
+import { tap } from 'rxjs/operators';
 
-import { DataService } from './data.service';
+import { DataService } from './app.service';
 
 @Component({
   selector: 'universal-tap-execution-kfa-deployment-request-form',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements ICERequest, OnInit, OnDestroy {
-
-  @Input() public Context!: ICERequestContext;
+export class AppComponent extends RequestContextBaseComponent implements ICERequest {
 
   title = 'KFA-Deployment';
-  form!: FormGroup;
   startOptions: FlatpickrOptions = getFlatpickrSettings();
   catDBData: any = {};
-  destroy$ = new Subject();
+  catDBEndpointUrl: string = 'api/universaltapexecution/getusecaseinfosfromcatdb/';
 
-  constructor(private fb: FormBuilder, private dataService: DataService, private xaNotifyService: XANotifyService) { }
+  readonly FORM_STARTDATE: IFormControlSettingsObject = this.buildFormControlObject('startdate', 'Patch Startdate', 'enter Startdate');
+  readonly FORM_NAME_OF_USECASE: IFormControlSettingsObject = this.buildFormControlObject('nameOfUseCase');
+  readonly FORM_IS_CAT_DB_DATA_LOADED: IFormControlSettingsObject = this.buildFormControlObject('isCatDbDataLoaded');
 
+  constructor(private fb: FormBuilder, private dataService: DataService, private xaNotifyService: XANotifyService, private validationService: ValidationService) {
+    super();
+  }
 
-  ngOnInit() {
+  setValidationService(): void {
+    console.debug(this.title, 'setValidationService()');
 
-    this.buildForm();
+    if (this.Context.Validation.requestForm) {
+      this.validationService.setValidatorsFromConfig(this.form, this.Context.Validation.requestForm);
+    }
+  }
 
-    this.form.statusChanges.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(status => this.Context.Valid = status);
-
-    this.Context.OnSubmit(() => this.submit());
-    this.Context.OnFeedback(() => this.feedback());
+  setFormDataFromPayload(): void {
+    console.debug(this.title, 'setFormDataFromPayload()');
 
     if (this.Context.Payload) {
-      //this.jsonData = Object.assign(this.jsonData, this.Context.Payload);
       this.addDataToForm(this.Context.Payload);
     }
+  }
 
-    this.dataService.getCatalogDbData(`api/universaltapexecution/getusecaseinfosfromcatdb/${this.getCatDBConfigData('nameOfUseCase')}`)
-      .pipe(tap(value => {this.xaNotifyService.info('loading data from the CatDB!', { timeout: 2500, pauseOnHover: false });}))
+  customOnInit(): void {
+    console.debug(this.title, 'customOnInit()');
+
+    this.dataService.getCatalogDbData(this.catDBEndpointUrl + `${this.getCatDBConfigData(this.FORM_NAME_OF_USECASE.key)}`)
+      .pipe(tap(value => { this.xaNotifyService.info('loading data from the CatDB!', { timeout: 2500, pauseOnHover: false }); }))
       .subscribe(
         (values: any) => {
           this.catDBData = Object.assign({}, values);
           this.addDataToForm(this.catDBData);
-          this.form.get('isCatDbDataLoaded')?.patchValue(true);
+          this.form.get(this.FORM_IS_CAT_DB_DATA_LOADED.key)?.patchValue(true);
           this.xaNotifyService.clear();
           this.xaNotifyService.success('CatDB data loaded!', { timeout: 2500, pauseOnHover: false });
-        })
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next();
+        });
   }
 
   addDataToForm(jsonData: any): void {
@@ -67,39 +70,37 @@ export class AppComponent implements ICERequest, OnInit, OnDestroy {
         this.form.get(key)?.patchValue(value);
       }
     });
+    this.setValidationService();
   }
-  private buildForm() {
+
+  buildForm() {
+    console.debug(this.title, 'buildForm()');
+
     this.form = this.fb.group({
-      startdate: ['', Validators.required],
+      nameOfUseCase: [''],
+      startdate: [''],
       isCatDbDataLoaded: [false, Validators.requiredTrue]
     });
   }
 
-  feedback(): FeedbackRequestPayload {
-    return this.form.value;
-  }
+  onSubmit(): { value: any; identifier: string; } {
+    console.debug(this.title, 'onSubmit()');
 
-  submit() {
     if (this.form.valid) {
       console.debug(this.form.value);
     } else {
       console.error('Form is not valid', this.form);
     }
 
-
     const formData = this.form.getRawValue();
     // delete isCatDbDataLoaded from the formGroup JSON
-    delete formData['isCatDbDataLoaded'];
-    //const model = Object.assign(this.jsonData, formData);
+    delete formData[this.FORM_IS_CAT_DB_DATA_LOADED.key];
     console.log(formData);
 
     return {
       value: formData,
-      identifier: `${this.title}-${formData['startdate']}`
+      identifier: `${this.title}-${formData[this.FORM_STARTDATE.key]}`
     };
-  }
-
-  dateSelected(event: any) {
   }
 
   getCatDBConfigData(valueKey: string): string | null {
@@ -108,6 +109,10 @@ export class AppComponent implements ICERequest, OnInit, OnDestroy {
     } else {
       return null;
     }
+  }
+
+  get getValidationService(): ValidationService {
+    return this.validationService;
   }
 
 }
