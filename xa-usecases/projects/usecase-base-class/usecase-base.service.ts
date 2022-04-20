@@ -5,7 +5,7 @@ import { XASERVICE_TOKEN } from 'projects/shared.functions';
 @Injectable({
   providedIn: 'root'
 })
-export class UseCasesBaseService {
+export class UseCaseBaseService {
 
   customOnInit?(): void;
 
