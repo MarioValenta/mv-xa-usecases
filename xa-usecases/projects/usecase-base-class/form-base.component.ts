@@ -75,15 +75,11 @@ export abstract class FormBaseComponent implements OnInit, OnDestroy {
     return this.form.value;
   }
 
-  buildFormControlObject(formControlName: string, formControlLabel?: string, formControlPlaceholder?: string): IFormControlSettingsObject {
-    if (formControlLabel && formControlPlaceholder) {
-      return {key: formControlName, label: formControlLabel, placeholder: formControlPlaceholder};
-    } else if (formControlLabel) {
-      return {key: formControlName, label: formControlLabel, placeholder: 'enter '+formControlLabel};
-    } else if (formControlPlaceholder) {
-      return {key: formControlName, label: formControlName, placeholder: formControlPlaceholder};
-    } else {
-      return {key: formControlName, label: '<EMTPY>', placeholder: '<EMTPY>'};
-    }
+  buildFormControlObject(formControlKey: string, formControlLabel?: string, formControlPlaceholder?: string): IFormControlSettingsObject {
+    return {
+      key: formControlKey,
+      label: formControlLabel ? formControlLabel : formControlKey,
+      placeholder: formControlPlaceholder ? formControlPlaceholder : 'enter ' + formControlKey
+    };
   }
 }
