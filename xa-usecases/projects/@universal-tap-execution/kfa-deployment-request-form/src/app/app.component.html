@@ -17,15 +17,15 @@
     </ul>
   </div>
 
-  <div *ngIf="form.get(FORM_IS_CAT_DB_DATA_LOADED.key)?.value; else loading" class="field">
+  <div class="field" [class.required]="getValidationService | required:FORM_STARTDATE.key">
+    <label>{{FORM_STARTDATE.label}}</label>
+    <ng2-flatpickr [formControlName]="FORM_STARTDATE.key" [config]="startOptions"
+      [placeholder]="FORM_STARTDATE.placeholder">
+    </ng2-flatpickr>
+    <show-errors [control]="startDateControl"></show-errors>
+  </div>
 
-    <div class="field" [class.required]="this.getValidationService | required:FORM_STARTDATE.key">
-      <label>{{FORM_STARTDATE.label}}</label>
-      <ng2-flatpickr [formControlName]="FORM_STARTDATE.key" [config]="startOptions"
-        [placeholder]="FORM_STARTDATE.placeholder">
-      </ng2-flatpickr>
-      <show-errors [control]="this.form.get(FORM_STARTDATE.key)"></show-errors>
-    </div>
+  <div *ngIf="catDBData; else loading" class="field">
 
     <h2 class="ui dividing header">
       <i class="paperclip icon"></i>

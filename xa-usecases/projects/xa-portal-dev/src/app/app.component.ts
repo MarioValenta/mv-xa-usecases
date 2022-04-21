@@ -222,7 +222,6 @@ export class AppHtmlFormsComponent {
   Oracle_DB_Rundown_UT_Enter_Storage_Context: TaskContext = this.BuildCeTaskContext({ payload: Oracle_DB_Rundown_UT_Enter_Storage_Payload, configPayload: Oracle_DB_Rundown_UT_Enter_Storage_ConfigPayload, validation: Oracle_DB_Rundown_UT_Enter_Storage_Validation });
   Oracle_DB_Rundown_UT_Select_Interface_Context: TaskContext = this.BuildCeTaskContext({ payload: Oracle_DB_Rundown_UT_Select_Interface_Payload, configPayload: Oracle_DB_Rundown_UT_Select_Interface_ConfigPayload, validation: Oracle_DB_Rundown_UT_Select_Interface_Validation });
   Oracle_DB_Rundown_UT_Select_Storage_Context: TaskContext = this.BuildCeTaskContext({ payload: Oracle_DB_Rundown_UT_Select_Storage_Payload, configPayload: Oracle_DB_Rundown_UT_Select_Storage_ConfigPayload, validation: Oracle_DB_Rundown_UT_Select_Storage_Validation });
-  Universal_Tap_Execution_KFA_Deploy_Context: RequestContext = this.BuildRequestContext({ payload: UTE_KFA_Deployment_Payload, configPayload: UTE_KFA_Deployment_ConfigPayload, validation: UTE_KFA_Deployment_Validation });
   Server_Rundown_Context: RequestContext = this.BuildRequestContext({ payload: Server_Rundown_Payload, configPayload: Server_Rundown_ConfigPayload, validation: Server_Rundown_Validation });
   Server_Rundown_UT_NAS_Offline_Context: TaskContext = this.BuildCeTaskContext({ payload: Server_Rundown_UT_NAS_Offline_Payload, configPayload: Server_Rundown_UT_NAS_Offline_ConfigPayload, validation: Server_Rundown_UT_NAS_Offline_Validation });
   Server_Rundown_UT_Select_Storage_Context: TaskContext = this.BuildCeTaskContext({ payload: Server_Rundown_UT_Select_Storage_Payload, configPayload: Server_Rundown_UT_Select_Storage_ConfigPayload, validation: Server_Rundown_UT_Select_Storage_Validation });
@@ -242,6 +241,7 @@ export class AppHtmlFormsComponent {
   Create_IP_Network_UT_Create_Network_Config_Context: TaskContext = this.BuildCeTaskContext({ payload: Create_IP_Network_UT_Create_Network_Config_Payload, configPayload: Create_IP_Network_UT_Create_Network_Config_ConfigPayload, validation: Create_IP_Network_UT_Create_Network_Config_Validation });
   Test_User_Task_Process_Context: RequestContext = this.BuildRequestContext({ payload: Test_User_Task_Process_Payload, configPayload: Test_User_Task_Process_ConfigPayload, validation: Test_User_Task_Process_Validation });
   Test_User_Task_Process_UT_User_Task_Context: TaskContext = this.BuildCeTaskContext({ payload: Test_User_Task_Process_UT_User_Task_Payload, configPayload: Test_User_Task_Process_UT_User_Task_ConfigPayload, validation: Test_User_Task_Process_UT_User_Task_Validation });
+  Universal_Tap_Execution_KFA_Deploy_Context: RequestContext = this.BuildRequestContext({ payload: UTE_KFA_Deployment_Payload, configPayload: UTE_KFA_Deployment_ConfigPayload, validation: UTE_KFA_Deployment_Validation });
 
   constructor(
     private initialize: AppInitializeService,
