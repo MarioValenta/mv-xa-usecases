@@ -43,6 +43,6 @@ export class CreateF5VirtualServerUTValidateAppModule {
 
   ngDoBootstrap() {
     const ce = createCustomElement(UTValidateComponent, { injector: this.injector });
-    customElements.define('ut-validate-form', ce);
+    customElements.define('create-f5-virtual-server-ut-validate', ce);
   }
 }

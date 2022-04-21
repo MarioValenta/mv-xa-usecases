@@ -50,6 +50,6 @@ export class IdpaProxyRequestFormAppModule {
 
   ngDoBootstrap() {
     const ce = createCustomElement(AppComponent, { injector: this.injector });
-    customElements.define('<idpa-proxy-request-form>', ce);
+    customElements.define('idpa-proxy-request-form', ce);
   }
 }

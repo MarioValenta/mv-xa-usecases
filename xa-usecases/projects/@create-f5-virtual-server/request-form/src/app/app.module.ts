@@ -42,6 +42,6 @@ export class CreateF5VirtualServerRequestFormAppModule {
 
   ngDoBootstrap() {
     const ce = createCustomElement(RequestFormComponent, { injector: this.injector });
-    customElements.define('createF5vServer-request-form', ce);
+    customElements.define('create-f5-virtual-server-request-form', ce);
   }
 }
