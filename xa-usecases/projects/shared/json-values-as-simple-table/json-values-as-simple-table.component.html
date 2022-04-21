@@ -2,7 +2,7 @@
   <table>
     <tr *ngFor="let item of infoData | keyvalue">
       <td><b>{{item.key}}</b>:</td>
-      <td *ngIf="item.value">{{item.value}}</td>
+      <td *ngIf="item.value">{{item.value | json}}</td>
       <td *ngIf="!item.value">null</td>
     </tr>
   </table>
