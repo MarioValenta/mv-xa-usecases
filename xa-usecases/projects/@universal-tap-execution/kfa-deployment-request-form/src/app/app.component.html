@@ -4,16 +4,16 @@
     <i class="edit outline icon"></i>
     <div class="content">
       <span> KFA-Deployment </span>
-      <div class="sub header">Lorem ipsum dolor sit amet, consetet</div>
+      <div *ngIf="Context.ConfigPayload['subHeader']" class="sub header">{{Context.ConfigPayload['subHeader']}}</div>
     </div>
   </h2>
 
-  <div class="ui segment">
-    <label class="ui ribbon label">Todo: Description</label>
+  <div *ngIf="Context.ConfigPayload['information']" class="ui segment">
+    <label class="ui ribbon label">Information</label>
     <ul>
-      <li>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy </li>
-      <li>eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</li>
-      <li> At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata</li>
+      <li *ngFor="let information of Context.ConfigPayload['information']">
+        {{information}}
+      </li>
     </ul>
   </div>
 
@@ -25,12 +25,12 @@
     <show-errors [control]="startDateControl"></show-errors>
   </div>
 
-  <div *ngIf="catDBData; else loading" class="field">
 
-    <h2 class="ui dividing header">
-      <i class="paperclip icon"></i>
-      Cat DB data
-    </h2>
+  <h2 class="ui dividing header">
+    <i class="paperclip icon"></i>
+    Cat DB data
+  </h2>
+  <div *ngIf="catDBData; else loading" class="field">
     <div class="field">
       <json-values-simple-table title="loaded CatDB data" [infoData]="catDBData"></json-values-simple-table>
     </div>
