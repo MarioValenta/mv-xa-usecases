@@ -38,21 +38,14 @@ export class OracleDbRdnUTEnterInterfaceAppComponent extends TaskContextBaseComp
             required: true,
             formControlName: 'Interface',
             label: 'Interface',
-            placeholder: 'enter the interface'
+            placeholder: 'enter the interface...'
           },
           {
             type: 'text',
             required: true,
             formControlName: 'IP',
-            label: 'IP',
-            placeholder: 'enter the IP'
-          },
-          {
-            type: 'text',
-            required: true,
-            formControlName: 'IPv6',
-            label: 'IPv6',
-            placeholder: 'enter the IPv6'
+            label: 'IP or IPv6',
+            placeholder: 'enter the IP or IPv6 address...'
           }
         ]
       }
@@ -62,8 +55,7 @@ export class OracleDbRdnUTEnterInterfaceAppComponent extends TaskContextBaseComp
   newFormGroup(): FormGroup {
     return this.fb.group({
       Interface: ['', Validators.required],
-      IP: ['', Validators.required],
-      IPv6: ['', Validators.required]
+      IP: ['', Validators.required]
     });
   }
 
