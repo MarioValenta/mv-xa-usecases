@@ -15,12 +15,14 @@ export abstract class TaskContextBaseComponent extends FormBaseComponent impleme
     super(title);
   }
 
-  setTaskContextCallbacks(): void {
-    console.debug(this.title, 'setTaskContextCallbacks()');
 
-    this.Context.OnApprove(() => this.onApprove());
-    this.Context.OnReject(() => this.onReject());
-  }
+  // TODO eigene Class für Approve Forms mit Approve und Reject
+  // setTaskContextCallbacks(): void {
+  //   console.debug(this.title, 'setTaskContextCallbacks()');
+
+  //   this.Context.OnApprove(() => this.onApprove());
+  //   this.Context.OnReject(() => this.onReject());
+  // }
 
   setFormAborted() {
     if (!this.form.get(this.rejectedFormKey)) {
