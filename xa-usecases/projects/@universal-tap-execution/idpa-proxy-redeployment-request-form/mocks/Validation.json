@@ -1,0 +1,9 @@
+{
+  "requestForm": [
+    {
+      "varName": "hostname",
+      "type": "text",
+      "required": true
+    }
+  ]
+}

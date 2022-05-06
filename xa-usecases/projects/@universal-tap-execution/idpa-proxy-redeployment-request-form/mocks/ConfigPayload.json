@@ -1,0 +1,9 @@
+{
+  "subHeader": "IDPA-Proxy Redeployment",
+  "information": [
+    "TODO: Description"
+  ],
+  "catDBScope": "IDPAPROXY",
+  "catDBUCName": "idpa_proxy_redeployment",
+  "catDBCustomer": "INTERN_SHARED"
+}
