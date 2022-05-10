@@ -106,10 +106,14 @@ import * as Oracle_DB_Rundown_UT_Select_Interface_Validation from '../../../@ora
 import * as Oracle_DB_Rundown_UT_Select_Storage_Payload from '../../../@oracle-db-rundown/ut-select-storage/mocks/Payload.json';
 import * as Oracle_DB_Rundown_UT_Select_Storage_ConfigPayload from '../../../@oracle-db-rundown/ut-select-storage/mocks/ConfigPayload.json';
 import * as Oracle_DB_Rundown_UT_Select_Storage_Validation from '../../../@oracle-db-rundown/ut-select-storage/mocks/Validation.json';
-// Universal Tap Execution KFA Deploy Context
+// Universal Tap Execution KFA Deployment Context
 import * as UTE_KFA_Deployment_Payload from '../../../@universal-tap-execution/kfa-deployment-request-form/mocks/Payload.json';
 import * as UTE_KFA_Deployment_ConfigPayload from '../../../@universal-tap-execution/kfa-deployment-request-form/mocks/ConfigPayload.json';
 import * as UTE_KFA_Deployment_Validation from '../../../@universal-tap-execution/kfa-deployment-request-form/mocks/Validation.json';
+// Universal Tap Execution IDPA Proxy Redeployment
+import * as UTE_IDPA_Proxy_Redeployment_Payload from '../../../@universal-tap-execution/idpa-proxy-redeployment-request-form/mocks/Payload.json';
+import * as UTE_IDPA_Proxy_Redeployment_ConfigPayload from '../../../@universal-tap-execution/idpa-proxy-redeployment-request-form/mocks/ConfigPayload.json';
+import * as UTE_IDPA_Proxy_Redeployment_Validation from '../../../@universal-tap-execution/idpa-proxy-redeployment-request-form/mocks/Validation.json';
 // Create Problem
 import * as CreateProblem_Payload from '../../../@create-problem/request-form/mocks/Payload.json';
 import * as CreateProblem_ConfigPayload from '../../../@create-problem/request-form/mocks/ConfigPayload.json';
@@ -241,7 +245,8 @@ export class AppHtmlFormsComponent {
   Create_IP_Network_UT_Create_Network_Config_Context: TaskContext = this.BuildCeTaskContext({ payload: Create_IP_Network_UT_Create_Network_Config_Payload, configPayload: Create_IP_Network_UT_Create_Network_Config_ConfigPayload, validation: Create_IP_Network_UT_Create_Network_Config_Validation });
   Test_User_Task_Process_Context: RequestContext = this.BuildRequestContext({ payload: Test_User_Task_Process_Payload, configPayload: Test_User_Task_Process_ConfigPayload, validation: Test_User_Task_Process_Validation });
   Test_User_Task_Process_UT_User_Task_Context: TaskContext = this.BuildCeTaskContext({ payload: Test_User_Task_Process_UT_User_Task_Payload, configPayload: Test_User_Task_Process_UT_User_Task_ConfigPayload, validation: Test_User_Task_Process_UT_User_Task_Validation });
-  Universal_Tap_Execution_KFA_Deploy_Context: RequestContext = this.BuildRequestContext({ payload: UTE_KFA_Deployment_Payload, configPayload: UTE_KFA_Deployment_ConfigPayload, validation: UTE_KFA_Deployment_Validation });
+  Universal_Tap_Execution_KFA_Deployment_Context: RequestContext = this.BuildRequestContext({ payload: UTE_KFA_Deployment_Payload, configPayload: UTE_KFA_Deployment_ConfigPayload, validation: UTE_KFA_Deployment_Validation });
+  Universal_Tap_Execution_IDPA_Proxy_Redeployment_Context: RequestContext = this.BuildRequestContext({ payload: UTE_IDPA_Proxy_Redeployment_Payload, configPayload: UTE_IDPA_Proxy_Redeployment_ConfigPayload, validation: UTE_IDPA_Proxy_Redeployment_Validation });
 
   constructor(
     private initialize: AppInitializeService,

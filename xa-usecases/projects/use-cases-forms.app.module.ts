@@ -43,6 +43,7 @@ import { CreateIPNetworkUTConfirmationCompletenessAppModule } from './@create-ip
 import { CreateIPNetworkUTCreateNetworkConfigAppModule } from './@create-ip-network/ut-create-network-config/src/app/app.module';
 import { TestUserTaskProcessRequestFormAppModule } from './@test-user-task-process/request-form/src/app/app.module';
 import { TestUserTaskUTUserTaskAppModule } from './@test-user-task-process/ut-user-task/src/app/app.module';
+import { UniversalTapExecutionIdpaProxyRedeploymentRequestFormAppModule } from './@universal-tap-execution/idpa-proxy-redeployment-request-form/src/app/app.module';
 
 
 @NgModule({
@@ -90,7 +91,8 @@ import { TestUserTaskUTUserTaskAppModule } from './@test-user-task-process/ut-us
     CreateIPNetworkUTConfirmationCompletenessAppModule,
     CreateIPNetworkUTCreateNetworkConfigAppModule,
     TestUserTaskProcessRequestFormAppModule,
-    TestUserTaskUTUserTaskAppModule
+    TestUserTaskUTUserTaskAppModule,
+    UniversalTapExecutionIdpaProxyRedeploymentRequestFormAppModule
   ]
 })
 export class UseCasesFormsAppModule { }
