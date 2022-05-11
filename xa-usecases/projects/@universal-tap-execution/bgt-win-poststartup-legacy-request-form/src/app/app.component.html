@@ -1,0 +1,64 @@
+<form [formGroup]="form" class="ui container form" style="padding:20px 10px">
+
+  <h2 class="ui dividing header">
+    <i class="edit outline icon"></i>
+    <div class="content">
+      <span> {{title}} </span>
+      <div *ngIf="Context.ConfigPayload['subHeader']" class="sub header">{{Context.ConfigPayload['subHeader']}}</div>
+    </div>
+  </h2>
+
+  <div *ngIf="Context.ConfigPayload['information']" class="ui segment">
+    <label class="ui ribbon label">Information</label>
+    <ul>
+      <li *ngFor="let information of Context.ConfigPayload['information']">
+        {{information}}
+      </li>
+    </ul>
+  </div>
+
+  <div class="field" [class.required]="getValidationService | required:FORM_STARTDATE.key">
+    <label>{{FORM_STARTDATE.label}}</label>
+    TODO: Datepicker anzeigen oder nur das Datum als Wert anzeigen?
+    <!-- <ng2-flatpickr [formControlName]="FORM_STARTDATE.key" [config]="startOptions"
+      [placeholder]="FORM_STARTDATE.placeholder">
+    </ng2-flatpickr> -->
+    <p>{{startDateControl.value}}</p>
+    <show-errors [control]="startDateControl"></show-errors>
+  </div>
+
+  <div [formGroupName]="FORM_JENKINS_PARAMETERS.key">
+    <div class="field" [class.required]="getValidationService | required:FORM_HOST.key">
+      <label [for]="FORM_HOST.key">{{FORM_HOST.label}} TODO: HostCI Search Modal</label>
+      <input type="text" [formControlName]="FORM_HOST.key" [placeholder]="FORM_HOST.placeholder" />
+      <show-errors [control]="hostControl"></show-errors>
+    </div>
+  </div>
+
+  <h2 class="ui dividing header">
+    <i class="paperclip icon"></i>
+    Cat DB data
+  </h2>
+  <div *ngIf="catDBData; else loading" class="field">
+    <div class="field">
+      <json-values-simple-table title="loaded CatDB data" [infoData]="catDBData"></json-values-simple-table>
+    </div>
+  </div>
+
+</form>
+
+<pre *if-dev> Payload data:{{Context.Payload | json }}</pre>
+<pre *if-dev> Form data:{{form.getRawValue() | json }}</pre>
+
+<ng-template #loading>
+  <div class="ui segment" style="height: 150px;">
+    <div style="padding-top: 10px">
+      <div class="ui active inverted dimmer">
+        <div class="ui text loader"><b>please wait while data from the CatDB are loaded ...</b></div>
+      </div>
+      <p></p>
+    </div>
+  </div>
+</ng-template>
+
+<xa-notify></xa-notify>

@@ -26,7 +26,17 @@ export function getFlatpickrSettings(flatpickrSettings?: Partial<FlatpickrOption
   // be aware there is also another defaultFlatpickrOptions in the Ng2FlatpickrComponent
 }
 
-export function getDate(addHoursToMinDate: number = 1): Date {
+export function getDate(addHours: number = 1): Date {
   const dt = new Date();
-  return new Date(dt.setHours(dt.getHours() + addHoursToMinDate, 0, 0, 0));
+  return new Date(dt.setHours(dt.getHours() + addHours, 0, 0, 0));
+}
+
+export function getDateTimeUTC(addHours: number = 1): Date {
+  const dt = new Date();
+  return new Date(dt.setHours(dt.getUTCHours() + addHours, dt.getUTCMinutes(), dt.getUTCSeconds(), dt.getUTCMilliseconds()));
+}
+
+export function getDateTimeLocal(addHours: number = 1): Date {
+  const dt = new Date();
+  return new Date(dt.setHours(dt.getHours() + addHours, dt.getMinutes(), dt.getSeconds(), dt.getMilliseconds()));
 }

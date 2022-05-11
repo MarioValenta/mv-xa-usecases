@@ -1,0 +1,7 @@
+{
+  "subHeader": "BGT-PostStartup Deployment - Windows Legacy",
+  "information": [
+    "Executes a deployment on kfa test environment kfaappl04",
+    "war files for deployment are located at kfasftp002:/home/ftpd/kfainstall/autopatch/test"
+  ]
+}

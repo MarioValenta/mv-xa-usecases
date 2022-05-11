@@ -114,6 +114,10 @@ import * as UTE_KFA_Deployment_Validation from '../../../@universal-tap-executio
 import * as UTE_IDPA_Proxy_Redeployment_Payload from '../../../@universal-tap-execution/idpa-proxy-redeployment-request-form/mocks/Payload.json';
 import * as UTE_IDPA_Proxy_Redeployment_ConfigPayload from '../../../@universal-tap-execution/idpa-proxy-redeployment-request-form/mocks/ConfigPayload.json';
 import * as UTE_IDPA_Proxy_Redeployment_Validation from '../../../@universal-tap-execution/idpa-proxy-redeployment-request-form/mocks/Validation.json';
+// Universal Tap Execution IDPA Proxy Redeployment
+import * as UTE_BGT_Win_PostStartup_Payload from '../../../@universal-tap-execution/bgt-win-poststartup-legacy-request-form/mocks/Payload.json';
+import * as UTE_BGT_Win_PostStartup_ConfigPayload from '../../../@universal-tap-execution/bgt-win-poststartup-legacy-request-form/mocks/ConfigPayload.json';
+import * as UTE_BGT_Win_PostStartup_Validation from '../../../@universal-tap-execution/bgt-win-poststartup-legacy-request-form/mocks/Validation.json';
 // Create Problem
 import * as CreateProblem_Payload from '../../../@create-problem/request-form/mocks/Payload.json';
 import * as CreateProblem_ConfigPayload from '../../../@create-problem/request-form/mocks/ConfigPayload.json';
@@ -247,7 +251,7 @@ export class AppHtmlFormsComponent {
   Test_User_Task_Process_UT_User_Task_Context: TaskContext = this.BuildCeTaskContext({ payload: Test_User_Task_Process_UT_User_Task_Payload, configPayload: Test_User_Task_Process_UT_User_Task_ConfigPayload, validation: Test_User_Task_Process_UT_User_Task_Validation });
   Universal_Tap_Execution_KFA_Deployment_Context: RequestContext = this.BuildRequestContext({ payload: UTE_KFA_Deployment_Payload, configPayload: UTE_KFA_Deployment_ConfigPayload, validation: UTE_KFA_Deployment_Validation });
   Universal_Tap_Execution_IDPA_Proxy_Redeployment_Context: RequestContext = this.BuildRequestContext({ payload: UTE_IDPA_Proxy_Redeployment_Payload, configPayload: UTE_IDPA_Proxy_Redeployment_ConfigPayload, validation: UTE_IDPA_Proxy_Redeployment_Validation });
-
+  Universal_Tap_Execution_BGT_Win_PostStartup_Context: RequestContext = this.BuildRequestContext({ payload: UTE_BGT_Win_PostStartup_Payload, configPayload: UTE_BGT_Win_PostStartup_ConfigPayload, validation: UTE_BGT_Win_PostStartup_Validation });
   constructor(
     private initialize: AppInitializeService,
     public ui: ContentUiService) {

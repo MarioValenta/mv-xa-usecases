@@ -39,6 +39,7 @@
     "build:prod:@vmcreate/request-form-v2": "ng build --project @vmcreate/request-form-v2 --configuration production --single-bundle",
     "build:prod:@universal-tap-execution/kfa-deployment-request-form": "ng build --project @universal-tap-execution/kfa-deployment-request-form --configuration production --single-bundle",
     "build:prod:@universal-tap-execution/idpa-proxy-redeployment-request-form": "ng build --project @universal-tap-execution/idpa-proxy-redeployment-request-form --configuration production --single-bundle",
+    "build:prod:@universal-tap-execution/bgt-win-poststartup-legacy-request-form": "ng build --project @universal-tap-execution/bgt-win-poststartup-legacy-request-form --configuration production --single-bundle",
     "build:prod:@server-rundown/request-form": "ng build --project @server-rundown/request-form --configuration production --single-bundle",
     "build:prod:@server-rundown/ut-nas-offline": "ng build --project @server-rundown/ut-nas-offline --configuration production --single-bundle",
     "build:prod:@server-rundown/ut-select-storage": "ng build --project @server-rundown/ut-select-storage --configuration production --single-bundle",

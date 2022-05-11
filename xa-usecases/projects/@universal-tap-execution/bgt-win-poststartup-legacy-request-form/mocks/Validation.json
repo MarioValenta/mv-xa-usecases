@@ -1,0 +1,13 @@
+{
+  "requestForm": [
+    {
+      "varName": "nameOfUseCase",
+      "type": "text",
+      "required": true
+    },{
+      "varName": "startdate",
+      "type": "text",
+      "required": true
+    }
+  ]
+}

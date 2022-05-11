@@ -44,6 +44,7 @@ import { CreateIPNetworkUTCreateNetworkConfigAppModule } from './@create-ip-netw
 import { TestUserTaskProcessRequestFormAppModule } from './@test-user-task-process/request-form/src/app/app.module';
 import { TestUserTaskUTUserTaskAppModule } from './@test-user-task-process/ut-user-task/src/app/app.module';
 import { UniversalTapExecutionIdpaProxyRedeploymentRequestFormAppModule } from './@universal-tap-execution/idpa-proxy-redeployment-request-form/src/app/app.module';
+import { UniversalTapExecutionBGTWinPoststartupLegacyRequestFormAppModule } from './@universal-tap-execution/bgt-win-poststartup-legacy-request-form/src/app/app.module';
 
 
 @NgModule({
@@ -92,7 +93,8 @@ import { UniversalTapExecutionIdpaProxyRedeploymentRequestFormAppModule } from '
     CreateIPNetworkUTCreateNetworkConfigAppModule,
     TestUserTaskProcessRequestFormAppModule,
     TestUserTaskUTUserTaskAppModule,
-    UniversalTapExecutionIdpaProxyRedeploymentRequestFormAppModule
+    UniversalTapExecutionIdpaProxyRedeploymentRequestFormAppModule,
+    UniversalTapExecutionBGTWinPoststartupLegacyRequestFormAppModule
   ]
 })
 export class UseCasesFormsAppModule { }
