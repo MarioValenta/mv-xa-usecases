@@ -1,0 +1,705 @@
+<form [formGroup]="form" class="ui container form" style="padding: 20px 10px;">
+
+  <h2 class="ui dividing header">
+    <i class="edit outline icon"></i>
+    <div class="content">
+      <span> Basic Settings </span>
+      <div class="sub header">Specify basic settings.</div>
+    </div>
+  </h2>
+
+  <!-- Customer -->
+  <div class="field" [class.required]="this.getValidationService | required: FORM_KEY_CUSTOMER">
+    <label>Customer</label>
+    <xa-select [formControlName]="FORM_KEY_CUSTOMER" #customerDropDown
+      [placeholder]="this.Context | placeholder:FORM_KEY_CUSTOMER" [options]="Customers$ | async" [search]="true"
+      [clearable]="true" [loading]="!(Customers$ | async)" viewValue="label" optionValue="CUSTOMERNICKNAME">
+    </xa-select>
+    <show-errors [control]="this.form.get(FORM_KEY_CUSTOMER)"></show-errors>
+  </div>
+
+  <div class="two fields">
+    <!-- WBS Installation -->
+    <div class="field" [class.required]="this.getValidationService | required: FORM_KEY_WBS_INSTALL">
+      <label>WBS Installation</label>
+
+      <!-- If the response from the WBS endpoint is not an empty array -->
+      <xa-select [formControlName]="FORM_KEY_WBS_INSTALL"
+        [placeholder]="this.Context | placeholder: FORM_KEY_WBS_INSTALL" [options]="WbsInstalls$ | async"
+        [search]="true" [clearable]="true" [loading]="!(WbsInstalls$ | async)" [config]="this.dropDownConfig">
+      </xa-select>
+      <show-errors [control]="this.form.get(FORM_KEY_WBS_INSTALL)"></show-errors>
+    </div>
+
+    <!-- WBS for Operation -->
+    <div class="field" [class.required]="this.getValidationService | required: FORM_KEY_WBS_OPERATIONS">
+      <label>WBS for Operation</label>
+
+      <xa-select [formControlName]="FORM_KEY_WBS_OPERATIONS"
+        [placeholder]="this.Context | placeholder: FORM_KEY_WBS_OPERATIONS" [options]="WbsOperations$ | async"
+        [search]="true" [clearable]="true" [loading]="!(WbsOperations$ | async)" [config]="this.dropDownConfig">
+      </xa-select>
+      <show-errors [control]="this.form.get(FORM_KEY_WBS_OPERATIONS)"></show-errors>
+    </div>
+  </div>
+
+  <div class="two fields">
+    <!-- Environment -->
+    <div class="field" [class.required]="this.getValidationService | required: FORM_KEY_ENVIRONMENT">
+      <label>Environment</label>
+      <xa-select [formControlName]="FORM_KEY_ENVIRONMENT"
+        [placeholder]="this.Context | placeholder: FORM_KEY_ENVIRONMENT" [options]="Environment$ | async"
+        [search]="true" [clearable]="true" [loading]="!(Environment$ | async)">
+      </xa-select>
+      <show-errors [control]="this.form.get(FORM_KEY_ENVIRONMENT)"></show-errors>
+    </div>
+
+    <!-- Criticality -->
+    <div class="field" [class.required]="this.getValidationService | required: FORM_KEY_CRITICALITY">
+      <label>Criticality</label>
+      <xa-select [formControlName]="FORM_KEY_CRITICALITY"
+        [placeholder]="this.Context | placeholder: FORM_KEY_CRITICALITY" [options]="Criticality$ | async"
+        [search]="true" [clearable]="true" [loading]="!(Criticality$ | async)">
+      </xa-select>
+      <show-errors [control]="this.form.get(FORM_KEY_CRITICALITY)"></show-errors>
+    </div>
+  </div>
+
+  <div class="two fields">
+    <!-- SLA -->
+    <div class="two wide field" style="align-self: center;">
+      <xa-checkbox [formControlName]="FORM_KEY_USE_SLA">Use SLA</xa-checkbox>
+      <show-errors [control]="this.form.get(FORM_KEY_USE_SLA)"></show-errors>
+    </div>
+
+    <div class="fourteen wide field" [class.required]="this.getValidationService | required: FORM_KEY_SLA">
+      <xa-select [formControlName]="FORM_KEY_SLA" [placeholder]="this.Context | placeholder: FORM_KEY_SLA"
+        [options]="SLA$ | async" [search]="true" [clearable]="true" [loading]="!(SLA$ | async)"
+        viewValue="cmdbDescription" optionValue="cmdbKey">
+      </xa-select>
+      <show-errors [control]="this.form.get(FORM_KEY_SLA)"></show-errors>
+    </div>
+  </div>
+
+  <!-- Platform specification -->
+  <h2 class="ui dividing header">
+    <div class="wrapper" style="display: grid; grid-template-columns: 5% auto;">
+      <i class="desktop icon"></i>
+      <div class="content" style="display: flex; align-items: flex-end; justify-content: space-between;">
+        <div class="texts">
+          <span> Platform Specification </span>
+          <div class="sub header">Specify platform settings.</div>
+        </div>
+        <xa-checkbox class="normal-checkbox-size" [formControlName]="FORM_KEY_SPECIFIC_INFRASTRUCTURE_SELECTION"
+       >Enable
+          Specific Infrastructure Selection
+        </xa-checkbox>
+      </div>
+    </div>
+  </h2>
+
+  <!-- Datacenter radio buttons -->
+  <div class="fields" *ngIf="!(IsSpecificInfrastructureChecked$ | async)">
+    <div class="seven wide field"></div>
+    <div class="five wide field">
+      <xa-radiobox [formControlName]="FORM_KEY_DATACENTER" [group]="FORM_KEY_DATACENTER" value="tc">
+        T-Center
+      </xa-radiobox>
+    </div>
+    <div class="five wide field">
+      <xa-radiobox [formControlName]="FORM_KEY_DATACENTER" [group]="FORM_KEY_DATACENTER" value="odc">
+        ODC
+      </xa-radiobox>
+    </div>
+    <div class="three wide field"></div>
+  </div>
+
+  <!-- TODO: the text of the paragraph is NOT final -->
+  <p *ngIf="missingClusterVCenterData" style="color: red; text-align: center;">No default cluster in the chosen location
+    available.<br />
+    Please choose other location or contact DPS-Team and select agreed block in specific infrastructure selection mode.
+  </p>
+
+  <!-- Infrastructure -->
+  <div class="field" [class.required]="this.getValidationService | required: FORM_KEY_INFRASTRUCTURE">
+    <label>Infrastructure</label>
+    <xa-select [formControlName]="FORM_KEY_INFRASTRUCTURE" #InfrastructureDropDown
+      [placeholder]="this.Context | placeholder: FORM_KEY_INFRASTRUCTURE" [options]="Infrastructures$ | async"
+      [search]="true" [clearable]="true" [loading]="!(Infrastructures$ | async)" viewValue="vCenterLabel"
+      optionValue="vCenter">
+    </xa-select>
+    <show-errors [control]="this.form.get(FORM_KEY_INFRASTRUCTURE)"></show-errors>
+  </div>
+
+  <div class="two fields">
+    <!-- Cluster/Location -->
+    <div class="field" [class.required]="this.getValidationService | required: FORM_KEY_ESX_CLUSTER">
+      <label>Cluster / Location</label>
+      <xa-select [formControlName]="FORM_KEY_ESX_CLUSTER"
+        [placeholder]="this.Context | placeholder: FORM_KEY_ESX_CLUSTER" [options]="ESXClusters$ | async"
+        [search]="true" [clearable]="true" [loading]="!(ESXClusters$ | async)">
+      </xa-select>
+      <show-errors [control]="this.form.get(FORM_KEY_ESX_CLUSTER)"></show-errors>
+    </div>
+
+    <!-- Data Store type -->
+    <div class="field" [class.required]="this.getValidationService | required: FORM_KEY_DATASTORE_TYPE">
+      <label>Datastore Type</label>
+      <xa-select [formControlName]="FORM_KEY_DATASTORE_TYPE"
+        [placeholder]="this.Context | placeholder: FORM_KEY_DATASTORE_TYPE" [options]="DatastoreTypes$ | async"
+        [search]="true" [clearable]="true" [loading]="!(DatastoreTypes$ | async)" viewValue="label"
+        optionValue="dataStoreType">
+      </xa-select>
+      <show-errors [control]="this.form.get(FORM_KEY_DATASTORE_TYPE)"></show-errors>
+    </div>
+  </div>
+
+  <!-- Agree checkbox the text is -->
+  <div class="field" *ngIf="this.form.get(FORM_KEY_SPECIFIC_INFRASTRUCTURE_SELECTION).value"
+    [class.required]="this.getValidationService | required: FORM_KEY_AGREE">
+    <label>Alignment Confirmation</label>
+    <xa-checkbox [formControlName]="FORM_KEY_AGREE">
+      I have aligned this request with the DPS Team.
+    </xa-checkbox>
+    <show-errors [control]="this.form.get(FORM_KEY_AGREE)"></show-errors>
+  </div>
+
+  <!-- Operating System Section -->
+  <h2 class="ui dividing header">
+    <i class="icon" [ngClass]="OSIcon$ | async"></i>
+    <div class="content">
+      <span> Operating System </span>
+      <div class="sub header">Specify operating system.</div>
+    </div>
+  </h2>
+
+  <div class="three fields">
+    <!-- Operating System -->
+    <div class="field" [class.required]="this.getValidationService | required: FORM_KEY_OS">
+      <label>Operating System</label>
+      <xa-select [formControlName]="FORM_KEY_OS" [placeholder]="this.Context | placeholder: FORM_KEY_OS"
+        [options]="OSs$ | async" [search]="true" [clearable]="true" [loading]="!(OSs$ | async)">
+      </xa-select>
+      <show-errors [control]="this.form.get(FORM_KEY_OS)"></show-errors>
+    </div>
+
+    <!-- OS Version -->
+    <div class="field" [class.required]="this.getValidationService | required: FORM_KEY_OS_VERSION">
+      <label>Version</label>
+      <xa-select [formControlName]="FORM_KEY_OS_VERSION" [placeholder]="this.Context | placeholder: FORM_KEY_OS_VERSION"
+        [options]="OSVersions$ | async" [search]="true" [clearable]="true" [loading]="!(OSVersions$ | async)"
+        viewValue="name" optionValue="id">
+      </xa-select>
+      <show-errors [control]="this.form.get(FORM_KEY_OS_VERSION)"></show-errors>
+    </div>
+
+    <!-- Release -->
+    <div *ngIf="this.form.get(FORM_KEY_OS).value && (this.form.get(FORM_KEY_OS).value === 'Linux')" class="field"
+      [class.required]="this.getValidationService | required: FORM_KEY_OS_RELEASE">
+      <label>Release</label>
+      <xa-select [formControlName]="FORM_KEY_OS_RELEASE" [placeholder]="this.Context | placeholder: FORM_KEY_OS_RELEASE"
+        [options]="Releases$ | async" [search]="true" [clearable]="true" [loading]="!(Releases$ | async)"
+        viewValue="label" optionValue="release">
+      </xa-select>
+      <show-errors [control]="this.form.get(FORM_KEY_OS_RELEASE)"></show-errors>
+    </div>
+  </div>
+
+  <div *ngIf="this.form.get(FORM_KEY_OS).value === 'Windows'" class="two fields">
+    <div class="four wide field" style="display: grid;"
+      [class.required]="this.getValidationService | required: FORM_KEY_LICENSE_TYPE">
+      <label>Select License Type</label>
+      <xa-radiobox [formControlName]="FORM_KEY_LICENSE_TYPE" [group]="FORM_KEY_LICENSE_TYPE" value="spla">
+        SPLA
+      </xa-radiobox>
+      <xa-radiobox [formControlName]="FORM_KEY_LICENSE_TYPE" [group]="FORM_KEY_LICENSE_TYPE" value="kms">
+        KMS
+      </xa-radiobox>
+      <show-errors [control]="this.form.get(FORM_KEY_LICENSE_TYPE)"></show-errors>
+    </div>
+    <div *ngIf="this.form.get(FORM_KEY_LICENSE_TYPE).value === 'kms'" class="twelve wide field"
+      [class.required]="this.getValidationService | required: FORM_KEY_KMS_IP">
+      <label>KMS IP</label>
+      <input [value]="this.kms" readonly [placeholder]="this.Context | placeholder: FORM_KEY_KMS_IP">
+      <show-errors [control]="this.form.get(FORM_KEY_KMS_IP)"></show-errors>
+    </div>
+    <div *ngIf="this.form.get(FORM_KEY_LICENSE_TYPE).value === 'spla'" class="twelve wide field"
+      [class.required]="this.getValidationService | required: FORM_KEY_LICENSE_KEY">
+      <label>License Key</label>
+      <input [formControlName]="FORM_KEY_LICENSE_KEY" [placeholder]="this.Context | placeholder: FORM_KEY_LICENSE_KEY">
+      <show-errors [control]="this.form.get(FORM_KEY_LICENSE_KEY)"></show-errors>
+    </div>
+  </div>
+
+  <div class="two fields">
+    <!-- Hostname -->
+    <div class="field" [class.required]="this.getValidationService | required: FORM_KEY_HOSTNAME">
+      <label>Hostname (max length: {{this.hostnameLength$.value}})</label>
+      <input [formControlName]="FORM_KEY_HOSTNAME" [maxlength]="this.hostnameLength$.value"
+        [placeholder]="this.Context | placeholder: FORM_KEY_HOSTNAME">
+      <show-errors [control]="this.form.get(FORM_KEY_HOSTNAME)"></show-errors>
+    </div>
+
+    <!-- Domain -->
+    <div *ngIf="this.form.get(FORM_KEY_OS).value && (this.form.get(FORM_KEY_OS).value !== 'Linux')" class="field">
+      <label>Windows Domain</label>
+      <xa-select [formControlName]="FORM_KEY_DOMAIN" [placeholder]="this.Context | placeholder: FORM_KEY_DOMAIN"
+        [options]="Domains$ | async" [search]="true" [clearable]="true" [loading]="!(Domains$ | async)"
+        viewValue="label" optionValue="domainName" [config]="this.domainDropDownConfig">
+      </xa-select>
+      <show-errors [control]="this.form.get(FORM_KEY_DOMAIN)"></show-errors>
+    </div>
+  </div>
+
+  <div class="two fields">
+    <!-- Patch mode -->
+    <div class="field" [class.required]="this.getValidationService | required: FORM_KEY_PATCH_MODE">
+      <label>Patch Mode</label>
+      <xa-select [formControlName]="FORM_KEY_PATCH_MODE" [placeholder]="this.Context | placeholder: FORM_KEY_PATCH_MODE"
+        [options]="Patchmodes$ | async" [search]="true" [clearable]="true" [loading]="!(Patchmodes$ | async)"
+        viewValue="cmdbDescription" optionValue="cmdbKey">
+      </xa-select>
+      <show-errors [control]="this.form.get(FORM_KEY_PATCH_MODE)"></show-errors>
+    </div>
+
+    <!-- FQDN -->
+    <!-- TODO: clarify the type of this control is 'input' or 'xa-select'? -->
+    <div class="field" [class.required]="this.getValidationService | required: FORM_KEY_FQDN">
+      <label>FQDN</label>
+      <!-- If client domain is NOT in the default UAN Subdomain -->
+      <xa-select [formControlName]="FORM_KEY_FQDN" [placeholder]="this.Context | placeholder: FORM_KEY_FQDN"
+        [options]="FQDNs$ | async" [search]="true" [clearable]="true" [loading]="!(FQDNs$ | async)">
+      </xa-select>
+      <show-errors [control]="this.form.get(FORM_KEY_FQDN)"></show-errors>
+    </div>
+  </div>
+
+  <div class="field">
+    <p>
+      If a patchtime is already agreed with the customer, you can set it here (optional):
+    </p>
+    <label>Patch Time</label>
+    <xa-select [formControlName]="FORM_KEY_PATCH_TIME" [placeholder]="this.Context | placeholder: FORM_KEY_PATCH_TIME"
+      [options]="PatchTimes$ | async" [search]="true" [clearable]="true" [loading]="!(Patchmodes$ | async)">
+    </xa-select>
+    <show-errors [control]="this.form.get(FORM_KEY_PATCH_TIME)"></show-errors>
+  </div>
+
+  <!-- Support team section -->
+  <h2 class="ui dividing header">
+    <i class="universal access icon"></i>
+    <div class="content">
+      <span> Support Teams </span>
+      <div class="sub header">Specify the support options.</div>
+    </div>
+  </h2>
+
+  <div class="two fields">
+    <!-- OS Supported By -->
+    <div class="field" [class.required]="this.getValidationService | required: FORM_KEY_OS_SUPPORTED_BY">
+      <label>OS Supported By</label>
+      <xa-select [formControlName]="FORM_KEY_OS_SUPPORTED_BY"
+        [placeholder]="this.Context | placeholder: FORM_KEY_OS_SUPPORTED_BY" [options]="OSSupportedBy$ | async"
+        [search]="true" [clearable]="true" [loading]="!(OSSupportedBy$ | async)" viewValue="label"
+        optionValue="GROUPNAME">
+      </xa-select>
+      <show-errors [control]="this.form.get(FORM_KEY_OS_SUPPORTED_BY)"></show-errors>
+    </div>
+
+    <!--Application Supported By -->
+    <div class="field" [class.required]="this.getValidationService | required: FORM_KEY_APP_SUPPORTED_BY">
+      <label>App Supported By</label>
+      <xa-select [formControlName]="FORM_KEY_APP_SUPPORTED_BY"
+        [placeholder]="this.Context | placeholder: FORM_KEY_APP_SUPPORTED_BY" [options]="AppSupportedBy$ | async"
+        [search]="true" [clearable]="true" [loading]="!(AppSupportedBy$ | async)" viewValue="label"
+        optionValue="GROUPNAME">
+      </xa-select>
+      <show-errors [control]="this.form.get(FORM_KEY_APP_SUPPORTED_BY)"></show-errors>
+    </div>
+  </div>
+
+  <!-- Service time -->
+  <div class="two fields">
+    <!-- Service Time OS Support -->
+    <div class="field" [class.required]="this.getValidationService | required: FORM_KEY_SERVICE_TIME_OS_SUPPORT">
+      <label>Service Time OS Support</label>
+      <xa-select [formControlName]="FORM_KEY_SERVICE_TIME_OS_SUPPORT"
+        [placeholder]="this.Context | placeholder: FORM_KEY_SERVICE_TIME_OS_SUPPORT" [options]="ServiceTimeOS$ | async"
+        [search]="true" [clearable]="true" [loading]="!(ServiceTimeOS$ | async)">
+      </xa-select>
+      <show-errors [control]="this.form.get(FORM_KEY_SERVICE_TIME_OS_SUPPORT)"></show-errors>
+    </div>
+
+    <!-- Service Time App Support -->
+    <div class="field" [class.required]="this.getValidationService | required: FORM_KEY_SERVICE_TIME_APP_SUPPORT">
+      <label>Service Time App Support</label>
+      <xa-select [formControlName]="FORM_KEY_SERVICE_TIME_APP_SUPPORT"
+        [placeholder]="this.Context | placeholder: FORM_KEY_SERVICE_TIME_APP_SUPPORT"
+        [options]="ServiceTimeAppSupport$ | async" [search]="true" [clearable]="true"
+        [loading]="!(ServiceTimeAppSupport$ | async)">
+      </xa-select>
+      <show-errors [control]="this.form.get(FORM_KEY_SERVICE_TIME_APP_SUPPORT)"></show-errors>
+    </div>
+  </div>
+
+
+  <!-- VM Settings Section -->
+  <h2 class="ui dividing header">
+    <div class="wrapper" style="display: grid; grid-template-columns: 5% auto;">
+      <i class="cloud icon"></i>
+      <div class="content" style="display: flex; align-items: flex-end; justify-content: space-between;">
+        <div class="texts">
+          <span> VM Settings </span>
+          <div class="sub header">Specify VM settings. Select <b>Cluster / Location</b> first!</div>
+
+        </div>
+        <xa-checkbox class="normal-checkbox-size" [formControlName]="FORM_KEY_EXPERT_MODE" style="float:right;padding-right:10px;">Expert Mode (incl.
+          Pay-Per-Use)
+        </xa-checkbox>
+      </div>
+    </div>
+  </h2>
+
+  <p *ngIf="missingCPUCapacityData" style="color: red;">CPU capacity is missing in the database for the selected
+    cluster! Cannot perform MHz calculation!</p>
+
+  <!-- VCPU(s) -->
+  <div [hidden]="form.get(FORM_KEY_EXPERT_MODE).value">
+    <div class="field">
+      <div>Decrease value: Click on the white slider knob and use <i class="arrow left icon"></i> or
+        <i class="arrow down icon"></i> on your keyboard to decrease the value.
+      </div>
+      <div>Increase value: Click on the white slider knob and use <i class="arrow right icon"></i> or
+        <i class="arrow up icon"></i> on your keyboard to increase the value.
+      </div>
+    </div>
+    <div class="fields">
+      <div class="three wide field center-text">
+        <div class="ui statistic">
+          <div class="value">
+            {{form.get(FORM_KEY_CPUS)?.value}}
+          </div>
+          <div class="label">
+            vCPU(s)
+          </div>
+        </div>
+      </div>
+      <div class="ten wide field" [class.required]="this.getValidationService | required: FORM_KEY_CPUS">
+        <!-- <nouislider formControlName="CPUs" [config]="(this.Context | sliderOption:'cpuRangeOptions')"> -->
+        <nouislider #CPUs [formControlName]="FORM_KEY_CPUS" [config]="currentCPUSliderOptions" (update)="UpdateView()">
+        </nouislider>
+      </div>
+    </div>
+    <p *ngIf="!this.isESXClusterSelected" style="color: red">Select <b>Cluster / Location</b> first!</p>
+
+    <!-- RAM -->
+    <div class="fields">
+      <div class="three wide field center-text">
+        <div class="ui statistic">
+          <div class="value">
+            {{form.get('RAM')?.value}}
+          </div>
+          <div class="label">
+            GB RAM
+          </div>
+        </div>
+      </div>
+      <div class="ten wide field" [class.required]="this.getValidationService | required: FORM_KEY_RAM">
+        <!-- <nouislider formControlName="RAM" [config]="(this.Context | sliderOption:'memoryRangeOptions')"> -->
+        <nouislider #RAM [formControlName]="FORM_KEY_RAM" [config]="currentMemorySliderOptions" (update)="UpdateView()">
+        </nouislider>
+      </div>
+    </div>
+    <p *ngIf="!this.isESXClusterSelected" style="color: red">Select <b>Cluster / Location</b> first!</p>
+  </div>
+
+  <div [hidden]="!form.get(FORM_KEY_EXPERT_MODE).value">
+    <div class="two fields">
+      <!-- EXPERT MODE: vCPUs -->
+      <div class="field" [class.required]="this.getValidationService | required: FORM_KEY_CPUS">
+        <label>vCPU(s) (min: {{this.MinCPUExpertMode$.value }} | max: {{ this.MaxCPUExpertMode$.value }} )</label>
+        <input type="number" [min]="this.MinCPUExpertMode$.value" [max]="this.MaxCPUExpertMode$.value"
+          [formControlName]="FORM_KEY_CPUS_MANUAL_INPUT" [placeholder]="this.Context | placeholder: FORM_KEY_CPUS"
+          (change)="UpdateCPUs()">
+        <show-errors [control]="this.form.get(FORM_KEY_CPUS_MANUAL_INPUT)"></show-errors>
+      </div>
+
+      <!-- EXPERT MODE: RAM -->
+      <div class="field" [class.required]="this.getValidationService | required: FORM_KEY_RAM">
+        <label>GB RAM (min: {{this.currentMemorySliderOptions.range.min }} | max:
+          {{ this.currentMemorySliderOptions.range.max }} )</label>
+        <input type="number" min="2" [max]="this.currentMemorySliderOptions.range.max"
+          [step]="this.currentMemorySliderOptions.step || 2" [formControlName]="FORM_KEY_RAM_MANUAL_INPUT"
+          [placeholder]="this.Context | placeholder: FORM_KEY_RAM" (change)="UpdateRAM()">
+        <show-errors [control]="this.form.get(FORM_KEY_RAM_MANUAL_INPUT)"></show-errors>
+      </div>
+    </div>
+
+    <div class="three fields">
+      <!-- EXPERT MODE: Limits Unit -->
+      <div class="field" [class.required]="this.getValidationService | required: FORM_KEY_EXPERT_LIMITS_UNIT">
+        <label>Limits Unit</label>
+        <xa-select [formControlName]="FORM_KEY_EXPERT_LIMITS_UNIT"
+          [placeholder]="this.Context | placeholder: FORM_KEY_EXPERT_LIMITS_UNIT" [options]="expertLimitsUnits$ | async"
+          [search]="true" [clearable]="true" [loading]="!(expertLimitsUnits$ | async)">
+        </xa-select>
+        <show-errors [control]="this.form.get(FORM_KEY_EXPERT_LIMITS_UNIT)"></show-errors>
+      </div>
+
+      <!-- EXPERT MODE: Lower Limit -->
+      <div class="field" [class.required]="this.getValidationService | required: FORM_KEY_EXPERT_LOWER_LIMIT">
+        <label>Lower Limit <xa-checkbox [formControlName]="FORM_KEY_EXPERT_LOWER_LIMIT_CHECKBOX"
+            style="float:right;padding-right:10px;">
+            Pay-Per-Use</xa-checkbox></label>
+        <input type="number" [min]="0" [max]="(this.maxExpertLowerLimit | async)"
+          [formControlName]="FORM_KEY_EXPERT_LOWER_LIMIT"
+          [placeholder]="this.Context | placeholder: FORM_KEY_EXPERT_LOWER_LIMIT">
+        <show-errors [control]="this.form.get(FORM_KEY_EXPERT_LOWER_LIMIT)"></show-errors>
+        <p *ngIf="this.form.get(FORM_KEY_MIN_MHZ).value"><b>minimal calculated MHz: </b>{{
+          this.form.get(FORM_KEY_MIN_MHZ).value }} </p>
+      </div>
+
+      <!-- EXPERT MODE: Upper Limit -->
+      <div class="field" [class.required]="this.getValidationService | required: FORM_KEY_EXPERT_UPPER_LIMIT">
+        <label>Upper Limit <xa-checkbox [formControlName]="FORM_KEY_EXPERT_UPPER_LIMIT_CHECKBOX"
+            style="float:right;padding-right:10px;">
+            Upper Limit</xa-checkbox></label>
+        <input type="number" [min]="(this.minExpertUpperLimit | async) || 0"
+          [formControlName]="FORM_KEY_EXPERT_UPPER_LIMIT"
+          [placeholder]="this.Context | placeholder: FORM_KEY_EXPERT_UPPER_LIMIT">
+        <show-errors [control]="this.form.get(FORM_KEY_EXPERT_UPPER_LIMIT)"></show-errors>
+        <p *ngIf="this.form.get(FORM_KEY_MAX_MHZ).value"><label><b>maximal calculated MHz:
+            </b></label>{{ this.form.get(FORM_KEY_MAX_MHZ).value }} </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Here comes the storage table -->
+  <div class="fields" *ngIf="this.form.get(FORM_KEY_OS).value" style="padding-top: 10px">
+    <div class="sixteen wide field">
+      <label>VMDK-Storage</label>
+      <table class="ui table compact">
+
+        <!-- Table header -->
+        <thead>
+          <tr class="head">
+            <th class="one wide center-text">{{this.patchOrName}}</th>
+            <th class="two wide center-text">Size</th>
+            <th class="thirteen wide center-text"></th>
+            <th class="td_actions">
+              <div *ngIf="this.isWindowsOSSelected() && this.vmdks.length < 3" style="cursor: pointer;"
+                enabled="{{this.vmdks.length < 3}}}">
+                <i class="large icons right floated action" (click)="addStorage()">
+                  <i class="hdd icon"></i>
+                  <i class="corner add icon"></i>
+                </i>
+
+              </div>
+            </th>
+
+          </tr>
+        </thead>
+
+        <!-- Table body, row -->
+        <tbody>
+
+          <tr [formArrayName]="FORM_KEY_VMDK" *ngFor="let vmdk of form.get(FORM_KEY_VMDK)['controls'];
+          let i = index">
+
+            <!-- TODO check nested Validation varNames => VMDK.attributes -->
+            <td [formGroupName]="i" class="center-text">
+              <div [class.required]="this.getValidationService | required:'VMDK.Name'">
+                <div class="ui mini statistic">
+                  <div style="font-size: 16px;">
+                    {{vmdk.controls.name.value}}
+                  </div>
+                </div>
+              </div>
+            </td>
+
+            <td [formGroupName]="i" class="center-text">
+              <div [class.required]="this.getValidationService | required:'VMDK.Size'">
+                <div class="ui mini statistic">
+                  <div class="value">
+                    {{vmdk.controls.size.value}}
+                  </div>
+                  <div class="label">
+                    GB
+                  </div>
+                </div>
+              </div>
+            </td>
+
+            <td [formGroupName]="i">
+              <div [class.required]="this.getValidationService | required:'VMDK.Size'">
+                <div style="padding: 10px 30px 30px 5px;">
+                  <nouislider [config]="isWindowsOSSelected() ?
+                  (vmdk.controls.name.value === 'C' ?
+                    (this.Context | sliderOption:'initialWindowsStorageSizeOptions') : (this.Context | sliderOption:'storageSizeOptions'))
+                  :(this.Context | sliderOption:'storageSizeOptions')" formControlName="size">
+                  </nouislider>
+                </div>
+              </div>
+            </td>
+
+
+            <td [formGroupName]="i" class="right aligned">
+              <i class="trash alternate outline icon" *ngIf="i != 0" (click)="removeStorage(i)"></i>
+            </td>
+
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Monitoring Section -->
+  <h2 class="ui dividing header">
+    <i class="heartbeat icon"></i>
+    <div class="content">
+      <span> Monitoring </span>
+      <div class="sub header">Specify monitoring requirements.</div>
+    </div>
+  </h2>
+
+  <div class="field">
+    <p>
+      The VM will be installed with <strong>Nagios OS monitoring enabled</strong> (NRPE/NSClient++ agent for Argus
+      Monitoring [Naemon] with base OS checks).
+    </p>
+    <p>If no OS monitoring is needed, please have it disabled after the VM was set up by submitting a Service Request to
+      the OS team.
+    </p>
+  </div>
+
+  <!-- Backup Section -->
+  <h2 class="ui dividing header">
+    <i class="archive icon"></i>
+    <div class="content">
+      <span> Backup </span>
+      <div class="sub header">Specify backup settings.</div>
+    </div>
+  </h2>
+
+  <div>
+    <p><b>VMWare Platform Backup will be installed per default.</b></p>
+    <p>If further Backup (e.g., TSM) is required, please request it via a Change Request after the VM is deployed.</p>
+  </div>
+
+  <!-- Network Section -->
+  <h2 class="ui dividing header">
+    <i class="sitemap icon"></i>
+    <div class="content">
+      <span> Network Options </span>
+      <div class="sub header">Specify network options.</div>
+    </div>
+  </h2>
+
+  <div class="three fields">
+
+    <!-- Customer LAN -->
+    <div class="field" [class.required]="this.getValidationService | required: FORM_KEY_CUSTOMER_LAN">
+      <label>Customer LAN</label>
+      <xa-select [formControlName]="FORM_KEY_CUSTOMER_LAN"
+        [placeholder]="this.Context | placeholder: FORM_KEY_CUSTOMER_LAN" [options]="CustomerLANs$ | async"
+        [search]="true" [clearable]="true" [loading]="!(CustomerLANs$ | async)" viewValue="label" optionValue="ID">
+      </xa-select>
+      <div style="padding: 5px; text-align: right"
+        [style.opacity]="!(isCustomerLanIPVersionsSelectable$ | async) ? '0.3' : '1'">
+        <xa-checkbox [clickable]="isCustomerLanIPVersionsSelectable$ | async" style="padding-right: 5px"
+          [formControlName]="FORM_KEY_CUSTOMER_LAN_IPV4">IPv4</xa-checkbox>
+        <!-- <xa-checkbox [clickable]="isCustomerLanIPVersionsSelectable$ | async"
+          [formControlName]="FORM_KEY_CUSTOMER_LAN_IPV6">IPv6
+        </xa-checkbox> -->
+      </div>
+      <div *ngIf="showCustomerLANInformation" style="display: flex;">
+        <i class="info circle icon"></i>
+        <p>The CMDB does not contain information about the Customer LAN's DNS and/or NTP Server.
+          This can cause delays in the process, because the information needs to be entered in the CMDB manually within
+          a user
+          task. (expected delay: 1-2 days)
+        </p>
+      </div>
+
+      <show-errors [control]="this.form.get(FORM_KEY_CUSTOMER_LAN)"></show-errors>
+    </div>
+
+    <!--Admin LAN -->
+    <div *ngIf="this.showAdminLan == 'true'" class="field" [class.required]="this.getValidationService | required: FORM_KEY_ADMIN_LAN">
+      <label>Admin LAN</label>
+      <xa-select [formControlName]="FORM_KEY_ADMIN_LAN" [placeholder]="this.Context | placeholder: FORM_KEY_ADMIN_LAN"
+        [options]="AdminLANs$ | async" [search]="true" [clearable]="true" [loading]="!(AdminLANs$ | async)"
+        viewValue="label" optionValue="ID">
+      </xa-select>
+      <div style="padding: 5px; text-align: right"
+        [style.opacity]="!(isAdminLanIPVersionsSelectable$ | async) ? '0.3' : '1'">
+        <xa-checkbox [clickable]="isAdminLanIPVersionsSelectable$ | async" style="padding-right: 5px"
+          [formControlName]="FORM_KEY_ADMIN_LAN_IPV4">IPv4</xa-checkbox>
+        <!-- <xa-checkbox [clickable]="isAdminLanIPVersionsSelectable$ | async" [formControlName]="FORM_KEY_ADMIN_LAN_IPV6">
+          IPv6
+        </xa-checkbox> -->
+      </div>
+      <show-errors [control]="this.form.get(FORM_KEY_ADMIN_LAN)"></show-errors>
+    </div>
+
+    <!--NAS LAN -->
+    
+    
+    <div class="field" [class.required]="this.getValidationService | required: FORM_KEY_NAS_LAN">
+      <xa-checkbox [formControlName]="FORM_KEY_NAS_LAN_CHECK" style="font-weight: bold ; float:right;padding-right: 10px;">Enable (if needed)</xa-checkbox>
+      <label>NAS LAN</label>
+      <input type="text" readonly [disabled]="this.form.get(FORM_KEY_NAS_LAN_CHECK)?.value == false" [value]="this.naslanlabel" [placeholder]="this.Context | placeholder: FORM_KEY_NAS_LAN"/>
+      
+       <div style="padding: 5px; text-align: right"
+        [style.opacity]="!(isNasLanIPVersionsSelectable$ | async) ? '0.3' : '1'">
+        <xa-checkbox [clickable]="isNasLanIPVersionsSelectable$ | async" style="padding-right: 5px"
+          [formControlName]="FORM_KEY_NAS_LAN_IPV4">IPv4</xa-checkbox>
+        <!-- <xa-checkbox [clickable]="isNasLanIPVersionsSelectable$ | async" [formControlName]="FORM_KEY_NAS_LAN_IPV6">IPv6
+        </xa-checkbox> -->
+      </div>
+      <show-errors [control]="this.form.get(FORM_KEY_NAS_LAN)"></show-errors>
+    </div> 
+  </div>
+
+  <div class="field">
+    <p>
+      <br>
+      IPv6 is not supported at the moment.<br>
+      If IPv6 is needed, either open a change after the VM deployment is finished, or use the VMCreate v1 process.
+    </p>
+  </div>
+
+  <!-- Customer specific IPs -->
+  <div class="field" [class.required]="this.getValidationService | required: FORM_KEY_CUSTOMER_SPECIFIC_IPv4">
+    <label>Customer Specific IPv4</label>
+    <textarea [formControlName]="FORM_KEY_CUSTOMER_SPECIFIC_IPv4" rows="2" style="resize: none;"
+      [placeholder]="this.Context | placeholder: FORM_KEY_CUSTOMER_SPECIFIC_IPv4">
+    </textarea>
+    <show-errors [control]="this.form.get(FORM_KEY_CUSTOMER_SPECIFIC_IPv4)"></show-errors>
+  </div>
+
+  <!-- Information sharing - Email section -->
+  <h2 class="ui dividing header">
+    <i class="share alternate icon"></i>
+    <div class="content">
+      <span> Information Sharing </span>
+      <div class="sub header">
+        Specify e-mail address(es) below that you want to inform about the creation of the change
+        <b>(separated by ; )</b>.
+      </div>
+    </div>
+  </h2>
+
+  <div class="field">
+    <info-mail-share [controlName]="FORM_KEY_EMAIL_ADDRESSES_SHARING_INFORMATION"
+      [required]="this.getValidationService | required: FORM_KEY_EMAIL_ADDRESSES_SHARING_INFORMATION"></info-mail-share>
+  </div>
+
+</form>
+
+<pre *if-dev class="field">
+  <p>{{this.form.value | json}}</p>
+</pre>
+
+<xa-notify></xa-notify>

@@ -70,6 +70,10 @@ import * as VMCreate_v1_Validation from '../../../@vmcreate/request-form/mocks/V
 import * as VMCreate_v2_Payload from '../../../@vmcreate/request-form-v2/mocks/Payload.json';
 import * as VMCreate_v2_ConfigPayload from '../../../@vmcreate/request-form-v2/mocks/ConfigPayload.json';
 import * as VMCreate_v2_Validation from '../../../@vmcreate/request-form-v2/mocks/Validation.json';
+// VM Create request-form-v3
+import * as VMCreate_v3_Payload from '../../../@vmcreate/request-form-v3/mocks/Payload.json';
+import * as VMCreate_v3_ConfigPayload from '../../../@vmcreate/request-form-v3/mocks/ConfigPayload.json';
+import * as VMCreate_v3_Validation from '../../../@vmcreate/request-form-v3/mocks/Validation.json';
 // Create F5 Virtual Server request-form
 import * as CreateF5VirtualServer_RF_Payload from '../../../@create-f5-virtual-server/request-form/mocks/Payload.json';
 import * as CreateF5VirtualServer_RF_ConfigPayload from '../../../@create-f5-virtual-server/request-form/mocks/ConfigPayload.json';
@@ -217,6 +221,7 @@ export class AppHtmlFormsComponent {
   Patchautomation_Remove_Context: RequestContext = this.BuildRequestContext({ payload: Patchautomation_Remove_Payload, configPayload: Patchautomation_Remove_ConfigPayload, validation: Patchautomation_Remove_Validation });
   VMCreate_v1_Context: RequestContext = this.BuildRequestContext({ payload: VMCreate_v1_Payload, configPayload: VMCreate_v1_ConfigPayload, validation: VMCreate_v1_Validation });
   VMCreate_v2_Context: RequestContext = this.BuildRequestContext({ payload: VMCreate_v2_Payload, configPayload: VMCreate_v2_ConfigPayload, validation: VMCreate_v2_Validation });
+  VMCreate_v3_Context: RequestContext = this.BuildRequestContext({ payload: VMCreate_v3_Payload, configPayload: VMCreate_v3_ConfigPayload, validation: VMCreate_v3_Validation });
   Oracle_DB_Rundown_RF_Context: RequestContext = this.BuildRequestContext({ payload: Oracle_DB_Rundown_RF_Payload, configPayload: Oracle_DB_Rundown_RF_ConfigPayload, validation: Oracle_DB_Rundown_RF_Validation });
   Oracle_DB_Rundown_UT_Enter_Interface_Context: TaskContext = this.BuildCeTaskContext({ payload: Oracle_DB_Rundown_UT_Enter_Interface_Payload, configPayload: Oracle_DB_Rundown_UT_Enter_Interface_ConfigPayload, validation: Oracle_DB_Rundown_UT_Enter_Interface_Validation });
   Oracle_DB_Rundown_UT_Enter_Storage_Context: TaskContext = this.BuildCeTaskContext({ payload: Oracle_DB_Rundown_UT_Enter_Storage_Payload, configPayload: Oracle_DB_Rundown_UT_Enter_Storage_ConfigPayload, validation: Oracle_DB_Rundown_UT_Enter_Storage_Validation });

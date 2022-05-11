@@ -1,0 +1,15 @@
+{
+  "CPUs": 1,
+  "RAM": 8,
+  "LicenseType": "SPLA",
+  "VMOptions": {
+      "VCPU": 2,
+      "VRAM": 16,
+      "Backup": "VMware",
+      "PayPerUse": false,
+      "PPUunlimited": true,
+      "UpperLimit": false,
+      "LowerLimit": true,
+      "LimitsUnit": "Slices"
+  }
+}

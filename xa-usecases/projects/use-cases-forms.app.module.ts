@@ -13,6 +13,7 @@ import { RanfRequestFormAppModule } from 'projects/@ranf/request-form/src/app/ap
 import { RanfUtCheckAppModule } from 'projects/@ranf/ut-check/src/app/app.module';
 import { StorageExtensionRequestFormAppModule } from 'projects/@storage-extension/request-form/src/app/app.module';
 import { UniversalTapExecutionKfaDeploymentRequestFormAppModule } from 'projects/@universal-tap-execution/kfa-deployment-request-form/src/app/app.module';
+import { VMCreateRequestFormv3AppModule } from './@vmcreate/request-form-v3/src/app/app.module';
 import { VMCreateRequestFormv2AppModule } from 'projects/@vmcreate/request-form-v2/src/app/app.module';
 import { VMCreateRequestFormAppModule } from 'projects/@vmcreate/request-form/src/app/app.module';
 import { OracleDbRdnRequestFormAppModule } from './@oracle-db-rundown/request-form/src/app/app.module';
@@ -44,7 +45,6 @@ import { CreateIPNetworkUTCreateNetworkConfigAppModule } from './@create-ip-netw
 import { TestUserTaskProcessRequestFormAppModule } from './@test-user-task-process/request-form/src/app/app.module';
 import { TestUserTaskUTUserTaskAppModule } from './@test-user-task-process/ut-user-task/src/app/app.module';
 
-
 @NgModule({
   exports: [
     RanfRequestFormAppModule,
@@ -63,6 +63,7 @@ import { TestUserTaskUTUserTaskAppModule } from './@test-user-task-process/ut-us
     CreateF5VirtualServerUTValidateAppModule,
     CreateOracleDatabaseRequestFormAppModule,
     VMCreateRequestFormv2AppModule,
+    VMCreateRequestFormv3AppModule,
     UniversalTapExecutionKfaDeploymentRequestFormAppModule,
     OracleDbRdnRequestFormAppModule,
     OracleDbRdnUTEnterInterfaceAppModuleAppModule,
