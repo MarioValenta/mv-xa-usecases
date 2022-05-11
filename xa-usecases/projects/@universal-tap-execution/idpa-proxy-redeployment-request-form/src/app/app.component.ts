@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ICERequest } from '@xa/lib-ui-common';
 import { XANotifyService } from '@xa/ui';
 import { ValidationService } from '@xa/validation';
@@ -15,7 +15,7 @@ import { DataService } from './app.service';
 export type CatDBEntry = { [key: string]: string | Record<string, any> };
 
 @Component({
-  selector: 'universal-tap-execution-kfa-deployment-request-form',
+  selector: 'universal-tap-execution-idpa-proxy-redeployment-request-form',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
@@ -24,13 +24,11 @@ export class AppComponent extends RequestContextBaseComponent implements ICERequ
   title = 'KFA-Deployment';
   startOptions: FlatpickrOptions = getFlatpickrSettings();
   catDBData: CatDBEntry | null = null;
-  catDBEndpointUrl: string = 'api/universaltapexecution/getusecaseinfosfromcatdb/';
+  catDBEndpointUrl: string = 'api/vmcreate/appliance/{appliancetype}/parameters';
   formReady$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  readonly FORM_STARTDATE: IFormControlSettingsObject = this.buildFormControlObject('startdate', 'Patch Startdate', 'enter Startdate...');
-  readonly FORM_NAME_OF_USECASE: IFormControlSettingsObject = this.buildFormControlObject('nameOfUseCase');
-  readonly FORM_MAIL_ADDRESSES: IFormControlSettingsObject = this.buildFormControlObject('mailAddressesShareInformation', 'Mail Addresses');
-
+  readonly FORM_HOSTNAME: IFormControlSettingsObject = this.buildFormControlObject('hostname', 'Hostname', 'enter Hostname...');
+  readonly FORM_JENKINS_PARAMETERS: IFormControlSettingsObject = this.buildFormControlObject('jenkinsParameters');
 
   constructor(private fb: FormBuilder, private dataService: DataService, private xaNotifyService: XANotifyService, private validationService: ValidationService) {
     super();
@@ -40,12 +38,12 @@ export class AppComponent extends RequestContextBaseComponent implements ICERequ
     return this.validationService;
   }
 
-  get startDateControl(): FormControl {
-    return this.form.get(this.FORM_STARTDATE.key) as FormControl;
+  get hostname(): FormControl {
+    return this.form.get(this.FORM_HOSTNAME.key) as FormControl;
   }
 
-  get mailAddresses(): FormControl {
-    return this.form.get(this.FORM_MAIL_ADDRESSES.key) as FormControl;
+  get jenkinsParameters(): FormControl {
+    return this.form.get(this.FORM_JENKINS_PARAMETERS.key) as FormControl;
   }
 
   setFormStatusChangeListener(): void {
@@ -81,9 +79,17 @@ export class AppComponent extends RequestContextBaseComponent implements ICERequ
   customOnInit(): void {
     console.debug(this.title, 'customOnInit()');
 
+    this.xaNotifyService.info('loading data from the CatDB!', { timeout: 2500, pauseOnHover: false });
+
     this.dataService
-      .getCatalogDbData(this.catDBEndpointUrl + `${this.getCatDBConfigData(this.FORM_NAME_OF_USECASE.key)}`)
-      .pipe(tap(value => { this.xaNotifyService.info('loading data from the CatDB!', { timeout: 2500, pauseOnHover: false }); }))
+      .getCatalogDbData(`api/vmcreate/appliance/${this.Context.ConfigPayload['catDBScope']}/parameters`)
+      .subscribe(
+        (values: any) => {
+          this.jenkinsParameters.setValue(values);
+        });
+
+    this.dataService
+      .getCatalogDbData(`api/universaltapexecution/getusecaseinfosfromcatdb/${this.Context.ConfigPayload['catDBUCName']}/${this.Context.ConfigPayload['catDBCustomer']}`)
       .subscribe(
         (values: any) => {
           this.catDBData = values;
@@ -111,9 +117,8 @@ export class AppComponent extends RequestContextBaseComponent implements ICERequ
     console.debug(this.title, 'buildForm()');
 
     this.form = this.fb.group({
-      [this.FORM_NAME_OF_USECASE.key]: [''],
-      [this.FORM_STARTDATE.key]: [''],
-      [this.FORM_MAIL_ADDRESSES.key]: ['']
+      [this.FORM_JENKINS_PARAMETERS.key]: [''],
+      [this.FORM_HOSTNAME.key]: ['']
     });
   }
 
@@ -128,7 +133,7 @@ export class AppComponent extends RequestContextBaseComponent implements ICERequ
 
     const formData = this.form.getRawValue();
     console.log(formData);
-    this.requestFormIdentifier = `${this.title}-${formData[this.FORM_STARTDATE.key]}`;
+    this.requestFormIdentifier = `${this.title}-${formData[this.FORM_HOSTNAME.key]}`;
 
     return {
       value: formData,

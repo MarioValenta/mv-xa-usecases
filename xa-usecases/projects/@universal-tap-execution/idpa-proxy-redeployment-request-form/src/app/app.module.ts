@@ -3,7 +3,6 @@ import { createCustomElement } from '@angular/elements';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { InfoMailShareModule } from '@xa/lib-ui-common';
 import { ShowErrorsModule } from '@xa/show-errors';
 import { XAUIModule } from '@xa/ui';
 import { windowFactory, XASERVICE_TOKEN } from 'projects/shared.functions';
@@ -31,8 +30,7 @@ import { AppComponent } from './app.component';
     Ng2FlatpickrModule,
     JsonValuesAsSimpleTableModule,
     environment.production ? [] : SharedModule,
-    PipeModule,
-    InfoMailShareModule
+    PipeModule
   ],
   exports: [AppComponent],
   providers: [
@@ -47,13 +45,13 @@ import { AppComponent } from './app.component';
   ]
 })
 
-export class UniversalTapExecutionKfaDeploymentRequestFormAppModule {
+export class UniversalTapExecutionIdpaProxyRedeploymentRequestFormAppModule {
 
   constructor(private injector: Injector) { }
 
   ngDoBootstrap() {
     const ce = createCustomElement(AppComponent, { injector: this.injector });
-    customElements.define('universal-tap-execution-kaf-deployment-request-form', ce);
+    customElements.define('universal-tap-execution-idpa-proxy-redeployment-request-form', ce);
   }
 }
 
