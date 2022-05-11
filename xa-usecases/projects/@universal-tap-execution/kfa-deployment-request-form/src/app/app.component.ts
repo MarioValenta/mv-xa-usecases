@@ -29,6 +29,8 @@ export class AppComponent extends RequestContextBaseComponent implements ICERequ
 
   readonly FORM_STARTDATE: IFormControlSettingsObject = this.buildFormControlObject('startdate', 'Patch Startdate', 'enter Startdate...');
   readonly FORM_NAME_OF_USECASE: IFormControlSettingsObject = this.buildFormControlObject('nameOfUseCase');
+  readonly FORM_MAIL_ADDRESSES: IFormControlSettingsObject = this.buildFormControlObject('mailAddressesShareInformation', 'Mail Addresses');
+
 
   constructor(private fb: FormBuilder, private dataService: DataService, private xaNotifyService: XANotifyService, private validationService: ValidationService) {
     super();
@@ -40,6 +42,10 @@ export class AppComponent extends RequestContextBaseComponent implements ICERequ
 
   get startDateControl(): FormControl {
     return this.form.get(this.FORM_STARTDATE.key) as FormControl;
+  }
+
+  get mailAddresses(): FormControl {
+    return this.form.get(this.FORM_MAIL_ADDRESSES.key) as FormControl;
   }
 
   setFormStatusChangeListener(): void {
@@ -106,7 +112,8 @@ export class AppComponent extends RequestContextBaseComponent implements ICERequ
 
     this.form = this.fb.group({
       [this.FORM_NAME_OF_USECASE.key]: [''],
-      [this.FORM_STARTDATE.key]: ['']
+      [this.FORM_STARTDATE.key]: [''],
+      [this.FORM_MAIL_ADDRESSES.key]: ['']
     });
   }
 

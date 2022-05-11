@@ -1,5 +1,5 @@
 {
-  "customer": "PRINZHORN",
+  "Customer": "PRINZHORN",
   "listOfCIs": "H11822916, H11822917",
   "requestName": "UniversalTapExecution",
   "jenkinsPath": "/jenkins/job/Camunda/job/Testcorner/job/OS/job/Windows/job/Patching/job/precheck_patching_OperatingSystem/build",

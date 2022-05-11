@@ -25,6 +25,26 @@
     <show-errors [control]="startDateControl"></show-errors>
   </div>
 
+  <h2 class="ui dividing header">
+    <i class="share alternate icon"></i>
+    <div class="content">
+      <span> Information Sharing </span>
+      <div class="sub header">
+        Specify e-mail address(es) below that you want to inform about the
+        creation of the incident
+        <b>(separated by ; )</b>.
+      </div>
+    </div>
+  </h2>
+
+  <div class="field">
+    <info-mail-share
+      [controlName]="FORM_MAIL_ADDRESSES.key"
+      [class.required]="getValidationService | required:FORM_MAIL_ADDRESSES.key"
+      [label]="FORM_MAIL_ADDRESSES.label"
+    ></info-mail-share>
+  </div>
+
 
   <h2 class="ui dividing header">
     <i class="paperclip icon"></i>

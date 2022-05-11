@@ -3,6 +3,7 @@ import { createCustomElement } from '@angular/elements';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InfoMailShareModule } from '@xa/lib-ui-common';
 import { ShowErrorsModule } from '@xa/show-errors';
 import { XAUIModule } from '@xa/ui';
 import { windowFactory, XASERVICE_TOKEN } from 'projects/shared.functions';
@@ -30,7 +31,8 @@ import { AppComponent } from './app.component';
     Ng2FlatpickrModule,
     JsonValuesAsSimpleTableModule,
     environment.production ? [] : SharedModule,
-    PipeModule
+    PipeModule,
+    InfoMailShareModule
   ],
   exports: [AppComponent],
   providers: [
