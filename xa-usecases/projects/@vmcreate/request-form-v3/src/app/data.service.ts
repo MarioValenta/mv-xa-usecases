@@ -139,7 +139,7 @@ export class DataService {
 
   // Get Customer's DNS subdomains if customer is not in UAN
   public getCustomerDNSSubdomains(customer: string) {
-    return this.xaservices.Http!.Get<any>(`api/cmdb/dnsdomains?customer=${customer.toLowerCase()}`).pipe(
+    return this.xaservices.Http!.Get<any>(`api/cmdb/dnsdomainsfqdn?customer=${customer.toLowerCase()}`).pipe(
       share(),
     );
   }
