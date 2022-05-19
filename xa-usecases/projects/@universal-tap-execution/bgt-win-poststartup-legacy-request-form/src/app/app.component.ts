@@ -28,7 +28,7 @@ export class AppComponent extends RequestContextBaseComponent implements ICERequ
   formReady$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   readonly FORM_STARTDATE: IFormControlSettingsObject = this.buildFormControlObject('startdate', 'Patch Startdate', 'enter Startdate...');
-  readonly FORM_HOST: IFormControlSettingsObject = this.buildFormControlObject('host', 'BGT host', 'select host...');
+  readonly FORM_HOST: IFormControlSettingsObject = this.buildFormControlObject('Host', 'BGT Host', 'select Host...');
   readonly FORM_NAME_OF_USECASE: IFormControlSettingsObject = this.buildFormControlObject('nameOfUseCase');
   readonly FORM_JENKINS_PARAMETERS: IFormControlSettingsObject = this.buildFormControlObject('jenkinsParameters');
 
