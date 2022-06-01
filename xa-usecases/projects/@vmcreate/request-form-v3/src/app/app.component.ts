@@ -348,6 +348,7 @@ export class AppComponent implements OnInit, OnDestroy, ICERequest {
       AdminLAN: [{ value: '', disabled: true }],
       NASLAN: [''],
       NASLANCHECK: [{ value: '', disabled: true }],
+      CustomerLanIpam: [''],
       CustomerSpecificIPv4: [''],
       CustomerSpecificIPv6: [''],
       VMDK: this.fb.array([]),
@@ -1330,7 +1331,6 @@ export class AppComponent implements OnInit, OnDestroy, ICERequest {
             this.OSSupportedBy$ =
               this.dataService.getOSSupportedBy(selectedOSLowerCase);
             this.enableFormElement(this.FORM_KEY_OS_SUPPORTED_BY);
-
             this.enableFormElement(this.FORM_KEY_HOSTNAME);
 
             // clearing the vmdks formArray
@@ -1885,8 +1885,17 @@ export class AppComponent implements OnInit, OnDestroy, ICERequest {
               .subscribe((res) => {
                 if (res.length > 0) {
                   let FK_NAS_NET = res[0]['FK_NAS_NET'];
+                  let ipam = res[0]['IPAM'];
 
-                  console.log(res[0]['FK_NAS_NET']);
+                  if (ipam == '0') {
+                    this.form.get('CustomerLanIpam')?.patchValue(false);
+                    this.form.get('CustomerSpecificIPv4')?.enable();
+                  } else {
+                    this.form.get('CustomerLanIpam')?.patchValue(true);
+                    this.form.get('CustomerSpecificIPv4')?.patchValue('');
+                    this.form.get('CustomerSpecificIPv4')?.enable();
+                  }
+                 
 
                   this.dataService
                     .getNASLAN(this.form.get('Customer')?.value, FK_NAS_NET)

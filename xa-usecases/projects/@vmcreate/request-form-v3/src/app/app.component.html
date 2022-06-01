@@ -536,7 +536,7 @@
                   <nouislider [config]="isWindowsOSSelected() ?
                   (vmdk.controls.name.value === 'C' ?
                     (this.Context | sliderOption:'initialWindowsStorageSizeOptions') : (this.Context | sliderOption:'storageSizeOptions'))
-                  :(this.Context | sliderOption:'storageSizeOptions')" formControlName="size">
+                  :(this.Context | sliderOption:'storageSizeOptions')" formControlName="size"  [disabled]="vmdk.controls.name.value === 'C'">
                   </nouislider>
                 </div>
               </div>
@@ -671,11 +671,17 @@
   </div>
 
   <!-- Customer specific IPs -->
-  <div class="field" [class.required]="this.getValidationService | required: FORM_KEY_CUSTOMER_SPECIFIC_IPv4">
+  <!-- <div *ngIf="this.form.get(FORM_KEY_OS).value === 'Windows'" class="twelve wide field"
+      [class.required]="this.getValidationService | required: FORM_KEY_CUSTOMER_SPECIFIC_IPv4">
+      <label>Customer Specific IPv4</label>
+      <input [formControlName]="FORM_KEY_CUSTOMER_SPECIFIC_IPv4">
+      <show-errors [control]="this.form.get(FORM_KEY_CUSTOMER_SPECIFIC_IPv4)"></show-errors>
+    </div> -->
+
+  <div *ngIf="this.form.get('CustomerLanIpam').value === false" class="field" [class.required]="this.getValidationService | required: FORM_KEY_CUSTOMER_SPECIFIC_IPv4">
     <label>Customer Specific IPv4</label>
-    <textarea [formControlName]="FORM_KEY_CUSTOMER_SPECIFIC_IPv4" rows="2" style="resize: none;"
-      [placeholder]="this.Context | placeholder: FORM_KEY_CUSTOMER_SPECIFIC_IPv4">
-    </textarea>
+    <input [formControlName]="FORM_KEY_CUSTOMER_SPECIFIC_IPv4" rows="2" style="resize: none;"
+      [placeholder]="this.Context | placeholder: FORM_KEY_CUSTOMER_SPECIFIC_IPv4"/>
     <show-errors [control]="this.form.get(FORM_KEY_CUSTOMER_SPECIFIC_IPv4)"></show-errors>
   </div>
 

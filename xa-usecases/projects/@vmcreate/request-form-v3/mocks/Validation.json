@@ -1,259 +1,265 @@
 {
-  "requestForm": [
-      {
-          "varName": "Customer",
-          "required": true,
-          "type": "list",
-          "possibleValuesUrl": "api/validation/vmcreate2/customer"
-      },
-      {
-          "varName": "WbsInstall",
-          "type": "text",
-          "required": true,
-          "format": {
-              "regexPattern": "^[A-Z]\\.\\d{8}\\.\\d{2}(?:\\.\\d{2})?(?:\\.\\d{2})?$",
-              "errorMessage": "Install WBS in wrong format! e.g. I.12345678.00.01 or I.12345678.00.01.01"
-          }
-      },
-      {
-          "varName": "WbsOperations",
-          "type": "text",
-          "required": true,
-          "format": {
-              "regexPattern": "^[A-Z]\\.\\d{8}\\.\\d{2}(?:\\.\\d{2})?(?:\\.\\d{2})?$",
-              "errorMessage": "Operations WBS in wrong format! e.g. I.12345678.00.01 or I.12345678.00.01.01"
-          }
-      },
-      {
-          "varName": "Environment",
-          "type": "list",
-          "possibleValuesUrl": "api/validation/vmcreate2/environment",
-          "required": true
-      },
-      {
-          "varName": "Criticality",
-          "type": "list",
-          "possibleValuesUrl": "api/validation/vmcreate2/criticality",
-          "required": true
-      },
-      {
-          "varName": "SLA",
-          "type": "list",
-          "possibleValuesUrl": "api/validation/vmcreate2/sla/${Customer}",
-          "required": false
-      },
-      {
-          "varName": "Infrastructure",
-          "type": "list",
-          "possibleValuesUrl": "api/validation/vmcreate2/infrastructure/${Customer}",
-          "required": true
-      },
-      {
-          "varName": "ESXCluster",
-          "type": "list",
-          "possibleValuesUrl": "api/validation/vmcreate2/cluster/${Infrastructure}",
-          "required": true
-      },
-      {
-          "varName": "DatastoreType",
-          "type": "list",
-          "possibleValuesUrl": "api/validation/vmcreate2/datastore/${Infrastructure}",
-          "required": true
-      },
-      {
-          "varName": "SpecificInfrastructureSelection",
-          "type": "boolean",
-          "required": false,
-          "dependencies": {
-              "true": [
-                  {
-                      "varName": "AgreeToDiscussion",
-                      "requiredTrue": true,
-                      "type": "boolean"
-                  }
-              ]
-          }
-      },
-      {
-          "varName": "OS",
-          "type": "text",
-          "required": true,
-          "format": {
-              "regexPattern": "^(Windows|Linux)$",
-              "errorMessage": "Operating System must be 'Windows' or 'Linux'"
-          },
-          "dependencies": {
-              "Windows": [
-                  {
-                      "varName": "LicenseType",
-                      "type": "text",
-                      "required": true,
-                      "format": {
-                          "regexPattern": "^(spla|kms)$",
-                          "errorMessage": "LicenseType must be 'spla' or 'kms'"
-                      },
-                      "dependencies": {
-                          "spla": [
-                              {
-                                  "varName": "LicenseKey",
-                                  "type": "text",
-                                  "required": true
-                              }
-                          ],
-                          "kms": [
-                              {
-                                  "varName": "KmsIP",
-                                  "type": "text",
-                                  "required": true
-                              }
-                          ]
-                      }
-                  },
-                  {
-                      "varName": "Domain",
-                      "type": "list",
-                      "possibleValuesUrl": "api/validation/vmcreate2/domain/${Customer}",
-                      "required": false
-                  }
-              ]
-          }
-      },
-      {
-          "varName": "OSVersion",
-          "type": "list",
-          "possibleValuesUrl": "api/validation/vmcreate2/osversion/${OS}",
-          "required": true
-      },
-      {
-          "varName": "Release",
-          "type": "list",
-          "possibleValuesUrl": "api/validation/vmcreate2/release/${OS}?osversion=${OSVersion}",
-          "required": false
-      },
-      {
-          "varName": "Hostname",
-          "type": "text",
-          "required": true,
-          "format": {
-              "regexPattern": "^[a-z][a-z0-9-]+[a-z0-9]$",
-              "errorMessage": "Hostname in wrong format."
-          }
-      },
-      {
-          "varName": "Patchmode",
-          "type": "list",
-          "possibleValuesUrl": "api/validation/vmcreate2/patchmode",
-          "required": true
-      },
-      {
-          "varName": "FQDN",
-          "type": "list",
-          "possibleValuesUrl": "api/validation/vmcreate2/fqdn/${Customer}?hostname=${Hostname}",
-          "required": true
-      },
-      {
-          "varName": "PatchTime",
-          "type": "list",
-          "possibleValuesUrl": "api/validation/vmcreate2/patchtime",
-          "required": false
-      },
-      {
-          "varName": "OSSupportedBy",
-          "type": "list",
-          "possibleValuesUrl": "api/validation/vmcreate2/ossupport/${OS}",
-          "required": true
-      },
-      {
-          "varName": "ServiceTimeOS",
-          "type": "list",
-          "possibleValuesUrl": "api/validation/vmcreate2/servicetimeos/${OSSupportedBy}",
-          "required": true
-      },
-      {
-          "varName": "AppSupportedBy",
-          "type": "list",
-          "possibleValuesUrl": "api/validation/vmcreate2/appsupport",
-          "required": false
-      },
-      {
-          "varName": "ServiceTimeAppSupport",
-          "type": "list",
-          "possibleValuesUrl": "api/validation/vmcreate2/servicetimeapp/${AppSupportedBy}",
-          "required": false
-      },
-      {
-          "varName": "CPUs",
-          "type": "number",
-          "required": true
-      },
-      {
-          "varName": "RAM",
-          "type": "number",
-          "required": true
-      },
-      {
-          "varName": "MinMHz",
-          "type": "number",
-          "required": false
-      },
-      {
-          "varName": "MaxMHz",
-          "type": "number",
-          "required": false
-      },
-      {
-          "varName": "VMDK",
-          "type": "array",
-          "required": true,
-          "fields": [
-              {
-                  "varName": "name",
-                  "type": "text",
-                  "required": true
-              },
-              {
-                  "varName": "size",
-                  "type": "number",
-                  "required": true
-              },
-              {
-                  "varName": "mandatory",
-                  "type": "boolean",
-                  "required": false
-              }
-          ]
-      },
-      {
-          "varName": "CustomerLAN",
-          "type": "list",
-          "possibleValuesUrl": "api/validation/vmcreate2/customerlan/${Customer}",
-          "required": true
-      },
-      {
-          "varName": "AdminLAN",
-          "type": "list",
-          "possibleValuesUrl": "api/validation/vmcreate2/adminlan/${Customer}",
-          "required": false
-      },
-      {
-          "varName": "NasLAN",
-          "type": "list",
-          "possibleValuesUrl": "api/validation/vmcreate2/naslan/${Customer}",
-          "required": false
-      },
-      {
-          "varName": "CustomerSpecificIPs",
-          "type": "text",
-          "required": false
-      },
-      {
-          "varName": "MailAddressesShareInformation",
-          "type": "text",
-          "required": false,
-          "format": {
-              "regexPattern": "^(([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)(\\s*;\\s*|\\s*$))*$",
-              "errorMessage": "Please provide the email addresses in the correct format (semicolon [;] separated). "
-          }
-      }
-  ]
+    "requestForm": [
+        {
+            "varName": "Customer",
+            "required": true,
+            "type": "text"
+        },
+        {
+            "varName": "WbsInstall",
+            "type": "text",
+            "required": true,
+            "minLength": 16,
+            "format": {
+                "regexPattern": "^[A-Z]\\.\\d{8}\\.\\d{2}(?:\\.\\d{2})?(?:\\.\\d{2})?$",
+                "errorMessage": "Install WBS in wrong format! e.g. I.12345678.00.01 or I.12345678.00.01.01"
+            }
+        },
+        {
+            "varName": "WbsOperations",
+            "type": "text",
+            "required": true,
+            "minLength": 16,
+            "format": {
+                "regexPattern": "^[A-Z]\\.\\d{8}\\.\\d{2}(?:\\.\\d{2})?(?:\\.\\d{2})?$",
+                "errorMessage": "Operations WBS in wrong format! e.g. I.12345678.00.01 or I.12345678.00.01.01"
+            }
+        },
+        {
+            "varName": "Environment",
+            "type": "text",
+            "required": true
+        },
+        {
+            "varName": "Criticality",
+            "type": "text",
+            "required": true
+        },
+        {
+            "varName": "SLA",
+            "type": "text",
+            "required": false
+        },
+        {
+            "varName": "Infrastructure",
+            "type": "text",
+            "required": true
+        },
+        {
+            "varName": "ESXCluster",
+            "type": "text",
+            "required": true
+        },
+        {
+            "varName": "DatastoreType",
+            "type": "text",
+            "required": true
+        },
+        {
+            "varName": "SpecificInfrastructureSelection",
+            "type": "boolean",
+            "required": false,
+            "dependencies": {
+                "true": [
+                    {
+                        "varName": "AgreeToDiscussion",
+                        "requiredTrue": true,
+                        "type": "boolean"
+                    }
+
+                ]
+            }
+        },
+        {
+            "varName": "CustomerLanIpam",
+            "type": "boolean",
+            "required": false,
+            "dependencies": {
+                "false": [
+                    {
+                        "varName": "CustomerSpecificIPv4",
+                        "type": "text",
+                        "required": true,
+                        "format": {
+                            "regexPattern": "(\\25[0-5]|\\2[0-4][0-9]|\\[01]?[0-9][0-9]?)(\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}",
+                            "errorMessage": "Please provide a valid IPv4 address."
+                        }
+                    }
+
+                ]
+            }
+        },
+        {
+            "varName": "OS",
+            "type": "text",
+            "required": true,
+            "format": {
+                "regexPattern": "^(Windows|Linux)$",
+                "errorMessage": "Operating System must be 'Windows' or 'Linux'."
+            },
+            "dependencies": {
+                "Windows": [
+                    {
+                        "varName": "LicenseType",
+                        "type": "text",
+                        "required": true,
+                        "format": {
+                            "regexPattern": "^(spla|kms)$",
+                            "errorMessage": "LicenseType must be 'spla' or 'kms'."
+                        },
+                        "dependencies": {
+                            "spla": [
+                                {
+                                    "varName": "LicenseKey",
+                                    "type": "text",
+                                    "required": true,
+                                    "format": {
+                                        "regexPattern": "^([A-Z0-9]{5}-){4}[A-Z0-9]{5}$",
+                                        "errorMessage": "Please provide a valid SPLA licence key."
+                                    }
+                                }
+                            ],
+                            "kms": [
+                                {
+                                    "varName": "KmsIP",
+                                    "type": "text",
+                                    "required": true
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "varName": "Domain",
+                        "type": "text",
+                        "required": false
+                    }
+                ]
+            }
+        },
+        {
+            "varName": "OSVersion",
+            "type": "text",
+            "required": true
+        },
+        {
+            "varName": "Release",
+            "type": "text",
+            "required": false
+        },
+        {
+            "varName": "Hostname",
+            "type": "text",
+            "required": true,
+            "format": {
+                "regexPattern": "^[a-z][a-z0-9-]+[a-z0-9]$",
+                "errorMessage": "Hostname in wrong format."
+            }
+        },
+        {
+            "varName": "Patchmode",
+            "type": "text",
+            "required": true
+        },
+        {
+            "varName": "FQDN",
+            "type": "list",
+            "possibleValuesUrl": "api/validation/vmcreate2/fqdn/${Customer}?hostname=${Hostname}",
+            "required": true
+        },
+        {
+            "varName": "PatchTime",
+            "type": "text",
+            "required": false
+        },
+        {
+            "varName": "OSSupportedBy",
+            "type": "text",
+            "required": true
+        },
+        {
+            "varName": "ServiceTimeOS",
+            "type": "text",
+            "required": true
+        },
+        {
+            "varName": "AppSupportedBy",
+            "type": "text",
+            "required": false
+        },
+        {
+            "varName": "ServiceTimeAppSupport",
+            "type": "text",
+            "required": false
+        },
+        {
+            "varName": "CPUs",
+            "type": "number",
+            "required": true
+        },
+        {
+            "varName": "RAM",
+            "type": "number",
+            "required": true
+        },
+        {
+            "varName": "MinMHz",
+            "type": "number",
+            "required": false
+        },
+        {
+            "varName": "MaxMHz",
+            "type": "number",
+            "required": false
+        },
+        {
+            "varName": "VMDK",
+            "type": "array",
+            "required": true,
+            "fields": [
+                {
+                    "varName": "name",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "varName": "size",
+                    "type": "number",
+                    "required": true
+                },
+                {
+                    "varName": "mandatory",
+                    "type": "boolean",
+                    "required": false
+                }
+            ]
+        },
+        {
+            "varName": "CustomerLAN",
+            "type": "list",
+            "possibleValuesUrl": "api/validation/vmcreate2/customerlan/${Customer}",
+            "required": true
+        },
+        {
+            "varName": "AdminLAN",
+            "type": "list",
+            "possibleValuesUrl": "api/validation/vmcreate2/adminlan/${Customer}",
+            "required": false
+        },
+        {
+            "varName": "NasLAN",
+            "type": "list",
+            "possibleValuesUrl": "api/validation/vmcreate2/naslan/${Customer}",
+            "required": false
+        },
+       
+        {
+            "varName": "MailAddressesShareInformation",
+            "type": "text",
+            "required": false,
+            "format": {
+                "regexPattern": "^(([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)(\\s*;\\s*|\\s*$))*$",
+                "errorMessage": "Please provide the email addresses in the correct format (semicolon [;] separated). "
+            }
+        }
+    ]
 }
