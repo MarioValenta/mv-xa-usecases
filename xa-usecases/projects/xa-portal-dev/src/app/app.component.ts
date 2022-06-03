@@ -62,6 +62,10 @@ import * as Patchautomation_Remove_Validation from '../../../@patchautomation-re
 import * as Patchautomation_Process_Report_Payload from '../../../@patchautomation-process-report/request-form/mocks/Payload.json';
 import * as Patchautomation_Process_Report_ConfigPayload from '../../../@patchautomation-process-report/request-form/mocks/ConfigPayload.json';
 import * as Patchautomation_Process_Report_Validation from '../../../@patchautomation-process-report/request-form/mocks/Validation.json';
+// Patchautomation Category Assignment
+import * as Patchautomation_Category_Assignment_Payload from '../../../@patchautomation-category-assignment/request-form/mocks/Payload.json';
+import * as Patchautomation_Category_Assignment_ConfigPayload from '../../../@patchautomation-category-assignment/request-form/mocks/ConfigPayload.json';
+import * as Patchautomation_Category_Assignment_Validation from '../../../@patchautomation-category-assignment/request-form/mocks/Validation.json';
 // VM Create request-form-v1
 import * as VMCreate_v1_Payload from '../../../@vmcreate/request-form/mocks/Payload.json';
 import * as VMCreate_v1_ConfigPayload from '../../../@vmcreate/request-form/mocks/ConfigPayload.json';
@@ -247,6 +251,8 @@ export class AppHtmlFormsComponent {
   Test_User_Task_Process_UT_User_Task_Context: TaskContext = this.BuildCeTaskContext({ payload: Test_User_Task_Process_UT_User_Task_Payload, configPayload: Test_User_Task_Process_UT_User_Task_ConfigPayload, validation: Test_User_Task_Process_UT_User_Task_Validation });
   Universal_Tap_Execution_KFA_Deployment_Context: RequestContext = this.BuildRequestContext({ payload: UTE_KFA_Deployment_Payload, configPayload: UTE_KFA_Deployment_ConfigPayload, validation: UTE_KFA_Deployment_Validation });
   Universal_Tap_Execution_IDPA_Proxy_Redeployment_Context: RequestContext = this.BuildRequestContext({ payload: UTE_IDPA_Proxy_Redeployment_Payload, configPayload: UTE_IDPA_Proxy_Redeployment_ConfigPayload, validation: UTE_IDPA_Proxy_Redeployment_Validation });
+  Patchautomation_Category_Assignment_Context: RequestContext = this.BuildRequestContext({ payload: Patchautomation_Category_Assignment_Payload, configPayload: Patchautomation_Category_Assignment_ConfigPayload, validation: Patchautomation_Category_Assignment_Validation });
+
 
   constructor(
     private initialize: AppInitializeService,

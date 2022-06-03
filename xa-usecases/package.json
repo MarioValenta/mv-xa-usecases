@@ -59,6 +59,7 @@
     "build:prod:@create-ip-network/ut-confirmation-completeness": "ng build --project @create-ip-network/ut-confirmation-completeness --configuration production --single-bundle",
     "build:prod:@create-ip-network/ut-create-network-config": "ng build --project @create-ip-network/ut-create-network-config --configuration production --single-bundle",
     "build:prod:@idpa-proxy/request-form": "ng build --project @idpa-proxy/request-form --configuration production --single-bundle",
+    "build:prod:@patchautomation-category-assignment/request-form": "ng build --project @patchautomation-category-assignment/request-form --configuration production --single-bundle",
     "test:@billing/request-form": "ng test --project @billing/request-form",
     "test:@create-rfc/request-form": "ng test --project @create-rfc/request-form",
     "test:@create-sr/request-form": "ng test --project @create-sr/request-form",

@@ -1,0 +1,27 @@
+{
+  "columns": [
+    { "field": "HostID", "headerName": "HostID", "searchField": "HostID" },
+    {
+      "field": "Hostname",
+      "headerName": "Hostname",
+      "searchField": "Hostname",
+      "wildcardsearch": true
+    }
+  ],
+  "equalsCriteria": "HostID",
+  "maxDataRows": 20,
+  "allowedStatus": [
+    "ACTIVE",
+    "BASE_INSTALLED",
+    "READY_FOR_SERVICE",
+    "EXPERIMENTAL",
+    "INFOALERTING",
+    "LABORATORY"
+  ],
+  "searchcomponent": {
+    "top": "50px",
+    "width": "75%",
+    "myStyle": { "height": "400px" }
+  },
+  "hintText": "(You can remove CIs by \"right-clicking\" and selecting \"remove\".)"
+}

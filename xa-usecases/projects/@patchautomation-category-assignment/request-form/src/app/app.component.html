@@ -1,0 +1,43 @@
+<form [formGroup]="form" class="ui container form" style="padding: 20px 10px">
+  <h2 class="ui dividing header">
+    <i class="edit outline icon"></i>
+    <div class="content">
+      <span> General Data</span>
+      <div class="sub header">Specify general information.</div>
+    </div>
+  </h2>
+
+  <div class="required field">
+    <label>Customer</label>
+    <xa-select [search]="true" [formControlName]="(FORM_CUSTOMER.key)" [placeholder]="(FORM_CUSTOMER.placeholder)"
+      [options]="customers$ | async" [loading]="!(customers$ | async)" viewValue="label" optionValue="CUSTOMERNICKNAME">
+    </xa-select>
+  </div>
+  TODO:
+  Customer und HostCIs und der erste Host setzt die ApprovalGroup fest
+
+
+
+  <h2 class="ui dividing header">
+    <i class="tasks icon"></i>
+    <div class="content">
+      <span> Host CI search </span>
+      <div class="sub header">TODO</div>
+    </div>
+  </h2>
+  <div class="required field">
+    <label> Select affected CIs </label>
+    <ci-table
+      [Context]="this.Context"
+      (gridChanged)="updateCIForm($event)"
+    ></ci-table>
+  </div>
+  <show-errors [control]="this.form.get('cis')"></show-errors> -->
+
+
+
+  <div class="ui horizontal divider">JSON form data:</div>
+  <pre *if-dev class="field">
+    <p>{{this.form.value | json}}</p>
+  </pre>
+</form>
